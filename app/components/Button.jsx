@@ -1,12 +1,57 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
+import UTILS from "../utils";
 
-export default function Button() {
+
+
+
+const Button = ({ title = "Continue", onPress, isLoading, disabled }) => {
+  const buttonPress = () => {
+    if (!disabled) {
+      ()=> {}
+    }
+  };
+
   return (
-    <View>
-      <Text>Button</Text>
-    </View>
+    <TouchableOpacity
+      style={[
+        styles.button,
+        { opacity: disabled ? 0.6 : 1 }
+      ]}
+      onPress={buttonPress}
+      disabled={disabled}
+    >
+      {isLoading && (
+        <ActivityIndicator
+          size="small"
+          color="white"
+          style={{ marginRight: 18 }}
+        />
+      )}
+      <Text style={[styles.btnText]}>{title}</Text>
+    </TouchableOpacity>
   );
-}
+};
 
-const styles = StyleSheet.create({});
+export default Button;
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+  },
+  button: {
+    flexDirection: "row",
+    backgroundColor: UTILS.STYLES.colors.themeColor,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    borderRadius: 20,
+    width: 335,
+    height: 57
+  },
+  btnText: {
+    color: colors.gray3,
+    fontSize: 20,
+    fontWeight: "bold",
+  }
+});
