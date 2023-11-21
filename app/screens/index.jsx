@@ -1,9 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Home from "./Home";
+import { NavigationContainer } from '@react-navigation/native';
+
+
+import AuthNavigator from "../routes/AuthNavigator";
+import Login from "./AuthScreens/Login";
 
 export default function Root() {
-  return <Home />;
+//   <NavigationContainer>
+//   <AuthNavigator />
+// </NavigationContainer>
+<Login />
 }
 
 const styles = StyleSheet.create({});

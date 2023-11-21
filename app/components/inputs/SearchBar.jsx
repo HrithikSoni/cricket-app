@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
+import UTILS from "../../utils";
+import { SearchIcon } from "../icons";
 
 
-import { SearchIcon } from "../constants/Icons";
-import { commonStyle } from "../constants/styles";
 
 const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,7 +15,7 @@ const SearchBar = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.inputContainer, commonStyle]}>
+      <View style={[styles.inputContainer, UTILS.STYLES.commonStyle]}>
         <TextInput
           style={styles.input}
           placeholder={props?.label || "Search..."}

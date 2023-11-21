@@ -1,14 +1,16 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import appBundle from './screenBundle/AppBundle'
 
 const Stack = createStackNavigator();
 
-function MyStack() {
+function AuthNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} />
+      {appBundle.map((item, index) => (
+        <Stack.Screen key={index} name={item.name} component={item.Component} />
+      ))}
     </Stack.Navigator>
   );
 }
+
+export default AuthNavigator;

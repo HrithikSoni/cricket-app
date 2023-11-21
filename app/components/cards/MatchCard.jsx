@@ -1,6 +1,8 @@
 import { Button, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import colors from '../constants/colors';
+
+
+import UTILS from '../../utils';
 
 const MatchCard = () => {
   const matchDetails = [
@@ -8,7 +10,7 @@ const MatchCard = () => {
       name: "Mumbai Vs Delhi",
       format: "T20",
       discp: "Match let's Watch",
-      backgroundImage: require("../../assets/cricket.png"),
+      backgroundImage: require("../../../assets/cricket.png"),
       backgroundColor: 'rgba(0, 0, 0, 0.75)',
     },
   ];
@@ -23,9 +25,9 @@ const MatchCard = () => {
           imageStyle={styles.imageBackground}
         >
           <View style={[styles.cardContent, {backgroundColor: item.backgroundColor}]}>
-            <Text style={{fontSize: 20, color: colors.textColor}}>{item.name}</Text>
-            <Text style={{fontSize: 15, color: colors.gray1}}>{item.format}</Text>
-            <Text style={{fontSize: 15, color: colors.gray1}}>{item.discp}</Text>
+            <Text style={{fontSize: 20, color: UTILS.STYLES.colors.textColor}}>{item.name}</Text>
+            <Text style={{fontSize: 15, color: UTILS.STYLES.colors.gray1}}>{item.format}</Text>
+            <Text style={{fontSize: 15, color: UTILS.STYLES.colors.gray1}}>{item.discp}</Text>
             <TouchableOpacity style={styles.button} onPress={()=> {}}>
               <Text style={styles.buttonText}>Check Score</Text>
             </TouchableOpacity>
@@ -65,12 +67,12 @@ const styles = StyleSheet.create({
     padding:10,
     marginTop: 10,
     borderRadius: 10,
-    backgroundColor: colors.buttonBlue,
+    backgroundColor: UTILS.STYLES.colors.buttonBlue,
     alignItems: 'center',
     justifyContent:'center'
   },
   buttonText:{
-    color: colors.textColor,
+    color: UTILS.STYLES.colors.textColor,
     fontSize: 15
   }
 });

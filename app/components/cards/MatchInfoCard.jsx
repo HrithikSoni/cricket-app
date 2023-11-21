@@ -1,17 +1,17 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import colors from "../constants/colors";
+import UTILS from "../../utils";
 
 const MatchInfoCard = () => {
   const teamInfo = [
     {
-      teamImage: require("../../assets/cricket-team.png"),
-      teamName: "Delhi Heroes",
-      matchLocation: "Rajouri Garden",
-      noOfPlayers: "25",
-      player1Image: require("../../assets/player-1.png"),
-      player2Image: require("../../assets/player-2.png"),
-      player3Image: require("../../assets/player-3.png"),
+      mainImage: require("../../../assets/cricket-team.png"),
+      name: "Delhi Heroes",
+      discp: "Rajouri Garden",
+      rightText: "25 players",
+      player1Image: require("../../../assets/player-1.png"),
+      player2Image: require("../../../assets/player-2.png"),
+      player3Image: require("../../../assets/player-3.png"),
     },
   ];
 
@@ -27,13 +27,13 @@ const MatchInfoCard = () => {
             }}
           >
             <Image
-              source={item.teamImage}
+              source={item.mainImage}
               style={{ height: 55, width: 55, borderRadius: 20 }}
             />
             <View style={{ marginLeft: 10 }}>
-              <Text style={{ fontSize: 16 }}>{item.teamName}</Text>
-              <Text style={{ fontSize: 13, color: colors.gray2 }}>
-                {item.matchLocation}
+              <Text style={{ fontSize: 16 }}>{item.name}</Text>
+              <Text style={{ fontSize: 13, color: UTILS.STYLES.colors.gray2 }}>
+                {item.discp}
               </Text>
             </View>
           </View>
@@ -45,21 +45,26 @@ const MatchInfoCard = () => {
               gap: 30,
             }}
           >
-            <View style={{ flexDirection: "row", position: "relative" }}>
-              <Image
-                source={item.player1Image}
-                style={styles.playerImage}
-              />
-              <Image
-                source={item.player2Image}
-                style={[styles.playerImage, { position: "absolute", marginLeft: -20 }]}
-              />
-              <Image
-                source={item.player3Image}
-                style={[styles.playerImage, { position: "absolute", marginLeft: 20 }]}
-              />
-            </View>
-            <Text>{item.noOfPlayers} players</Text>
+            {item.player1Image && (
+              <View style={{ flexDirection: "row", position: "relative" }}>
+                <Image source={item.player1Image} style={styles.playerImage} />
+                <Image
+                  source={item.player2Image}
+                  style={[
+                    styles.playerImage,
+                    { position: "absolute", marginLeft: -20 },
+                  ]}
+                />
+                <Image
+                  source={item.player3Image}
+                  style={[
+                    styles.playerImage,
+                    { position: "absolute", marginLeft: 20 },
+                  ]}
+                />
+              </View>
+            )}
+            <Text>{item.rightText}</Text>
           </View>
         </View>
       ))}
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
     borderRadius: 20,
-    borderColor: colors.themeColor,
+    borderColor: UTILS.STYLES.colors.themeColor,
     borderWidth: 2,
   },
 });
