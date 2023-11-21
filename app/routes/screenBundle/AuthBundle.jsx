@@ -1,11 +1,15 @@
 import Login from "../../screens/AuthScreens/Login";
 
-export const LOGIN = {
+const LOGIN = {
   name: "Login",
   Component: Login,
 };
-export const SIGN_UP = {
+const SIGN_UP = {
   NAME: "",
+};
+
+export const AUTH_SCREEN = {
+  LOGIN: LOGIN.name,
 };
 
 const authBundle = [LOGIN, SIGN_UP];
