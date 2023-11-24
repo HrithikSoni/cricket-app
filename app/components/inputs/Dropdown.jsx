@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
+import UTILS from "../../utils";
 
 
-import colors from "../constants/colors";
-import { commonStyle } from "../constants/styles";
+
 
 const DropDown = (props) => {
   const [dropDownValue, SetDropDownValue] = useState("");
@@ -29,11 +29,11 @@ const DropDown = (props) => {
     <View>
       <Dropdown
         style={[
-          commonStyle,
+          UTILS.STYLES.commonStyle,
           props.style,
         ]}
         placeholder={props?.label || "Select Item"}
-        placeholderStyle={{ color: colors.gray2, fontSize: 20}}
+        placeholderStyle={{ color: UTILS.STYLES.colors.gray2, fontSize: 20}}
         data={props.list || dummyList}
         search
         searchPlaceholder="Search..."

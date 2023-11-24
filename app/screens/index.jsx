@@ -1,16 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
-
+import { NavigationContainer } from "@react-navigation/native";
+import 'react-native-gesture-handler';
 
 import AuthNavigator from "../routes/AuthNavigator";
 import Login from "./AuthScreens/Login";
 
 export default function Root() {
-//   <NavigationContainer>
-//   <AuthNavigator />
-// </NavigationContainer>
-<Login />
+  return (
+    <NavigationContainer>
+      <AuthNavigator />
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({});

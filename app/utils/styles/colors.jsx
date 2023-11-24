@@ -1,5 +1,5 @@
 export default {
-    themeColor: "#8C73F5",
+    themeColor: "#0062FF",
     textColor: "white",
     black: "black",
     gray1: "#D9D9D9",

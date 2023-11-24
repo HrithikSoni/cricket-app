@@ -24,13 +24,6 @@ const OTP = {
   Component: Otp
 }
 
-export const AUTH_SCREEN = {
-  ONBOARDING: ON_BOARDING.name,
-  LOGIN: LOGIN.name,
-  SIGNUP: SIGN_UP.name,
-  OTP: OTP.name
-};
-
 const authBundle = [ON_BOARDING,LOGIN, SIGN_UP, OTP];
 
 export default authBundle;

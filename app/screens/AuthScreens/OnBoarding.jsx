@@ -1,51 +1,68 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import React from "react";
 
+import PairBtn from "../../components/PairButton";
+import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 
-import PairBtn from '../../components/PairButton'
-
-const OnBoarding = () => {
+const OnBoarding = ({ navigation }) => {
   return (
-    <View style={[styles.container]}>
-      <View style={[styles.upperContainer]}>
-        <Image source={require("../../../assets/on-boarding-image.png")} style={[styles.image]}/>
+    <ImageBackground
+      source={require("../../../assets/Ellipse1.png")}
+      style={[styles.bgImage]}
+    >
+      <View style={[styles.container]}>
+        <View style={[styles.upperContainer]}>
+          <Image
+            source={require("../../../assets/on-boarding-image.png")}
+            style={[styles.image]}
+          />
+        </View>
+        <View style={[styles.middleContainer]}>
+          <Text style={[styles.text]}>
+            Welcome to the most rewarding cricket scoring app
+          </Text>
+        </View>
+        <View style={[styles.lowerContainer]}>
+          <PairBtn
+            onPressLeft={() => navigation.navigate(AUTH_SCREENS.LOGIN)}
+            leftBtnText={"Login"}
+            onPressRight={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
+            rightBtnText={"Create"}
+          />
+        </View>
       </View>
-      <View style={[styles.middleContainer]}>
-        <Text style={[styles.text]}>Welcome to the most rewarding cricket scoring app</Text>
-      </View>
-      <View style={[styles.lowerContainer]}>
-        <PairBtn onPressLeft={()=>{}} leftBtnText={"Login"} onPressRight={()=>{}} rightBtnText={"Create"}/>
-      </View>
-    </View>
-  )
-}
+    </ImageBackground>
+  );
+};
 
-export default OnBoarding
+export default OnBoarding;
 
 const styles = StyleSheet.create({
-    container:{
-        justifyContent:'center',
-        alignContent:'center',
-        paddingHorizontal: 20,
-        paddingVertical: 10
-    },
-    upperContainer:{
-        marginTop: 20
-    },
-    middleContainer:{
-        marginTop: 20
-    },
-    lowerContainer:{
-        marginTop: 20
-    },
-    text:{
-        fontSize: 30,
-        lineHeight: 40,
-        fontWeight:'400',
-        textAlign:'center'
-    },
-    image:{
-        height: 342,
-        width:342
-    }
-})
+  container: {
+    justifyContent: "center",
+    alignContent: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    paddingTop: 100,
+  },
+  bgImage: {},
+  upperContainer: {
+    marginTop: 20,
+  },
+  middleContainer: {
+    marginTop: 50,
+  },
+  lowerContainer: {
+    marginTop: 50,
+  },
+  text: {
+    fontSize: 30,
+    lineHeight: 40,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  image: {
+    height: 342,
+    width: 342,
+  },
+});

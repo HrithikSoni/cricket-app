@@ -1,15 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useRef } from "react";
 
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import Button from "../../components/Button";
 import UTILS from "../../utils";
-// import { AUTH_SCREEN } from "../../routes/screenBundle/AuthBundle";
-// import AppBottomSheet from "../../components/modals/AppBottomSheet";
+import { AUTH_SCREENS } from "../../utils/constants/screenNames";
+import CountryPickerBox from "../../components/inputs/CountryPickerBox";
+import PhoneNoInputBox from "../../components/inputs/PhoneNoInputBox";
 
+export default function Login({ navigation }) {
+  const loginData = useRef({ countryCode: "", phoneNo: "123" });
 
-
-export default function Login() {
+  // console.log(loginData.current.phoneNo, "bbbbbbbbbbbbbbbbbbbbb");
 
   return (
     <ParentWrapper
@@ -19,17 +21,29 @@ export default function Login() {
     >
       <View style={[styles.container]}>
         <View style={[styles.middleContainer]}>
-          {/* <AppBottomSheet /> */}
-          <Button onButtonPress={()=>{}}/>
+          <CountryPickerBox />
+          <PhoneNoInputBox
+            code={loginData.current.countryCode}
+            onChangeText={(e) => (loginData.current.phoneNo = e)}
+          />
+          <View style={{ marginTop: 50 }}>
+            <Button
+              onButtonPress={() =>
+                navigation.navigate(AUTH_SCREENS.OTP, {
+                  phoneNo: loginData.current.phoneNo,
+                })
+              }
+            />
+          </View>
         </View>
         <View style={[styles.lowerContainer]}>
           <Button
             label={"Don't have an account"}
-            bgColor={UTILS.STYLES.colors.gray1}
+            bgColor={UTILS.STYLES.colors.gray3}
             textColor={UTILS.STYLES.colors.black}
-            onButtonPress= {() => navigation.navigate(AUTH_SCREEN.SIGNUP)}
+            onButtonPress={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
           />
-          <Text style={{lineHeight: 24, textAlign: 'center'}}>
+          <Text style={{ lineHeight: 25, textAlign: "center" }}>
             By creating passcode you agree with our{" "}
             <Text style={{ color: UTILS.STYLES.colors.themeColor }}>
               Terms & Conditions and Privacy Policy
@@ -43,11 +57,17 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
-  middleContainer: {},
+  middleContainer: {
+    paddingTop: 50,
+    marginBottom: 30,
+  },
   lowerContainer: {
-    gap: 10
+    marginTop: 60,
+    gap: 50,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

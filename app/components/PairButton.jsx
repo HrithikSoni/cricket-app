@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import colors from "../constants/colors";
+
+
 import UTILS from "../utils";
 
 const PairBtn = (props) => {

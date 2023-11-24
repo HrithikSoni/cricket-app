@@ -1,19 +1,20 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
+import UTILS from "../../utils";
 
 
-import { commonStyle } from "../constants/styles";
+
 
 const InputBox = (props) => {
 
-  console.log(props?.name, 'zzzzzzz');
+  console.log(props, 'lllllllllllllllllllll');
 
   return (
     <TextInput
-      style={[commonStyle]}
+      style={[UTILS.STYLES.commonStyle]}
       textContentType={props?.type}
-      key={props?.id}
-      placeholder={props?.name}
+      key={props?.label}
+      placeholder={props?.label}
       defaultValue={props?.value}
       onChangeText={props?.onChangeText}
     />

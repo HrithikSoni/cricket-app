@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { Button } from "react-native";
 import DatePicker from "react-native-date-picker";
 
-import { CalendarIcon } from "../constants/Icons";
-import UTILS from "../../utils";
 
-const DatePicker = (props) => {
+import UTILS from "../../utils";
+import { CalendarIcon } from "../icons";
+
+const AppDatePicker = (props) => {
   const [date, setDate] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -56,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DatePicker;
+export default AppDatePicker;

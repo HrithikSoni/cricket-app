@@ -10,7 +10,7 @@ export default function ParentWrapper(props) {
     <SafeAreaView style={styles.container}>
       <View style={[styles.upperContainer]}>
       <LeftChevoronIcon onPress={()=> props?.navigation.goBack()}/>
-      <View style={[styles.textContainer]}>
+      <View style={[styles.textContainer, {paddingTop: props?.PTTextCon || 50}]}>
       {props?.title && <Text style={[styles.title]}>{props?.title}</Text>}
       {props?.discp && <Text style={[styles.discp]}>{props?.discp}</Text>}
       </View>
@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   upperContainer:{
-    marginTop: 35
+    marginTop: 60
   },
   textContainer:{
-    marginTop: 60
+   
   },
   title:{
     fontSize: 30,

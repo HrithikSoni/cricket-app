@@ -37,6 +37,10 @@ export const LeftChevoronIcon = (props) => (
   </TouchableOpacity>
 );
 
+export const CameraIcon = () => (
+  <Feather name="camera" size={30} color={UTILS.STYLES.colors.themeColor} />
+);
+
 export default ICONS = [SearchIcon, CalendarIcon, CheckIcon, LeftChevoronIcon]
 
 // export const CalendarIcon = (props) => (

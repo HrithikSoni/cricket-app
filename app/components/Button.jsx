@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     borderRadius: 20,
-    width: 335,
+    width: 360,
     height: 57,
   },
   btnText: {
