@@ -1,38 +1,142 @@
-import { TouchableOpacity , StyleSheet, Text, TextInput, View } from "react-native";
-import React from "react";
-
+import {
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 
 import { commonStyle } from "../../utils/styles/globalStyles";
 import UTILS from "../../utils";
-
+import { AppContext } from "../../context/AppContext";
+import OTPInputBox from "./OTPInputBox";
 
 const PhoneNoInputBox = (props) => {
+  const [mobileNo, setMobileNo] = useState("");
+  const [isVerifyPressed, setIsVerifyPressed] = useState(false);
+  const [timer, setTimer] = useState(30);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const { selectedOption } = useContext(AppContext);
+
+  // console.log(props, 'oooooooooooo');
+
+  useEffect(() => {
+    let interval;
+    if (timerRunning && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setTimerRunning(false);
+    }
+
+    return () => clearInterval(interval);
+  }, [timer, timerRunning]);
+
+  function handleOnChange(e) {
+    setMobileNo(e);
+  }
+
+  function handleOnVerify() {
+    setIsVerifyPressed(true);
+    setTimerRunning(true);
+  }
+
+  function handleOnResend() {
+    setTimer(30);
+    setTimerRunning(true);
+  }
+
   return (
-    <View style={[commonStyle, styles.container, {justifyContent: props?.isVerify ? 'space-between' : 'flex-start' }]}>
-      <View style={[styles.codeContainer]}>
-        <View>
-          <Text style={styles.text}>{props?.code || "+91"}</Text>
+    <>
+      <View
+        style={[
+          commonStyle,
+          styles.container,
+          { justifyContent: props?.isVerify ? "space-between" : "flex-start" },
+        ]}
+      >
+        <View style={[styles.codeContainer]}>
+          <View>
+            <Text style={styles.text}>{selectedOption?.code || "+91"}</Text>
+          </View>
+          <View style={styles.line} />
         </View>
-        <View style={styles.line} />
+        <View
+          style={[
+            styles.inputContainer,
+            { marginLeft: props?.isVerify ? -130 : 10 },
+          ]}
+        >
+          <TextInput
+            keyboardType="phone-pad"
+            key="Mobile No"
+            placeholder="Mobile No"
+            defaultValue={props?.defaultValue}
+            onChangeText={(e) => handleOnChange(e)}
+            style={[styles.text]}
+          />
+        </View>
+        {props?.isVerify && (
+          <View>
+            {isVerifyPressed ? (
+              <TouchableOpacity
+                onPress={handleOnResend}
+                disabled={timerRunning}
+              >
+                <Text
+                  style={[
+                    styles.verifyText,
+                    {
+                      color: timerRunning
+                        ? UTILS.STYLES.colors.gray2
+                        : UTILS.STYLES.colors.themeColor,
+                    },
+                  ]}
+                >
+                  Resend
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              mobileNo.length === 10 && (
+                <TouchableOpacity onPress={handleOnVerify}>
+                  <Text style={[styles.verifyText]}>Verify</Text>
+                </TouchableOpacity>
+              )
+            )}
+          </View>
+        )}
       </View>
-      <View style={[styles.inputContainer, {marginLeft: props?.isVerify ? -130 : 10}]}>
-        <TextInput
-          keyboardType="phone-pad"
-          key="Mobile No"
-          placeholder="Mobile No"
-          defaultValue={props?.defaultValue}
-          onChangeText={props?.onChangeText}
-          style={[styles.text]}
-        />
-      </View>
-      {props?.isVerify && (
-        <View>
-          <TouchableOpacity onPress={props?.handleOnVerify}>
-            <Text style={[styles.verifyText]}>Verify</Text>
-          </TouchableOpacity>
+      {isVerifyPressed && (
+        <View style={[styles.otpBox]}>
+          <View style={[UTILS.STYLES.rowSpaceBtw]}>
+            <View style={[UTILS.STYLES.rowCenter]}>
+            <Text
+              style={[
+                UTILS.STYLES.commonTextStyle,
+                { color: UTILS.STYLES.colors.gray2 },
+              ]}
+            >
+              Code is sent to
+            </Text>
+            <Text
+                style={[
+                  UTILS.STYLES.commonTextStyle,
+                  { color: UTILS.STYLES.colors.black, marginLeft: 5 },
+                ]}
+              >
+                {mobileNo}
+              </Text>
+            </View>
+            <Text style={[styles.verifyText]}>0:{timer}</Text>
+          </View>
+          <View>
+            <OTPInputBox />
+          </View>
         </View>
       )}
-    </View>
+    </>
   );
 };
 
@@ -49,8 +153,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  inputContainer: {
-  },
+  inputContainer: {},
   text: {
     fontSize: 17,
   },
@@ -64,5 +167,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "500",
     color: UTILS.STYLES.colors.themeColor,
+  },
+  otpBox: {
+    marginTop: 10,
+    paddingHorizontal: 5,
   },
 });

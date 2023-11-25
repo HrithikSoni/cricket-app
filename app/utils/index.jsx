@@ -1,7 +1,7 @@
 import handlePlatform from "./helpers/handlePlatform";
 import INPUT_TYPE from "./constants/inputType";
 import colors from "./styles/colors";
-import { commonStyle } from "./styles/globalStyles";
+import { commonStyle, commonTextStyle, rowCenter, rowSpaceBtw } from "./styles/globalStyles";
 import COUNTRIES from "./constants/country";
 
 const HELPERS = {
@@ -11,6 +11,9 @@ const HELPERS = {
 const STYLES = {
   colors,
   commonStyle,
+  commonTextStyle,
+  rowCenter,
+  rowSpaceBtw
 };
 
 const UTILS = {

@@ -1,20 +1,20 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useRef } from "react";
 
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
+
 import Button from "../../components/Button";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 import CountryPickerBox from "../../components/inputs/CountryPickerBox";
 import PhoneNoInputBox from "../../components/inputs/PhoneNoInputBox";
+import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 
 export default function Login({ navigation }) {
   const loginData = useRef({ countryCode: "", phoneNo: "123" });
 
-  // console.log(loginData.current.phoneNo, "bbbbbbbbbbbbbbbbbbbbb");
-
   return (
-    <ParentWrapper
+    
+      <ParentWrapperWithBG
       title={"Welcome Back!"}
       discp={"Enter your phone number and login your account"}
       navigation={navigation}
@@ -26,6 +26,7 @@ export default function Login({ navigation }) {
             code={loginData.current.countryCode}
             onChangeText={(e) => (loginData.current.phoneNo = e)}
           />
+          <ModalComponent />
           <View style={{ marginTop: 50 }}>
             <Button
               onButtonPress={() =>
@@ -51,7 +52,8 @@ export default function Login({ navigation }) {
           </Text>
         </View>
       </View>
-    </ParentWrapper>
+    </ParentWrapperWithBG>
+   
   );
 }
 

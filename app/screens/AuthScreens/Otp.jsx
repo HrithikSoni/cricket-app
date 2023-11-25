@@ -2,10 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import OTPTextInput from "react-native-otp-textinput";
 
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
+
 import Button from "../../components/Button";
 import UTILS from "../../utils";
 import OTPInputBox from "../../components/inputs/OTPInputBox";
+import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 
 const Otp = ({navigation, route}) => {
   const [timer, setTimer] = useState(30);
@@ -31,7 +32,7 @@ const Otp = ({navigation, route}) => {
   };
 
   return (
-    <ParentWrapper
+    <ParentWrapperWithBG
       title={"OTP verification"}
       discp={`Code is sent to ` + phoneNo}
       navigation={navigation}
@@ -47,11 +48,11 @@ const Otp = ({navigation, route}) => {
         <View style={[styles.lowerContainer]}>
       {timer === 0 ? (
         <Text style={{ color: UTILS.STYLES.colors.themeColor, fontSize: 20, fontWeight: 'bold' }}>
-        0 sec
+        0:00
       </Text>
       ) : (
         <Text style={{ color: UTILS.STYLES.colors.themeColor, fontSize: 20, fontWeight: 'bold' }}>
-          {timer} sec
+          0:{timer}
         </Text>
       )}
       <View style={{ flexDirection: 'row', gap: 5 }}>
@@ -74,7 +75,7 @@ const Otp = ({navigation, route}) => {
         </View>
       </View>
       </View>
-    </ParentWrapper>
+    </ParentWrapperWithBG>
   );
 };
 

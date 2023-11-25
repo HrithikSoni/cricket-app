@@ -16,7 +16,6 @@ import {
 } from "react-native-vector-icons";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
-
 import UTILS from "../utils";
 
 export const SearchIcon = () => (
@@ -24,7 +23,7 @@ export const SearchIcon = () => (
 );
 
 export const CalendarIcon = () => (
-    <AntDesign name="calendar" size={24} color={UTILS.STYLES.colors.gray2} />
+  <AntDesign name="calendar" size={24} color={UTILS.STYLES.colors.themeColor} />
 );
 
 export const CheckIcon = () => (
@@ -41,13 +40,20 @@ export const CameraIcon = () => (
   <Feather name="camera" size={30} color={UTILS.STYLES.colors.themeColor} />
 );
 
-export default ICONS = [SearchIcon, CalendarIcon, CheckIcon, LeftChevoronIcon]
+export const CheveronIcon = (props) => (
+  <Ionicons
+    name={props?.isListVisible ? "chevron-up" : "chevron-down"}
+    size={24}
+    color= {UTILS.STYLES.colors.gray2}
+  />
+)
+
+export default ICONS = {SearchIcon, CalendarIcon, CheckIcon, LeftChevoronIcon, CheveronIcon};
 
 // export const CalendarIcon = (props) => (
 //   <TouchableOpacity onPress={props.onPress}>
 //     <AntDesign name="calendar" size={24} color={colors.gray2} />
 //   </TouchableOpacity>
 // );
-
 
 const styles = StyleSheet.create({});

@@ -6,12 +6,14 @@ import {
   View,
 } from "react-native";
 import React, { useRef } from "react";
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
+
+
 import UTILS from "../../utils";
 import { CameraIcon } from "../../components/icons";
 import INPUT_TYPE from "../../utils/constants/inputType";
 import ComponentHandler from "../../components/ComponentHandler";
 import Button from '../../components/Button'
+import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
@@ -47,6 +49,8 @@ const Signup = ({ navigation }) => {
       key: signUpData.current.gender,
       defaultValue: signUpData.current.gender,
       type: INPUT_TYPE.DROPDOWN,
+      arrayData: [{label: "Male"}, {label: 'Female'}],
+      title: 'Select Gender'
     },
     {
       label: "Date Of Birth",
@@ -81,7 +85,7 @@ const Signup = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <ParentWrapper
+      <ParentWrapperWithBG
         title={"Create account"}
         discp={"Please Enter Your details and create your account"}
         navigation={navigation}
@@ -108,7 +112,7 @@ const Signup = ({ navigation }) => {
           ))}
           <View style={{marginTop: 20}}><Button onButtonPress={handleSignUpPress}/></View>
         </View>
-      </ParentWrapper>
+      </ParentWrapperWithBG>
     </ScrollView>
   );
 };

@@ -6,9 +6,10 @@ import { LeftChevoronIcon } from "../icons";
 import UTILS from "../../utils";
 import BGImageWapper from "./BGImageWapper";
 
-export default function ParentWrapper(props) {
+export default function ParentWrapperWithBG(props) {
   return (
     <SafeAreaView style={styles.container}>
+      <BGImageWapper>
       <View style={[styles.upperContainer]}>
       <LeftChevoronIcon onPress={()=> props?.navigation.goBack()}/>
       <View style={[styles.textContainer, {paddingTop: props?.PTTextCon || 50}]}>
@@ -17,6 +18,7 @@ export default function ParentWrapper(props) {
       </View>
       </View>
       {props.children}
+      </BGImageWapper>
     </SafeAreaView>
   );
 }

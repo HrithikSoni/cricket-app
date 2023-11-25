@@ -26,7 +26,7 @@ const PairBtn = (props) => {
           {props?.leftBtnText || "Cancel"}
         </Text>
       </TouchableOpacity>
-      <View style={{ width: 50 }} />
+      <View style={{ width: 20 }} />
       <TouchableOpacity
         onPress={props?.onPressRight}
         style={[

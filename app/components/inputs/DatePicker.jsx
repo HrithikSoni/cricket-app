@@ -18,7 +18,7 @@ const AppDatePicker = (props) => {
         style={[styles.container, UTILS.STYLES.commonStyle]}
       >
         <Text
-          style={{ fontSize: 20, color: date ? UTILS.STYLES.colors.black : UTILS.STYLES.colors.gray2 }}
+          style={[UTILS.STYLES.commonTextStyle, { color: date ? UTILS.STYLES.colors.black : UTILS.STYLES.colors.gray2 }]}
         >
           {date ? date.toLocaleDateString() : props?.label}
         </Text>

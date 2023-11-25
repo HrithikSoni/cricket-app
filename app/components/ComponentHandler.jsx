@@ -7,12 +7,12 @@ import CountryPickerBox from "../components/inputs/CountryPickerBox";
 import DatePicker from "../components/inputs/DatePicker";
 import OTPInputBox from "../components/inputs/OTPInputBox";
 import PhoneNoInputBox from "../components/inputs/PhoneNoInputBox";
-import DropDown from '../components/inputs/Dropdown'
+import DropDownModal from '../components/modals/DropdownModal'
 
 const ComponentHandler = (props) => {
   const { type } = props;
 
-console.log(props, 'sssssssssssssssssss');
+  // console.log(props, 'sssssssssssssssssss');
 
   switch (type) {
     case INPUT_TYPE.COUNTRY_PICKER_BOX:
@@ -25,10 +25,10 @@ console.log(props, 'sssssssssssssssssss');
       return <OTPInputBox {...props} />;
 
     case INPUT_TYPE.PHONE_NO_INPUT_BOX:
-      return <PhoneNoInputBox />;
+      return <PhoneNoInputBox {...props} />;
 
     case INPUT_TYPE.DROPDOWN:
-        return <DropDown {...props}/>
+      return <DropDownModal {...props} />;
 
     default:
       return <InputBox {...props} />;

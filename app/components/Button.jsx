@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     borderRadius: 20,
-    width: 360,
     height: 57,
+    minWidth: 360
   },
   btnText: {
     fontSize: 20,
