@@ -112,11 +112,11 @@ function useOtp(body) {
   });
   console.log(body);
   async function handleOtp() {
-    // const requestConfig = {
-    //   endpoint: AUTH_ENDPOINTS.CONFIRM_OTP,
-    //   body,
-    // };
-    // await request(requestConfig);
+    const requestConfig = {
+      endpoint: AUTH_ENDPOINTS.CONFIRM_OTP,
+      body,
+    };
+    await request(requestConfig);
   }
 
   return { handleOtp };

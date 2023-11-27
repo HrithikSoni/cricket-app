@@ -4,6 +4,7 @@ import React from "react";
 import "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
+import { NavigationContainer } from "@react-navigation/native";
 
 import Root from "./app/screens";
 import { AppProvider } from "./app/context/AppContext";
@@ -13,17 +14,14 @@ import { toastConfig } from "./app/services/toast/toastConfig";
 export default function App() {
   return (
     <>
+    <NavigationContainer>
       <AppProvider>
-<<<<<<< HEAD
-        <Root />
-      </AppProvider>
-=======
         <Provider store={store}>
           <Root />
         </Provider>
       </AppProvider>
+      </NavigationContainer>
       <Toast config={toastConfig} topOffset={300} />
->>>>>>> d25abfb3031878427a2a055f79abb6d0943b4912
     </>
   );
 }
