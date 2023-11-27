@@ -15,12 +15,14 @@ import { PanGestureHandler, State } from "react-native-gesture-handler";
 import UTILS from "../../utils";
 import SearchBar from "../inputs/SearchBar";
 import Icons from "../icons";
+import { AppContext } from "../../context/AppContext";
 // import AppText from "../wrappers/AppTextWrapper";
 
 const DropDownModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const translateY = useRef(new Animated.Value(600)).current;
+  const {setUserData} = useContext(AppContext);
 
   const openModal = () => {
     setModalVisible(true);
@@ -54,6 +56,7 @@ const DropDownModal = (props) => {
 
   const handleOptionSelection = (option) => {
     setSelectedOption(option);
+    setUserData({selectedOption: option})
     handleModal();
   };
 

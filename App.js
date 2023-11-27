@@ -8,10 +8,10 @@ import { AppProvider } from "./app/context/AppContext";
 
 export default function App() {
   return (
-   <>
-    <AppProvider>
-      <Root />
-    </AppProvider>
-   </>
+    <>
+      <AppProvider>
+        <Root />
+      </AppProvider>
+    </>
   );
 }

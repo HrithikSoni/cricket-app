@@ -17,9 +17,9 @@ const PhoneNoInputBox = (props) => {
   const [isVerifyPressed, setIsVerifyPressed] = useState(false);
   const [timer, setTimer] = useState(30);
   const [timerRunning, setTimerRunning] = useState(false);
-  const { selectedOption } = useContext(AppContext);
+  const { userData } = useContext(AppContext);
 
-  // console.log(props, 'oooooooooooo');
+  console.log(userData.selectedOption, 'oooooooooooo');
 
   useEffect(() => {
     let interval;
@@ -59,7 +59,7 @@ const PhoneNoInputBox = (props) => {
       >
         <View style={[styles.codeContainer]}>
           <View>
-            <Text style={styles.text}>{selectedOption?.code || "+91"}</Text>
+            <Text style={styles.text}>{userData.selectedOption?.rightText || "+91"}</Text>
           </View>
           <View style={styles.line} />
         </View>
