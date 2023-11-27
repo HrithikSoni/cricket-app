@@ -7,6 +7,7 @@ import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import { useNavigation } from "@react-navigation/native";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import OTPInputBox from "../../components/inputs/OTPInputBox";
+import { save, userDetail } from "../../services/permanentStorage";
 
 const Otp = ({ navigation, route }) => {
   const [timer, setTimer] = useState(30);
@@ -119,7 +120,7 @@ function useResendOtp(body) {
 
   const { request } = useApi({
     onSuccess: (e) => {
-      console.log("first");
+      save(userDetail, e)
     },
   });
   async function handleResendOtp() {

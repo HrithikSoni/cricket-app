@@ -14,6 +14,7 @@ import ComponentHandler from "../../components/ComponentHandler";
 import Button from "../../components/Button";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import {save, userDetail} from '../../services/permanentStorage'
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
@@ -141,7 +142,7 @@ const handleEditProfilePic = () => {};
 function useSignUp(body) {
 
   const { request } = useApi({
-    onSuccess: (e) => {e, 'ppppppppp'},
+    onSuccess: (e) => {save(userDetail, e.data)},
   });
 
   async function handleSignUp() {
