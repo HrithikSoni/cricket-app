@@ -11,8 +11,13 @@ import { commonStyle } from "../../utils/styles/globalStyles";
 import UTILS from "../../utils";
 import { AppContext } from "../../context/AppContext";
 import OTPInputBox from "./OTPInputBox";
+import useApi from "../../hooks/useApi";
+import AUTH_ENDPOINT from "../../services/api/authEndpoints";
+import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 
 const PhoneNoInputBox = (props) => {
+  const [data, setData] = useState({});
+  const updateData = (e) => setData({ ...data, e });
   const [mobileNo, setMobileNo] = useState("");
   const [isVerifyPressed, setIsVerifyPressed] = useState(false);
   const [timer, setTimer] = useState(30);
@@ -20,6 +25,8 @@ const PhoneNoInputBox = (props) => {
   const { userData } = useContext(AppContext);
 
   console.log(userData.selectedOption, 'oooooooooooo');
+
+  const { handleSendOtp } = useSendOtp({ contact: mobileNo });
 
   useEffect(() => {
     let interval;
@@ -36,16 +43,19 @@ const PhoneNoInputBox = (props) => {
 
   function handleOnChange(e) {
     setMobileNo(e);
+    props.onChangeText(e);
   }
 
   function handleOnVerify() {
     setIsVerifyPressed(true);
     setTimerRunning(true);
+    handleSendOtp();
   }
 
   function handleOnResend() {
     setTimer(30);
     setTimerRunning(true);
+    handleSendOtp();
   }
 
   return (
@@ -112,15 +122,15 @@ const PhoneNoInputBox = (props) => {
         <View style={[styles.otpBox]}>
           <View style={[UTILS.STYLES.rowSpaceBtw]}>
             <View style={[UTILS.STYLES.rowCenter]}>
-            <Text
-              style={[
-                UTILS.STYLES.commonTextStyle,
-                { color: UTILS.STYLES.colors.gray2 },
-              ]}
-            >
-              Code is sent to
-            </Text>
-            <Text
+              <Text
+                style={[
+                  UTILS.STYLES.commonTextStyle,
+                  { color: UTILS.STYLES.colors.gray2 },
+                ]}
+              >
+                Code is sent to
+              </Text>
+              <Text
                 style={[
                   UTILS.STYLES.commonTextStyle,
                   { color: UTILS.STYLES.colors.black, marginLeft: 5 },
@@ -141,6 +151,19 @@ const PhoneNoInputBox = (props) => {
 };
 
 export default PhoneNoInputBox;
+
+function useSendOtp(body) {
+  const { request } = useApi();
+
+  async function handleSendOtp() {
+    const requestConfig = {
+      endpoint: AUTH_ENDPOINTS.SEND_OTP,
+      body,
+    };
+    await request(requestConfig);
+  }
+  return { handleSendOtp };
+}
 
 const styles = StyleSheet.create({
   container: {

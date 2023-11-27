@@ -1,30 +1,84 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
-import instance from "../services/axiosConfig";
-import HTTP_METHODS from "../services/methods";
-import { AuthContext } from "../context/AuthContext";
+import useAuth from "./useAuth";
+import api from "../services/api";
+import UTILS from "../utils";
 
-export default function useAPI({ onSuccess = () => {}, onFail = () => {} }) {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const { user } = useContext(AuthContext);
+const getHeader = (token) => {
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  };
+};
 
-  async function request({ method = HTTP_METHODS.GET, endpoint, body = {} }) {
-    setIsLoading(true);
-    instance.defaults.headers.common["Authorization"] = `Bearer ${user?.token}`;
-    // console.log(user?.token);
+export default useApi = (hookConfig = {}) => {
+  const {
+    showLoader = true,
+    showMessage = true,
+    successMessage = "Successful",
+    failMessage = "Failed",
+    onSuccess = () => {},
+    onFail = () => {},
+  } = hookConfig;
+
+  const { token, auth, role } = useAuth();
+
+  const request = async (requestConfig) => {
+    const {
+      endpoint,
+      body = {},
+      method = UTILS.HTTPS_METHODS.POST,
+      params = {},
+    } = requestConfig;
     try {
-      const response = await instance[method](endpoint, body);
-      setData(response?.data);
-      onSuccess(response);
-      return response;
-    } catch (error) {
-      onFail(error);
-      console.warn(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+      if (showLoader) {
+        Toast.show(UTILS.TOAST_TYPE.LOADING);
+      }
 
-  return { data, isLoading, request };
-}
+      const { headers } = getHeader(token);
+      const data = await api.any({
+        url: endpoint,
+        params,
+        headers,
+        method,
+        data: body,
+      });
+
+      // console.log(data, "oooo");
+      Toast.hide();
+      if (data.ok) {
+        if (showMessage) {
+          Toast.show({
+            ...UTILS.TOAST_TYPE.SUCCESS,
+            text2: data.data.message || successMessage,
+          });
+        }
+        onSuccess(data.data);
+      } else {
+        if (showMessage) {
+          Toast.show({
+            ...UTILS.TOAST_TYPE.ERROR,
+            text2:
+              typeof data.data.message == "string"
+                ? data.data.message
+                : data.data.message[0] || failMessage,
+          });
+        }
+        onFail(data.data.message);
+      }
+
+      return data;
+    } catch (error) {
+      // console.log(error, "error");
+      Toast.show({ ...UTILS.TOAST_TYPE.ERROR, text2: failMessage });
+      onFail(error);
+      return error;
+    }
+  };
+
+  return { request };
+};

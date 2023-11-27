@@ -2,12 +2,12 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import InputBox from "./inputs/InputBox";
-import INPUT_TYPE from "../utils/constants/inputType";
 import CountryPickerBox from "../components/inputs/CountryPickerBox";
 import DatePicker from "../components/inputs/DatePicker";
 import OTPInputBox from "../components/inputs/OTPInputBox";
 import PhoneNoInputBox from "../components/inputs/PhoneNoInputBox";
-import DropDownModal from '../components/modals/DropdownModal'
+import DropDownModal from "../components/modals/DropdownModal";
+import UTILS from "../utils";
 
 const ComponentHandler = (props) => {
   const { type } = props;
@@ -15,19 +15,19 @@ const ComponentHandler = (props) => {
   // console.log(props, 'sssssssssssssssssss');
 
   switch (type) {
-    case INPUT_TYPE.COUNTRY_PICKER_BOX:
+    case UTILS.INPUT_TYPE.COUNTRY_PICKER_BOX:
       return <CountryPickerBox {...props} />;
 
-    case INPUT_TYPE.DATE_PICKER:
+    case UTILS.INPUT_TYPE.DATE_PICKER:
       return <DatePicker {...props} />;
 
-    case INPUT_TYPE.OTP_INPUT_BOX:
+    case UTILS.INPUT_TYPE.OTP_INPUT_BOX:
       return <OTPInputBox {...props} />;
 
-    case INPUT_TYPE.PHONE_NO_INPUT_BOX:
+    case UTILS.INPUT_TYPE.PHONE_NO_INPUT_BOX:
       return <PhoneNoInputBox {...props} />;
 
-    case INPUT_TYPE.DROPDOWN:
+    case UTILS.INPUT_TYPE.DROPDOWN:
       return <DropDownModal {...props} />;
 
     default:

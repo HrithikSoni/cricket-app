@@ -2,13 +2,7 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import UTILS from "../../utils";
 
-
-
-
 const InputBox = (props) => {
-
-  console.log(props, 'lllllllllllllllllllll');
-
   return (
     <TextInput
       style={[UTILS.STYLES.commonStyle]}
