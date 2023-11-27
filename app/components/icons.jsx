@@ -4,6 +4,7 @@ import {
   Feather,
   MaterialIcons,
   FontAwesome5,
+  Foundation,
   EvilIcons,
   FontAwesome,
   Ionicons,
@@ -44,11 +45,53 @@ export const CheveronIcon = (props) => (
   <Ionicons
     name={props?.isListVisible ? "chevron-up" : "chevron-down"}
     size={24}
-    color= {UTILS.STYLES.colors.gray2}
+    color={UTILS.STYLES.colors.gray2}
   />
-)
+);
 
-export default ICONS = {SearchIcon, CalendarIcon, CheckIcon, LeftChevoronIcon, CheveronIcon};
+export const HomeIcon = (props) => (
+  <Foundation
+    name="home"
+    size={35}
+    color={props?.color || UTILS.STYLES.colors.themeColor}
+  />
+);
+
+export const CompassIcon = (props) => (
+  <Ionicons
+    name="compass"
+    size={35}
+    color={props?.color || UTILS.STYLES.colors.themeColor}
+  />
+);
+
+export const CricketIcon = (props) => (
+  <MaterialCommunityIcons
+    name="cricket"
+    size={35}
+    color={props?.color || UTILS.STYLES.colors.themeColor}
+  />
+);
+
+export const UserIcon = (props) => (
+  <FontAwesome
+    name="user"
+    size={35}
+    color={props?.color || UTILS.STYLES.colors.themeColor}
+  />
+);
+
+export default ICONS = {
+  SearchIcon,
+  CalendarIcon,
+  CheckIcon,
+  LeftChevoronIcon,
+  CheveronIcon,
+  HomeIcon,
+  CompassIcon,
+  CricketIcon,
+  UserIcon
+};
 
 // export const CalendarIcon = (props) => (
 //   <TouchableOpacity onPress={props.onPress}>

@@ -10,7 +10,10 @@ export default function ParentWrapper(props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={[styles.upperContainer]}>
+      <View>
       <LeftChevoronIcon onPress={()=> props?.navigation.goBack()}/>
+      {props?.screenTitle && <Text style={[styles]}>{props?.screenTitle}</Text>}
+      </View>
       <View style={[styles.textContainer, {paddingTop: props?.PTTextCon || 50}]}>
       {props?.title && <Text style={[styles.title]}>{props?.title}</Text>}
       {props?.discp && <Text style={[styles.discp]}>{props?.discp}</Text>}

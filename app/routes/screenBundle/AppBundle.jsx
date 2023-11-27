@@ -1,15 +1,11 @@
-import Home from "../../screens/Home"
+import { NAV_SCREENS } from "../../utils/constants/screenNames";
+import BottomTabNavigator from "../BottomTabNavigator";
 
-export const HOME = {
-    name: "Home",
-    component: Home
+export const BOTTOM_TAB_NAVIGATOR = {
+    name: NAV_SCREENS.BOTTOM_TAB_NAVIGATOR,
+    Component: BottomTabNavigator
 }
 
-
-export const APP_SCREENS = {
-    Home : HOME.name
-}
-
-const appBundle = [HOME]
+const appBundle = [BOTTOM_TAB_NAVIGATOR]
 
 export default appBundle;
