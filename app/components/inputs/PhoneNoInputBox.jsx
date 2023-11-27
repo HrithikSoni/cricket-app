@@ -67,7 +67,7 @@ const PhoneNoInputBox = (props) => {
       >
         <View style={[styles.codeContainer]}>
           <View>
-            <Text style={styles.text}>{userData.selectedOption?.value || "+91"}</Text>
+            <Text style={styles.text}>{userData.countryCode || "+91"}</Text>
           </View>
           <View style={styles.line} />
         </View>

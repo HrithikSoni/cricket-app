@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [userData, setUserData] = useState({selectedOptions: ""});
+  const [userData, setUserData] = useState({countryCode: ""});
 
   return (
     <AppContext.Provider

@@ -1,8 +1,15 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext, useState } from "react";
 import DropDownModal from "../modals/DropdownModal";
+import PhoneNoInputBox from "./PhoneNoInputBox";
+import { AppContext } from "../../context/AppContext";
 
 const CountryPickerBox = (props) => {
+  const {setUserData} = useContext(AppContext);
+
+  const handleDropdownSelect = (e) => {
+    setUserData({ countryCode: e });
+  };
   return (
     <View>
       <DropDownModal
@@ -12,9 +19,11 @@ const CountryPickerBox = (props) => {
         imgUrl= 'https://flagsapi.com/IN/flat/64.png'
         label = "India"
         {...props}
+        onDropdownSelect={(e) => handleDropdownSelect(e.value)}
       />
     </View>
   );
+  
 }
 
 const countryInfo = [
