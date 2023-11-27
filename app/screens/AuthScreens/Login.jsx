@@ -63,7 +63,9 @@ function useLogin(body) {
   const navigation = useNavigation();
 
   const { request } = useApi({
-    onSuccess: () => navigation.navigate(AUTH_SCREENS.OTP, body.contact),
+    onSuccess: (e) => {
+      console.log(e, 'from login page');
+      navigation.navigate(AUTH_SCREENS.OTP, body.contact)},
   });
 
   async function login() {

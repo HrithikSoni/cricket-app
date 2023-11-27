@@ -24,8 +24,6 @@ const PhoneNoInputBox = (props) => {
   const [timerRunning, setTimerRunning] = useState(false);
   const { userData } = useContext(AppContext);
 
-  console.log(userData.selectedOption, 'oooooooooooo');
-
   const { handleSendOtp } = useSendOtp({ contact: mobileNo });
 
   useEffect(() => {
@@ -69,7 +67,7 @@ const PhoneNoInputBox = (props) => {
       >
         <View style={[styles.codeContainer]}>
           <View>
-            <Text style={styles.text}>{userData.selectedOption?.rightText || "+91"}</Text>
+            <Text style={styles.text}>{userData.selectedOption?.value || "+91"}</Text>
           </View>
           <View style={styles.line} />
         </View>
@@ -142,7 +140,7 @@ const PhoneNoInputBox = (props) => {
             <Text style={[styles.verifyText]}>0:{timer}</Text>
           </View>
           <View>
-            <OTPInputBox />
+            <OTPInputBox {...props}/>
           </View>
         </View>
       )}
@@ -153,7 +151,9 @@ const PhoneNoInputBox = (props) => {
 export default PhoneNoInputBox;
 
 function useSendOtp(body) {
-  const { request } = useApi();
+  const { request } = useApi({
+    onSuccess: (e) => console.log(e.message, 'tttttttttttttt'),
+  });
 
   async function handleSendOtp() {
     const requestConfig = {

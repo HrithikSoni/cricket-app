@@ -13,21 +13,26 @@ import { CameraIcon } from "../../components/icons";
 import ComponentHandler from "../../components/ComponentHandler";
 import Button from "../../components/Button";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
+import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
     firstName: "",
     lastName: "",
     email: "",
-    gender: null,
-    dob: null,
-    country: null,
-    state: null,
-    countryCode: null,
+    gender: "",
+    dob: "",
+    countryId: "12",
+    stateId: "12",
+    countryCode: "12",
     contact: "",
+    otp:"",
+    cityId: "12",
+    password:"12",
   });
 
   const { handleSignUp } = useSignUp(signUpData.current);
+  
 
   const form = [
     {
@@ -66,17 +71,17 @@ const Signup = ({ navigation }) => {
     {
       label: "Country",
       key: "countryId",
-      defaultValue: signUpData.current.country,
+      defaultValue: signUpData.current.countryId,
       type: UTILS.INPUT_TYPE.DROPDOWN,
     },
     {
       label: "State",
       key: "stateId",
-      defaultValue: signUpData.current.state,
+      defaultValue: signUpData.current.stateId,
       type: UTILS.INPUT_TYPE.DROPDOWN,
     },
     {
-      key: signUpData.current.countryCode,
+      key: 'countryCode',
       defaultValue: signUpData.current.countryCode,
       type: UTILS.INPUT_TYPE.COUNTRY_PICKER_BOX,
     },
@@ -85,7 +90,7 @@ const Signup = ({ navigation }) => {
       defaultValue: signUpData.current.phoneNo,
       type: UTILS.INPUT_TYPE.PHONE_NO_INPUT_BOX,
       isVerify: true,
-    },
+    }
   ];
 
   return (
@@ -117,6 +122,7 @@ const Signup = ({ navigation }) => {
               onChangeText={(e) => (signUpData.current[item.key] = e)}
               onDropdownSelect={(e) => (signUpData.current[item.key] = e.value)}
               onDateSelect={(e) => (signUpData.current[item.key] = e)}
+              onOtpInput={(e) => (signUpData.current.otp = e)}
             />
           ))}
           <View style={{ marginTop: 20 }}>
@@ -128,13 +134,22 @@ const Signup = ({ navigation }) => {
   );
 };
 
-const handleEditProfilePic = () => {};
-
 export default Signup;
 
+const handleEditProfilePic = () => {};
+
 function useSignUp(body) {
+
+  const { request } = useApi({
+    onSuccess: (e) => {e, 'ppppppppp'},
+  });
+
   async function handleSignUp() {
-    console.log(body);
+    const requestConfig = {
+      endpoint: AUTH_ENDPOINTS.REGISTER_USER,
+      body,
+    };
+    await request(requestConfig)
   }
 
   return {

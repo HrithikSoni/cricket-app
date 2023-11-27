@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import DropDownModal from "../modals/DropdownModal";
 
-const CountryPickerBox = () => {
+const CountryPickerBox = (props) => {
   return (
     <View>
       <DropDownModal
@@ -11,6 +11,7 @@ const CountryPickerBox = () => {
         searchBarLabel={"Find Country Code"}
         imgUrl= 'https://flagsapi.com/IN/flat/64.png'
         label = "India"
+        {...props}
       />
     </View>
   );
@@ -20,17 +21,17 @@ const countryInfo = [
   {
     label: "France",
     imgUrl: "https://flagsapi.com/BE/flat/64.png",
-    rightText: "+64",
+    value: "+64",
   },
   {
     label: "India",
     imgUrl: "https://flagsapi.com/IN/flat/64.png",
-    rightText: "+91",
+    value: "+91",
   },
   {
     label: "United States of America",
     imgUrl: "https://flagsapi.com/US/flat/64.png",
-    rightText: "+1",
+    value: "+1",
   },
 ];
 

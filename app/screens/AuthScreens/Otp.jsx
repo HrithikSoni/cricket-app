@@ -1,22 +1,22 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
-import OTPTextInput from "react-native-otp-textinput";
 
 import Button from "../../components/Button";
 import UTILS from "../../utils";
-import OTPInputBox from "../../components/inputs/OTPInputBox";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import { useNavigation } from "@react-navigation/native";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import OTPInputBox from "../../components/inputs/OTPInputBox";
 
 const Otp = ({ navigation, route }) => {
   const [timer, setTimer] = useState(30);
   const [timerRunning, setTimerRunning] = useState(true);
-  const otpInput = useRef();
+  const otpInput = useRef({otp:""})
 
   const contact = route.params;
 
-  const { handleOtp } = useOtp({ contact, otp: otpInput.current });
+  const { handleOtp } = useOtp({ contact, otp: otpInput.current.otp });
+  const {handleResendOtp} = useResendOtp({contact: contact, setTimer, setTimerRunning})
 
   useEffect(() => {
     let interval;
@@ -31,10 +31,6 @@ const Otp = ({ navigation, route }) => {
     return () => clearInterval(interval);
   }, [timer, timerRunning]);
 
-  const handleResend = () => {
-    setTimer(30);
-    setTimerRunning(true);
-  };
 
   return (
     <ParentWrapperWithBG
@@ -46,13 +42,9 @@ const Otp = ({ navigation, route }) => {
       <View style={[styles.container]}>
         <View style={[styles.middleContainer]}>
           <View style={{ marginTop: 20 }}>
-            <OTPTextInput
-              ref={otpInput}
-              tintColor={UTILS.STYLES.colors.themeColor}
-            />
-            {/* <OTPInputBox onOtpInput={(e) => console.log(e)} /> */}
+           <OTPInputBox onOtpInput={(e) => (otpInput.current.otp = e)}/>
           </View>
-          <Button onButtonPress={() => {}} />
+          <Button onButtonPress={handleOtp} />
         </View>
         <View style={[styles.lowerContainer]}>
           {timer === 0 ? (
@@ -78,7 +70,7 @@ const Otp = ({ navigation, route }) => {
           )}
           <View style={{ flexDirection: "row", gap: 5 }}>
             <Text style={[styles.bottomText]}>Didn't receive code?</Text>
-            <TouchableOpacity onPress={handleResend} disabled={timerRunning}>
+            <TouchableOpacity onPress={handleResendOtp} disabled={timerRunning}>
               <Text
                 style={[
                   styles.bottomText,
@@ -110,7 +102,6 @@ function useOtp(body) {
       console.log("first");
     },
   });
-  console.log(body);
   async function handleOtp() {
     const requestConfig = {
       endpoint: AUTH_ENDPOINTS.CONFIRM_OTP,
@@ -120,6 +111,29 @@ function useOtp(body) {
   }
 
   return { handleOtp };
+}
+
+function useResendOtp(body) {
+
+  const {contact, setTimer, setTimerRunning} = body
+
+  const { request } = useApi({
+    onSuccess: (e) => {
+      console.log("first");
+    },
+  });
+  async function handleResendOtp() {
+    const requestConfig = {
+      endpoint: AUTH_ENDPOINTS.SEND_OTP,
+      body: {contact},
+    };
+    
+    await request(requestConfig);
+    setTimer(30);
+    setTimerRunning(true);
+  }
+
+  return { handleResendOtp };
 }
 
 const styles = StyleSheet.create({

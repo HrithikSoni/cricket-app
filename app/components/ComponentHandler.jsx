@@ -12,8 +12,6 @@ import UTILS from "../utils";
 const ComponentHandler = (props) => {
   const { type } = props;
 
-  // console.log(props, 'sssssssssssssssssss');
-
   switch (type) {
     case UTILS.INPUT_TYPE.COUNTRY_PICKER_BOX:
       return <CountryPickerBox {...props} />;

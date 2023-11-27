@@ -4,11 +4,16 @@ import OTPTextInput from "react-native-otp-textinput";
 
 import UTILS from "../../utils";
 
-const OTPInputBox = ({onOtpInput}) => {
+const OTPInputBox = (props) => {
+
+  function handleOtpInput(e){
+    props?.onOtpInput(e)
+  }
+
   return (
     <OTPTextInput
       ref={(e) => (onOtpInput = e)}
-      onTextChange={(e) => console.log(e)}
+      handleTextChange={(e) => handleOtpInput(e)}
       tintColor={UTILS.STYLES.colors.themeColor}
     />
   );

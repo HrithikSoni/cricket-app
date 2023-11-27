@@ -28,8 +28,8 @@ const DropDownModal = (props) => {
     setSelectedOption(option);
     setUserData({selectedOption: option})
     setModalVisible(false);
-    handleModal();
-    props.onDropdownSelect(option);
+    // handleModal();
+    props?.onDropdownSelect(option);
   };
 
   return (
@@ -113,7 +113,7 @@ const DropDownModal = (props) => {
                           )}
                           <Text style={[styles.text]}>{option.label}</Text>
                         </View>
-                        {option?.rightText && <Text>{option.rightText}</Text>}
+                        {option?.value && <Text>{option.value}</Text>}
                       </TouchableOpacity>
                     );
                   })}
