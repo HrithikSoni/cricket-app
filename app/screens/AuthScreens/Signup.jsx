@@ -7,12 +7,11 @@ import {
 } from "react-native";
 import React, { useRef } from "react";
 
-
 import UTILS from "../../utils";
 import { CameraIcon } from "../../components/icons";
-import INPUT_TYPE from "../../utils/constants/inputType";
+
 import ComponentHandler from "../../components/ComponentHandler";
-import Button from '../../components/Button'
+import Button from "../../components/Button";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 
 const Signup = ({ navigation }) => {
@@ -25,60 +24,66 @@ const Signup = ({ navigation }) => {
     country: null,
     state: null,
     countryCode: null,
-    phoneNo: "",
+    contact: "",
   });
+
+  const { handleSignUp } = useSignUp(signUpData.current);
 
   const form = [
     {
       label: "First Name",
-      key: signUpData.current.firstName,
+      key: "firstName",
       defaultValue: signUpData.current.firstName,
     },
     {
       label: "Last Name",
-      key: signUpData.current.lastName,
+      key: "lastName",
       defaultValue: signUpData.current.lastName,
     },
     {
       label: "Email",
-      key: signUpData.current.email,
+      key: "email",
       defaultValue: signUpData.current.email,
     },
     {
       label: "Gender",
-      key: signUpData.current.gender,
+      key: "gender",
       defaultValue: signUpData.current.gender,
-      type: INPUT_TYPE.DROPDOWN,
-      arrayData: [{label: "Male"}, {label: 'Female'}],
-      title: 'Select Gender'
+      type: UTILS.INPUT_TYPE.DROPDOWN,
+      arrayData: [
+        { label: "Male", value: "MALE" },
+        { label: "Female", value: "FEMALE" },
+        { label: "Other", value: "OTHER" },
+      ],
+      title: "Select Gender",
     },
     {
       label: "Date Of Birth",
-      key: signUpData.current.dob,
+      key: "dob",
       defaultValue: signUpData.current.dob,
-      type: INPUT_TYPE.DATE_PICKER,
+      type: UTILS.INPUT_TYPE.DATE_PICKER,
     },
     {
       label: "Country",
-      key: signUpData.current.country,
+      key: "countryId",
       defaultValue: signUpData.current.country,
-      type: INPUT_TYPE.DROPDOWN,
+      type: UTILS.INPUT_TYPE.DROPDOWN,
     },
     {
       label: "State",
-      key: signUpData.current.state,
+      key: "stateId",
       defaultValue: signUpData.current.state,
-      type: INPUT_TYPE.DROPDOWN,
+      type: UTILS.INPUT_TYPE.DROPDOWN,
     },
     {
       key: signUpData.current.countryCode,
       defaultValue: signUpData.current.countryCode,
-      type: INPUT_TYPE.COUNTRY_PICKER_BOX,
+      type: UTILS.INPUT_TYPE.COUNTRY_PICKER_BOX,
     },
     {
-      key: signUpData.current.phoneNo,
+      key: "contact",
       defaultValue: signUpData.current.phoneNo,
-      type: INPUT_TYPE.PHONE_NO_INPUT_BOX,
+      type: UTILS.INPUT_TYPE.PHONE_NO_INPUT_BOX,
       isVerify: true,
     },
   ];
@@ -107,10 +112,14 @@ const Signup = ({ navigation }) => {
               key={index}
               type={item?.type}
               {...item}
-              onChangeText={(e) => (item.key = e)}
+              onChangeText={(e) => (signUpData.current[item.key] = e)}
+              onDropdownSelect={(e) => (signUpData.current[item.key] = e.value)}
+              onDateSelect={(e) => (signUpData.current[item.key] = e)}
             />
           ))}
-          <View style={{marginTop: 20}}><Button onButtonPress={handleSignUpPress}/></View>
+          <View style={{ marginTop: 20 }}>
+            <Button onButtonPress={handleSignUp} />
+          </View>
         </View>
       </ParentWrapperWithBG>
     </ScrollView>
@@ -119,9 +128,17 @@ const Signup = ({ navigation }) => {
 
 const handleEditProfilePic = () => {};
 
-const handleSignUpPress = () => {};
-
 export default Signup;
+
+function useSignUp(body) {
+  async function handleSignUp() {
+    console.log(body);
+  }
+
+  return {
+    handleSignUp,
+  };
+}
 
 const styles = StyleSheet.create({
   container: {

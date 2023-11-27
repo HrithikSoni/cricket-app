@@ -1,8 +1,15 @@
-import handlePlatform from "./helpers/handlePlatform";
-import INPUT_TYPE from "./constants/inputType";
+import {
+  commonStyle,
+  commonTextStyle,
+  rowCenter,
+  rowSpaceBtw,
+} from "./styles/globalStyles";
 import colors from "./styles/colors";
-import { commonStyle, commonTextStyle, rowCenter, rowSpaceBtw } from "./styles/globalStyles";
 import COUNTRIES from "./constants/country";
+import handlePlatform from "./helpers/handlePlatform";
+import HTTPS_METHODS from "./enum/httpMethods";
+import INPUT_TYPE from "./enum/inputType";
+import ToastType from "./enum/toastTypes";
 
 const HELPERS = {
   handlePlatform,
@@ -13,7 +20,7 @@ const STYLES = {
   commonStyle,
   commonTextStyle,
   rowCenter,
-  rowSpaceBtw
+  rowSpaceBtw,
 };
 
 const UTILS = {
@@ -21,7 +28,8 @@ const UTILS = {
   INPUT_TYPE,
   STYLES,
   COUNTRIES,
-  
+  HTTPS_METHODS,
+  TOAST_TYPE: ToastType,
 };
 
 export default UTILS;

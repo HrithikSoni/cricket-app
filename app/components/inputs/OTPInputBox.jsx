@@ -2,20 +2,17 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import OTPTextInput from "react-native-otp-textinput";
 
-
 import UTILS from "../../utils";
 
-const OTPInputBox = () => {
+const OTPInputBox = (onOtpInput) => {
   return (
-    <View>
-      <OTPTextInput
-        ref={(e) => (otpInput = e)}
-        tintColor={UTILS.STYLES.colors.themeColor}
-      />
-    </View>
+    <OTPTextInput
+      ref={(e) => (otpInput = e)}
+      onTextChange={(e) => console.log(e)}
+      tintColor={UTILS.STYLES.colors.themeColor}
+    />
   );
 };
-
 export default OTPInputBox;
 
 const styles = StyleSheet.create({});

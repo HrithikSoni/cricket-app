@@ -3,11 +3,10 @@ import OnBoarding from "../../screens/AuthScreens/OnBoarding";
 import Otp from "../../screens/AuthScreens/Otp";
 import Signup from "../../screens/AuthScreens/Signup";
 
-
 const ON_BOARDING = {
   name: "OnBoarding",
-  Component: OnBoarding
-}
+  Component: OnBoarding,
+};
 
 const LOGIN = {
   name: "Login",
@@ -15,15 +14,15 @@ const LOGIN = {
 };
 
 const SIGN_UP = {
-  name: 'Signup',
-  Component: Signup
+  name: "Signup",
+  Component: Signup,
 };
 
-const OTP = {
-  name: 'Otp',
-  Component: Otp
-}
+export const OTP = {
+  name: "Otp",
+  Component: Otp,
+};
 
-const authBundle = [ON_BOARDING,LOGIN, SIGN_UP, OTP];
+const authBundle = [ON_BOARDING, LOGIN, SIGN_UP, OTP];
 
 export default authBundle;

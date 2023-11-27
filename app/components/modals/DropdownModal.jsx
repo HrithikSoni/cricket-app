@@ -55,7 +55,62 @@ const DropDownModal = (props) => {
   const handleOptionSelection = (option) => {
     setSelectedOption(option);
     handleModal();
+    props.onDropdownSelect(option);
   };
+
+  // return (
+  //   <View>
+  //     <TouchableOpacity
+  //       style={[styles.box, UTILS.STYLES.commonStyle, { paddingLeft: 0.5 }]}
+  //       onPress={openModal}
+  //     >
+  //       <View style={styles.boxContent}>
+  //         <View style={styles.boxText}>
+  //           {selectedOption?.url ||
+  //             (props?.imgUrl && (
+  //               <Image
+  //                 style={styles.imgStyle}
+  //                 source={{
+  //                   uri: selectedOption?.imgUrl || props?.imgUrl,
+  //                 }}
+  //               />
+  //             ))}
+  //           <Text
+  //             style={[
+  //               styles.text,
+  //               {
+  //                 color: selectedOption
+  //                   ? UTILS.STYLES.colors.black
+  //                   : UTILS.STYLES.colors.gray2,
+  //               },
+  //             ]}
+  //           >
+  //             {selectedOption
+  //               ? selectedOption?.label
+  //               : props?.label || "Select Option"}
+  //           </Text>
+  //         </View>
+  //         <Icons.CheveronIcon isListVisible={modalVisible} />
+  //       </View>
+  //     </TouchableOpacity>
+  //     <Modal visible={modalVisible} transparent={true} animationType="slide">
+  //       <View style={styles.overlay}>
+  //         <TouchableOpacity
+  //           style={{ flex: 1 }}
+  //           onPress={() => setModalVisible(false)}
+  //         />
+  //         <View
+  //           style={{
+  //             height: 500,
+  //             backgroundColor: "white",
+  //             borderTopLeftRadius: 40,
+  //             borderTopRightRadius: 40,
+  //           }}
+  //         ></View>
+  //       </View>
+  //     </Modal>
+  //   </View>
+  // );
 
   return (
     <>
@@ -66,14 +121,15 @@ const DropDownModal = (props) => {
         >
           <View style={styles.boxContent}>
             <View style={styles.boxText}>
-              {selectedOption?.url || props?.imgUrl && (
-                <Image
-                  style={styles.imgStyle}
-                  source={{
-                    uri: selectedOption?.imgUrl || props?.imgUrl,
-                  }}
-                />
-              )}
+              {selectedOption?.url ||
+                (props?.imgUrl && (
+                  <Image
+                    style={styles.imgStyle}
+                    source={{
+                      uri: selectedOption?.imgUrl || props?.imgUrl,
+                    }}
+                  />
+                ))}
               <Text
                 style={[
                   styles.text,
@@ -93,12 +149,20 @@ const DropDownModal = (props) => {
           </View>
         </TouchableOpacity>
       </View>
-      <View style={styles.container}>
-        <Modal
-          transparent
-          visible={modalVisible}
-          animationType="slide"
-          onRequestClose={handleModal}
+      <Modal
+        transparent
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={handleModal}
+      >
+        <View
+          style={[
+            styles.container,
+            // {
+            //   backgroundColor: "red",
+            //   flex: 1,
+            // },
+          ]}
         >
           <TouchableWithoutFeedback onPress={handleModal}>
             <View style={styles.overlay} />
@@ -130,31 +194,33 @@ const DropDownModal = (props) => {
               </View>
               <ScrollView>
                 {props?.arrayData &&
-                  props?.arrayData.map((option) => (
-                    <TouchableOpacity
-                      key={option.label}
-                      style={styles.optionItem}
-                      onPress={() => handleOptionSelection(option)}
-                    >
-                      <View style={styles.optionContent}>
-                        {option?.imgUrl && (
-                          <Image
-                            style={styles.imgStyle}
-                            source={{
-                              uri: option.imgUrl,
-                            }}
-                          />
-                        )}
-                        <Text style={[styles.text]}>{option.label}</Text>
-                      </View>
-                      {option?.rightText && <Text>{option.rightText}</Text>}
-                    </TouchableOpacity>
-                  ))}
+                  props?.arrayData.map((option) => {
+                    return (
+                      <TouchableOpacity
+                        key={option.label}
+                        style={styles.optionItem}
+                        onPress={() => handleOptionSelection(option)}
+                      >
+                        <View style={styles.optionContent}>
+                          {option?.imgUrl && (
+                            <Image
+                              style={styles.imgStyle}
+                              source={{
+                                uri: option.imgUrl,
+                              }}
+                            />
+                          )}
+                          <Text style={[styles.text]}>{option.label}</Text>
+                        </View>
+                        {option?.rightText && <Text>{option.rightText}</Text>}
+                      </TouchableOpacity>
+                    );
+                  })}
               </ScrollView>
             </Animated.View>
           </PanGestureHandler>
-        </Modal>
-      </View>
+        </View>
+      </Modal>
     </>
   );
 };
