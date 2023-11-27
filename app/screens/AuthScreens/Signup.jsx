@@ -92,9 +92,11 @@ const Signup = ({ navigation }) => {
       >
         <View style={[styles.container]}>
           <View style={[styles.profilePicCon]}>
-            <View style={styles.userDp}>
+           <TouchableOpacity onPress={handleEditProfilePic}>
+           <View style={styles.userDp}>
               <CameraIcon />
             </View>
+           </TouchableOpacity>
             <TouchableOpacity onPress={handleEditProfilePic}>
               <Text style={{ marginLeft: 30, fontSize: 17, fontWeight: "500" }}>
                 Set profile picture

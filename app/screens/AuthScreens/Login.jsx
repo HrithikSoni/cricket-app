@@ -26,7 +26,6 @@ export default function Login({ navigation }) {
             code={loginData.current.countryCode}
             onChangeText={(e) => (loginData.current.phoneNo = e)}
           />
-          <ModalComponent />
           <View style={{ marginTop: 50 }}>
             <Button
               onButtonPress={() =>

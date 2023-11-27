@@ -15,5 +15,6 @@ export default {
     blue: "blue",
     blue2: "#0f255eff",
     opacity1: "rgba(0, 0, 0, 0.12)",
+    backGround: "white"
   };
   

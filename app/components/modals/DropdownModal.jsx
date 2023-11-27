@@ -2,15 +2,12 @@ import React, { useState, useRef, useContext } from "react";
 import {
   View,
   Text,
-  Modal,
   Image,
   TouchableOpacity,
-  Animated,
-  TouchableWithoutFeedback,
   StyleSheet,
   ScrollView,
 } from "react-native";
-import { PanGestureHandler, State } from "react-native-gesture-handler";
+import Modal from "react-native-modal";
 
 import UTILS from "../../utils";
 import SearchBar from "../inputs/SearchBar";
@@ -19,45 +16,18 @@ import { AppContext } from "../../context/AppContext";
 // import AppText from "../wrappers/AppTextWrapper";
 
 const DropDownModal = (props) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const translateY = useRef(new Animated.Value(600)).current;
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
   const {setUserData} = useContext(AppContext);
 
-  const openModal = () => {
-    setModalVisible(true);
-  };
-
-  const handleModal = () => {
-    if (modalVisible === true) {
-      Animated.timing(translateY, {
-        toValue: 600,
-        duration: 300,
-        useNativeDriver: true,
-      }).start(() => {
-        setModalVisible(false);
-      });
-    } else {
-      Animated.spring(translateY, {
-        toValue: 0,
-        useNativeDriver: true,
-      }).start();
-    }
-  };
-
-  const handleGesture = (event) => {
-    if (
-      event.nativeEvent.translationY > 50 ||
-      event.nativeEvent.velocityY > 800
-    ) {
-      closeModal();
-    }
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
 
   const handleOptionSelection = (option) => {
     setSelectedOption(option);
     setUserData({selectedOption: option})
-    handleModal();
+    setModalVisible(false);
   };
 
   return (
@@ -65,7 +35,7 @@ const DropDownModal = (props) => {
       <View style={[styles.container]}>
         <TouchableOpacity
           style={[styles.box, UTILS.STYLES.commonStyle, { paddingLeft: 0.5 }]}
-          onPress={openModal}
+          onPress={toggleModal}
         >
           <View style={styles.boxContent}>
             <View style={styles.boxText}>
@@ -92,38 +62,27 @@ const DropDownModal = (props) => {
                   : props?.label || "Select Option"}
               </Text>
             </View>
-            <Icons.CheveronIcon isListVisible={modalVisible} />
+            <Icons.CheveronIcon isListVisible={isModalVisible} />
           </View>
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <Modal
-          transparent
-          visible={modalVisible}
-          animationType="slide"
-          onRequestClose={handleModal}
-        >
-          <TouchableWithoutFeedback onPress={handleModal}>
-            <View style={styles.overlay} />
-          </TouchableWithoutFeedback>
-          <PanGestureHandler
-            onGestureEvent={Animated.event(
-              [{ nativeEvent: { translationY: translateY } }],
-              { useNativeDriver: true }
-            )}
-            onHandlerStateChange={(event) => {
-              if (event.nativeEvent.state === State.END) {
-                handleGesture(event);
-              }
-            }}
-          >
-            <Animated.View
-              style={[
-                styles.modalContainer,
-                { transform: [{ translateY: translateY }] },
-              ]}
-            >
-              <View style={{ alignItems: "center", justifyContent: "center" }}>
+      <Modal
+        onBackdropPress={() => setModalVisible(false)}
+        onBackButtonPress={() => setModalVisible(false)}
+        isVisible={isModalVisible}
+        swipeDirection="down"
+        onSwipeComplete={toggleModal}
+        animationIn="bounceInUp"
+        animationOut="bounceOutDown"
+        animationInTiming={900}
+        animationOutTiming={500}
+        backdropTransitionInTiming={1000}
+        backdropTransitionOutTiming={500}
+        style={styles.modal}
+      >
+       <View style={[styles.modalContent]}>
+       <View style={{ alignItems: "center", justifyContent: "center" }}>
                 <Text style={{ fontSize: 20, marginVertical: 5 }}>
                   {props?.title}
                 </Text>
@@ -154,9 +113,8 @@ const DropDownModal = (props) => {
                     </TouchableOpacity>
                   ))}
               </ScrollView>
-            </Animated.View>
-          </PanGestureHandler>
-        </Modal>
+       </View>
+      </Modal>
       </View>
     </>
   );
@@ -181,33 +139,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  contentContainer: {
-    backgroundColor: "white",
-    paddingHorizontal: 20,
+  modal: {
+    justifyContent: "flex-end",
+    margin: 0,
   },
-  imgStyle: {
-    height: 33,
-    width: 33,
-    borderRadius: 20,
-    marginLeft: 10,
-  },
-  text: {
-    fontSize: 17,
-    marginLeft: 15,
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  modalContainer: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    backgroundColor: "white",
-    minHeight: 300,
-    borderTopLeftRadius: 20,
+  modalContent: {
+    backgroundColor: UTILS.STYLES.colors.backGround,
+    paddingTop: 12,
+    paddingHorizontal: 12,
     borderTopRightRadius: 20,
-    padding: 20,
+    borderTopLeftRadius: 20,
+    minHeight: 400,
+    paddingBottom: 20,
   },
   optionItem: {
     flexDirection: "row",
@@ -220,6 +163,16 @@ const styles = StyleSheet.create({
   optionContent: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  imgStyle: {
+    height: 33,
+    width: 33,
+    borderRadius: 20,
+    marginLeft: 10,
+  },
+  text: {
+    fontSize: 17,
+    marginLeft: 15,
   },
 });
 

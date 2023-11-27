@@ -23,12 +23,12 @@ const countryInfo = [
     rightText: "+64",
   },
   {
-    label: "Germany",
+    label: "India",
     imgUrl: "https://flagsapi.com/IN/flat/64.png",
     rightText: "+91",
   },
   {
-    label: "Finland",
+    label: "United States of America",
     imgUrl: "https://flagsapi.com/US/flat/64.png",
     rightText: "+1",
   },
