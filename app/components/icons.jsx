@@ -20,7 +20,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import UTILS from "../utils";
 
 export const SearchIcon = () => (
-  <Feather name="search" size={24} color={UTILS.STYLES.colors.gray2} />
+  <Feather name="search" size={24} color={UTILS.STYLES.colors.themeColor} />
 );
 
 export const CalendarIcon = () => (
@@ -29,6 +29,10 @@ export const CalendarIcon = () => (
 
 export const CheckIcon = () => (
   <MaterialIcons name="check" size={20} color={UTILS.STYLES.colors.textColor} />
+);
+
+export const NotificationIcon = () => (
+  <Ionicons name="notifications-outline" size={30} color={UTILS.STYLES.colors.black} />
 );
 
 export const LeftChevoronIcon = (props) => (
@@ -90,7 +94,8 @@ export default ICONS = {
   HomeIcon,
   CompassIcon,
   CricketIcon,
-  UserIcon
+  UserIcon,
+  NotificationIcon
 };
 
 // export const CalendarIcon = (props) => (

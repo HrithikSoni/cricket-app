@@ -8,11 +8,12 @@ export default useAuth = () => {
 
   let role = null;
   let token = null;
+  let userFirstName = null;
 
   if (auth) {
     role = auth?.data?.role;
-
     token = auth?.token;
+    userFirstName = auth?.data?.firstName
   }
   return {
     auth,
@@ -21,5 +22,6 @@ export default useAuth = () => {
     setAuth,
     subscribed,
     token,
+    userFirstName
   };
 };

@@ -11,7 +11,8 @@ export const commonStyle = {
 }
 
 export const commonTextStyle = {
-    fontSize: 17
+    fontSize: 17,
+    lineHeight: 24
 }
 
 export const rowCenter = {

@@ -40,7 +40,7 @@ const MatchCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-   margin: 5
+   
   },
   card: {
     width: 250,

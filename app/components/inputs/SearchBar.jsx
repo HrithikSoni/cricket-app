@@ -3,8 +3,6 @@ import { View, TextInput, StyleSheet } from "react-native";
 import UTILS from "../../utils";
 import { SearchIcon } from "../icons";
 
-
-
 const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -16,13 +14,13 @@ const SearchBar = (props) => {
   return (
     <View style={styles.container}>
       <View style={[styles.inputContainer, UTILS.STYLES.commonStyle]}>
+        <SearchIcon />
         <TextInput
           style={styles.input}
           placeholder={props?.label || "Search..."}
           value={searchQuery}
           onChangeText={handleSearch}
         />
-        <SearchIcon />
       </View>
     </View>
   );
@@ -30,12 +28,12 @@ const SearchBar = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginVertical: 5,
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    width: 360
+    width: 360,
   },
   input: {
     flex: 1,
