@@ -11,7 +11,6 @@ import { useNavigation } from "@react-navigation/native";
 import RegisterContactInput from "../../components/inputs/RegisterContactInput";
 
 
-
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 
