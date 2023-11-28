@@ -101,6 +101,8 @@ function useOtp(body) {
   const { request } = useApi({
     onSuccess: (e) => {
       console.log("first");
+      save(userDetail, e.data)
+      console.log(e, 'opppppppppppppppppp');
     },
   });
   async function handleOtp() {
@@ -120,7 +122,7 @@ function useResendOtp(body) {
 
   const { request } = useApi({
     onSuccess: (e) => {
-      save(userDetail, e)
+      console.log("first");
     },
   });
   async function handleResendOtp() {

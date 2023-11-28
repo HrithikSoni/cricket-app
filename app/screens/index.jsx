@@ -14,6 +14,8 @@ const [user, setUser] = useState(false);
 const {role} = useAuth();
 const dispatch = useDispatch();
 
+console.log(role, 'rolllllllllllllllllllllllllllllllllle');
+
 useEffect(() => {
   request();
 }, []);
