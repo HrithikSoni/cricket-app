@@ -140,7 +140,7 @@ const PhoneNoInputBox = (props) => {
             <Text style={[styles.verifyText]}>0:{timer}</Text>
           </View>
           <View>
-            <OTPInputBox {...props}/>
+            <OTPInputBox {...props} />
           </View>
         </View>
       )}
@@ -152,7 +152,8 @@ export default PhoneNoInputBox;
 
 function useSendOtp(body) {
   const { request } = useApi({
-    onSuccess: (e) => console.log(e.message, 'tttttttttttttt'),
+    onSuccess: (e) => console.log(e.message, "tttttttttttttt"),
+    onFail: (e) => console.log(e, "rrrrr"),
   });
 
   async function handleSendOtp() {

@@ -14,7 +14,7 @@ import ComponentHandler from "../../components/ComponentHandler";
 import Button from "../../components/Button";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
-import {save, userDetail} from '../../services/permanentStorage'
+import { save, userDetail } from "../../services/permanentStorage";
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
@@ -27,13 +27,12 @@ const Signup = ({ navigation }) => {
     stateId: "12",
     countryCode: "12",
     contact: "",
-    otp:"",
+    otp: "",
     cityId: "12",
-    password:"12",
+    password: "12",
   });
 
   const { handleSignUp } = useSignUp(signUpData.current);
-  
 
   const form = [
     {
@@ -82,7 +81,7 @@ const Signup = ({ navigation }) => {
       type: UTILS.INPUT_TYPE.DROPDOWN,
     },
     {
-      key: 'countryCode',
+      key: "countryCode",
       defaultValue: signUpData.current.countryCode,
       type: UTILS.INPUT_TYPE.COUNTRY_PICKER_BOX,
     },
@@ -91,7 +90,7 @@ const Signup = ({ navigation }) => {
       defaultValue: signUpData.current.phoneNo,
       type: UTILS.INPUT_TYPE.PHONE_NO_INPUT_BOX,
       isVerify: true,
-    }
+    },
   ];
 
   return (
@@ -103,11 +102,11 @@ const Signup = ({ navigation }) => {
       >
         <View style={[styles.container]}>
           <View style={[styles.profilePicCon]}>
-           <TouchableOpacity onPress={handleEditProfilePic}>
-           <View style={styles.userDp}>
-              <CameraIcon />
-            </View>
-           </TouchableOpacity>
+            <TouchableOpacity onPress={handleEditProfilePic}>
+              <View style={styles.userDp}>
+                <CameraIcon />
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity onPress={handleEditProfilePic}>
               <Text style={{ marginLeft: 30, fontSize: 17, fontWeight: "500" }}>
                 Set profile picture
@@ -140,17 +139,21 @@ export default Signup;
 const handleEditProfilePic = () => {};
 
 function useSignUp(body) {
-
   const { request } = useApi({
-    onSuccess: (e) => {save(userDetail, e.data)},
+    onSuccess: (e) => {
+      save(userDetail, e.data);
+    },
+    onFail: (e) => console.log(e, "fail"),
   });
 
   async function handleSignUp() {
+    console.log(body, "iiiiii");
+    // const dob = JSON.stringify(body.dob);
     const requestConfig = {
       endpoint: AUTH_ENDPOINTS.REGISTER_USER,
-      body,
+      body: { ...body, role: "PLAYER" },
     };
-    await request(requestConfig)
+    await request(requestConfig);
   }
 
   return {
