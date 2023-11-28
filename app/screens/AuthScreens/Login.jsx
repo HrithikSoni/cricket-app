@@ -4,13 +4,14 @@ import React, { useRef } from "react";
 import Button from "../../components/Button";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
-import CountryPickerBox from "../../components/inputs/CountryPickerBox";
-import PhoneNoInputBox from "../../components/inputs/PhoneNoInputBox";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useApi from "../../hooks/useApi";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import { useNavigation } from "@react-navigation/native";
-// '0112999776'
+import RegisterContactInput from "../../components/inputs/RegisterContactInput";
+
+
+
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 
@@ -24,9 +25,7 @@ export default function Login({ navigation }) {
     >
       <View style={[styles.container]}>
         <View style={[styles.middleContainer]}>
-          <CountryPickerBox />
-          <PhoneNoInputBox
-            code={loginData.current.countryId}
+          <RegisterContactInput
             onChangeText={(e) => (loginData.current.contact = e)}
           />
           <View style={{ marginTop: 50 }}>
@@ -64,8 +63,9 @@ function useLogin(body) {
 
   const { request } = useApi({
     onSuccess: (e) => {
-      console.log(e, 'from login page');
-      navigation.navigate(AUTH_SCREENS.OTP, body.contact)},
+      console.log(e, "from login page");
+      navigation.navigate(AUTH_SCREENS.OTP, body.contact);
+    },
   });
 
   async function login() {

@@ -14,10 +14,19 @@ const OTPInputBox = (props) => {
     <OTPTextInput
       ref={(e) => (onOtpInput = e)}
       handleTextChange={(e) => handleOtpInput(e)}
-      tintColor={UTILS.STYLES.colors.themeColor}
+      tintColor={UTILS.STYLES.colors.gray3}
+      offTintColor={UTILS.STYLES.colors.gray3}
+      textInputStyle={[styles.textInputStyle]}
     />
   );
 };
 export default OTPInputBox;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  textInputStyle:{
+    backgroundColor: UTILS.STYLES.colors.gray3,
+    width: 75,
+    height:65,
+    borderRadius: 15
+  }
+});

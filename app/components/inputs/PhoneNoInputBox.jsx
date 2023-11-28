@@ -12,32 +12,18 @@ import UTILS from "../../utils";
 import { AppContext } from "../../context/AppContext";
 import OTPInputBox from "./OTPInputBox";
 import useApi from "../../hooks/useApi";
-import AUTH_ENDPOINT from "../../services/api/authEndpoints";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import useTimer from "../../hooks/useTimer";
 
 const PhoneNoInputBox = (props) => {
   const [data, setData] = useState({});
   const updateData = (e) => setData({ ...data, e });
   const [mobileNo, setMobileNo] = useState("");
   const [isVerifyPressed, setIsVerifyPressed] = useState(false);
-  const [timer, setTimer] = useState(30);
-  const [timerRunning, setTimerRunning] = useState(false);
-  const { userData } = useContext(AppContext);
 
   const { handleSendOtp } = useSendOtp({ contact: mobileNo });
 
-  useEffect(() => {
-    let interval;
-    if (timerRunning && timer > 0) {
-      interval = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-    } else if (timer === 0) {
-      setTimerRunning(false);
-    }
-
-    return () => clearInterval(interval);
-  }, [timer, timerRunning]);
+  const {timer, setTimer, timerRunning, setTimerRunning} = useTimer();
 
   function handleOnChange(e) {
     setMobileNo(e);
@@ -67,7 +53,7 @@ const PhoneNoInputBox = (props) => {
       >
         <View style={[styles.codeContainer]}>
           <View>
-            <Text style={styles.text}>{userData.countryCode || "+91"}</Text>
+            <Text style={styles.text}>{props?.code || "+91"}</Text>
           </View>
           <View style={styles.line} />
         </View>
@@ -139,7 +125,7 @@ const PhoneNoInputBox = (props) => {
             </View>
             <Text style={[styles.verifyText]}>0:{timer}</Text>
           </View>
-          <View>
+          <View style={{marginTop: 10}}>
             <OTPInputBox {...props} />
           </View>
         </View>

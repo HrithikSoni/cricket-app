@@ -8,13 +8,13 @@ import Login from "./AuthScreens/Login";
 import useAuth from "../hooks/useAuth";
 import { get, userDetail } from "../services/permanentStorage";
 import { useDispatch } from "react-redux";
+import ROLE from "../utils/enum/role";
 
 export default function Root() {
-const [user, setUser] = useState(false);
-const {role} = useAuth();
+const {role, token} = useAuth();
 const dispatch = useDispatch();
 
-console.log(role, 'rolllllllllllllllllllllllllllllllllle');
+// console.log(token, 'rolllllllllllllllllllllllllllllllllle');
 
 useEffect(() => {
   request();
@@ -24,16 +24,18 @@ function request() {
   get(userDetail)
     .then((response) => {
       if (response) {
-        dispatch(updateAuth({response}));
+        dispatch(updateAuth(response));
+        // console.log(response, 'lllllllll');
       }
     })
     .catch((error) => {
-      console.warn(error.response);
+      console.warn(error.response, 'error from screen index screen');
     })
 }
 
   return (
-      user ? <AppNavigator /> : <AuthNavigator />
+      // role ? role === ROLE.PLAYER ? <PlayerNavigator /> : <AdminNavigator /> : <AuthNavigator />
+      role ? <AppNavigator /> : <AuthNavigator />
   );
 }
 

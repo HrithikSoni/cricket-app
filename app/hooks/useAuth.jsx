@@ -8,10 +8,11 @@ export default useAuth = () => {
 
   let role = null;
   let token = null;
-  if (auth) {
-    role = typeof auth.role === "string" ? auth.role : auth.role.name;
 
-    token = auth.token;
+  if (auth) {
+    role = auth?.data?.role;
+
+    token = auth?.token;
   }
   return {
     auth,

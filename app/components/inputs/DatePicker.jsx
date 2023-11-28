@@ -38,7 +38,7 @@ const AppDatePicker = (props) => {
         onConfirm={(date) => {
           setOpen(false);
           setDate(date);
-          props.onDateSelect(date);
+          props.onDateSelect(date.toISOString());
         }}
         onCancel={() => {
           setOpen(false);

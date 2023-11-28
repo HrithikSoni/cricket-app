@@ -1,3 +1,3 @@
-const ROLE = {ADMIN: "admin", USER: "user"}
+const ROLE = {ADMIN: "admin", PLAYER: "PLAYER"}
 
 export default ROLE;

@@ -15,21 +15,21 @@ import Button from "../../components/Button";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import { save, userDetail } from "../../services/permanentStorage";
+import { useDispatch } from "react-redux";
+import { updateAuth } from "../../services/store/reducers/authReducer";
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
     firstName: "",
-    lastName: "",
-    email: "",
-    gender: "",
-    dob: "",
-    countryId: "12",
-    stateId: "12",
-    countryCode: "12",
     contact: "",
     otp: "",
-    cityId: "12",
-    password: "12",
+    countryId: "12",
+    dob: "",
+    email: "",
+    gender: "",
+    lastName: "",
+    profilePic: "string",
+    stateId: "12",
   });
 
   const { handleSignUp } = useSignUp(signUpData.current);
@@ -81,14 +81,9 @@ const Signup = ({ navigation }) => {
       type: UTILS.INPUT_TYPE.DROPDOWN,
     },
     {
-      key: "countryCode",
-      defaultValue: signUpData.current.countryCode,
-      type: UTILS.INPUT_TYPE.COUNTRY_PICKER_BOX,
-    },
-    {
       key: "contact",
       defaultValue: signUpData.current.phoneNo,
-      type: UTILS.INPUT_TYPE.PHONE_NO_INPUT_BOX,
+      type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
       isVerify: true,
     },
   ];
@@ -139,16 +134,19 @@ export default Signup;
 const handleEditProfilePic = () => {};
 
 function useSignUp(body) {
+const dispatch = useDispatch();
+
   const { request } = useApi({
     onSuccess: (e) => {
       save(userDetail, e.data);
+      dispatch(updateAuth(e));
     },
     onFail: (e) => console.log(e, "fail"),
   });
 
   async function handleSignUp() {
-    console.log(body, "iiiiii");
-    // const dob = JSON.stringify(body.dob);
+    // console.log(body, "iiiiii");
+
     const requestConfig = {
       endpoint: AUTH_ENDPOINTS.REGISTER_USER,
       body: { ...body, role: "PLAYER" },

@@ -8,30 +8,22 @@ import { useNavigation } from "@react-navigation/native";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import OTPInputBox from "../../components/inputs/OTPInputBox";
 import { save, userDetail } from "../../services/permanentStorage";
+import { useDispatch } from "react-redux";
+import { updateAuth } from "../../services/store/reducers/authReducer";
+import useTimer from "../../hooks/useTimer";
 
 const Otp = ({ navigation, route }) => {
-  const [timer, setTimer] = useState(30);
-  const [timerRunning, setTimerRunning] = useState(true);
-  const otpInput = useRef({otp:""})
+  const otpInput = useRef({ otp: "" });
 
   const contact = route.params;
 
   const { handleOtp } = useOtp({ contact, otp: otpInput.current.otp });
-  const {handleResendOtp} = useResendOtp({contact: contact, setTimer, setTimerRunning})
-
-  useEffect(() => {
-    let interval;
-    if (timerRunning && timer > 0) {
-      interval = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-    } else if (timer === 0) {
-      setTimerRunning(false);
-    }
-
-    return () => clearInterval(interval);
-  }, [timer, timerRunning]);
-
+  const {timer, setTimer, timerRunning, setTimerRunning} = useTimer();
+  const { handleResendOtp } = useResendOtp({
+    contact: contact,
+    setTimer,
+    setTimerRunning,
+  });
 
   return (
     <ParentWrapperWithBG
@@ -42,8 +34,8 @@ const Otp = ({ navigation, route }) => {
     >
       <View style={[styles.container]}>
         <View style={[styles.middleContainer]}>
-          <View style={{ marginTop: 20 }}>
-           <OTPInputBox onOtpInput={(e) => (otpInput.current.otp = e)}/>
+          <View style={{ marginTop: 30 }}>
+            <OTPInputBox onOtpInput={(e) => (otpInput.current.otp = e)} />
           </View>
           <Button onButtonPress={handleOtp} />
         </View>
@@ -97,12 +89,13 @@ export default Otp;
 
 function useOtp(body) {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const { request } = useApi({
     onSuccess: (e) => {
-      console.log("first");
-      save(userDetail, e.data)
-      console.log(e, 'opppppppppppppppppp');
+      save(userDetail, e);
+      dispatch(updateAuth(e));
+      console.log(e, "opppppppppppppppppp");
     },
   });
   async function handleOtp() {
@@ -117,22 +110,22 @@ function useOtp(body) {
 }
 
 function useResendOtp(body) {
-
-  const {contact, setTimer, setTimerRunning} = body
+  const { contact, setTimer, setTimerRunning } = body;
 
   const { request } = useApi({
     onSuccess: (e) => {
       console.log("first");
+      console.log(e, 'otp from otpScreen');
     },
   });
   async function handleResendOtp() {
     const requestConfig = {
       endpoint: AUTH_ENDPOINTS.SEND_OTP,
-      body: {contact},
+      body: { contact },
     };
-    
+
     await request(requestConfig);
-    setTimer(30);
+    setTimer(60);
     setTimerRunning(true);
   }
 
