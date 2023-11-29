@@ -9,20 +9,20 @@ import Button from "../../components/Button";
 
 const locationDetails = [
   {
-    label: "Country",
-    key: "countryId",
-    type: UTILS.INPUT_TYPE.DROPDOWN,
+    type: UTILS.INPUT_TYPE.LOCATION_PICKER
   },
-  {
-    label: "State",
-    key: "stateId",
-    type: UTILS.INPUT_TYPE.DROPDOWN,
-  },
-
   {
     label: "City",
     key: "cityId",
     type: UTILS.INPUT_TYPE.DROPDOWN,
+    arrayData:  [
+      { label: "New Delhi", value: "NEW DELHI" },
+      { label: "Old Delhi", value: "OLD DELHI" },
+      { label: "Dwarka", value: "DWARKA" },
+      { label: "Lajpat Nagar", value: "LAJPAT NAGAR" },
+      { label: "Chandni Chowk", value: "CHANDNI CHOWK" },
+      { label: "Connaught Place", value: "CONNAUGHT PLACE" },
+    ]
   },
 ];
 
@@ -31,6 +31,7 @@ export default function CreateTournament({ navigation }) {
     <ParentWrapper
       screenTitle="Create Tournament"
       description={`Enter Tournament Details`}
+      showBack={true}
     >
       {locationDetails.map((i) => (
         <FormBuilder {...i} />

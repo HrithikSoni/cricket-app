@@ -1,16 +1,15 @@
+import React, { useRef } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
 
-import Button from "../../components/Button";
-import UTILS from "../../utils";
-import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import { useNavigation } from "@react-navigation/native";
-import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
-import OTPInputBox from "../../components/inputs/OTPInputBox";
-import { save, userDetail } from "../../services/permanentStorage";
 import { useDispatch } from "react-redux";
-import { updateAuth } from "../../services/store/reducers/authReducer";
+import Button from "../../components/Button";
+import OTPInputBox from "../../components/inputs/OTPInputBox";
+import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useTimer from "../../hooks/useTimer";
+import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import permanentStorage from "../../services/permanentStorage";
+import { updateAuth } from "../../services/store/reducers/authReducer";
+import UTILS from "../../utils";
 
 const Otp = ({ navigation, route }) => {
   const otpInput = useRef({ otp: "" });
@@ -27,8 +26,8 @@ const Otp = ({ navigation, route }) => {
 
   const resendTextStyle = {
     color: timerRunning
-      ? UTILS.STYLES.colors.gray2
-      : UTILS.STYLES.colors.themeColor,
+      ? UTILS.COLORS.gray2
+      : UTILS.COLORS.themeColor,
     fontWeight: "bold",
   };
 
@@ -83,14 +82,12 @@ const Otp = ({ navigation, route }) => {
 export default Otp;
 
 function useOtp(body) {
-  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const { request } = useApi({
     onSuccess: (e) => {
-      save(userDetail, e);
+      permanentStorage.saveDetails(permanentStorage.userDetail, e);
       dispatch(updateAuth(e));
-      console.log(e, "opppppppppppppppppp");
     },
   });
   async function handleOtp() {

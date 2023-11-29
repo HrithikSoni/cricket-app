@@ -1,16 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Button from '../components/Button'
+import { StyleSheet, View } from 'react-native'
+
+
 import { useDispatch } from 'react-redux'
+import Button from '../components/Button'
+import permanentStorage from '../services/permanentStorage'
 import { logoutUser } from '../services/store/reducers/authReducer'
-import { del, userDetail } from '../services/permanentStorage'
 
 const Profile = () => {
   const dispatch = useDispatch()
 
   const handleButtonPress = () => {
     dispatch(logoutUser());
-    del(userDetail);
+    permanentStorage.deleteDetails(permanentStorage.userDetail)
   }
 
   return (

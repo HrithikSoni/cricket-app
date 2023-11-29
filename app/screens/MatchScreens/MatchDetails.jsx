@@ -74,8 +74,7 @@ function useMatchDetails(body) {
       key: "noPerPowerplays",
       type: UTILS.INPUT_TYPE.POWER_PLAY,
     },
-    { label: "Select Date", key: "date", type: UTILS.INPUT_TYPE.DATE_PICKER },
-    { label: "Select Time", key: "time", type: UTILS.INPUT_TYPE.TIME_PICKER },
+    {type: UTILS.INPUT_TYPE.DATE_TIME_PICKER},
     { label: "Ground Name", key: "groundName", type: UTILS.INPUT_TYPE.NUMBER },
     { label: "Ball Type", key: "ballType", type: UTILS.INPUT_TYPE.BALL_TYPE },
   ];

@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
 import React from "react";
 import UTILS from "../../utils";
 import AppText from "../AppText";
+import Icons from "../icons";
 
 export default function SelectionModal(props) {
   return (
@@ -20,7 +21,7 @@ export default function SelectionModal(props) {
           style={[UTILS.STYLES.squareBtn, styles.position]}
           onPress={() => props.onDone(null)}
         >
-          <Text>x</Text>
+          <Icons.CrossIcon />
         </TouchableOpacity>
       </View>
     </Modal>

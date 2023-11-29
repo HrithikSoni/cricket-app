@@ -8,6 +8,7 @@ import ROLE from "./enum/role";
 import colors from "./styles/colors";
 import DIMENSIONS from "./helpers/dimensions";
 import SCREEN_NAMES from "./constants/screenNames";
+import countryInfo from "./constants/selctedCountry";
 
 const HELPERS = {
   handlePlatform,
@@ -19,6 +20,7 @@ const UTILS = {
   INPUT_TYPE,
   STYLES,
   COUNTRIES,
+  COUNTRY_INFO: countryInfo,
   ROLE,
   HTTPS_METHODS,
   DIMENSIONS,

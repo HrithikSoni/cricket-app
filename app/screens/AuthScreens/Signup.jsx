@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -5,17 +6,15 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
 
-import UTILS from "../../utils";
 import { CameraIcon } from "../../components/icons";
-
-import ComponentHandler from "../../components/ComponentHandler";
+import UTILS from "../../utils";
 import Button from "../../components/Button";
+import ComponentHandler from "../../components/ComponentHandler";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
-import { save, userDetail } from "../../services/permanentStorage";
-import { useDispatch } from "react-redux";
+import permanentStorage from "../../services/permanentStorage";
 import { updateAuth } from "../../services/store/reducers/authReducer";
 
 const Signup = ({ navigation }) => {
@@ -30,6 +29,7 @@ const Signup = ({ navigation }) => {
     lastName: "",
     profilePic: "string",
     stateId: "12",
+    role: ""
   });
 
   const { handleSignUp } = useSignUp(signUpData.current);
@@ -67,6 +67,20 @@ const Signup = ({ navigation }) => {
       key: "dob",
       defaultValue: signUpData.current.dob,
       type: UTILS.INPUT_TYPE.DATE_PICKER,
+    },
+    {
+      label: "Role",
+      key: "role",
+      defaultValue: signUpData.current.role,
+      type: UTILS.INPUT_TYPE.DROPDOWN,
+      arrayData: [
+        { label: "Player", value: "PLAYER" },
+        { label: "Admin", value: "ADMIN" },
+        { label: "User", value: "USER" },
+        { label: "Umpire", value: "UMPIRE" },
+        { label: "Referee", value: "REFEREE" },
+      ],
+      title: "Select Role",
     },
     {
       label: "Country",
@@ -134,22 +148,20 @@ export default Signup;
 const handleEditProfilePic = () => {};
 
 function useSignUp(body) {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const { request } = useApi({
     onSuccess: (e) => {
-      save(userDetail, e.data);
+      permanentStorage.saveDetails(permanentStorage.userDetail, e);
       dispatch(updateAuth(e));
     },
     onFail: (e) => console.log(e, "fail"),
   });
 
   async function handleSignUp() {
-    // console.log(body, "iiiiii");
-
     const requestConfig = {
       endpoint: AUTH_ENDPOINTS.REGISTER_USER,
-      body: { ...body, role: "PLAYER" },
+      body
     };
     await request(requestConfig);
   }

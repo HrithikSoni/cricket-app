@@ -1,17 +1,19 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
+import { SafeAreaView, StyleSheet, StatusBar, ImageBackground } from "react-native";
 import { Text, View } from "react-native";
 
 import Icons from "../icons";
 import UTILS from "../../utils";
-import BGImageWapper from "./BGImageWapper";
+import { useNavigation } from "@react-navigation/native";
 
-export default function ParentWrapperWithBG(props) {
+function ParentWrapperWithBG(props) {
+const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
-      <BGImageWapper>
+     <ImageBackground source={require('../../../assets/Union.png')} style={[styles.imgStyle]}>
         <View style={[styles.upperContainer]}>
-          <Icons.LeftChevron onPress={() => props?.navigation.goBack()} />
+          <Icons.LeftChevoronIcon onPress={() => navigation.goBack()} />
           <View
             style={[
               styles.textContainer,
@@ -23,10 +25,13 @@ export default function ParentWrapperWithBG(props) {
           </View>
         </View>
         {props.children}
-      </BGImageWapper>
+        </ImageBackground>
     </SafeAreaView>
   );
 }
+
+export default ParentWrapperWithBG;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

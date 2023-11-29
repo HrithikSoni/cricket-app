@@ -1,9 +1,8 @@
 import * as SecureStore from "expo-secure-store";
 
-export const userDetail = "userdetail";
-export const notificationData = "notificationData";
+const userDetail = "userdetail";
 
-export async function save(key, detail) {
+async function saveDetails(key, detail) {
   try {
     await SecureStore.setItemAsync(key, JSON.stringify(detail));
   } catch (error) {
@@ -11,7 +10,7 @@ export async function save(key, detail) {
   }
 }
 
-export async function deleteDetails(key) {
+async function deleteDetails(key) {
   try {
     await SecureStore.deleteItemAsync(key);
   } catch (error) {
@@ -19,7 +18,7 @@ export async function deleteDetails(key) {
   }
 }
 
-export async function get(key) {
+async function getDetails(key) {
   try {
     const data = await SecureStore.getItemAsync(key);
     return JSON.parse(data);
@@ -28,6 +27,6 @@ export async function get(key) {
   }
 }
 
-const permanentStorage = {};
+const permanentStorage = {saveDetails, getDetails, deleteDetails, userDetail};
 
 export default permanentStorage;

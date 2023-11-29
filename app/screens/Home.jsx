@@ -1,12 +1,20 @@
-import { StyleSheet, Text } from "react-native";
 import React, { useState } from "react";
-import ParentWrapper from "../components/wrappers/ParentWrapper";
-import MatchCard from "../components/cards/MatchCard";
-import UTILS from "../utils";
-import SelectionModal from "../components/modals/SelectionModal";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
+
+
 import PlusButton from "../components/button/PlusButton";
-import SearchBar from "../components/inputs/SearchBar";
 import HomeTopCard from "../components/cards/HomeTopCard";
+import MatchCard from "../components/cards/MatchCard";
+import SearchBar from "../components/inputs/SearchBar";
+import SelectionModal from "../components/modals/SelectionModal";
+import ParentWrapper from "../components/wrappers/ParentWrapper";
+import UTILS from "../utils";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
 export default function Home({ navigation }) {
@@ -20,6 +28,17 @@ export default function Home({ navigation }) {
     { name: "Start Match", screenName: MATCH_DETAILS_SCREENS.FORM },
   ];
 
+  const matchData = [
+    { id: 1, title: "Match 1" },
+    { id: 2, title: "Match 2" },
+  ];
+
+  const renderItem = ({ item }) => (
+    <View style={[styles.matchCardContainer]}>
+      <MatchCard />
+    </View>
+  );
+
   return (
     <>
       <ParentWrapper>
@@ -28,30 +47,23 @@ export default function Home({ navigation }) {
           <SearchBar />
           <View>
             <View style={[styles.cardContainer]}>
-              <Text
-                style={[UTILS.STYLES.commonTextStyle, { fontWeight: "600" }]}
-              >
-                Live Match
-              </Text>
+              <Text style={[UTILS.STYLES.commonTextStyle]}>Live Match</Text>
               <TouchableOpacity onPress={() => {}}>
                 <Text
-                  style={[
-                    UTILS.STYLES.commonTextStyle,
-                    {
-                      color: UTILS.STYLES.colors.themeColor,
-                      fontWeight: "500",
-                    },
-                  ]}
+                  style={[UTILS.STYLES.commonTextStyle, styles.themeColorStyle]}
                 >
                   View All
                 </Text>
               </TouchableOpacity>
             </View>
-            <View style={[styles.matchCardContainer]}>
-              <ScrollView horizontal={true}>
-                <MatchCard />
-              </ScrollView>
-            </View>
+
+            <FlatList
+              horizontal
+              data={matchData}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString()}
+              showsHorizontalScrollIndicator={false}
+            />
           </View>
         </View>
 
@@ -78,12 +90,7 @@ export default function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    paddingTop: 30,
-    paddingHorizontal: 20,
-  },
+  container: {},
   cardContainer: {
     marginTop: 10,
     flexDirection: "row",
@@ -92,5 +99,9 @@ const styles = StyleSheet.create({
   },
   matchCardContainer: {
     marginTop: 20,
+    marginRight: 15,
+  },
+  themeColorStyle: {
+    color: UTILS.COLORS.themeColor,
   },
 });

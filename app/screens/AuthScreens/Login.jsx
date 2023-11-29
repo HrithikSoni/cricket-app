@@ -19,7 +19,6 @@ export default function Login({ navigation }) {
     <ParentWrapperWithBG
       title={"Welcome Back!"}
       discp={"Enter your phone number and login your account"}
-      navigation={navigation}
     >
       <View style={[styles.container]}>
         <View style={[styles.middleContainer]}>

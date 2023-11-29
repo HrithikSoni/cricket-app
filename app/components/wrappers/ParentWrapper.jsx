@@ -2,14 +2,14 @@ import React from "react";
 import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
 import { Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
- 
+
 import UTILS from "../../utils";
 import Icons from "../../components/icons";
 import AppText from "../AppText";
- 
+
 export default function ParentWrapper(props) {
   const navigation = useNavigation();
- 
+
   return (
     <SafeAreaView
       style={{
@@ -18,15 +18,19 @@ export default function ParentWrapper(props) {
       }}
     >
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Icons.LeftChevron
-            onPress={() => navigation.goBack()}
-            style={{ position: "absolute", left: 10 }}
-          />
-          {props.screenTitle && (
-            <AppText style={{ fontSize: 18 }}>{props.screenTitle}</AppText>
-          )}
-        </View>
+        {(props?.showBack || props?.screenTitle) && (
+          <View style={styles.header}>
+            {props?.showBack && (
+              <Icons.LeftChevoronIcon
+                onPress={() => navigation.goBack()}
+                style={[styles.topIcon]}
+              />
+            )}
+            {props.screenTitle && (
+              <AppText style={styles.screenTitle}>{props.screenTitle}</AppText>
+            )}
+          </View>
+        )}
         {props.description && (
           <AppText style={styles.description}>{props.description}</AppText>
         )}
@@ -41,11 +45,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight),
     paddingHorizontal: 20,
+    marginTop: 20
   },
   header: {
     height: 20,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    marginTop: 30,
+    marginBottom: 10
   },
   // upperContainer: {
   //   marginTop: 60,
@@ -57,8 +64,13 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: 38,
   },
-<<<<<<< HEAD
+  topIcon: {
+    marginLeft: -10,
+  },
+  screenTitle:{
+    marginLeft: 75,
+    fontSize: 20,
+    fontWeight: '600',
+    lineHeight: 24
+  }
 });
-=======
-});
->>>>>>> dc196c242c83607bacf7f83ebbf0346be87fb2bf

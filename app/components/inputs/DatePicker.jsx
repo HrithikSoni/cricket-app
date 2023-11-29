@@ -10,20 +10,19 @@ const AppDatePicker = (props) => {
   const [date, setDate] = useState(null);
   const [open, setOpen] = useState(false);
 
+  console.log(props, "ssssss");
+
+  const textStyle = {
+    color: date ? UTILS.COLORS.black : UTILS.COLORS.gray2,
+  };
+
   return (
     <>
       <TouchableOpacity
         onPress={() => setOpen(true)}
         style={[styles.container, UTILS.STYLES.commonStyle]}
       >
-        <Text
-          style={[
-            UTILS.STYLES.commonTextStyle,
-            {
-              color: date ? UTILS.COLORS.black : UTILS.COLORS.gray2,
-            },
-          ]}
-        >
+        <Text style={[UTILS.STYLES.commonTextStyle, textStyle]}>
           {date ? date.toLocaleDateString() : props?.label}
         </Text>
         <CalendarIcon />
@@ -32,7 +31,7 @@ const AppDatePicker = (props) => {
         modal
         open={open}
         date={date || new Date()}
-        mode={props.type}
+        mode={props.mode}
         onConfirm={(date) => {
           setOpen(false);
           setDate(date);
@@ -41,7 +40,6 @@ const AppDatePicker = (props) => {
         onCancel={() => {
           setOpen(false);
         }}
-        androidVariant="iosClone"
       />
     </>
   );
@@ -52,14 +50,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    width: 170
   },
   input: {
     flex: 1,
     fontSize: 20,
-    marginLeft: 10,
+    margin: 10,
   },
   icon: {
-    marginRight: 10,
+    marginHorizontal: 10,
   },
 });
 

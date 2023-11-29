@@ -1,41 +1,35 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
 
-import AuthNavigator from "../routes/AuthNavigator";
-import AppNavigator from "../routes/AppNavigator";
-import Login from "./AuthScreens/Login";
-import useAuth from "../hooks/useAuth";
-import { get, userDetail } from "../services/permanentStorage";
 import { useDispatch } from "react-redux";
-import ROLE from "../utils/enum/role";
+import useAuth from "../hooks/useAuth";
+import AppNavigator from "../routes/AppNavigator";
+import AuthNavigator from "../routes/AuthNavigator";
+import permanentStorage from "../services/permanentStorage";
 
 export default function Root() {
-  const { role, token } = useAuth();
+  const user = true;
+  const { role } = useAuth();
   const dispatch = useDispatch();
-
-  // console.log(token, 'rolllllllllllllllllllllllllllllllllle');
 
   useEffect(() => {
     request();
   }, []);
 
-  function request() {
-    get(userDetail)
+  async function request() {
+    await permanentStorage.getDetails(permanentStorage.userDetail)
       .then((response) => {
         if (response) {
           dispatch(updateAuth(response));
-          // console.log(response, 'lllllllll');
         }
       })
-      .catch((error) => {
-        console.warn(error.response, "error from screen index screen");
-      });
+      .catch((error) => {});
   }
 
   return (
     // role ? role === ROLE.PLAYER ? <PlayerNavigator /> : <AdminNavigator /> : <AuthNavigator />
-    role ? <AppNavigator /> : <AuthNavigator />
+    user ? <AppNavigator /> : <AuthNavigator />
   );
 }
 

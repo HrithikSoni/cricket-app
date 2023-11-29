@@ -12,7 +12,19 @@ const commonStyle = {
 
 export const commonTextStyle = {
     fontSize: 17,
-    lineHeight: 24
+    lineHeight: 24,
+    fontWeight: "700"
+}
+
+export const commonTextStyleNormal = {
+  fontSize: 17,
+  lineHeight: 24,
+  fontWeight: "300"
+}
+
+const center ={
+  alignItems: "center",
+  justifyContent: "center",
 }
 
 const rowCenter = {
@@ -48,6 +60,8 @@ const elevation = {
 const STYLES = {
   commonStyle,
   commonTextStyle,
+  commonTextStyleNormal,
+  center,
   rowCenter,
   rowSpaceBtw,
   squareBtn,

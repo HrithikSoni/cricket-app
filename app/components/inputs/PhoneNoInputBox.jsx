@@ -7,9 +7,8 @@ import {
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 
-import { commonStyle } from "../../utils/styles/globalStyles";
+
 import UTILS from "../../utils";
-import { AppContext } from "../../context/AppContext";
 import OTPInputBox from "./OTPInputBox";
 import useApi from "../../hooks/useApi";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
@@ -20,14 +19,6 @@ const PhoneNoInputBox = (props) => {
   const updateData = (e) => setData({ ...data, e });
   const [mobileNo, setMobileNo] = useState("");
   const [isVerifyPressed, setIsVerifyPressed] = useState(false);
-<<<<<<< HEAD
-=======
-  const [timer, setTimer] = useState(30);
-  const [timerRunning, setTimerRunning] = useState(false);
-  const { userData } = useContext(AppContext);
-
-  console.log(userData.selectedOption, "oooooooooooo");
->>>>>>> dc196c242c83607bacf7f83ebbf0346be87fb2bf
 
   const { handleSendOtp } = useSendOtp({ contact: mobileNo });
 
@@ -54,7 +45,7 @@ const PhoneNoInputBox = (props) => {
     <>
       <View
         style={[
-          commonStyle,
+          UTILS.STYLES.commonStyle,
           styles.container,
           { justifyContent: props?.isVerify ? "space-between" : "flex-start" },
         ]}

@@ -19,37 +19,39 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
 import UTILS from "../utils";
 
+const colors = UTILS.COLORS
+
 export const SearchIcon = () => (
-  <Feather name="search" size={24} color={UTILS.STYLES.colors.themeColor} />
+  <Feather name="search" size={24} color={colors.themeColor} />
 );
 
 export const CalendarIcon = () => (
-  <AntDesign name="calendar" size={24} color={UTILS.COLORS.themeColor} />
+  <AntDesign name="calendar" size={24} color={colors.themeColor} />
 );
 
 export const CheckIcon = () => (
-  <MaterialIcons name="check" size={20} color={UTILS.COLORS.textColor} />
+  <MaterialIcons name="check" size={20} color={colors.textColor} />
 );
 
 export const NotificationIcon = () => (
-  <Ionicons name="notifications-outline" size={30} color={UTILS.STYLES.colors.black} />
+  <Ionicons name="notifications-outline" size={30} color={colors.black} />
 );
 
 export const LeftChevoronIcon = (props) => (
   <TouchableOpacity onPress={props?.onPress}>
-    <AntDesign name="left" size={20} color={UTILS.STYLES.colors.black} />
+    <AntDesign name="left" size={20} color={colors.black} />
   </TouchableOpacity>
 );
 
 export const CameraIcon = () => (
-  <Feather name="camera" size={30} color={UTILS.COLORS.themeColor} />
+  <Feather name="camera" size={30} color={colors.themeColor} />
 );
 
 export const CheveronIcon = (props) => (
   <Ionicons
     name={props?.isListVisible ? "chevron-up" : "chevron-down"}
     size={24}
-    color={UTILS.COLORS.gray2}
+    color={colors.gray2}
   />
 );
 
@@ -57,7 +59,7 @@ export const HomeIcon = (props) => (
   <Foundation
     name="home"
     size={35}
-    color={props?.color || UTILS.COLORS.themeColor}
+    color={props?.color || colors.themeColor}
   />
 );
 
@@ -65,7 +67,7 @@ export const CompassIcon = (props) => (
   <Ionicons
     name="compass"
     size={35}
-    color={props?.color || UTILS.COLORS.themeColor}
+    color={props?.color || colors.themeColor}
   />
 );
 
@@ -73,7 +75,7 @@ export const CricketIcon = (props) => (
   <MaterialCommunityIcons
     name="cricket"
     size={35}
-    color={props?.color || UTILS.COLORS.themeColor}
+    color={props?.color || colors.themeColor}
   />
 );
 
@@ -81,9 +83,18 @@ export const UserIcon = (props) => (
   <FontAwesome
     name="user"
     size={35}
-    color={props?.color || UTILS.COLORS.themeColor}
+    color={props?.color || colors.themeColor}
   />
 );
+
+export const CrossIcon = (props) => (
+  <Entypo
+    name="cross"
+    size={30}
+    color={props?.color || colors.textColor}
+  />
+);
+
 const Icons = {
   SearchIcon,
   CalendarIcon,
@@ -94,7 +105,8 @@ const Icons = {
   CricketIcon,
   UserIcon,
   NotificationIcon,
-  LeftChevoronIcon
+  LeftChevoronIcon,
+  CrossIcon
 };
 
 export default Icons;

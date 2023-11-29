@@ -37,14 +37,14 @@ const MatchCard = () => {
             ]}
           >
             <Text
-              style={{ fontSize: 20, color: UTILS.STYLES.colors.textColor }}
+              style={{ fontSize: 20, color: UTILS.COLORS.textColor }}
             >
               {item.name}
             </Text>
-            <Text style={{ fontSize: 15, color: UTILS.STYLES.colors.gray1 }}>
+            <Text style={{ fontSize: 15, color: UTILS.COLORS.gray1 }}>
               {item.format}
             </Text>
-            <Text style={{ fontSize: 15, color: UTILS.STYLES.colors.gray1 }}>
+            <Text style={{ fontSize: 15, color: UTILS.COLORS.gray1 }}>
               {item.discp}
             </Text>
             <TouchableOpacity style={styles.button} onPress={() => {}}>
@@ -84,12 +84,12 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     borderRadius: 10,
-    backgroundColor: UTILS.STYLES.colors.buttonBlue,
+    backgroundColor: UTILS.COLORS.buttonBlue,
     alignItems: "center",
     justifyContent: "center",
   },
   buttonText: {
-    color: UTILS.STYLES.colors.textColor,
+    color: UTILS.COLORS.textColor,
     fontSize: 15,
   },
 });

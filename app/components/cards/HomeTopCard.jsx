@@ -16,23 +16,17 @@ const HomeTopCard = (props) => {
       <View style={{ flexDirection: "row" }}>
         <View style={styles.userDp} />
         <View>
-          <Text style={{ fontSize: 17, lineHeight: 24, fontWeight: "700" }}>
+          <Text style={[UTILS.STYLES.commonTextStyle]}>
             Hey {userFirstName}
           </Text>
           <Text
-            style={{
-              fontSize: 15,
-              color: UTILS.STYLES.colors.gray2,
-              lineHeight: 16,
-              fontWeight: "400",
-              marginTop: 5,
-            }}
+            style={styles.text}
           >
             Welcome to Scoring
           </Text>
         </View>
       </View>
-      <View style={{ alignContent: "center", justifyContent: "center" }}>
+      <View style={UTILS.STYLES.center}>
         <TouchableOpacity
           onPress={() => navigation.navigate(TAB_SCREENS.PROFILE)}
         >
@@ -50,15 +44,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "space-between",
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom: 10
   },
   userDp: {
     height: 60,
     width: 60,
     borderRadius: 25,
-    backgroundColor: UTILS.STYLES.colors.gray1,
+    backgroundColor: UTILS.COLORS.gray1,
     alignItems: "center",
     justifyContent: "center",
     marginRight: 20,
   },
+  text:{
+    fontSize: 15,
+    color: UTILS.COLORS.gray2,
+    lineHeight: 16,
+    fontWeight: "400",
+    marginTop: 5,
+  }
 });
