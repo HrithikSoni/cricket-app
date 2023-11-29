@@ -10,7 +10,6 @@ import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import { useNavigation } from "@react-navigation/native";
 import RegisterContactInput from "../../components/inputs/RegisterContactInput";
 
-
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 
@@ -62,7 +61,6 @@ function useLogin(body) {
 
   const { request } = useApi({
     onSuccess: (e) => {
-      console.log(e, "from login page");
       navigation.navigate(AUTH_SCREENS.OTP, body.contact);
     },
   });

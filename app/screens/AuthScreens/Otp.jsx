@@ -18,12 +18,19 @@ const Otp = ({ navigation, route }) => {
   const contact = route.params;
 
   const { handleOtp } = useOtp({ contact, otp: otpInput.current.otp });
-  const {timer, setTimer, timerRunning, setTimerRunning} = useTimer();
+  const { timer, setTimer, timerRunning, setTimerRunning } = useTimer();
   const { handleResendOtp } = useResendOtp({
     contact: contact,
     setTimer,
     setTimerRunning,
   });
+
+  const s = {
+    color: timerRunning
+      ? UTILS.STYLES.colors.gray2
+      : UTILS.STYLES.colors.themeColor,
+    fontWeight: "bold",
+  };
 
   return (
     <ParentWrapperWithBG
@@ -64,19 +71,7 @@ const Otp = ({ navigation, route }) => {
           <View style={{ flexDirection: "row", gap: 5 }}>
             <Text style={[styles.bottomText]}>Didn't receive code?</Text>
             <TouchableOpacity onPress={handleResendOtp} disabled={timerRunning}>
-              <Text
-                style={[
-                  styles.bottomText,
-                  {
-                    color: timerRunning
-                      ? UTILS.STYLES.colors.gray2
-                      : UTILS.STYLES.colors.themeColor,
-                    fontWeight: "bold",
-                  },
-                ]}
-              >
-                Resend
-              </Text>
+              <Text style={[styles.bottomText, s]}>Resend</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -115,7 +110,7 @@ function useResendOtp(body) {
   const { request } = useApi({
     onSuccess: (e) => {
       console.log("first");
-      console.log(e, 'otp from otpScreen');
+      console.log(e, "otp from otpScreen");
     },
   });
   async function handleResendOtp() {

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 
-export default function useTimer(){
-  const [timer, setTimer] = useState(60);
+export default function useTimer(time = 60) {
+  const [timer, setTimer] = useState(time);
   const [timerRunning, setTimerRunning] = useState(true);
 
   useEffect(() => {
@@ -18,7 +18,8 @@ export default function useTimer(){
     return () => clearInterval(interval);
   }, [timer, timerRunning]);
 
+  // const timerRunning = timer !== 0
   return { timer, setTimer, timerRunning, setTimerRunning };
-};
+}
 
 const styles = StyleSheet.create({});

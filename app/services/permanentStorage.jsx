@@ -11,7 +11,7 @@ export async function save(key, detail) {
   }
 }
 
-export async function del(key) {
+export async function deleteDetails(key) {
   try {
     await SecureStore.deleteItemAsync(key);
   } catch (error) {
@@ -27,3 +27,7 @@ export async function get(key) {
     console.log("Error retrieving user detail:", error);
   }
 }
+
+const permanentStorage = {};
+
+export default permanentStorage;
