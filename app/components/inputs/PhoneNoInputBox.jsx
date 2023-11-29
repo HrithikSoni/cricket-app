@@ -20,6 +20,14 @@ const PhoneNoInputBox = (props) => {
   const updateData = (e) => setData({ ...data, e });
   const [mobileNo, setMobileNo] = useState("");
   const [isVerifyPressed, setIsVerifyPressed] = useState(false);
+<<<<<<< HEAD
+=======
+  const [timer, setTimer] = useState(30);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const { userData } = useContext(AppContext);
+
+  console.log(userData.selectedOption, "oooooooooooo");
+>>>>>>> dc196c242c83607bacf7f83ebbf0346be87fb2bf
 
   const { handleSendOtp } = useSendOtp({ contact: mobileNo });
 
@@ -84,8 +92,8 @@ const PhoneNoInputBox = (props) => {
                     styles.verifyText,
                     {
                       color: timerRunning
-                        ? UTILS.STYLES.colors.gray2
-                        : UTILS.STYLES.colors.themeColor,
+                        ? UTILS.COLORS.gray2
+                        : UTILS.COLORS.themeColor,
                     },
                   ]}
                 >
@@ -109,7 +117,7 @@ const PhoneNoInputBox = (props) => {
               <Text
                 style={[
                   UTILS.STYLES.commonTextStyle,
-                  { color: UTILS.STYLES.colors.gray2 },
+                  { color: UTILS.COLORS.gray2 },
                 ]}
               >
                 Code is sent to
@@ -117,7 +125,7 @@ const PhoneNoInputBox = (props) => {
               <Text
                 style={[
                   UTILS.STYLES.commonTextStyle,
-                  { color: UTILS.STYLES.colors.black, marginLeft: 5 },
+                  { color: UTILS.COLORS.black, marginLeft: 5 },
                 ]}
               >
                 {mobileNo}
@@ -168,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   line: {
-    borderLeftColor: UTILS.STYLES.colors.gray2,
+    borderLeftColor: UTILS.COLORS.gray2,
     borderLeftWidth: 1,
     height: "50%",
     marginHorizontal: 10,
@@ -176,7 +184,7 @@ const styles = StyleSheet.create({
   verifyText: {
     fontSize: 17,
     fontWeight: "500",
-    color: UTILS.STYLES.colors.themeColor,
+    color: UTILS.COLORS.themeColor,
   },
   otpBox: {
     marginTop: 10,

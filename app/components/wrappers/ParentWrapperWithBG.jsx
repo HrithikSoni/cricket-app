@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
 import { Text, View } from "react-native";
 
-import { LeftChevoronIcon } from "../icons";
+import Icons from "../icons";
 import UTILS from "../../utils";
 import BGImageWapper from "./BGImageWapper";
 
@@ -10,14 +10,19 @@ export default function ParentWrapperWithBG(props) {
   return (
     <SafeAreaView style={styles.container}>
       <BGImageWapper>
-      <View style={[styles.upperContainer]}>
-      <LeftChevoronIcon onPress={()=> props?.navigation.goBack()}/>
-      <View style={[styles.textContainer, {paddingTop: props?.PTTextCon || 50}]}>
-      {props?.title && <Text style={[styles.title]}>{props?.title}</Text>}
-      {props?.discp && <Text style={[styles.discp]}>{props?.discp}</Text>}
-      </View>
-      </View>
-      {props.children}
+        <View style={[styles.upperContainer]}>
+          <Icons.LeftChevron onPress={() => props?.navigation.goBack()} />
+          <View
+            style={[
+              styles.textContainer,
+              { paddingTop: props?.PTTextCon || 50 },
+            ]}
+          >
+            {props?.title && <Text style={[styles.title]}>{props?.title}</Text>}
+            {props?.discp && <Text style={[styles.discp]}>{props?.discp}</Text>}
+          </View>
+        </View>
+        {props.children}
       </BGImageWapper>
     </SafeAreaView>
   );
@@ -27,23 +32,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight),
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
-  upperContainer:{
-    marginTop: 60
+  upperContainer: {
+    marginTop: 60,
   },
-  textContainer:{
-   
-  },
-  title:{
+  textContainer: {},
+  title: {
     fontSize: 30,
-    fontWeight: '700'
+    fontWeight: "700",
   },
-  discp:{
+  discp: {
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: "400",
     lineHeight: 24,
-    color: UTILS.STYLES.colors.gray2,
-    marginTop: 10
-  }
+    color: UTILS.COLORS.gray2,
+    marginTop: 10,
+  },
 });

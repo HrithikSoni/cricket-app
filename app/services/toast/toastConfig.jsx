@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 
 import UTILS from "../../utils";
 
-const colors = UTILS.STYLES.colors;
+const colors = UTILS.COLORS;
 const width = 300;
 const customStyles = {};
 export const toastConfig = {

@@ -18,7 +18,6 @@ import { AppContext } from "../../context/AppContext";
 const DropDownModal = (props) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
-  const {setUserData} = useContext(AppContext);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -26,7 +25,6 @@ const DropDownModal = (props) => {
 
   const handleOptionSelection = (option) => {
     setSelectedOption(option);
-    setUserData({selectedOption: option})
     setModalVisible(false);
     // handleModal();
     props?.onDropdownSelect(option);
@@ -55,8 +53,8 @@ const DropDownModal = (props) => {
                   styles.text,
                   {
                     color: selectedOption
-                      ? UTILS.STYLES.colors.black
-                      : UTILS.STYLES.colors.gray2,
+                      ? UTILS.COLORS.black
+                      : UTILS.COLORS.gray2,
                   },
                 ]}
               >
@@ -149,7 +147,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   modalContent: {
-    backgroundColor: UTILS.STYLES.colors.backGround,
+    backgroundColor: UTILS.COLORS.backGround,
     paddingTop: 12,
     paddingHorizontal: 12,
     borderTopRightRadius: 20,

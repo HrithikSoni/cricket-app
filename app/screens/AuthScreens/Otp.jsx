@@ -25,7 +25,7 @@ const Otp = ({ navigation, route }) => {
     setTimerRunning,
   });
 
-  const s = {
+  const resendTextStyle = {
     color: timerRunning
       ? UTILS.STYLES.colors.gray2
       : UTILS.STYLES.colors.themeColor,
@@ -50,7 +50,7 @@ const Otp = ({ navigation, route }) => {
           {timer === 0 ? (
             <Text
               style={{
-                color: UTILS.STYLES.colors.themeColor,
+                color: UTILS.COLORS.themeColor,
                 fontSize: 20,
                 fontWeight: "bold",
               }}
@@ -60,7 +60,7 @@ const Otp = ({ navigation, route }) => {
           ) : (
             <Text
               style={{
-                color: UTILS.STYLES.colors.themeColor,
+                color: UTILS.COLORS.themeColor,
                 fontSize: 20,
                 fontWeight: "bold",
               }}
@@ -71,7 +71,7 @@ const Otp = ({ navigation, route }) => {
           <View style={{ flexDirection: "row", gap: 5 }}>
             <Text style={[styles.bottomText]}>Didn't receive code?</Text>
             <TouchableOpacity onPress={handleResendOtp} disabled={timerRunning}>
-              <Text style={[styles.bottomText, s]}>Resend</Text>
+              <Text style={[styles.bottomText, resendTextStyle]}>Resend</Text>
             </TouchableOpacity>
           </View>
         </View>

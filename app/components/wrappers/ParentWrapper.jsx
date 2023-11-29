@@ -57,4 +57,8 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: 38,
   },
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> dc196c242c83607bacf7f83ebbf0346be87fb2bf

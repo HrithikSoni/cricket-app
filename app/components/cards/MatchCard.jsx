@@ -10,7 +10,6 @@ import React from "react";
 
 import UTILS from "../../utils";
 
-const COLORS = UTILS.STYLES.colors;
 const MatchCard = () => {
   const matchDetails = [
     {

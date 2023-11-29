@@ -24,11 +24,11 @@ export const SearchIcon = () => (
 );
 
 export const CalendarIcon = () => (
-  <AntDesign name="calendar" size={24} color={UTILS.STYLES.colors.themeColor} />
+  <AntDesign name="calendar" size={24} color={UTILS.COLORS.themeColor} />
 );
 
 export const CheckIcon = () => (
-  <MaterialIcons name="check" size={20} color={UTILS.STYLES.colors.textColor} />
+  <MaterialIcons name="check" size={20} color={UTILS.COLORS.textColor} />
 );
 
 export const NotificationIcon = () => (
@@ -42,14 +42,14 @@ export const LeftChevoronIcon = (props) => (
 );
 
 export const CameraIcon = () => (
-  <Feather name="camera" size={30} color={UTILS.STYLES.colors.themeColor} />
+  <Feather name="camera" size={30} color={UTILS.COLORS.themeColor} />
 );
 
 export const CheveronIcon = (props) => (
   <Ionicons
     name={props?.isListVisible ? "chevron-up" : "chevron-down"}
     size={24}
-    color={UTILS.STYLES.colors.gray2}
+    color={UTILS.COLORS.gray2}
   />
 );
 
@@ -57,7 +57,7 @@ export const HomeIcon = (props) => (
   <Foundation
     name="home"
     size={35}
-    color={props?.color || UTILS.STYLES.colors.themeColor}
+    color={props?.color || UTILS.COLORS.themeColor}
   />
 );
 
@@ -65,7 +65,7 @@ export const CompassIcon = (props) => (
   <Ionicons
     name="compass"
     size={35}
-    color={props?.color || UTILS.STYLES.colors.themeColor}
+    color={props?.color || UTILS.COLORS.themeColor}
   />
 );
 
@@ -73,7 +73,7 @@ export const CricketIcon = (props) => (
   <MaterialCommunityIcons
     name="cricket"
     size={35}
-    color={props?.color || UTILS.STYLES.colors.themeColor}
+    color={props?.color || UTILS.COLORS.themeColor}
   />
 );
 
@@ -81,22 +81,23 @@ export const UserIcon = (props) => (
   <FontAwesome
     name="user"
     size={35}
-    color={props?.color || UTILS.STYLES.colors.themeColor}
+    color={props?.color || UTILS.COLORS.themeColor}
   />
 );
-
-export default ICONS = {
+const Icons = {
   SearchIcon,
   CalendarIcon,
   CheckIcon,
-  LeftChevoronIcon,
   CheveronIcon,
   HomeIcon,
   CompassIcon,
   CricketIcon,
   UserIcon,
-  NotificationIcon
+  NotificationIcon,
+  LeftChevoronIcon
 };
+
+export default Icons;
 
 // export const CalendarIcon = (props) => (
 //   <TouchableOpacity onPress={props.onPress}>
