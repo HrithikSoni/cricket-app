@@ -1,25 +1,37 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
 import { Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import { LeftChevoronIcon } from "../icons";
 import UTILS from "../../utils";
-import BGImageWapper from "./BGImageWapper";
+import Icons from "../../components/icons";
+import AppText from "../AppText";
 
 export default function ParentWrapper(props) {
+  const navigation = useNavigation();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={[styles.upperContainer]}>
-      <View>
-      <LeftChevoronIcon onPress={()=> props?.navigation.goBack()}/>
-      {props?.screenTitle && <Text style={[styles]}>{props?.screenTitle}</Text>}
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+      }}
+    >
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Icons.LeftChevron
+            onPress={() => navigation.goBack()}
+            style={{ position: "absolute", left: 10 }}
+          />
+          {props.screenTitle && (
+            <AppText style={{ fontSize: 18 }}>{props.screenTitle}</AppText>
+          )}
+        </View>
+        {props.description && (
+          <AppText style={styles.description}>{props.description}</AppText>
+        )}
+        {props.children}
       </View>
-      <View style={[styles.textContainer, {paddingTop: props?.PTTextCon || 50}]}>
-      {props?.title && <Text style={[styles.title]}>{props?.title}</Text>}
-      {props?.discp && <Text style={[styles.discp]}>{props?.discp}</Text>}
-      </View>
-      </View>
-      {props.children}
     </SafeAreaView>
   );
 }
@@ -28,23 +40,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight),
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
-  upperContainer:{
-    marginTop: 60
+  header: {
+    height: 20,
+    flexDirection: "row",
+    justifyContent: "center",
   },
-  textContainer:{
-   
-  },
-  title:{
+  // upperContainer: {
+  //   marginTop: 60,
+  // },
+  description: {
+    width: UTILS.DIMENSIONS.width * 0.8,
+    marginTop: 20,
     fontSize: 30,
-    fontWeight: '700'
+    fontWeight: "700",
+    lineHeight: 38,
   },
-  discp:{
-    fontSize: 18,
-    fontWeight: '400',
-    lineHeight: 24,
-    color: UTILS.STYLES.colors.gray2,
-    marginTop: 10
-  }
 });

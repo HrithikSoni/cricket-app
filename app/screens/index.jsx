@@ -7,11 +7,9 @@ import AppNavigator from "../routes/AppNavigator";
 import Login from "./AuthScreens/Login";
 
 export default function Root() {
-const [user, setUser] = useState(true);
+  const [user, setUser] = useState(true);
 
-  return (
-      user ? <AppNavigator /> : <AuthNavigator />
-  );
+  return true ? <AppNavigator /> : <AuthNavigator />;
 }
 
 const styles = StyleSheet.create({});

@@ -7,7 +7,7 @@ const InputBox = (props) => {
     <TextInput
       style={[UTILS.STYLES.commonStyle]}
       textContentType={props?.type}
-      key={props?.label}
+      key={props?.key}
       placeholder={props?.label}
       defaultValue={props?.value}
       onChangeText={props?.onChangeText}

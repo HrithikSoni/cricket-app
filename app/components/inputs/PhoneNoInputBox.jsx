@@ -24,7 +24,7 @@ const PhoneNoInputBox = (props) => {
   const [timerRunning, setTimerRunning] = useState(false);
   const { userData } = useContext(AppContext);
 
-  console.log(userData.selectedOption, 'oooooooooooo');
+  console.log(userData.selectedOption, "oooooooooooo");
 
   const { handleSendOtp } = useSendOtp({ contact: mobileNo });
 
@@ -69,7 +69,9 @@ const PhoneNoInputBox = (props) => {
       >
         <View style={[styles.codeContainer]}>
           <View>
-            <Text style={styles.text}>{userData.selectedOption?.rightText || "+91"}</Text>
+            <Text style={styles.text}>
+              {userData.selectedOption?.rightText || "+91"}
+            </Text>
           </View>
           <View style={styles.line} />
         </View>
@@ -100,8 +102,8 @@ const PhoneNoInputBox = (props) => {
                     styles.verifyText,
                     {
                       color: timerRunning
-                        ? UTILS.STYLES.colors.gray2
-                        : UTILS.STYLES.colors.themeColor,
+                        ? UTILS.COLORS.gray2
+                        : UTILS.COLORS.themeColor,
                     },
                   ]}
                 >
@@ -125,7 +127,7 @@ const PhoneNoInputBox = (props) => {
               <Text
                 style={[
                   UTILS.STYLES.commonTextStyle,
-                  { color: UTILS.STYLES.colors.gray2 },
+                  { color: UTILS.COLORS.gray2 },
                 ]}
               >
                 Code is sent to
@@ -133,7 +135,7 @@ const PhoneNoInputBox = (props) => {
               <Text
                 style={[
                   UTILS.STYLES.commonTextStyle,
-                  { color: UTILS.STYLES.colors.black, marginLeft: 5 },
+                  { color: UTILS.COLORS.black, marginLeft: 5 },
                 ]}
               >
                 {mobileNo}
@@ -181,7 +183,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   line: {
-    borderLeftColor: UTILS.STYLES.colors.gray2,
+    borderLeftColor: UTILS.COLORS.gray2,
     borderLeftWidth: 1,
     height: "50%",
     marginHorizontal: 10,
@@ -189,7 +191,7 @@ const styles = StyleSheet.create({
   verifyText: {
     fontSize: 17,
     fontWeight: "500",
-    color: UTILS.STYLES.colors.themeColor,
+    color: UTILS.COLORS.themeColor,
   },
   otpBox: {
     marginTop: 10,

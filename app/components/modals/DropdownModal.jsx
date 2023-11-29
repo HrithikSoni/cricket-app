@@ -18,7 +18,7 @@ import { AppContext } from "../../context/AppContext";
 const DropDownModal = (props) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
-  const {setUserData} = useContext(AppContext);
+  const { setUserData } = useContext(AppContext);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -26,7 +26,7 @@ const DropDownModal = (props) => {
 
   const handleOptionSelection = (option) => {
     setSelectedOption(option);
-    setUserData({selectedOption: option})
+    setUserData({ selectedOption: option });
     setModalVisible(false);
     handleModal();
     props.onDropdownSelect(option);
@@ -55,8 +55,8 @@ const DropDownModal = (props) => {
                   styles.text,
                   {
                     color: selectedOption
-                      ? UTILS.STYLES.colors.black
-                      : UTILS.STYLES.colors.gray2,
+                      ? UTILS.COLORS.black
+                      : UTILS.COLORS.gray2,
                   },
                 ]}
               >
@@ -70,56 +70,56 @@ const DropDownModal = (props) => {
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-      <Modal
-        onBackdropPress={() => setModalVisible(false)}
-        onBackButtonPress={() => setModalVisible(false)}
-        isVisible={isModalVisible}
-        swipeDirection="down"
-        onSwipeComplete={toggleModal}
-        animationIn="bounceInUp"
-        animationOut="bounceOutDown"
-        animationInTiming={900}
-        animationOutTiming={500}
-        backdropTransitionInTiming={1000}
-        backdropTransitionOutTiming={500}
-        style={styles.modal}
-      >
-       <View style={[styles.modalContent]}>
-       <View style={{ alignItems: "center", justifyContent: "center" }}>
-                <Text style={{ fontSize: 20, marginVertical: 5 }}>
-                  {props?.title}
-                </Text>
-                {props?.searchBarLabel && (
-                  <SearchBar label={props?.searchBarLabel} />
-                )}
-              </View>
-              <ScrollView>
-                {props?.arrayData &&
-                  props?.arrayData.map((option) => {
-                    return (
-                      <TouchableOpacity
-                        key={option.label}
-                        style={styles.optionItem}
-                        onPress={() => handleOptionSelection(option)}
-                      >
-                        <View style={styles.optionContent}>
-                          {option?.imgUrl && (
-                            <Image
-                              style={styles.imgStyle}
-                              source={{
-                                uri: option.imgUrl,
-                              }}
-                            />
-                          )}
-                          <Text style={[styles.text]}>{option.label}</Text>
-                        </View>
-                        {option?.rightText && <Text>{option.rightText}</Text>}
-                      </TouchableOpacity>
-                    );
-                  })}
-              </ScrollView>
-       </View>
-      </Modal>
+        <Modal
+          onBackdropPress={() => setModalVisible(false)}
+          onBackButtonPress={() => setModalVisible(false)}
+          isVisible={isModalVisible}
+          swipeDirection="down"
+          onSwipeComplete={toggleModal}
+          animationIn="bounceInUp"
+          animationOut="bounceOutDown"
+          animationInTiming={900}
+          animationOutTiming={500}
+          backdropTransitionInTiming={1000}
+          backdropTransitionOutTiming={500}
+          style={styles.modal}
+        >
+          <View style={[styles.modalContent]}>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text style={{ fontSize: 20, marginVertical: 5 }}>
+                {props?.title}
+              </Text>
+              {props?.searchBarLabel && (
+                <SearchBar label={props?.searchBarLabel} />
+              )}
+            </View>
+            <ScrollView>
+              {props?.arrayData &&
+                props?.arrayData.map((option) => {
+                  return (
+                    <TouchableOpacity
+                      key={option.label}
+                      style={styles.optionItem}
+                      onPress={() => handleOptionSelection(option)}
+                    >
+                      <View style={styles.optionContent}>
+                        {option?.imgUrl && (
+                          <Image
+                            style={styles.imgStyle}
+                            source={{
+                              uri: option.imgUrl,
+                            }}
+                          />
+                        )}
+                        <Text style={[styles.text]}>{option.label}</Text>
+                      </View>
+                      {option?.rightText && <Text>{option.rightText}</Text>}
+                    </TouchableOpacity>
+                  );
+                })}
+            </ScrollView>
+          </View>
+        </Modal>
       </View>
     </>
   );
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   modalContent: {
-    backgroundColor: UTILS.STYLES.colors.backGround,
+    backgroundColor: UTILS.COLORS.backGround,
     paddingTop: 12,
     paddingHorizontal: 12,
     borderTopRightRadius: 20,

@@ -32,7 +32,7 @@ const MatchInfoCard = () => {
             />
             <View style={{ marginLeft: 10 }}>
               <Text style={{ fontSize: 16 }}>{item.name}</Text>
-              <Text style={{ fontSize: 13, color: UTILS.STYLES.colors.gray2 }}>
+              <Text style={{ fontSize: 13, color: UTILS.COLORS.gray2 }}>
                 {item.discp}
               </Text>
             </View>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
     borderRadius: 20,
-    borderColor: UTILS.STYLES.colors.themeColor,
+    borderColor: UTILS.COLORS.themeColor,
     borderWidth: 2,
   },
 });

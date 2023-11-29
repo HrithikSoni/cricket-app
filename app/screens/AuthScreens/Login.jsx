@@ -43,13 +43,13 @@ export default function Login({ navigation }) {
         <View style={[styles.lowerContainer]}>
           <Button
             label={"Don't have an account"}
-            bgColor={UTILS.STYLES.colors.gray3}
-            textColor={UTILS.STYLES.colors.black}
+            bgColor={UTILS.COLORS.gray3}
+            textColor={UTILS.COLORS.black}
             onButtonPress={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
           />
           <Text style={{ lineHeight: 25, textAlign: "center" }}>
             By creating passcode you agree with our{" "}
-            <Text style={{ color: UTILS.STYLES.colors.themeColor }}>
+            <Text style={{ color: UTILS.COLORS.themeColor }}>
               Terms & Conditions and Privacy Policy
             </Text>
           </Text>

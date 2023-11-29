@@ -46,10 +46,7 @@ const Otp = ({ navigation, route }) => {
       <View style={[styles.container]}>
         <View style={[styles.middleContainer]}>
           <View style={{ marginTop: 20 }}>
-            <OTPTextInput
-              ref={otpInput}
-              tintColor={UTILS.STYLES.colors.themeColor}
-            />
+            <OTPTextInput ref={otpInput} tintColor={UTILS.COLORS.themeColor} />
             {/* <OTPInputBox onOtpInput={(e) => console.log(e)} /> */}
           </View>
           <Button onButtonPress={() => {}} />
@@ -58,7 +55,7 @@ const Otp = ({ navigation, route }) => {
           {timer === 0 ? (
             <Text
               style={{
-                color: UTILS.STYLES.colors.themeColor,
+                color: UTILS.COLORS.themeColor,
                 fontSize: 20,
                 fontWeight: "bold",
               }}
@@ -68,7 +65,7 @@ const Otp = ({ navigation, route }) => {
           ) : (
             <Text
               style={{
-                color: UTILS.STYLES.colors.themeColor,
+                color: UTILS.COLORS.themeColor,
                 fontSize: 20,
                 fontWeight: "bold",
               }}
@@ -84,8 +81,8 @@ const Otp = ({ navigation, route }) => {
                   styles.bottomText,
                   {
                     color: timerRunning
-                      ? UTILS.STYLES.colors.gray2
-                      : UTILS.STYLES.colors.themeColor,
+                      ? UTILS.COLORS.gray2
+                      : UTILS.COLORS.themeColor,
                     fontWeight: "bold",
                   },
                 ]}

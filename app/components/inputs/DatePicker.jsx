@@ -20,9 +20,7 @@ const AppDatePicker = (props) => {
           style={[
             UTILS.STYLES.commonTextStyle,
             {
-              color: date
-                ? UTILS.STYLES.colors.black
-                : UTILS.STYLES.colors.gray2,
+              color: date ? UTILS.COLORS.black : UTILS.COLORS.gray2,
             },
           ]}
         >

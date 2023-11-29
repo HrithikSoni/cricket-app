@@ -13,16 +13,26 @@ const Button = (props) => {
     if (!disabled) {
       () => {};
     }
-    props?.onButtonPress()
+    props?.onButtonPress();
   };
+
+  let button = styles.button;
+  if (props.bottom) {
+    button = {
+      ...button,
+      position: "absolute",
+      bottom: 20,
+      left: (UTILS.DIMENSIONS.width - button.minWidth) / 2,
+    };
+  }
 
   return (
     <TouchableOpacity
       style={[
-        styles.button,
+        button,
         {
           opacity: disabled ? 0.6 : 1,
-          backgroundColor: props?.bgColor || UTILS.STYLES.colors.themeColor,
+          backgroundColor: props?.bgColor || UTILS.COLORS.themeColor,
         },
       ]}
       onPress={buttonPress}
@@ -38,7 +48,7 @@ const Button = (props) => {
       <Text
         style={[
           styles.btnText,
-          { color: props?.textColor || UTILS.STYLES.colors.gray3 },
+          { color: props?.textColor || UTILS.COLORS.gray3 },
         ]}
       >
         {props?.label || "Continue"}
@@ -60,7 +70,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     height: 57,
-    minWidth: 360
+    minWidth: 360,
   },
   btnText: {
     fontSize: 20,

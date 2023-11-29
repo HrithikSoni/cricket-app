@@ -1,7 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
-
 import UTILS from "../utils";
 
 const PairBtn = (props) => {
@@ -18,11 +17,11 @@ const PairBtn = (props) => {
       <TouchableOpacity
         onPress={props?.onPressLeft}
         style={[
-          { backgroundColor: props?.color || UTILS.STYLES.colors.themeColor },
+          { backgroundColor: props?.color || UTILS.COLORS.themeColor },
           styles.btn,
         ]}
       >
-        <Text style={{ color: UTILS.STYLES.colors.textColor, fontSize: 20 }}>
+        <Text style={{ color: UTILS.COLORS.textColor, fontSize: 20 }}>
           {props?.leftBtnText || "Cancel"}
         </Text>
       </TouchableOpacity>
@@ -32,13 +31,13 @@ const PairBtn = (props) => {
         style={[
           {
             backgroundColor: props?.color,
-            borderColor: UTILS.STYLES.colors.black,
+            borderColor: UTILS.COLORS.black,
             borderWidth: 1,
           },
           styles.btn,
         ]}
       >
-        <Text style={{ color: UTILS.STYLES.colors.black, fontSize: 20 }}>
+        <Text style={{ color: UTILS.COLORS.black, fontSize: 20 }}>
           {props?.rightBtnText || "Save"}
         </Text>
       </TouchableOpacity>

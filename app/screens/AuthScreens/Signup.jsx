@@ -97,11 +97,11 @@ const Signup = ({ navigation }) => {
       >
         <View style={[styles.container]}>
           <View style={[styles.profilePicCon]}>
-           <TouchableOpacity onPress={handleEditProfilePic}>
-           <View style={styles.userDp}>
-              <CameraIcon />
-            </View>
-           </TouchableOpacity>
+            <TouchableOpacity onPress={handleEditProfilePic}>
+              <View style={styles.userDp}>
+                <CameraIcon />
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity onPress={handleEditProfilePic}>
               <Text style={{ marginLeft: 30, fontSize: 17, fontWeight: "500" }}>
                 Set profile picture
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 50,
-    backgroundColor: UTILS.STYLES.colors.gray1,
+    backgroundColor: UTILS.COLORS.gray1,
     alignItems: "center",
     justifyContent: "center",
     marginLeft: -90,

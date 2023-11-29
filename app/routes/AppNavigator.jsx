@@ -1,5 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import appBundle from "./screenBundle/AppBundle";
+import { View } from "react-native";
 
 const Stack = createStackNavigator();
 

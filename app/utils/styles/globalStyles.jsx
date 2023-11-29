@@ -1,27 +1,56 @@
-import colors from '../styles/colors'
+import colors from "../styles/colors";
 
-export const commonStyle = {
-    height: 55,
-    backgroundColor: colors.gray1,
-    paddingHorizontal: 15,
-    fontSize: 17,
-    borderRadius: 20,
-    borderWidth: 0,
-    marginTop: 15
-}
+const commonStyle = {
+  height: 55,
+  backgroundColor: colors.gray1,
+  paddingHorizontal: 15,
+  fontSize: 17,
+  borderRadius: 20,
+  borderWidth: 0,
+  marginTop: 15,
+};
 
-export const commonTextStyle = {
-    fontSize: 17
-}
+const commonTextStyle = {
+  fontSize: 17,
+};
 
-export const rowCenter = {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'ceter'
-}
+const rowCenter = {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "ceter",
+};
 
-export const rowSpaceBtw = {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-}
+const rowSpaceBtw = {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+};
+
+const squareBtn = {
+  height: 60,
+  width: 60,
+  borderRadius: 16,
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: colors.themeColor,
+};
+
+const elevation = {
+  shadowColor: "#000",
+  shadowOffset: { width: 1, height: 3 },
+  shadowOpacity: 0.1,
+  shadowRadius: 2,
+  elevation: 2,
+  alignSelf: "stretch",
+};
+
+const STYLES = {
+  commonStyle,
+  commonTextStyle,
+  rowCenter,
+  rowSpaceBtw,
+  squareBtn,
+  elevation,
+};
+
+export default STYLES;

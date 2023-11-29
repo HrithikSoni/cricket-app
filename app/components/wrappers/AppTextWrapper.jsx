@@ -6,7 +6,7 @@ import UTILS from "../../utils";
 
 SplashScreen.preventAutoHideAsync();
 
-export default function AppText({children, ...props}) {
+export default function AppText({ children, ...props }) {
   const [fontsLoaded] = useFonts({
     "Euclid-Medium": require("../../../assets/fonts/euclid/euclid-med.ttf"),
   });
@@ -29,8 +29,8 @@ export default function AppText({children, ...props}) {
           fontSize: props?.fontWeight || 17,
           fontWeight: props?.fontWeight || "500",
           lineHeight: props?.lineHeight || 24,
-          color: props?.color || UTILS.STYLES.colors.gray2,
-          marginLeft: 10
+          color: props?.color || UTILS.COLORS.gray2,
+          marginLeft: 10,
         }}
       >
         {children}
