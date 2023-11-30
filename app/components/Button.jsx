@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     height: 57,
-    minWidth: 360,
     marginTop: 5
   },
   btnText: {

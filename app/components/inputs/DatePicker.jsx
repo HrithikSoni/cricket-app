@@ -16,24 +16,26 @@ const AppDatePicker = (props) => {
 
   return (
     <>
+    <View style={[UTILS.STYLES.commonStyle]}>
       <TouchableOpacity
         onPress={() => setOpen(true)}
-        style={[styles.container, UTILS.STYLES.commonStyle]}
+        style={[styles.container]}
       >
         <Text style={[UTILS.STYLES.commonTextStyleNormal, textStyle]}>
           {date ? date.toLocaleDateString() : props?.label}
         </Text>
-        {props?.mode === "date" ? (
-          <Icons.CalendarIcon isFilled={date} />
-        ) : (
+        {props?.mode === "time" ? (
           <Icons.ClockIcon isFilled={date} />
+        ) : (
+          <Icons.CalendarIcon isFilled={date} />
         )}
       </TouchableOpacity>
+      </View>
       <DatePicker
         modal
         open={open}
         date={date || new Date()}
-        mode={props.mode}
+        mode={props.mode || "datetime"}
         onConfirm={(date) => {
           setOpen(false);
           setDate(date);
@@ -43,19 +45,18 @@ const AppDatePicker = (props) => {
           setOpen(false);
         }}
       />
-    </>
+   </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    minWidth: 160,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 15
   },
   input: {
-    flex: 1,
     fontSize: 20,
     margin: 10,
   },

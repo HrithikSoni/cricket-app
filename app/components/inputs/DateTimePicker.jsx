@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import AppDatePicker from './DatePicker';
 
 const DateTimePicker = (props) => {
-const dateTimeData = useRef({date: "", time: ""})
+const dateTimeData = useRef({})
 
   const form = [
     { label: 'Select Date', mode: 'date', key: 'date' },
@@ -11,13 +11,16 @@ const dateTimeData = useRef({date: "", time: ""})
   ];
 
   function handleOnSelect(key, value){
+    dateTimeData.current = {...dateTimeData.current, [key]: value}
     props?.onDateTimeSelect({[key]: value})
   }
 
   return (
     <View style={styles.container}>
-      {form.map((item) => (
-        <AppDatePicker key={item.key} {...item} onDateSelect={e => handleOnSelect(item.key, e)}/>
+      {form.map((item, index) => (
+       <View key={index} style={styles.boxStyle}>
+         <AppDatePicker key={item.key} {...item} onDateSelect={e => handleOnSelect(item.key, e)}/>
+       </View>
       ))}
     </View>
   );
@@ -29,8 +32,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 20,
-    marginLeft: 0,
   },
+  boxStyle:{
+    minWidth: 180
+  }
 });
 
 export default DateTimePicker;

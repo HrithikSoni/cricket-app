@@ -11,6 +11,7 @@ const InputBox = (props) => {
       placeholder={props?.label}
       defaultValue={props?.value}
       onChangeText={props?.onChangeText}
+      placeholderTextColor={UTILS.COLORS.gray2}
     />
   );
 };

@@ -1,4 +1,5 @@
-import colors from "../styles/colors";
+import colors from '../styles/colors'
+
 
 const commonStyle = {
   height: 55,
@@ -8,6 +9,7 @@ const commonStyle = {
   borderRadius: 20,
   borderWidth: 0,
   marginTop: 15,
+  width: "100%"
 };
 
 export const commonTextStyle = {
