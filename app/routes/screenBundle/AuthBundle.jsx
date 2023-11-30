@@ -5,22 +5,22 @@ import Signup from "../../screens/AuthScreens/Signup";
 
 const ON_BOARDING = {
   name: "OnBoarding",
-  Component: OnBoarding,
+  component: OnBoarding,
 };
 
 const LOGIN = {
   name: "Login",
-  Component: Login,
+  component: Login,
 };
 
 const SIGN_UP = {
   name: "Signup",
-  Component: Signup,
+  component: Signup,
 };
 
 export const OTP = {
   name: "Otp",
-  Component: Otp,
+  component: Otp,
 };
 
 const authBundle = [ON_BOARDING, LOGIN, SIGN_UP, OTP];

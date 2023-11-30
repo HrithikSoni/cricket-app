@@ -5,8 +5,8 @@ import UTILS from "../../utils";
 const { TOURNAMENT_SCREENS } = UTILS.SCREEN_NAMES;
 
 const tournamentBundle = [
-  { name: TOURNAMENT_SCREENS.CREATE_TOURNAMENT, Component: CreateTournament },
-  { name: TOURNAMENT_SCREENS.TOURNAMENT_MATCHES, Component: TournamentMatches },
+  { name: TOURNAMENT_SCREENS.CREATE_TOURNAMENT, component: CreateTournament },
+  { name: TOURNAMENT_SCREENS.TOURNAMENT_MATCHES, component: TournamentMatches },
 ];
 
 export default tournamentBundle;

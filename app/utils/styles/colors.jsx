@@ -3,6 +3,7 @@ export default {
   themeColor: "#0062FF",
   opacity50: "rgba(0, 0, 0, 0.50)",
   border1: "#0062FF33",
+  gray2: "#949BA5",
 
   backGround: "white",
   background1: "#3672DD1A",
@@ -11,7 +12,6 @@ export default {
   blue2: "#0f255eff",
   buttonBlue: "#0062FF",
   gray1: "#F5F8FC",
-  gray2: "#949BA5",
   gray3: "#edf2fa",
   gray4: "#F5F5F5",
   gray5: "#112437",

@@ -27,12 +27,21 @@ const MATCH_DETAILS_SCREENS = {
   FORM: "Enter Match Details",
 };
 
+const TEAMS = {
+  ADD_PLAYERS_IN_TEAM: "Add Plyers In Team",
+  CREATE_TEAM: "aa",
+  SEARCH_PLAYER: "s",
+  SELECT_TEAM: "rr",
+  TEAMS_VERSUS: "vvv",
+};
+
 const SCREEN_NAMES = {
   TOURNAMENT_SCREENS,
   MATCH_DETAILS_SCREENS,
   TAB_SCREENS,
   AUTH_SCREENS,
-  NAV_SCREENS
+  NAV_SCREENS,
+  TEAMS,
 };
 
 export default SCREEN_NAMES;

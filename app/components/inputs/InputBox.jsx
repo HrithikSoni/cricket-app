@@ -6,7 +6,7 @@ const InputBox = (props) => {
   return (
     <TextInput
       style={[UTILS.STYLES.commonStyle]}
-      textContentType={props?.type}
+      textContentType={props?.textContentType}
       key={props?.key}
       placeholder={props?.label}
       defaultValue={props?.value}

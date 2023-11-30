@@ -6,13 +6,19 @@ const Stack = createStackNavigator();
 
 export default function AppNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       {appBundle.map((item, index) => (
         <Stack.Screen
           key={index}
-          name={item.name}
-          component={item.Component}
-          options={{ headerShown: false }}
+          {...item}
+          // options={{presentation:""}}
+          // name={item.name}
+          // component={item.Component}
+          // options={{ headerShown: false }}
         />
       ))}
     </Stack.Navigator>
