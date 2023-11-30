@@ -8,21 +8,23 @@ const LocationPicker = (props) => {
     {
       label: "Country",
       key: "countryId",
-      type: UTILS.INPUT_TYPE.DROPDOWN,
       arrayData: UTILS.COUNTRY_INFO
     },
     {
       label: "State",
       key: "stateId",
-      type: UTILS.INPUT_TYPE.DROPDOWN,
       arrayData: statesArray
     },
   ];
 
+  function handleOnSelect(key, value){
+    props?.onLocationSelect({[key]: value})
+  }
+
   return (
     <View>
       {form.map((item, index) => (
-        <DropDownModal key={index} {...item} {...props}/>
+        <DropDownModal key={index} {...item} onDropdownSelect={e => handleOnSelect(item.key, e.value)}/>
       ))}
     </View>
   );

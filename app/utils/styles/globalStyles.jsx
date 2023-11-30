@@ -18,8 +18,7 @@ export const commonTextStyle = {
 
 export const commonTextStyleNormal = {
   fontSize: 17,
-  lineHeight: 24,
-  fontWeight: "300"
+  lineHeight: 24
 }
 
 const center ={

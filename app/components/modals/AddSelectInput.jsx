@@ -1,9 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import UTILS from "../../utils";
 import AppText from "../AppText";
+import BottomSheetModal from "./BottomSheetModal";
 
 export default function AddSelectInput(props) {
+
   return (
     <View style={[UTILS.STYLES.commonStyle, styles.inputContainer]}>
       <AppText style={styles.label}>{props.label}</AppText>
@@ -12,9 +14,11 @@ export default function AddSelectInput(props) {
   );
   function SelectorBtn() {
     return (
+      <>
       <TouchableOpacity style={styles.selectorBtn}>
         <AppText style={{ color: UTILS.COLORS.themeColor }}>Add</AppText>
       </TouchableOpacity>
+      </>
     );
   }
 }

@@ -20,6 +20,8 @@ export default function MatchDetails() {
     scorerFrom,
     refereeForm,
     handleSubmitMatchDetails,
+    matchTypesArray,
+    umpireNamesArray
   } = useMatchDetails(matchDetails);
   return (
     <ParentWrapper description={`Enter Your Match Details`}>
@@ -31,17 +33,26 @@ export default function MatchDetails() {
           label=""
           key="matchType"
           type={UTILS.INPUT_TYPE.DROPDOWN}
+          arrayData={matchTypesArray}
+          title="Select Type of Match"
+          onDropdownSelect={(e) => (updateMatchDetails(matchType = e.value))}
         />
 
         <Divider style={{ marginVertical: 10 }} />
 
         {form.map((i) => (
-          <InputSelector {...i} />
+          <InputSelector
+            {...i}
+            onDateTimeSelect={(e) => updateMatchDetails(e)}
+            onChangeText={(e) => (updateMatchDetails(i.key = e))}
+            onDropdownSelect={(e) => (updateMatchDetails(i.key = e.value))}
+            onLocationSelect={(e) => updateMatchDetails(e)}
+          />
         ))}
 
         <AppText style={styles.formLabel}>Add Umpires</AppText>
         {umpireForm.map((i) => (
-          <InputSelector {...i} />
+          <InputSelector {...i}  arrayData={umpireNamesArray}/>
         ))}
 
         <AppText style={styles.formLabel}>Add Referee</AppText>
@@ -74,8 +85,9 @@ function useMatchDetails(body) {
       key: "noPerPowerplays",
       type: UTILS.INPUT_TYPE.POWER_PLAY,
     },
-    {type: UTILS.INPUT_TYPE.DATE_TIME_PICKER},
+    { type: UTILS.INPUT_TYPE.DATE_TIME_PICKER },
     { label: "Ground Name", key: "groundName", type: UTILS.INPUT_TYPE.NUMBER },
+    {type: UTILS.INPUT_TYPE.LOCATION_PICKER},
     { label: "Ball Type", key: "ballType", type: UTILS.INPUT_TYPE.BALL_TYPE },
   ];
 
@@ -92,6 +104,19 @@ function useMatchDetails(body) {
   const scorerFrom = [
     { label: "Scorer", key: "umpire1", type: UTILS.INPUT_TYPE.ADD_SELECT },
   ];
+
+  const matchTypesArray = [
+    { label: "T20(20 Overs)", value: "TWNETY_TWENTY" },
+    { label: "One Day(50 Overs)", value: "ONE_DAY" },
+    { label: "Test", value: "TEST_MATCH" },
+    
+  ];
+
+  const umpireNamesArray = [
+    { label: "John Doe", value: "JOHN_DOE" },
+    { label: "Alice Smith", value: "ALICE_SMITH" },
+    { label: "David Brown", value: "DAVID_BROWN" }
+  ];
   function handleSubmitMatchDetails() {}
 
   return {
@@ -100,6 +125,8 @@ function useMatchDetails(body) {
     scorerFrom,
     refereeForm,
     handleSubmitMatchDetails,
+    matchTypesArray,
+    umpireNamesArray
   };
 }
 

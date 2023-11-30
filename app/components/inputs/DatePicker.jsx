@@ -4,7 +4,7 @@ import { Button } from "react-native";
 import DatePicker from "react-native-date-picker";
 
 import UTILS from "../../utils";
-import { CalendarIcon } from "../icons";
+import Icons, { CalendarIcon } from "../icons";
 
 const AppDatePicker = (props) => {
   const [date, setDate] = useState(null);
@@ -20,10 +20,14 @@ const AppDatePicker = (props) => {
         onPress={() => setOpen(true)}
         style={[styles.container, UTILS.STYLES.commonStyle]}
       >
-        <Text style={[UTILS.STYLES.commonTextStyle, textStyle]}>
+        <Text style={[UTILS.STYLES.commonTextStyleNormal, textStyle]}>
           {date ? date.toLocaleDateString() : props?.label}
         </Text>
-        <CalendarIcon />
+        {props?.mode === "date" ? (
+          <Icons.CalendarIcon isFilled={date} />
+        ) : (
+          <Icons.ClockIcon isFilled={date} />
+        )}
       </TouchableOpacity>
       <DatePicker
         modal
@@ -33,7 +37,7 @@ const AppDatePicker = (props) => {
         onConfirm={(date) => {
           setOpen(false);
           setDate(date);
-          props.onDateSelect(date.toISOString());
+          props?.onDateSelect(date.toISOString());
         }}
         onCancel={() => {
           setOpen(false);
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    minWidth: 160
+    minWidth: 160,
   },
   input: {
     flex: 1,

@@ -25,8 +25,12 @@ export const SearchIcon = () => (
   <Feather name="search" size={24} color={colors.themeColor} />
 );
 
-export const CalendarIcon = () => (
-  <AntDesign name="calendar" size={24} color={colors.themeColor} />
+export const CalendarIcon = (props) => (
+  <AntDesign name="calendar" size={24} color={props?.isFilled ? colors.themeColor : colors.gray2} />
+);
+
+export const ClockIcon = (props) => (
+  <Feather name="clock" size={24} color={props?.isFilled ? colors.themeColor : colors.gray2} />
 );
 
 export const CheckIcon = () => (
@@ -106,7 +110,8 @@ const Icons = {
   UserIcon,
   NotificationIcon,
   LeftChevoronIcon,
-  CrossIcon
+  CrossIcon,
+  ClockIcon
 };
 
 export default Icons;
