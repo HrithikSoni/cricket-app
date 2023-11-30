@@ -8,7 +8,7 @@ import InputSelector from "../../components/ComponentHandler";
 import Divider from "../../components/Divider";
 import Button from "../../components/Button";
 
-export default function MatchDetails() {
+export default function MatchDetails({ navigation }) {
   const [matchDetails, setMatchDetails] = useState({});
   const updateMatchDetails = (e) => {
     setMatchDetails({ ...matchDetails, ...e });
@@ -50,7 +50,10 @@ export default function MatchDetails() {
         <AppText style={styles.formLabel}>Add Scorer</AppText>
         <InputSelector type={UTILS.INPUT_TYPE.ADD_SELECT} label="Scorer" />
         <Button
-        // bottom={true}
+          // bottom={true}
+          onButtonPress={() =>
+            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
+          }
         />
       </ScrollView>
     </ParentWrapper>
@@ -74,7 +77,7 @@ function useMatchDetails(body) {
       key: "noPerPowerplays",
       type: UTILS.INPUT_TYPE.POWER_PLAY,
     },
-    {type: UTILS.INPUT_TYPE.DATE_TIME_PICKER},
+    { type: UTILS.INPUT_TYPE.DATE_TIME_PICKER },
     { label: "Ground Name", key: "groundName", type: UTILS.INPUT_TYPE.NUMBER },
     { label: "Ball Type", key: "ballType", type: UTILS.INPUT_TYPE.BALL_TYPE },
   ];

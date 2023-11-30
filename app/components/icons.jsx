@@ -19,7 +19,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
 import UTILS from "../utils";
 
-const colors = UTILS.COLORS
+const colors = UTILS.COLORS;
 
 export const SearchIcon = () => (
   <Feather name="search" size={24} color={colors.themeColor} />
@@ -37,8 +37,8 @@ export const NotificationIcon = () => (
   <Ionicons name="notifications-outline" size={30} color={colors.black} />
 );
 
-export const LeftChevoronIcon = (props) => (
-  <TouchableOpacity onPress={props?.onPress}>
+export const LeftChevron = ({ onPress, style = {} }) => (
+  <TouchableOpacity onPress={onPress} style={style}>
     <AntDesign name="left" size={20} color={colors.black} />
   </TouchableOpacity>
 );
@@ -56,11 +56,7 @@ export const CheveronIcon = (props) => (
 );
 
 export const HomeIcon = (props) => (
-  <Foundation
-    name="home"
-    size={35}
-    color={props?.color || colors.themeColor}
-  />
+  <Foundation name="home" size={35} color={props?.color || colors.themeColor} />
 );
 
 export const CompassIcon = (props) => (
@@ -88,11 +84,7 @@ export const UserIcon = (props) => (
 );
 
 export const CrossIcon = (props) => (
-  <Entypo
-    name="cross"
-    size={30}
-    color={props?.color || colors.textColor}
-  />
+  <Entypo name="cross" size={30} color={props?.color || colors.textColor} />
 );
 
 const Icons = {
@@ -105,8 +97,8 @@ const Icons = {
   CricketIcon,
   UserIcon,
   NotificationIcon,
-  LeftChevoronIcon,
-  CrossIcon
+  LeftChevron,
+  CrossIcon,
 };
 
 export default Icons;
