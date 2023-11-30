@@ -10,8 +10,6 @@ const AppDatePicker = (props) => {
   const [date, setDate] = useState(null);
   const [open, setOpen] = useState(false);
 
-  console.log(props, "ssssss");
-
   const textStyle = {
     color: date ? UTILS.COLORS.black : UTILS.COLORS.gray2,
   };
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width: 170
+    minWidth: 160
   },
   input: {
     flex: 1,
