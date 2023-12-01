@@ -2,7 +2,10 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import PairBtn from "../../components/PairButton";
-import { AUTH_SCREENS } from "../../utils/constants/screenNames";
+import Button from "../../components/Button";
+import UTILS from "../../utils";
+
+const {AUTH_SCREENS, TEST_SCREENS} = UTILS.SCREEN_NAMES
 
 const OnBoarding = ({ navigation }) => {
   return (
@@ -23,13 +26,14 @@ const OnBoarding = ({ navigation }) => {
           </Text>
         </View>
         <View style={[styles.lowerContainer]}>
-          <PairBtn
+          {/* <PairBtn
             onPressLeft={() => navigation.navigate(AUTH_SCREENS.LOGIN)}
             leftBtnText={"Login"}
             onPressRight={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
             rightBtnText={"Create"}
-          />
+  /> */}
         </View>
+        <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} />
       </View>
     </ImageBackground>
   );
@@ -40,9 +44,8 @@ export default OnBoarding;
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    alignContent: "center",
+    alignItems: "center",
     paddingHorizontal: 20,
-    paddingVertical: 10,
     paddingTop: 100,
   },
   bgImage: {},

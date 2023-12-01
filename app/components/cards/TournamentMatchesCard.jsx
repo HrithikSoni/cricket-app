@@ -1,28 +1,37 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import AppText from "../AppText";
 
+import AppText from "../AppText";
 import UTILS from "../../utils";
+
 export default function TournamentMatchesCard(props) {
   const countDown = 10;
   return (
     <View style={styles.container}>
-      <View style={styles.dateTime}>
-        <Text>
-          {props.date} - {countDown} days left
-        </Text>
-        <View style={styles.overContainer}>
-          <Text>{props.overs} Ov</Text>
+      {props?.arrayData.map((item, index) => (
+        <View key={index}>
+          <View style={styles.dateTime}>
+            <Text>
+              {item.date} - {countDown} days left
+            </Text>
+            <View style={styles.overContainer}>
+              <Text>{item.overs} Ov</Text>
+            </View>
+          </View>
+
+          <AppText style={styles.location}>{item.location}</AppText>
+
+          <View style={styles.teams}>
+            <View style={[styles.team1Con]}>
+              <AppText style={styles.teamText}>{item.team1}</AppText>
+            </View>
+            <AppText>V/S</AppText>
+            <View style={[styles.team2Con]}>
+              <AppText style={styles.teamText}>{item.team2}</AppText>
+            </View>
+          </View>
         </View>
-      </View>
-
-      <AppText style={styles.location}>{props.location}</AppText>
-
-      <View style={styles.teams}>
-        <AppText style={styles.teamText}>{props.team1}</AppText>
-        <AppText>V/S</AppText>
-        <AppText style={styles.teamText}>{props.team2}</AppText>
-      </View>
+      ))}
     </View>
   );
 }
@@ -34,6 +43,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     marginBottom: 20,
     ...UTILS.STYLES.elevation,
+    width: "100%",
   },
   teams: {
     marginTop: 20,
@@ -42,6 +52,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     flexDirection: "row",
     justifyContent: "space-around",
+    width: "100%"
   },
   dateTime: {
     flexDirection: "row",

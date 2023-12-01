@@ -95,6 +95,10 @@ export const CrossIcon = (props) => (
   <Entypo name="cross" size={30} color={props?.color || colors.textColor} />
 );
 
+export const LockIcon = (props) => (
+  <Feather name="lock" size={25} color={colors.black} />
+);
+
 const Icons = {
   SearchIcon,
   CalendarIcon,
@@ -108,7 +112,8 @@ const Icons = {
   LeftChevron,
   CrossIcon,
   ClockIcon,
-  ImageIcon
+  ImageIcon,
+  LockIcon
 };
 
 export default Icons;

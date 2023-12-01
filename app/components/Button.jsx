@@ -1,10 +1,9 @@
+import React from "react";
 import {
-  ActivityIndicator,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native";
-import React from "react";
 import UTILS from "../utils";
 
 const Button = (props) => {
@@ -38,13 +37,6 @@ const Button = (props) => {
       onPress={buttonPress}
       disabled={disabled}
     >
-      {props?.isLoading && (
-        <ActivityIndicator
-          size="small"
-          color="white"
-          style={{ marginRight: 18 }}
-        />
-      )}
       <Text
         style={[
           styles.btnText,
@@ -64,13 +56,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   button: {
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
     borderRadius: 20,
     height: 57,
-    marginTop: 5
+    marginTop: 5,
+    width: "100%",
+    minWidth: 350
   },
   btnText: {
     fontSize: 20,

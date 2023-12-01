@@ -16,10 +16,10 @@ const AppDatePicker = (props) => {
 
   return (
     <>
-    <View style={[UTILS.STYLES.commonStyle]}>
+    <View style={[UTILS.STYLES.commonStyle, styles.container]}>
       <TouchableOpacity
         onPress={() => setOpen(true)}
-        style={[styles.container]}
+        style={[styles.contentContainer]}
       >
         <Text style={[UTILS.STYLES.commonTextStyleNormal, textStyle]}>
           {date ? date.toLocaleDateString() : props?.label}
@@ -50,11 +50,14 @@ const AppDatePicker = (props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container:{
+    
+  },
+  contentContainer: {
     flexDirection: "row",
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 15
+    paddingTop: 15,
   },
   input: {
     fontSize: 20,

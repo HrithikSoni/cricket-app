@@ -43,10 +43,10 @@ const SelectTeamCard = (props) => {
 const styles = StyleSheet.create({
   container: {
     height: 85,
-    width: 360,
+    width: "100%",
     borderRadius: 25,
     // backgroundColor: colors.gray1,
-    margin: 10,
+    marginTop: 5,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

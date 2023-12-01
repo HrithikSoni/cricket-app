@@ -30,11 +30,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     gap: 20,
+  
   },
   boxStyle:{
-    minWidth: 180
+    width: '47%'
   }
 });
 

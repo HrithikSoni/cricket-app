@@ -13,7 +13,7 @@ const navigation = useNavigation();
     <SafeAreaView style={styles.container}>
      <ImageBackground source={require('../../../assets/Union.png')} style={[styles.imgStyle]}>
         <View style={[styles.upperContainer]}>
-          <Icons.LeftChevoronIcon onPress={() => navigation.goBack()} />
+          <Icons.LeftChevron onPress={() => navigation.goBack()} />
           <View
             style={[
               styles.textContainer,

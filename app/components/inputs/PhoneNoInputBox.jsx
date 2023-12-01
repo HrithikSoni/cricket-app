@@ -54,7 +54,6 @@ const PhoneNoInputBox = (props) => {
           <View>
             <Text style={styles.text}>{props?.code || "+91"}</Text>
           </View>
-          <View style={styles.line} />
         </View>
         <View
           style={[
@@ -165,12 +164,6 @@ const styles = StyleSheet.create({
   inputContainer: {},
   text: {
     fontSize: 17,
-  },
-  line: {
-    borderLeftColor: UTILS.COLORS.gray2,
-    borderLeftWidth: 1,
-    height: "50%",
-    marginHorizontal: 10,
   },
   verifyText: {
     fontSize: 17,

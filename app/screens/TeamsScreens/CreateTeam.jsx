@@ -35,12 +35,14 @@ export default function CreateTeam() {
           </View>
         </View>
         <LocationPicker onLocationSelect={(e) => (teamData.current = e)} />
+        <View style={[styles.button]}>
         <Button
           bgColor={UTILS.COLORS.gray1}
           label={"Add Players"}
           textColor={UTILS.COLORS.themeColor}
           onButtonPress={() => {}}
         />
+        </View>
       </View>
       <Button
         label={"Create"}
@@ -69,4 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 20,
   },
+  button:{
+    marginTop: 10
+  }
 });

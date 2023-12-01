@@ -4,7 +4,7 @@ import colors from '../styles/colors'
 const commonStyle = {
   height: 55,
   backgroundColor: colors.gray1,
-  paddingHorizontal: 15,
+  paddingHorizontal: 20,
   fontSize: 17,
   borderRadius: 20,
   borderWidth: 0,
