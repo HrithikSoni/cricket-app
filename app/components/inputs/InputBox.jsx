@@ -5,7 +5,7 @@ import UTILS from "../../utils";
 const InputBox = (props) => {
   return (
     <TextInput
-      style={[UTILS.STYLES.commonStyle]}
+      style={[UTILS.STYLES.commonStyle, props.style]}
       textContentType={props?.type}
       key={props?.key}
       placeholder={props?.label}

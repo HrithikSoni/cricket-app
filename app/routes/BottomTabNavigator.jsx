@@ -6,8 +6,9 @@ import Home from "../screens/Home";
 import Social from "../screens/Social";
 import Tournament from "../screens/Tournament";
 import Profile from "../screens/Profile";
-import Icons from "../components/icons";
+
 import { Text } from "react-native";
+import Icons from "../components/others/Icons";
 
 const Tab = createBottomTabNavigator();
 

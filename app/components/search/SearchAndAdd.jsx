@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import UTILS from "../../utils";
-import AppText from "../AppText";
+import AppText from "../text/AppText";
 
 export default function SearchAndAdd(props) {
   return (

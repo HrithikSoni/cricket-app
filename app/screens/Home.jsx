@@ -4,9 +4,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
-
 
 import PlusButton from "../components/button/PlusButton";
 import HomeTopCard from "../components/cards/HomeTopCard";
@@ -92,7 +91,6 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {},
   cardContainer: {
-    marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

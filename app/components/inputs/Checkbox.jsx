@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 
-import { CheckIcon } from "../constants/Icons";
+import { CheckIcon } from "../constants/others/Icons";
 import UTILS from "../../utils";
 
 const Checkbox = (props) => {

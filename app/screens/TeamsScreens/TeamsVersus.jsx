@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import AppText from "../../components/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import TeamVersusCard from "../../components/cards/TeamVesesCard";
 import UTILS from "../../utils";
-import Button from "../../components/Button";
+import Button from "../../components/button/Button";
+import AppText from "../../components/text/AppText";
 
 const teamDetails = {
   name: "team A",
@@ -37,7 +36,7 @@ export default function TeamsVersus({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { marginTop: 50 },
+  container: { marginTop: 30 },
   versusText: {
     fontSize: 30,
     fontWeight: "700",

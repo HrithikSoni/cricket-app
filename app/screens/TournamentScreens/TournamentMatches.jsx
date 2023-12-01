@@ -18,7 +18,7 @@ export default function TournamentMatches() {
   return (
     <>
       <ParentWrapper screenTitle="Tournament Matches">
-        <View style={{ height: 40 }} />
+        <View style={{ height: 20 }} />
         <TournamentMatchesCard
           date={"20 July 23"}
           overs={"20"}

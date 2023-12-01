@@ -11,21 +11,21 @@ const commonStyle = {
 };
 
 export const commonTextStyle = {
-    fontSize: 17,
-    lineHeight: 24,
-    fontWeight: "700"
-}
+  fontSize: 17,
+  lineHeight: 24,
+  fontWeight: "700",
+};
 
 export const commonTextStyleNormal = {
   fontSize: 17,
   lineHeight: 24,
-  fontWeight: "300"
-}
+  fontWeight: "300",
+};
 
-const center ={
+const center = {
   alignItems: "center",
   justifyContent: "center",
-}
+};
 
 const rowCenter = {
   flexDirection: "row",
@@ -57,6 +57,11 @@ const elevation = {
   alignSelf: "stretch",
 };
 
+const border = {
+  borderWidth: 1,
+  borderColor: colors.border1,
+};
+
 const STYLES = {
   commonStyle,
   commonTextStyle,
@@ -66,6 +71,7 @@ const STYLES = {
   rowSpaceBtw,
   squareBtn,
   elevation,
+  border,
 };
 
 export default STYLES;

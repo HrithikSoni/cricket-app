@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/core";
 
 import { TAB_SCREENS } from "../../utils/constants/screenNames";
-import Icons from "../icons";
+import Icons from "../others/Icons";
 import useAuth from "../../hooks/useAuth";
 import UTILS from "../../utils";
 
@@ -19,11 +19,7 @@ const HomeTopCard = (props) => {
           <Text style={[UTILS.STYLES.commonTextStyle]}>
             Hey {userFirstName}
           </Text>
-          <Text
-            style={styles.text}
-          >
-            Welcome to Scoring
-          </Text>
+          <Text style={styles.text}>Welcome to Scoring</Text>
         </View>
       </View>
       <View style={UTILS.STYLES.center}>
@@ -45,7 +41,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "space-between",
     marginTop: 20,
-    marginBottom: 10
+    marginBottom: 10,
   },
   userDp: {
     height: 60,
@@ -56,11 +52,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 20,
   },
-  text:{
+  text: {
     fontSize: 15,
     color: UTILS.COLORS.gray2,
     lineHeight: 16,
     fontWeight: "400",
     marginTop: 5,
-  }
+  },
 });

@@ -1,17 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-import InputBox from "./inputs/InputBox";
-import DatePicker from "../components/inputs/DatePicker";
-import OTPInputBox from "../components/inputs/OTPInputBox";
-import DropDownModal from "../components/modals/DropdownModal";
-import UTILS from "../utils";
-import RegisterContactInput from "./inputs/RegisterContactInput";
-import PowerPlayInput from "./inputs/PowerPlayInput";
-import BallType from "./inputs/BallType";
-import AddSelectInput from "./modals/AddSelectInput";
-import LocationPicker from "./inputs/LocationPicker";
-import DateTimePicker from "./inputs/DateTimePicker";
+import InputBox from "./InputBox";
+import DatePicker from "./DatePicker";
+import OTPInputBox from "./OTPInputBox";
+import DropDownModal from "../modals/DropdownModal";
+import UTILS from "../../utils";
+import RegisterContactInput from "./RegisterContactInput";
+import PowerPlayInput from "./PowerPlayInput";
+import BallType from "./BallType";
+import AddSelectInput from "../modals/AddSelectInput";
+import LocationPicker from "./LocationPicker";
+import DateTimePicker from "./DateTimePicker";
 
 const ComponentHandler = (props) => {
   const { type } = props;

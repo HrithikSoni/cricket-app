@@ -28,11 +28,14 @@ const MATCH_DETAILS_SCREENS = {
 };
 
 const TEAMS = {
-  ADD_PLAYERS_IN_TEAM: "Add Plyers In Team",
+  MANAGE_TEAM: "Add Plyers In Team",
   CREATE_TEAM: "aa",
   SEARCH_PLAYER: "s",
   SELECT_TEAM: "rr",
   TEAMS_VERSUS: "vvv",
+  MANAGE_BATTING_ORDER: "Manage Batting Order",
+  SELECT_CAPTAIN: "Select Captain",
+  SELECT_WICKET_KEEPER: "Select Wicket Keeper",
 };
 
 const SCREEN_NAMES = {

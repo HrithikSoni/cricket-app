@@ -17,7 +17,7 @@ import {
 } from "react-native-vector-icons";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
-import UTILS from "../utils";
+import UTILS from "../../utils";
 
 const colors = UTILS.COLORS;
 
@@ -99,6 +99,16 @@ const Icons = {
   NotificationIcon,
   LeftChevron,
   CrossIcon,
+  ArrowUp: ({ color = colors.themeColor, onPress }) => (
+    <TouchableOpacity onPress={onPress}>
+      <Feather name="arrow-up-circle" size={28} color={color} />
+    </TouchableOpacity>
+  ),
+  ArrowDown: ({ color = colors.themeColor, onPress }) => (
+    <TouchableOpacity onPress={onPress}>
+      <Feather name="arrow-down-circle" size={28} color={color} />
+    </TouchableOpacity>
+  ),
 };
 
 export default Icons;

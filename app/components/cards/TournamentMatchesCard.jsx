@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import AppText from "../AppText";
 
 import UTILS from "../../utils";
+import AppText from "../text/AppText";
 export default function TournamentMatchesCard(props) {
   const countDown = 10;
   return (

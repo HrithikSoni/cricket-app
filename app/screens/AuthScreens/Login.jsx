@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useRef } from "react";
 
-import Button from "../../components/Button";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
@@ -9,6 +8,7 @@ import useApi from "../../hooks/useApi";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import { useNavigation } from "@react-navigation/native";
 import RegisterContactInput from "../../components/inputs/RegisterContactInput";
+import Button from "../../components/button/Button";
 
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });

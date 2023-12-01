@@ -1,7 +1,7 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-import PairBtn from "../../components/PairButton";
+import PairBtn from "../../components/button/PairButton";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 
 const OnBoarding = ({ navigation }) => {

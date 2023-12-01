@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
 import { useDispatch } from "react-redux";
-import Button from "../../components/Button";
+
+import Button from "../../components/button/Button";
 import OTPInputBox from "../../components/inputs/OTPInputBox";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useTimer from "../../hooks/useTimer";
@@ -25,9 +25,7 @@ const Otp = ({ navigation, route }) => {
   });
 
   const resendTextStyle = {
-    color: timerRunning
-      ? UTILS.COLORS.gray2
-      : UTILS.COLORS.themeColor,
+    color: timerRunning ? UTILS.COLORS.gray2 : UTILS.COLORS.themeColor,
     fontWeight: "bold",
   };
 
@@ -105,10 +103,7 @@ function useResendOtp(body) {
   const { contact, setTimer, setTimerRunning } = body;
 
   const { request } = useApi({
-    onSuccess: (e) => {
-      console.log("first");
-      console.log(e, "otp from otpScreen");
-    },
+    onSuccess: (e) => {},
   });
   async function handleResendOtp() {
     const requestConfig = {

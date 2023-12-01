@@ -10,7 +10,7 @@ import {
 import Modal from "react-native-modal";
 
 import UTILS from "../../utils";
-import Icons from "../icons";
+import Icons from "../others/Icons";
 import SearchBar from "../inputs/SearchBar";
 
 // import AppText from "../wrappers/AppTextWrapper";
