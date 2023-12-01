@@ -11,6 +11,7 @@ const teamDetails = {
   matchLocation: "Garden",
   profilePic: "",
   captainProfile: { profilePic: "", name: "Team Captain" },
+  teamName: "Team A"
 };
 export default function TeamsVersus({ navigation }) {
   return (

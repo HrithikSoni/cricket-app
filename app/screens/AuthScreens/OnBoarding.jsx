@@ -13,7 +13,7 @@ const OnBoarding = ({ navigation }) => {
       source={require("../../../assets/Ellipse1.png")}
       style={[styles.bgImage]}
     >
-      <View style={[styles.container]}>
+      <View style={[styles.contentContainer]}>
         <View style={[styles.upperContainer]}>
           <Image
             source={require("../../../assets/on-boarding-image.png")}
@@ -42,18 +42,19 @@ const OnBoarding = ({ navigation }) => {
 export default OnBoarding;
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
     paddingTop: 100,
+
   },
   bgImage: {},
   upperContainer: {
     marginTop: 20,
   },
   middleContainer: {
-    marginTop: 50,
+    marginTop: 75,
   },
   lowerContainer: {
     marginTop: 50,

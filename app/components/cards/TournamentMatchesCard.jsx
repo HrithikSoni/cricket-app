@@ -3,6 +3,8 @@ import React from "react";
 
 import AppText from "../AppText";
 import UTILS from "../../utils";
+import Button from "../Button";
+import SmallButton from "../button/SmallButton";
 
 export default function TournamentMatchesCard(props) {
   const countDown = 10;
@@ -22,12 +24,19 @@ export default function TournamentMatchesCard(props) {
           <AppText style={styles.location}>{item.location}</AppText>
 
           <View style={styles.teams}>
-            <View style={[styles.team1Con]}>
+            <View style={[styles.teamInnerCon]}>
               <AppText style={styles.teamText}>{item.team1}</AppText>
+              <SmallButton label={"Match Toss"} onButtonPress={() => {}} />
             </View>
             <AppText>V/S</AppText>
-            <View style={[styles.team2Con]}>
+            <View style={[styles.teamInnerCon]}>
               <AppText style={styles.teamText}>{item.team2}</AppText>
+              <SmallButton
+                label={"Start Scorekeeping"}
+                onButtonPress={() => {}}
+                bgColor={UTILS.COLORS.gray2}
+                textColor={UTILS.COLORS.textColor}
+              />
             </View>
           </View>
         </View>
@@ -52,7 +61,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     flexDirection: "row",
     justifyContent: "space-around",
-    width: "100%"
+    width: "100%",
   },
   dateTime: {
     flexDirection: "row",
@@ -75,5 +84,11 @@ const styles = StyleSheet.create({
   },
   teamText: {
     fontWeight: "500",
+  },
+  teamInnerCon: {
+    width: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
   },
 });

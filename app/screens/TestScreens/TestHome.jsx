@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import {
-  FlatList,
   StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
+import AppText from "../../components/AppText";
 import PlusButton from "../../components/button/PlusButton";
 import HomeTopCard from "../../components/cards/HomeTopCard";
+import TournamentMatchesCard from "../../components/cards/TournamentMatchesCard";
 import SelectionModal from "../../components/modals/SelectionModal";
 import UTILS from "../../utils";
-import AppText from "../../components/AppText";
-import TournamentMatchesCard from "../../components/cards/TournamentMatchesCard";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
 export default function Home({ navigation }) {

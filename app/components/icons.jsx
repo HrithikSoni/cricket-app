@@ -99,6 +99,10 @@ export const LockIcon = (props) => (
   <Feather name="lock" size={25} color={colors.black} />
 );
 
+export const PencilIcon = (props) => (
+  <Entypo name="pencil" size={25} color={colors.themeColor} />
+);
+
 const Icons = {
   SearchIcon,
   CalendarIcon,
@@ -113,7 +117,8 @@ const Icons = {
   CrossIcon,
   ClockIcon,
   ImageIcon,
-  LockIcon
+  LockIcon,
+  PencilIcon
 };
 
 export default Icons;
