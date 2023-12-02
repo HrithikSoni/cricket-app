@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-import AppText from "../AppText";
 import UTILS from "../../utils";
-import Button from "../Button";
+import AppText from "../text/AppText";
 import SmallButton from "../button/SmallButton";
 
 export default function TournamentMatchesCard(props) {

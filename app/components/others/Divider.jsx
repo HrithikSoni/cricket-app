@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import UTILS from "../utils";
+import UTILS from "../../utils";
 
 export default function Divider({ style = {} }) {
   return (

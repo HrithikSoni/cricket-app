@@ -4,8 +4,8 @@ import { Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import UTILS from "../../utils";
-import Icons from "../../components/icons";
-import AppText from "../AppText";
+import Icons from "../others/Icons";
+import AppText from "../text/AppText";
 
 export default function ParentWrapper(props) {
   const navigation = useNavigation();
@@ -22,7 +22,7 @@ export default function ParentWrapper(props) {
       <View style={styles.container}>
         <View style={styles.header}>
           <Icons.LeftChevron
-            onPress={() => navigation.goBack()}
+            onPress={onBackBtnPress}
             style={{ position: "absolute", left: 10 }}
           />
           {props.screenTitle && (
@@ -36,6 +36,14 @@ export default function ParentWrapper(props) {
       </View>
     </SafeAreaView>
   );
+
+  function onBackBtnPress() {
+    if (props.onBackBtnPress) {
+      props.onBackBtnPress();
+    } else {
+      navigation.goBack();
+    }
+  }
 }
 const styles = StyleSheet.create({
   container: {
@@ -48,6 +56,7 @@ const styles = StyleSheet.create({
     height: 20,
     flexDirection: "row",
     justifyContent: "center",
+    marginBottom: 20,
   },
   // upperContainer: {
   //   marginTop: 60,

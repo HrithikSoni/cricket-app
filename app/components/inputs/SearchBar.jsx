@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import UTILS from "../../utils";
-import { SearchIcon } from "../icons";
+import { SearchIcon } from "../others/Icons";
 
 const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (text) => {
-    console.log("Search query:", text);
     setSearchQuery(text);
   };
 

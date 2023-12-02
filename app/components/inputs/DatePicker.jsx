@@ -1,10 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
-import { Button } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DatePicker from "react-native-date-picker";
 
 import UTILS from "../../utils";
-import Icons, { CalendarIcon } from "../icons";
+import Icons from "../others/Icons";
 
 const AppDatePicker = (props) => {
   const [date, setDate] = useState(null);

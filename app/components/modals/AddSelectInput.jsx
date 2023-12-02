@@ -1,8 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+
+
 import UTILS from "../../utils";
-import AppText from "../AppText";
-import BottomSheetModal from "./BottomSheetModal";
+import AppText from "../text/AppText";
 
 export default function AddSelectInput(props) {
 

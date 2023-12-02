@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useRef } from "react";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import Button from "../../components/Button";
+import Button from "../../components/button/Button";
 import UTILS from "../../utils";
-import Icons from "../../components/icons";
-import AppText from "../../components/AppText";
+import Icons from "../../components/others/Icons";
+import AppText from "../../components/text/AppText";
 import InputBox from "../../components/inputs/InputBox";
 import LocationPicker from "../../components/inputs/LocationPicker";
 
@@ -24,7 +24,7 @@ export default function CreateTeam() {
               <Icons.ImageIcon />
             </View>
           </TouchableOpacity>
-          <View style={{ minWidth: 250 }}>
+          <View style={[styles.teamDetailContainer]}>
             <AppText style={[UTILS.STYLES.commonTextStyleNormal]}>
               Team Name
             </AppText>
@@ -57,6 +57,9 @@ export default function CreateTeam() {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,
+  },
+  teamDetailContainer:{
+    width: "100%"
   },
   imgTextContianer: {
     flexDirection: "row",

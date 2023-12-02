@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { CameraIcon } from "../../components/icons";
+import { CameraIcon } from "../../components/others/Icons";
 import UTILS from "../../utils";
-import Button from "../../components/Button";
-import ComponentHandler from "../../components/ComponentHandler";
+import Button from "../../components/button/Button";
+import ComponentHandler from "../../components/inputs/ComponentHandler";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
@@ -29,7 +29,7 @@ const Signup = ({ navigation }) => {
     lastName: "",
     profilePic: "string",
     stateId: "12",
-    role: ""
+    role: "",
   });
 
   const { handleSignUp } = useSignUp(signUpData.current);
@@ -155,13 +155,13 @@ function useSignUp(body) {
       permanentStorage.saveDetails(permanentStorage.userDetail, e);
       dispatch(updateAuth(e));
     },
-    onFail: (e) => console.log(e, "fail"),
+    onFail: (e) => {},
   });
 
   async function handleSignUp() {
     const requestConfig = {
       endpoint: AUTH_ENDPOINTS.REGISTER_USER,
-      body
+      body,
     };
     await request(requestConfig);
   }

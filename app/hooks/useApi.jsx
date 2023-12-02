@@ -48,7 +48,6 @@ export default useApi = (hookConfig = {}) => {
         data: body,
       });
 
-      // console.log(data, "oooo");
       Toast.hide();
       if (data.ok) {
         if (showMessage) {
@@ -73,7 +72,6 @@ export default useApi = (hookConfig = {}) => {
 
       return data;
     } catch (error) {
-      // console.log(error, "error");
       Toast.show({ ...UTILS.TOAST_TYPE.ERROR, text2: failMessage });
       onFail(error);
       return error;

@@ -1,8 +1,8 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-import PairBtn from "../../components/PairButton";
-import Button from "../../components/Button";
+import PairBtn from "../../components/button/PairButton";
+import Button from "../../components/button/Button";
 import UTILS from "../../utils";
 
 const {AUTH_SCREENS, TEST_SCREENS} = UTILS.SCREEN_NAMES

@@ -3,10 +3,10 @@ import React, { useState } from "react";
 
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import UTILS from "../../utils";
-import AppText from "../../components/AppText";
-import InputSelector from "../../components/ComponentHandler";
-import Divider from "../../components/Divider";
-import Button from "../../components/Button";
+import InputSelector from "../../components/inputs/ComponentHandler";
+import Divider from "../../components/others/Divider";
+import Button from "../../components/button/Button";
+import AppText from "../../components/text/AppText";
 
 export default function MatchDetails({ navigation }) {
   const [matchDetails, setMatchDetails] = useState({});

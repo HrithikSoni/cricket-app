@@ -1,23 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   View
 } from "react-native";
 
-import AppText from "../../components/AppText";
 import PlusButton from "../../components/button/PlusButton";
 import HomeTopCard from "../../components/cards/HomeTopCard";
 import TournamentMatchesCard from "../../components/cards/TournamentMatchesCard";
-import SelectionModal from "../../components/modals/SelectionModal";
+import AppText from "../../components/text/AppText";
 import UTILS from "../../utils";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
 export default function Home({ navigation }) {
-  const [showModal, setShowModal] = useState(false);
-
-  const btnDetails = [
-    { name: "Start Match", screenName: MATCH_DETAILS_SCREENS.FORM },
-  ];
 
   const tournamentDetails = [
     {
@@ -45,23 +39,11 @@ export default function Home({ navigation }) {
       </View>
 
       <PlusButton onPress={handleModal} />
-      <SelectionModal
-        visible={showModal}
-        onDone={handleOnSelect}
-        selections={btnDetails}
-      />
     </>
   );
 
-  function handleOnSelect(e) {
-    handleModal();
-    if (e?.screenName) {
-      navigation.navigate(e.screenName);
-    }
-  }
-
   function handleModal() {
-    setShowModal(!showModal);
+    navigation.navigate(MATCH_DETAILS_SCREENS.FORM)
   }
 }
 

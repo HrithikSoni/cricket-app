@@ -6,7 +6,7 @@ const style = UTILS.STYLES
 
 const InputBox = (props) => {
   return (
-    <View style={[style.commonStyle, style.rowCenter ]}>
+    <View style={[style.commonStyle, styles.container ]}>
       {props?.icon && 
       <View style={[styles.iconStyle]}>
         {props?.icon}
@@ -29,8 +29,12 @@ const InputBox = (props) => {
 export default InputBox;
 
 const styles = StyleSheet.create({
+  container:{
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   textInput:{
-    width: "100%",
+    width:'100%',
     fontSize: 17
   },
   iconStyle:{

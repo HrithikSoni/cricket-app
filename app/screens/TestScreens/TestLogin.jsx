@@ -2,13 +2,13 @@ import React, { useRef, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import { useDispatch } from "react-redux";
-import Button from "../../components/Button";
+import Button from "../../components/button/Button";
 import InputBox from "../../components/inputs/InputBox";
 import PhoneNoInputBox from "../../components/inputs/PhoneNoInputBox";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
-import Icons from "../../components/icons";
+import Icons from "../../components/others/Icons";
 
 export default function TestLogin({ navigation }) {
   const loginData = useRef({ mobileNo: "", password: "" });

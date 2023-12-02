@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity
 } from "react-native";
-import UTILS from "../utils";
+import UTILS from "../../utils";
 
 const Button = (props) => {
   const { disabled } = props;

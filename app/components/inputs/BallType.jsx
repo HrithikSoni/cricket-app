@@ -1,6 +1,6 @@
 import { StyleSheet, Image, View } from "react-native";
 import React from "react";
-import AppText from "../AppText";
+import AppText from "../text/AppText";
 import UTILS from "../../utils";
 
 export default function BallType() {

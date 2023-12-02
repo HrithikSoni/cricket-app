@@ -7,7 +7,7 @@ import Social from "../screens/Social";
 import Tournament from "../screens/Tournament";
 import Profile from "../screens/Profile";
 import TestHome from "../screens/TestScreens/TestHome"
-import Icons from "../components/icons";
+import Icons from "../components/others/Icons";
 
 
 

@@ -9,6 +9,7 @@ import colors from "./styles/colors";
 import DIMENSIONS from "./helpers/dimensions";
 import SCREEN_NAMES from "./constants/screenNames";
 import countryInfo from "./constants/selctedCountry";
+import TEAM_NAME from "./enum/teamName";
 
 const HELPERS = {
   handlePlatform,
@@ -26,6 +27,7 @@ const UTILS = {
   DIMENSIONS,
   TOAST_TYPE: ToastType,
   SCREEN_NAMES,
+  TEAM_NAME,
 };
 
 export default UTILS;
