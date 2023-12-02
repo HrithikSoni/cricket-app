@@ -8,7 +8,7 @@ const SmallButton = (props) => {
     if (!disabled) {
       () => {};
     }
-    props?.onButtonPress();
+    props?.onPress();
   };
 
   let button = {

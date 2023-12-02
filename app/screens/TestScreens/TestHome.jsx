@@ -10,7 +10,7 @@ import TournamentMatchesCard from "../../components/cards/TournamentMatchesCard"
 import AppText from "../../components/text/AppText";
 import UTILS from "../../utils";
 
-const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
+const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS, SCORING_SCREENS } = UTILS.SCREEN_NAMES;
 export default function Home({ navigation }) {
 
   const tournamentDetails = [
@@ -33,7 +33,9 @@ export default function Home({ navigation }) {
             Upcoming Matches
           </AppText>
           <View style={[styles.cardContainer]}>
-          <TournamentMatchesCard arrayData={tournamentDetails}/>
+          <TournamentMatchesCard arrayData={tournamentDetails} onPressLeftButton={()=> navigation.navigate(SCORING_SCREENS.MATCH_TOSS)} onPressRightButton={()=>{
+            
+          }}/>
           </View>
         </View>
       </View>

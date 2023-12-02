@@ -25,14 +25,14 @@ export default function TournamentMatchesCard(props) {
           <View style={styles.teams}>
             <View style={[styles.teamInnerCon]}>
               <AppText style={styles.teamText}>{item.team1}</AppText>
-              <SmallButton label={"Match Toss"} onButtonPress={() => {}} />
+              <SmallButton label={"Match Toss"} onPress={props.onPressLeftButton} />
             </View>
             <AppText>V/S</AppText>
             <View style={[styles.teamInnerCon]}>
               <AppText style={styles.teamText}>{item.team2}</AppText>
               <SmallButton
                 label={"Start Scorekeeping"}
-                onButtonPress={() => {}}
+                onPress={props.onPressRightButton}
                 bgColor={UTILS.COLORS.gray2}
                 textColor={UTILS.COLORS.textColor}
               />

@@ -27,6 +27,10 @@ const MATCH_DETAILS_SCREENS = {
   FORM: "Enter Match Details",
 };
 
+const SCORING_SCREENS = {
+  MATCH_TOSS: "Match Toss",
+}
+
 const TEAMS = {
   MANAGE_TEAM: "Add Plyers In Team",
   CREATE_TEAM: "aa",
@@ -50,7 +54,8 @@ const SCREEN_NAMES = {
   AUTH_SCREENS,
   NAV_SCREENS,
   TEAMS,
-  TEST_SCREENS
+  TEST_SCREENS,
+  SCORING_SCREENS
 };
 
 export default SCREEN_NAMES;
