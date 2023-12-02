@@ -14,13 +14,8 @@ export default function MatchDetails({ navigation }) {
     setMatchDetails({ ...matchDetails, ...e });
   };
 
-  const {
-    form,
-    umpireForm,
-    scorerFrom,
-    refereeForm,
-    handleSubmitMatchDetails,
-  } = useMatchDetails(matchDetails);
+  const { form, umpireForm } = useMatchDetails(matchDetails);
+
   return (
     <ParentWrapper description={`Enter Your Match Details`}>
       <ScrollView showsVerticalScrollIndicator={false}>

@@ -3,9 +3,10 @@ import UTILS from "../../../utils";
 
 const { TEAM_A, TEAM_B } = UTILS.TEAM_NAME;
 
-const defaultCaptainWicketKeeper = { id: null, name: null };
+const defaultCaptainWicketKeeper = { id: null, name: null, type: null };
 
 const initialState = {
+  matchDetails: {},
   [TEAM_A]: {
     name: "team A",
     captain: defaultCaptainWicketKeeper,

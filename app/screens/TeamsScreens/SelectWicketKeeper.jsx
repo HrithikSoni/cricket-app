@@ -30,7 +30,7 @@ export default function SelectWicketKeeper({ navigation }) {
         <Button
           bottom={true}
           onButtonPress={() =>
-            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.MANAGE_BATTING_ORDER)
+            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
           }
         />
       </ParentWrapper>
