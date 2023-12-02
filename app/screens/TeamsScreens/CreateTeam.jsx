@@ -30,11 +30,11 @@ export default function CreateTeam() {
             </AppText>
             <InputBox
               label={"Enter"}
-              onChangeText={(e) => (teamData.current["teamName"] = e)}
+              onChangeText={(e) => (teamData.current.teamName = e)}
             />
           </View>
         </View>
-        <LocationPicker onLocationSelect={(e) => (teamData.current = e)} />
+        <LocationPicker onLocationSelect={(e) => (teamData.current = {...teamData.current, ...e})} />
         <View style={[styles.button]}>
         <Button
           bgColor={UTILS.COLORS.gray1}

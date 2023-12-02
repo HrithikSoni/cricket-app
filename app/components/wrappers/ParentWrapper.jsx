@@ -10,6 +10,8 @@ import AppText from "../AppText";
 export default function ParentWrapper(props) {
   const navigation = useNavigation();
 
+  console.log(StatusBar.currentHeight);
+
   return (
     <SafeAreaView
       style={{
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight),
+    paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight + 20),
     paddingHorizontal: 20,
   },
   header: {
