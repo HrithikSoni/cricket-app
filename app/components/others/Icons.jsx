@@ -57,9 +57,9 @@ export const ImageIcon = () => (
 
 export const CheveronIcon = (props) => (
   <Ionicons
-    name={props?.isListVisible ? "chevron-up" : "chevron-down"}
+    name={props?.isListVisible ? "chevron-up" : "chevron-down" || "chevron-down"}
     size={24}
-    color={colors.gray2}
+    color={props.color || colors.gray2}
   />
 );
 

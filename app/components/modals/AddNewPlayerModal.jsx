@@ -1,12 +1,17 @@
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import Button from "../button/Button";
+import React, { useRef } from "react";
+import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
+
+
 import UTILS from "../../utils";
-import BoldText from "../text/BoldText";
-import InputBox from "../inputs/InputBox";
+import Button from "../button/Button";
+import ToggleButton from "../button/ToggleButton";
 import BattingBowlingStyle from "../inputs/BattingBowlingStyle";
+import InputBox from "../inputs/InputBox";
+import BoldText from "../text/BoldText";
 
 export default function AddNewPlayerModal(props) {
+  const playerData = useRef({});
+
   return (
     <Modal
       visible={props.visible}
@@ -20,9 +25,14 @@ export default function AddNewPlayerModal(props) {
           <BoldText style={styles.header}>Add New Player</BoldText>
           <InputBox label="Name" />
           <View style={styles.contactSpecializationContainer}>
-            <InputBox label="Phone Number" style={{ flex: 1 }} />
-            <View style={{ width: 10 }} />
-            <InputBox label="Specialization" style={{ flex: 1 }} />
+            <InputBox label="Phone Number" />
+            <ToggleButton
+            label={"Specialization"}
+            option1={"Batsman"}
+            option2={"Bowler"}
+            onToggleSelect={(e) => (playerData.current.Specialization = e)
+            }
+          />
           </View>
           <BattingBowlingStyle />
           <Button
@@ -52,7 +62,5 @@ const styles = StyleSheet.create({
   },
   contactSpecializationContainer: {
     marginBottom: 30,
-    flexDirection: "row",
-    justifyContent: "space-between",
   },
 });

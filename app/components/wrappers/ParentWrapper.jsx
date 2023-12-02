@@ -10,8 +10,6 @@ import AppText from "../text/AppText";
 export default function ParentWrapper(props) {
   const navigation = useNavigation();
 
-  console.log(StatusBar.currentHeight);
-
   return (
     <SafeAreaView
       style={{

@@ -4,7 +4,7 @@ import UTILS from "../../utils";
 
 const SelectTeamCard = (props) => {
   return (
-    <TouchableOpacity onPress={props?.onCardPress}>
+    <TouchableOpacity onPress={props?.onPress}>
       <View style={styles.container}>
         <View style={UTILS.STYLES.rowCenter}>
           <Image source={props?.mainImage} style={styles.mainImgStyle} />
