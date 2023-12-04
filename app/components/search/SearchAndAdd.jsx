@@ -8,12 +8,13 @@ import {
 import React from "react";
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
+import Icons from "../others/Icons";
 
 export default function SearchAndAdd(props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={props.onSearch} style={styles.searchField}>
-        {/* add search icon */}
+        <Icons.SearchIcon />
 
         <AppText style={styles.placeholder}>{props.searchPlaceholder}</AppText>
       </TouchableOpacity>
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
   text: { color: "white" },
   placeholder: {
     color: UTILS.COLORS.gray2,
+    marginLeft: 10,
   },
   searchField: {
     flex: 1,

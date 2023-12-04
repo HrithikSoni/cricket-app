@@ -2,7 +2,10 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import PairBtn from "../../components/button/PairButton";
-import { AUTH_SCREENS } from "../../utils/constants/screenNames";
+import Button from "../../components/button/Button";
+import UTILS from "../../utils";
+
+const {AUTH_SCREENS, TEST_SCREENS} = UTILS.SCREEN_NAMES
 
 const OnBoarding = ({ navigation }) => {
   return (
@@ -10,7 +13,7 @@ const OnBoarding = ({ navigation }) => {
       source={require("../../../assets/Ellipse1.png")}
       style={[styles.bgImage]}
     >
-      <View style={[styles.container]}>
+      <View style={[styles.contentContainer]}>
         <View style={[styles.upperContainer]}>
           <Image
             source={require("../../../assets/on-boarding-image.png")}
@@ -23,13 +26,14 @@ const OnBoarding = ({ navigation }) => {
           </Text>
         </View>
         <View style={[styles.lowerContainer]}>
-          <PairBtn
+          {/* <PairBtn
             onPressLeft={() => navigation.navigate(AUTH_SCREENS.LOGIN)}
             leftBtnText={"Login"}
             onPressRight={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
             rightBtnText={"Create"}
-          />
+  /> */}
         </View>
+        <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} />
       </View>
     </ImageBackground>
   );
@@ -38,19 +42,19 @@ const OnBoarding = ({ navigation }) => {
 export default OnBoarding;
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     justifyContent: "center",
-    alignContent: "center",
+    alignItems: "center",
     paddingHorizontal: 20,
-    paddingVertical: 10,
     paddingTop: 100,
+
   },
   bgImage: {},
   upperContainer: {
     marginTop: 20,
   },
   middleContainer: {
-    marginTop: 50,
+    marginTop: 75,
   },
   lowerContainer: {
     marginTop: 50,

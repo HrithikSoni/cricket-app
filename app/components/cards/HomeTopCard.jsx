@@ -26,7 +26,7 @@ const HomeTopCard = (props) => {
         <TouchableOpacity
           onPress={() => navigation.navigate(TAB_SCREENS.PROFILE)}
         >
-          <Icons.NotificationIcon />
+          {/* <Icons.NotificationIcon /> */}
         </TouchableOpacity>
       </View>
     </View>

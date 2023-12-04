@@ -1,27 +1,45 @@
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
+import SmallButton from "../button/SmallButton";
+
 export default function TournamentMatchesCard(props) {
   const countDown = 10;
   return (
     <View style={styles.container}>
-      <View style={styles.dateTime}>
-        <Text>
-          {props.date} - {countDown} days left
-        </Text>
-        <View style={styles.overContainer}>
-          <Text>{props.overs} Ov</Text>
+      {props?.arrayData.map((item, index) => (
+        <View key={index}>
+          <View style={styles.dateTime}>
+            <Text>
+              {item.date} - {countDown} days left
+            </Text>
+            <View style={styles.overContainer}>
+              <Text>{item.overs} Ov</Text>
+            </View>
+          </View>
+
+          <AppText style={styles.location}>{item.location}</AppText>
+
+          <View style={styles.teams}>
+            <View style={[styles.teamInnerCon]}>
+              <AppText style={styles.teamText}>{item.team1}</AppText>
+              <SmallButton label={"Match Toss"} onButtonPress={() => {}} />
+            </View>
+            <AppText>V/S</AppText>
+            <View style={[styles.teamInnerCon]}>
+              <AppText style={styles.teamText}>{item.team2}</AppText>
+              <SmallButton
+                label={"Start Scorekeeping"}
+                onButtonPress={() => {}}
+                bgColor={UTILS.COLORS.gray2}
+                textColor={UTILS.COLORS.textColor}
+              />
+            </View>
+          </View>
         </View>
-      </View>
-
-      <AppText style={styles.location}>{props.location}</AppText>
-
-      <View style={styles.teams}>
-        <AppText style={styles.teamText}>{props.team1}</AppText>
-        <AppText>V/S</AppText>
-        <AppText style={styles.teamText}>{props.team2}</AppText>
-      </View>
+      ))}
     </View>
   );
 }
@@ -33,6 +51,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     marginBottom: 20,
     ...UTILS.STYLES.elevation,
+    width: "100%",
   },
   teams: {
     marginTop: 20,
@@ -41,6 +60,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     flexDirection: "row",
     justifyContent: "space-around",
+    width: "100%",
   },
   dateTime: {
     flexDirection: "row",
@@ -63,5 +83,11 @@ const styles = StyleSheet.create({
   },
   teamText: {
     fontWeight: "500",
+  },
+  teamInnerCon: {
+    width: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
   },
 });

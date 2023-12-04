@@ -122,8 +122,6 @@ const styles = StyleSheet.create({
   },
   box: {
     paddingVertical: 15,
-    marginVertical: 7,
-    width: 370,
   },
   boxContent: {
     flexDirection: "row",

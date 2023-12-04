@@ -21,7 +21,7 @@ function ParentWrapperWithBG(props) {
         style={[styles.imgStyle]}
       >
         <View style={[styles.upperContainer]}>
-          <Icons.LeftChevoronIcon onPress={() => navigation.goBack()} />
+          <Icons.LeftChevron onPress={() => navigation.goBack()} />
           <View
             style={[
               styles.textContainer,

@@ -3,11 +3,11 @@ import React from "react";
 import InputBox from "./InputBox";
 import UTILS from "../../utils";
 
-export default function PowerPlayInput() {
+export default function PowerPlayInput(props) {
   return (
     <View>
-      <InputBox label="No of power play" />
-      <View
+      <InputBox label="No of power play" onChangeText={props.onChangeText} />
+      {/* <View
         style={{
           marginTop: 15,
           height: 50,
@@ -15,7 +15,7 @@ export default function PowerPlayInput() {
           borderWidth: 1,
           borderColor: UTILS.COLORS.background1,
         }}
-      ></View>
+      ></View> */}
     </View>
   );
 }

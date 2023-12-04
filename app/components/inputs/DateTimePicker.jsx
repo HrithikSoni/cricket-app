@@ -1,17 +1,26 @@
 import { StyleSheet, View } from 'react-native';
-import React from 'react';
+import React, { useRef } from 'react';
 import AppDatePicker from './DatePicker';
 
 const DateTimePicker = (props) => {
+const dateTimeData = useRef({})
+
   const form = [
     { label: 'Select Date', mode: 'date', key: 'date' },
     { label: 'Select Time', mode: 'time', key: 'time' },
   ];
 
+  function handleOnSelect(key, value){
+    dateTimeData.current = {...dateTimeData.current, [key]: value}
+    props?.onDateTimeSelect({[key]: value})
+  }
+
   return (
     <View style={styles.container}>
-      {form.map((item) => (
-        <AppDatePicker key={item.key} {...item} {...props} />
+      {form.map((item, index) => (
+       <View key={index} style={styles.boxStyle}>
+         <AppDatePicker key={item.key} {...item} onDateSelect={e => handleOnSelect(item.key, e)}/>
+       </View>
       ))}
     </View>
   );
@@ -21,10 +30,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-    marginLeft: 0,
+    justifyContent: 'flex-start',
+    gap: 20,
+  
   },
+  boxStyle:{
+    width: '47%'
+  }
 });
 
 export default DateTimePicker;

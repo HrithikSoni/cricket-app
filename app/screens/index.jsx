@@ -9,7 +9,7 @@ import AuthNavigator from "../routes/AuthNavigator";
 import permanentStorage from "../services/permanentStorage";
 
 export default function Root() {
-  const user = true;
+  const user = false;
   const { role } = useAuth();
   const dispatch = useDispatch();
 
@@ -29,7 +29,7 @@ export default function Root() {
 
   return (
     // role ? role === ROLE.PLAYER ? <PlayerNavigator /> : <AdminNavigator /> : <AuthNavigator />
-    user ? <AppNavigator /> : <AuthNavigator />
+    role ? <AppNavigator /> : <AuthNavigator />
   );
 }
 

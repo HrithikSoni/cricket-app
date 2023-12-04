@@ -38,6 +38,11 @@ const TEAMS = {
   SELECT_WICKET_KEEPER: "Select Wicket Keeper",
 };
 
+const TEST_SCREENS = {
+  TEST_LOGIN: "Test Login",
+  TEST_HOME: "Test Home"
+}
+
 const SCREEN_NAMES = {
   TOURNAMENT_SCREENS,
   MATCH_DETAILS_SCREENS,
@@ -45,6 +50,7 @@ const SCREEN_NAMES = {
   AUTH_SCREENS,
   NAV_SCREENS,
   TEAMS,
+  TEST_SCREENS
 };
 
 export default SCREEN_NAMES;

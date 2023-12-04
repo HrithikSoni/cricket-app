@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import UTILS from "../../utils";
 
-const Button = (props) => {
+const SmallButton = (props) => {
   const { disabled } = props;
   const buttonPress = () => {
     if (!disabled) {
@@ -18,26 +14,17 @@ const Button = (props) => {
   let button = {
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
-    borderRadius: 20,
-    height: 57,
+    borderRadius: 15,
+    height: 40,
     marginTop: 5,
-    width: "100%",
-  }
+    width: "85%",
+    paddingHorizontal: 5,
+  };
 
-  let btnText =  {
-    fontSize: 20,
+  let btnText = {
+    fontSize: 15,
     fontWeight: "bold",
-  }
-
-  if (props.bottom) {
-    button = {
-      ...button,
-      position: "absolute",
-      bottom: 20,
-      left: (UTILS.DIMENSIONS.width - 360) / 2,
-    };
-  }
+  };
 
   return (
     <TouchableOpacity
@@ -52,10 +39,7 @@ const Button = (props) => {
       disabled={disabled}
     >
       <Text
-        style={[
-          btnText,
-          { color: props?.textColor || UTILS.COLORS.gray3 },
-        ]}
+        style={[btnText, { color: props?.textColor || UTILS.COLORS.gray3 }]}
       >
         {props?.label || "Continue"}
       </Text>
@@ -63,11 +47,6 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+export default SmallButton;
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-  },
- 
-});
+const styles = StyleSheet.create({});

@@ -1,10 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
-import { Button } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DatePicker from "react-native-date-picker";
 
 import UTILS from "../../utils";
-import { CalendarIcon } from "../others/Icons";
+import Icons from "../others/Icons";
 
 const AppDatePicker = (props) => {
   const [date, setDate] = useState(null);
@@ -16,42 +15,50 @@ const AppDatePicker = (props) => {
 
   return (
     <>
+    <View style={[UTILS.STYLES.commonStyle, styles.container]}>
       <TouchableOpacity
         onPress={() => setOpen(true)}
-        style={[styles.container, UTILS.STYLES.commonStyle]}
+        style={[styles.contentContainer]}
       >
-        <Text style={[UTILS.STYLES.commonTextStyle, textStyle]}>
+        <Text style={[UTILS.STYLES.commonTextStyleNormal, textStyle]}>
           {date ? date.toLocaleDateString() : props?.label}
         </Text>
-        <CalendarIcon />
+        {props?.mode === "time" ? (
+          <Icons.ClockIcon isFilled={date} />
+        ) : (
+          <Icons.CalendarIcon isFilled={date} />
+        )}
       </TouchableOpacity>
+      </View>
       <DatePicker
         modal
         open={open}
         date={date || new Date()}
-        mode={props.mode}
+        mode={props.mode || "datetime"}
         onConfirm={(date) => {
           setOpen(false);
           setDate(date);
-          props.onDateSelect(date.toISOString());
+          props?.onDateSelect(date.toISOString());
         }}
         onCancel={() => {
           setOpen(false);
         }}
       />
-    </>
+   </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container:{
+    
+  },
+  contentContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: 170,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 15,
   },
   input: {
-    flex: 1,
     fontSize: 20,
     margin: 10,
   },

@@ -7,18 +7,28 @@ import {
   getWicketKeeper,
   getCurrentTeam,
   totalPlayer,
+  handleMatchDetails,
 } from "../services/store/reducers/matchReduce";
 
-export default function useManageTeam() {
+const nullFunction = () => null;
+
+export default function useManageTeam(
+  selectCurrentTeam = true,
+  selectTeamMembers = true,
+  selectTotalPlayers = true,
+  selectCaptain = true,
+  selectWicketKeeper = true
+) {
   const dispatch = useDispatch();
 
-  const currentTeam = useSelector(getCurrentTeam);
+  const currentTeam = useSelector(
+    selectCurrentTeam ? getCurrentTeam : nullFunction
+  );
 
-  const teamMembers = useSelector(allPlayers(currentTeam));
-  const totalPlayers = useSelector(totalPlayer(currentTeam));
-
-  const captain = useSelector(getCaptain(currentTeam));
-  const wicketKeeper = useSelector(getWicketKeeper(currentTeam));
+  const teamMembers = useSelector(allPlayers);
+  const totalPlayers = useSelector(totalPlayer);
+  const captain = useSelector(getCaptain);
+  const wicketKeeper = useSelector(getWicketKeeper);
 
   function isPlayerInTeam(id) {
     const filter = teamMembers.filter((i) => i.id == id);
@@ -61,6 +71,14 @@ export default function useManageTeam() {
     );
   }
 
+  function addMatchDetails(details) {
+    dispatch(handleMatchDetails(details));
+  }
+
+  function handleUpdateCurrentTeam(team) {
+    dispatch(updateCurrenTeam(team));
+  }
+
   return {
     currentTeam,
     dispatch,
@@ -75,5 +93,7 @@ export default function useManageTeam() {
       captain,
       wicketKeeper,
     },
+    addMatchDetails,
+    handleUpdateCurrentTeam,
   };
 }

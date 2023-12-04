@@ -4,9 +4,21 @@ import UTILS from "../../../utils";
 const { TEAM_A, TEAM_B } = UTILS.TEAM_NAME;
 
 const defaultCaptainWicketKeeper = { id: null, name: null, type: null };
+const matchDetailsInitial = {
+  ballType: "RED_BALL",
+  countryId: "INDIA",
+  date: null,
+  groundName: null,
+  matchType: null,
+  noOfOvers: null,
+  noOfPowerPlays: null,
+  oversPerBowler: null,
+  stateId: null,
+  time: null,
+};
 
 const initialState = {
-  matchDetails: {},
+  matchDetails: matchDetailsInitial,
   [TEAM_A]: {
     name: "team A",
     captain: defaultCaptainWicketKeeper,
@@ -74,23 +86,42 @@ export const matchSlice = createSlice({
 
       return state;
     },
+
+    handleMatchDetails: (state, action) => {
+      state.matchDetails = action.payload;
+      return state;
+    },
+
+    updateCurrenTeam: (state, action) => {
+      state.match.currentTeam = action.payload;
+
+      return state;
+    },
   },
 });
 
-export const { addPlayerInTeam, changeOrder, assign } = matchSlice.actions;
+export const {
+  addPlayerInTeam,
+  changeOrder,
+  assign,
+  handleMatchDetails,
+  updateCurrenTeam,
+} = matchSlice.actions;
 
-export const totalPlayer = (team) => (state) =>
+export const totalPlayer = (state) =>
   state.match[state.match.currentTeam].players.length;
 
-export const allPlayers = (team) => (state) =>
+export const allPlayers = (state) =>
   state.match[state.match.currentTeam].players;
 
 export const getCurrentTeam = (state) => state.match.currentTeam;
 
-export const getCaptain = (team) => (state) =>
+export const getCaptain = (state) =>
   state.match[state.match.currentTeam].captain;
 
-export const getWicketKeeper = (team) => (state) =>
+export const getWicketKeeper = (state) =>
   state.match[state.match.currentTeam].wicketKeeper;
+
+export const getMatchDetails = (state) => state.match.matchDetails;
 
 export default matchSlice.reducer;

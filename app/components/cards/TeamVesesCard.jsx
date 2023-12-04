@@ -2,10 +2,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
+import Icons from "../others/Icons";
 
 const COLORS = UTILS.COLORS;
 
-export default function TeamVersusCard(props) {
+export default function 
+TeamVersusCard(props) {
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <View style={styles.teamProfileContainer} />
@@ -20,6 +22,10 @@ export default function TeamVersusCard(props) {
           <View style={styles.capProfileContainer} />
           <AppText>{props.captainProfile.name}</AppText>
         </View>
+      </View>
+      <View style={[styles.editIconCon]}>
+        <Icons.PencilIcon />
+        <AppText style={[styles.text]}>{props.teamName}</AppText>
       </View>
     </TouchableOpacity>
   );
@@ -59,4 +65,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  text:{
+    color: COLORS.gray2,
+    fontSize: 15,
+    fontWeight: "700"
+  },
+  editIconCon:{
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: 10
+  }
 });

@@ -25,8 +25,12 @@ export const SearchIcon = () => (
   <Feather name="search" size={24} color={colors.themeColor} />
 );
 
-export const CalendarIcon = () => (
-  <AntDesign name="calendar" size={24} color={colors.themeColor} />
+export const CalendarIcon = (props) => (
+  <AntDesign name="calendar" size={24} color={props?.isFilled ? colors.themeColor : colors.gray2} />
+);
+
+export const ClockIcon = (props) => (
+  <Feather name="clock" size={24} color={props?.isFilled ? colors.themeColor : colors.gray2} />
 );
 
 export const CheckIcon = () => (
@@ -45,6 +49,10 @@ export const LeftChevron = ({ onPress, style = {} }) => (
 
 export const CameraIcon = () => (
   <Feather name="camera" size={30} color={colors.themeColor} />
+);
+
+export const ImageIcon = () => (
+  <Feather name="image" size={30} color={colors.themeColor} />
 );
 
 export const CheveronIcon = (props) => (
@@ -87,6 +95,14 @@ export const CrossIcon = (props) => (
   <Entypo name="cross" size={30} color={props?.color || colors.textColor} />
 );
 
+export const LockIcon = (props) => (
+  <Feather name="lock" size={25} color={colors.black} />
+);
+
+export const PencilIcon = (props) => (
+  <Entypo name="pencil" size={25} color={colors.themeColor} />
+);
+
 const Icons = {
   SearchIcon,
   CalendarIcon,
@@ -99,6 +115,10 @@ const Icons = {
   NotificationIcon,
   LeftChevron,
   CrossIcon,
+  ClockIcon,
+  ImageIcon,
+  LockIcon,
+  PencilIcon,
   ArrowUp: ({ color = colors.themeColor, onPress }) => (
     <TouchableOpacity onPress={onPress}>
       <Feather name="arrow-up-circle" size={28} color={color} />

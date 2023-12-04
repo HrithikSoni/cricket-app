@@ -12,7 +12,6 @@ import HomeTopCard from "../components/cards/HomeTopCard";
 import MatchCard from "../components/cards/MatchCard";
 import SearchBar from "../components/inputs/SearchBar";
 import SelectionModal from "../components/modals/SelectionModal";
-import ParentWrapper from "../components/wrappers/ParentWrapper";
 import UTILS from "../utils";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
@@ -40,7 +39,6 @@ export default function Home({ navigation }) {
 
   return (
     <>
-      <ParentWrapper>
         <View style={[styles.container]}>
           <HomeTopCard />
           <SearchBar />
@@ -67,7 +65,6 @@ export default function Home({ navigation }) {
         </View>
 
         <PlusButton onPress={handleModal} />
-      </ParentWrapper>
       <SelectionModal
         visible={showModal}
         onDone={handleOnSelect}
@@ -89,7 +86,9 @@ export default function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    padding: 20
+  },
   cardContainer: {
     flexDirection: "row",
     alignItems: "center",

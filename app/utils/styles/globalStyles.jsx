@@ -1,13 +1,15 @@
-import colors from "../styles/colors";
+import colors from '../styles/colors'
+
 
 const commonStyle = {
   height: 55,
   backgroundColor: colors.gray1,
-  paddingHorizontal: 15,
+  paddingHorizontal: 20,
   fontSize: 17,
   borderRadius: 20,
   borderWidth: 0,
   marginTop: 15,
+  width: "100%"
 };
 
 export const commonTextStyle = {
@@ -18,9 +20,8 @@ export const commonTextStyle = {
 
 export const commonTextStyleNormal = {
   fontSize: 17,
-  lineHeight: 24,
-  fontWeight: "300",
-};
+  lineHeight: 24
+}
 
 const center = {
   alignItems: "center",
@@ -30,7 +31,7 @@ const center = {
 const rowCenter = {
   flexDirection: "row",
   alignItems: "center",
-  justifyContent: "ceter",
+  justifyContent: "center",
 };
 
 const rowSpaceBtw = {

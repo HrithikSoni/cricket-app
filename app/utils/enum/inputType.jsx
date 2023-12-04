@@ -19,5 +19,6 @@ const INPUT_TYPE = {
   STRING: "String",
   SWITCH: "Switch",
   TIME_PICKER: "time",
+  MATCH_TYPES: "Match Types",
 };
 export default INPUT_TYPE;
