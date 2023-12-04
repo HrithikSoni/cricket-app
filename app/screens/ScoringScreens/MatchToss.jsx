@@ -35,8 +35,7 @@ const MatchToss = () => {
           <View key={index}>
             <ImageWithTextCard
               {...item}
-              onPress={() => handleTeamSelection(item.value)}
-              isSelected={tossData.current.selectedTeam === item.value}
+              handleOnPress={handleTeamSelection}
             />
           </View>
         ))}
@@ -47,8 +46,7 @@ const MatchToss = () => {
           <View key={index}>
             <ImageWithTextCard
               {...item}
-              onPress={() => handleTossSelection(item.value)}
-              isSelected={tossData.current.selectedToss === item.value}
+              handleOnPress={handleTossSelection}
             />
           </View>
         ))}

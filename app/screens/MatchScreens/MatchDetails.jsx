@@ -8,12 +8,6 @@ import Button from "../../components/button/Button";
 import AppText from "../../components/text/AppText";
 import useManageTeam from "../../hooks/useManageTeam";
 
-// $$$$$$ show time when the time is picked in time input filed
-// when date is selected just return date ---->ex-- 12-12-2023
-// when time is selected just return time ---->ex-- 04:04:30
-// fix umpire referee and scorer bottom sheet
-// put create team in a modal. example SearchAddPlayerModal
-
 export default function MatchDetails({ navigation }) {
   const matchDetails = useRef({});
 
@@ -21,7 +15,7 @@ export default function MatchDetails({ navigation }) {
     matchDetails.current = { ...matchDetails.current, ...e };
   };
 
-  const { handleSubmitMatchDetails, umpireNamesArray } = useMatchDetails();
+  const { handleSubmitMatchDetails } = useMatchDetails();
 
   return (
     <ParentWrapper description={`Enter Your Match Details`}>
@@ -44,19 +38,37 @@ export default function MatchDetails({ navigation }) {
 
         <AppText style={styles.formLabel}>Add Umpires</AppText>
         {umpireForm.map((i) => (
-          <InputSelector {...i} arrayData={umpireNamesArray} />
+          <InputSelector
+            {...i}
+            data={umpireNamesArray}
+            onBottomSheetSelect={(e)=> matchDetails.current[i.key] = e}
+            header={"Select A Umpire"}
+          />
         ))}
 
         <AppText style={styles.formLabel}>Add Referee</AppText>
-        <InputSelector type={UTILS.INPUT_TYPE.ADD_SELECT} label="Referee" />
+        <InputSelector
+          type={UTILS.INPUT_TYPE.ADD_SELECT}
+          label="Referee"
+          data={refereeNamesArray}
+          onBottomSheetSelect={(e)=> matchDetails.current.referee = e}
+          header={"Select A Referee"}
+        />
 
         <AppText style={styles.formLabel}>Add Scorer</AppText>
-        <InputSelector type={UTILS.INPUT_TYPE.ADD_SELECT} label="Scorer" />
+        <InputSelector
+          type={UTILS.INPUT_TYPE.ADD_SELECT}
+          label="Scorer"
+          data={umpireNamesArray}
+          onBottomSheetSelect={(e)=> matchDetails.current.scorer = e}
+          header={"Select A Scorer"}
+        />
         <View style={{ height: 40 }} />
         <Button
           // bottom={true}
           onButtonPress={() =>
-            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
+            // navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
+            console.log(matchDetails.current, 'iiiiiiiii')
           }
           // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />
@@ -66,11 +78,7 @@ export default function MatchDetails({ navigation }) {
 }
 
 function useMatchDetails() {
-  const umpireNamesArray = [
-    { label: "John Doe", value: "JOHN_DOE" },
-    { label: "Alice Smith", value: "ALICE_SMITH" },
-    { label: "David Brown", value: "DAVID_BROWN" },
-  ];
+  
 
   const { addMatchDetails } = useManageTeam();
   function handleSubmitMatchDetails(body) {
@@ -78,8 +86,7 @@ function useMatchDetails() {
   }
 
   return {
-    handleSubmitMatchDetails,
-    umpireNamesArray,
+    handleSubmitMatchDetails
   };
 }
 
@@ -108,6 +115,18 @@ const refereeForm = [
 
 const scorerFrom = [
   { label: "Scorer", key: "umpire1", type: UTILS.INPUT_TYPE.ADD_SELECT },
+];
+
+const umpireNamesArray = [
+  { label: "John Doe", value: "JOHN_DOE" },
+  { label: "Alice Smith", value: "ALICE_SMITH" },
+  { label: "David Brown", value: "DAVID_BROWN" },
+];
+
+const refereeNamesArray = [
+  { label: "Max", value: "MAX" },
+  { label: "Smith", value: "Smith" },
+  { label: "Black", value: "BLACK" },
 ];
 
 const styles = StyleSheet.create({

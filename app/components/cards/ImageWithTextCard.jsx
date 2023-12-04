@@ -1,20 +1,26 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 
 import AppText from "../text/AppText";
 import UTILS from "../../utils";
 
 const ImageWithTextCard = (props) => {
+  const [selected, setSelected] = useState(null);
 
-  const cardStyle = props.isSelected ? [styles.container, styles.selected] : styles.container
+  const cardStyle = selected === props.value? styles.selected : {}
 
   return (
-    <TouchableOpacity style={cardStyle} onPress={props.onPress}>
+    <TouchableOpacity style={[styles.container, cardStyle]} onPress={() => handleOnSelect(props.value)}>
       <Image source={props.imgUrl} style={[styles.img]} />
       <AppText style={[styles.text]}>{props.label}</AppText>
     </TouchableOpacity>
   );
+
+  function handleOnSelect(option){
+    setSelected(option);
+    props.handleOnPress(option)
+  }
 };
 
 export default ImageWithTextCard;
@@ -22,16 +28,18 @@ export default ImageWithTextCard;
 const styles = StyleSheet.create({
   container: {
     height: 90,
-    width: 165,
+    width: 170,
     borderRadius: 15,
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 5,
     marginVertical: 10,
+    borderRadius: 30,
+    borderColor: UTILS.COLORS.textColor,
+    paddingHorizontal: 10
   },
   selected:{
-    borderRadius: 1,
-    borderColor: UTILS.COLORS.black
+    borderWidth: 2,
+    borderColor: UTILS.COLORS.themeColor,
   },
   img: {
     height: 70,

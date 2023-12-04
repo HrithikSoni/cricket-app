@@ -1,119 +1,97 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Image,
+  Modal,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import Modal from "react-native-modal";
-import SearchBar from "../inputs/SearchBar";
+
 import UTILS from "../../utils";
+import SearchBar from "../inputs/SearchBar";
+import AppText from "../text/AppText";
 
-const BottomSheetModal = (props) => {
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  console.log(props, 'lllllllll');
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible)
-  };
-
-  const handleOptionSelection = (option) => {
-    props?.onOptionSelect(option);
-    setModalVisible(false);
-    // handleModal();
-  };
-
+export default function BottomSheetModal(props) {
+  
   return (
-    <View style={styles.container}>
-      <Modal
-        onBackdropPress={() => setModalVisible(false)}
-        onBackButtonPress={() => setModalVisible(false)}
-        isVisible={isModalVisible}
-        swipeDirection="down"
-        onSwipeComplete={toggleModal}
-        animationIn="bounceInUp"
-        animationOut="bounceOutDown"
-        animationInTiming={900}
-        animationOutTiming={500}
-        backdropTransitionInTiming={1000}
-        backdropTransitionOutTiming={500}
-        style={styles.modal}
-      >
-        <View style={[styles.modalContent]}>
+    <Modal
+      visible={props.visible}
+      onRequestClose={props.onRequestClose}
+      transparent
+      animationType="slide"
+    >
+      <View style={styles.container}>
+        <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
+        <View style={styles.formContainer}>
           <ScrollView>
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <Text style={{ fontSize: 20, marginVertical: 5 }}>
-                {props?.title}
-              </Text>
+            <View style={UTILS.STYLES.center}>
+              <AppText style={styles.header}>{props?.header}</AppText>
               {props?.searchBarLabel && (
                 <SearchBar label={props?.searchBarLabel} />
               )}
             </View>
-            {props?.arrayData &&
-              props?.arrayData.map((option) => {
-                return (
-                  <TouchableOpacity
-                    key={option.label}
-                    style={styles.optionItem}
-                    onPress={() => handleOptionSelection(option)}
-                  >
-                    <View style={styles.optionContent}>
-                      {option?.flag && (
-                        <Text style={[styles.flagStyle]}>{option.flag}</Text>
-                      )}
-                      <Text style={[styles.text]}>{option.label}</Text>
-                    </View>
-                    {option?.rightText && <Text>{option.rightText}</Text>}
-                  </TouchableOpacity>
-                );
-              })}
+            {props?.data.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.optionItem}
+                onPress={() => handleOptionSelection(option)}
+              >
+                <View style={styles.optionContent}>
+                  {option?.imgUrl && (
+                    <Image source={option.imgUrl} style={styles.header} />
+                  )}
+                  <Text style={[styles.text]}>{option.label}</Text>
+                </View>
+                {option?.rightText && <Text>{option.rightText}</Text>}
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   );
-};
 
-export default BottomSheetModal;
+  function handleOptionSelection(option) {
+    props.onBottomSheetSelect(option);
+  }
+}
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: "center",
-        justifyContent: "center",
-      },
-    modal: {
-        justifyContent: "flex-end",
-        margin: 0,
-      },
-      modalContent: {
-        backgroundColor: UTILS.COLORS.backGround,
-        paddingTop: 12,
-        paddingHorizontal: 12,
-        borderTopRightRadius: 20,
-        borderTopLeftRadius: 20,
-        minHeight: 400,
-        paddingBottom: 20,
-      },
-      optionItem: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingVertical: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: "#ccc",
-      },
-      optionContent: {
-        flexDirection: "row",
-        alignItems: "center",
-      },
-      flagStyle: {
-        marginLeft: 20,
-      },
-      text: {
-        fontSize: 17,
-        marginLeft: 15,
-      },
+  header: { fontSize: 20, marginVertical: 5 },
+  container: {
+    flex: 1,
+    backgroundColor: UTILS.COLORS.opacity50,
+    // alignItems: "center",
+  },
+  formContainer: {
+    paddingHorizontal: 20,
+    backgroundColor: "white",
+    borderTopLeftRadius: 35,
+    borderTopRightRadius: 35,
+    paddingVertical: 30,
+  },
+  optionItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
+  optionContent: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  imgStyle: {
+    marginLeft: 20,
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+  },
+  text: {
+    fontSize: 17,
+    marginLeft: 15,
+  },
 });

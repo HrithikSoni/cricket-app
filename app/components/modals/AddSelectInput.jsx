@@ -1,24 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-
 
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
+import BottomSheetModal from "../modals/BottomSheetModal";
 
 export default function AddSelectInput(props) {
+  const [selectedValue, setSelectedValue] = useState("");
+  const [modal, setModal] = useState(false);
+
+  function handleOnSelect(option){
+    setSelectedValue(option.label)
+    props.onBottomSheetSelect(option.value)
+    setModal(false)
+  }
 
   return (
     <View style={[UTILS.STYLES.commonStyle, styles.inputContainer]}>
-      <AppText style={styles.label}>{props.label}</AppText>
+      <AppText style={styles.label}>{selectedValue || props.label}</AppText>
       <SelectorBtn />
     </View>
   );
   function SelectorBtn() {
     return (
       <>
-      <TouchableOpacity style={styles.selectorBtn}>
-        <AppText style={{ color: UTILS.COLORS.themeColor }}>Add</AppText>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.selectorBtn} onPress={() => setModal(true)}>
+          <AppText style={{ color: UTILS.COLORS.themeColor }}>Add</AppText>
+        </TouchableOpacity>
+        <BottomSheetModal
+          visible={modal}
+          onRequestClose={() => setModal(false)}
+          {...props}
+          onBottomSheetSelect={handleOnSelect}
+        />
       </>
     );
   }
