@@ -8,6 +8,7 @@ import {
   getCurrentTeam,
   totalPlayer,
   handleMatchDetails,
+  updateCurrenTeam,
 } from "../services/store/reducers/matchReduce";
 
 const nullFunction = () => null;

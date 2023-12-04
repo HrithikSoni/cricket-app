@@ -12,14 +12,14 @@ const dateTimeData = useRef({})
 
   function handleOnSelect(key, value){
     dateTimeData.current = {...dateTimeData.current, [key]: value}
-    props?.onDateTimeSelect({[key]: value})
+    props?.onDateTimeSelect(dateTimeData.current)
   }
 
   return (
     <View style={styles.container}>
       {form.map((item, index) => (
        <View key={index} style={styles.boxStyle}>
-         <AppDatePicker key={item.key} {...item} onDateSelect={e => handleOnSelect(item.key, e)}/>
+         <AppDatePicker key={item.key} {...item} onDateTimeSelect={e => handleOnSelect(item.key, e)}/>
        </View>
       ))}
     </View>

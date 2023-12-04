@@ -24,8 +24,8 @@ export default function ManageTeam({ navigation }) {
         <View style={styles.container}>
           <SearchAddPlayerModal />
         </View>
-
-        <PlayersListHeader />
+{/* comment out here */}
+        {/* <PlayersListHeader /> */}
         <List />
 
         <Button
@@ -40,17 +40,17 @@ export default function ManageTeam({ navigation }) {
 }
 
 function List() {
-  const dispatch = useDispatch();
-  const currentTeam = useSelector(getCurrentTeam);
+  // const dispatch = useDispatch();
+  // const currentTeam = useSelector(getCurrentTeam);
 
-  function handleAddPlayer(index) {
-    dispatch(
-      addPlayerInTeam({
-        team: currentTeam,
-        player: playerData[index],
-      })
-    );
-  }
+  // function handleAddPlayer(index) {
+  //   dispatch(
+  //     addPlayerInTeam({
+  //       team: currentTeam,
+  //       player: playerData[index],
+  //     })
+  //   );
+  // }
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -68,17 +68,17 @@ function List() {
   );
 }
 
-function PlayersListHeader() {
-  const currentTeam = useSelector(getCurrentTeam);
-  const totalPLayers = useSelector(totalPlayer(currentTeam));
+// function PlayersListHeader() {
+//   const currentTeam = useSelector(getCurrentTeam);
+//   const totalPLayers = useSelector(totalPlayer(currentTeam));
 
-  return (
-    <View style={styles.playersListHeader}>
-      <AppText>Add Player</AppText>
-      <AppText>{totalPLayers}</AppText>
-    </View>
-  );
-}
+//   return (
+//     <View style={styles.playersListHeader}>
+//       <AppText>Add Player</AppText>
+//       <AppText>{totalPLayers}</AppText>
+//     </View>
+//   );
+// }
 
 const playerData = [
   { id: 1, name: "Jason", type: "Bowler" },

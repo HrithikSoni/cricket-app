@@ -5,6 +5,7 @@ import Button from "../../components/button/Button";
 import UTILS from "../../utils";
 import SearchAndAdd from "../../components/search/SearchAndAdd";
 import SelectTeamCard from "../../components/cards/SelectTeamCard";
+import SearchAddTeamModal from "../../components/modals/SearchAddTeamModal";
 
 export default function SelectTeam({ navigation }) {
   const teamInfo = [
@@ -31,12 +32,7 @@ export default function SelectTeam({ navigation }) {
   return (
     <ParentWrapper screenTitle="Select Team (A)">
       {/* <View style={styles.container}></View> */}
-      <SearchAndAdd
-        onAdd={() => navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.CREATE_TEAM)}
-        onSearch={() => {}}
-        addBtnTitle="Add Team"
-        searchPlaceholder="Search Team"
-      />
+     <SearchAddTeamModal />
 
       <ScrollView>
         {teamInfo.map((item, index) => (
@@ -58,7 +54,7 @@ export default function SelectTeam({ navigation }) {
         }
       /> */}
 
-      <Button bottom={true} />
+      <Button onButtonPress={() => {}} bottom={true} />
     </ParentWrapper>
   );
 }

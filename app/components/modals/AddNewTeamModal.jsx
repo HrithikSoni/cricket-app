@@ -1,0 +1,101 @@
+import React, { useRef } from "react";
+import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
+
+import UTILS from "../../utils";
+import Button from "../button/Button";
+import InputBox from "../inputs/InputBox";
+import LocationPicker from "../inputs/LocationPicker";
+import Icons from "../others/Icons";
+import AppText from "../text/AppText";
+
+export default function AddNewTeamModal(props) {
+  const teamData = useRef({});
+
+  return (
+    <Modal
+      visible={props.visible}
+      onRequestClose={props.onRequestClose}
+      transparent
+      animationType="slide"
+    >
+      <View style={styles.container}>
+        <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
+        <View style={styles.formContainer}>
+        <AppText style={styles.header}>Add New Team</AppText>
+          <View style={styles.imgTextContianer}>
+            <TouchableOpacity onPress={handleEditProfilePic}>
+              <View style={styles.userDp}>
+                <Icons.ImageIcon />
+              </View>
+            </TouchableOpacity>
+            <View style={[styles.teamDetailContainer]}>
+              <AppText style={[UTILS.STYLES.commonTextStyleNormal]}>
+                Team Name
+              </AppText>
+              <InputBox
+                label={"Enter"}
+                onChangeText={(e) => (teamData.current.teamName = e)}
+              />
+            </View>
+          </View>
+          <LocationPicker
+            onLocationSelect={(e) =>
+              (teamData.current = { ...teamData.current, ...e })
+            }
+          />
+          <View style={[styles.button]}>
+            <Button
+              bgColor={UTILS.COLORS.gray1}
+              label={"Add Players"}
+              textColor={UTILS.COLORS.themeColor}
+              onButtonPress={() => {}}
+            />
+          </View>
+          <Button
+            label="Add Team"
+            onButtonPress={props.onRequestClose}
+          />
+        </View>
+      </View>
+    </Modal>
+  );
+
+  function handleEditProfilePic () {
+
+  }
+}
+
+const styles = StyleSheet.create({
+  header: { textAlign: "center", marginBottom: 20, fontSize: 17, fontWeight: '600' },
+  container: {
+    flex: 1,
+    backgroundColor: UTILS.COLORS.opacity50,
+    // alignItems: "center",
+  },
+  formContainer: {
+    paddingHorizontal: 20,
+    backgroundColor: "white",
+    borderTopLeftRadius: 35,
+    borderTopRightRadius: 35,
+    paddingVertical: 30,
+  },
+  teamDetailContainer:{
+    width: "67%"
+  },
+  imgTextContianer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  userDp: {
+    height: 100,
+    width: 100,
+    borderRadius: 20,
+    backgroundColor: UTILS.COLORS.gray1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 20,
+  },
+  button:{
+    margin: 20
+  }
+});
