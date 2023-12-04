@@ -1,48 +1,64 @@
-import { StyleSheet, Image, View } from "react-native";
-import React from "react";
+import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import AppText from "../text/AppText";
 import UTILS from "../../utils";
+import BoldText from "../text/BoldText";
 
-export default function BallType() {
+export default function BallType(props) {
+  const [selected, setSelected] = useState(null);
   const balls = [
-    { img: require("../../assets/images/red.png") },
-    { img: require("../../assets/images/green.png") },
-    { img: require("../../assets/images/white.png") },
+    { name: "RED_BALL", img: require("../../assets/images/red.png") },
+    { name: "TENNIS_BALL", img: require("../../assets/images/green.png") },
+    { name: "WHITE_BALL", img: require("../../assets/images/white.png") },
   ];
+
+  function handleOnPress(index) {
+    setSelected(index);
+    props.onAppend({ ballType: balls[index].name });
+  }
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
-      <AppText style={{ fontWeight: "500", fontSize: 16 }}>Ball Type</AppText>
-      <View
-        style={{
-          flexDirection: "row",
-          marginVertical: 15,
-        }}
-      >
-        {balls.map((i, index) => (
-          <View
-            key={index}
-            style={{
-              backgroundColor: UTILS.COLORS.background1,
-              height: 50,
-              width: 65,
-              justifyContent: "center",
-              alignItems: "center",
-              marginLeft: 10,
-              borderRadius: 14,
-            }}
-          >
-            <Image source={i.img} />
-          </View>
-        ))}
+    <View style={styles.container}>
+      <BoldText>Ball Type</BoldText>
+      <View style={styles.iconContainer}>
+        {balls.map((i, index) => {
+          const selectedStyle = selected == index ? styles.selected : {};
+
+          return (
+            <TouchableOpacity
+              key={index}
+              style={[styles.icons, selectedStyle]}
+              onPress={() => handleOnPress(index)}
+            >
+              <Image source={i.img} />
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  iconContainer: {
+    flexDirection: "row",
+    marginVertical: 15,
+  },
+  icons: {
+    backgroundColor: UTILS.COLORS.background1,
+    height: 50,
+    width: 65,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 10,
+    borderRadius: 14,
+  },
+  selected: {
+    borderWidth: 2,
+    borderColor: UTILS.COLORS.themeColor,
+  },
+});

@@ -14,14 +14,16 @@ export default function TestLogin({ navigation }) {
   const loginData = useRef({ mobileNo: "", password: "" });
   const dispatch = useDispatch();
 
-  const registeredNo = "9818660465";
+  const registeredNo = "9999999999";
   const registeredPassword = "password";
   const { TEST_SCREENS } = UTILS.SCREEN_NAMES;
   const responseAdmin = { data: { role: "Admin", firstName: "Admin" } };
   const responseUser = { data: { role: "User", firstName: "User" } };
-  
 
   function handleLogin() {
+    dispatch(updateAuth(responseAdmin));
+
+    return;
     if (loginData.current.mobileNo === registeredNo) {
       if (loginData.current.password === registeredPassword) {
         dispatch(updateAuth(responseAdmin));

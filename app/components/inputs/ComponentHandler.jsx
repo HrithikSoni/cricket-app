@@ -12,6 +12,7 @@ import BallType from "./BallType";
 import AddSelectInput from "../modals/AddSelectInput";
 import LocationPicker from "./LocationPicker";
 import DateTimePicker from "./DateTimePicker";
+import MatchTypes from "./MatchTypes";
 
 const ComponentHandler = (props) => {
   const { type } = props;
@@ -49,6 +50,9 @@ const ComponentHandler = (props) => {
 
     case UTILS.INPUT_TYPE.ADD_SELECT:
       return <AddSelectInput {...props} />;
+
+    case UTILS.INPUT_TYPE.MATCH_TYPES:
+      return <MatchTypes {...props} />;
 
     default:
       return <InputBox {...props} />;

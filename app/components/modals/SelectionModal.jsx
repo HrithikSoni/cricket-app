@@ -50,5 +50,3 @@ const styles = StyleSheet.create({
     borderRadius: 18,
   },
 });
-
-// #### add cross icons
