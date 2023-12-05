@@ -22,7 +22,6 @@ export default function TeamsVersus({ navigation }) {
         <TeamVersusCard
           {...teamDetails}
           onPress={() => {
-            // comment out here
             // handleUpdateCurrentTeam(UTILS.TEAM_NAME.TEAM_A);
             navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.SELECT_TEAM);
           }}

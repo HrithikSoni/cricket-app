@@ -21,23 +21,8 @@ export default function AddNewTeamModal(props) {
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
-        <AppText style={styles.header}>Add New Team</AppText>
-          <View style={styles.imgTextContianer}>
-            <TouchableOpacity onPress={handleEditProfilePic}>
-              <View style={styles.userDp}>
-                <Icons.ImageIcon />
-              </View>
-            </TouchableOpacity>
-            <View style={[styles.teamDetailContainer]}>
-              <AppText style={[UTILS.STYLES.commonTextStyleNormal]}>
-                Team Name
-              </AppText>
-              <InputBox
-                label={"Enter"}
-                onChangeText={(e) => (teamData.current.teamName = e)}
-              />
-            </View>
-          </View>
+          <AppText style={styles.header}>Add New Team</AppText>
+          <ProfileInfoComp label={"Team Name"} />
           <LocationPicker
             onLocationSelect={(e) =>
               (teamData.current = { ...teamData.current, ...e })
@@ -51,22 +36,43 @@ export default function AddNewTeamModal(props) {
               onButtonPress={() => {}}
             />
           </View>
-          <Button
-            label="Add Team"
-            onButtonPress={props.onRequestClose}
-          />
+          <Button label="Add Team" onButtonPress={props.onRequestClose} />
         </View>
       </View>
     </Modal>
   );
 
-  function handleEditProfilePic () {
-
+  function ProfileInfoComp(props) {
+    return (
+      <View style={styles.imgTextContainer}>
+        <TouchableOpacity onPress={handleEditProfilePic}>
+          <View style={styles.userDp}>
+            <Icons.ImageIcon />
+          </View>
+        </TouchableOpacity>
+        <View style={[styles.teamDetailContainer]}>
+          <AppText style={[UTILS.STYLES.commonTextStyleNormal]}>
+            {props.label}
+          </AppText>
+          <InputBox
+            label={"Enter"}
+            onChangeText={(e) => (teamData.current.teamName = e)}
+          />
+        </View>
+      </View>
+    );
   }
+
+  function handleEditProfilePic() {}
 }
 
 const styles = StyleSheet.create({
-  header: { textAlign: "center", marginBottom: 20, fontSize: 17, fontWeight: '600' },
+  header: {
+    textAlign: "center",
+    marginBottom: 20,
+    fontSize: 17,
+    fontWeight: "600",
+  },
   container: {
     flex: 1,
     backgroundColor: UTILS.COLORS.opacity50,
@@ -79,10 +85,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 35,
     paddingVertical: 30,
   },
-  teamDetailContainer:{
-    width: "67%"
+  teamDetailContainer: {
+    width: "67%",
   },
-  imgTextContianer: {
+  imgTextContainer: {
     flexDirection: "row",
     alignItems: "center",
   },
@@ -95,7 +101,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 20,
   },
-  button:{
-    margin: 20
-  }
+  button: {
+    marginVertical: 20,
+  },
 });

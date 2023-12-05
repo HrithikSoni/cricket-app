@@ -4,35 +4,22 @@ import DatePicker from "react-native-date-picker";
 
 import UTILS from "../../utils";
 import Icons from "../others/Icons";
+import datTimeFormat from "../../utils/helpers/dateTimeFormat";
 
 const AppDatePicker = (props) => {
   const [dateTime, setDateTime] = useState(null);
   const [open, setOpen] = useState(false);
+  const {formatDate, formatTime, formatTimeTo24Hour} = datTimeFormat();
 
   const textStyle = {
     color: dateTime ? UTILS.COLORS.black : UTILS.COLORS.gray2,
   };
 
-  const formatDate = (date) => {
-    return date.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-  };
-
-  const formatTime = (date) => {
-    return date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-  };
   const handleDateTimeSelect = (selectedValue) => {
     setOpen(false);
     setDateTime(selectedValue);
     if (props.mode === "time") {
-      props?.onDateTimeSelect(formatTime(selectedValue));
+      props?.onDateTimeSelect(formatTimeTo24Hour(selectedValue));
     } else {
       props?.onDateTimeSelect(formatDate(selectedValue));
     }

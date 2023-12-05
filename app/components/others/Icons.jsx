@@ -92,7 +92,9 @@ export const UserIcon = (props) => (
 );
 
 export const CrossIcon = (props) => (
-  <Entypo name="cross" size={30} color={props?.color || colors.textColor} />
+  <TouchableOpacity onPress={props.onPress}>
+    <Entypo name="cross" size={30} color={props?.color || colors.textColor} />
+  </TouchableOpacity>
 );
 
 export const LockIcon = (props) => (

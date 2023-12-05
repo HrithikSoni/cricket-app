@@ -12,6 +12,7 @@ import Modal from "react-native-modal";
 import UTILS from "../../utils";
 import Icons from "../others/Icons";
 import SearchBar from "../inputs/SearchBar";
+import AppText from "../text/AppText";
 
 // import AppText from "../wrappers/AppTextWrapper";
 
@@ -82,9 +83,13 @@ const DropDownModal = (props) => {
           <View style={[styles.modalContent]}>
             <ScrollView>
               <View style={{ alignItems: "center", justifyContent: "center" }}>
-                <Text style={{ fontSize: 20, marginVertical: 5 }}>
-                  {props?.title}
-                </Text>
+                <View style={styles.headerCrossButtonCon}>
+                  <AppText style={styles.text}>{props?.title}</AppText>
+                  <Icons.CrossIcon
+                    onPress={() => setModalVisible(false)}
+                    color={UTILS.COLORS.themeColor}
+                  />
+                </View>
                 {props?.searchBarLabel && (
                   <SearchBar label={props?.searchBarLabel} />
                 )}
@@ -164,6 +169,10 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginLeft: 15,
   },
+  headerCrossButtonCon:{
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  }
 });
 
 export default DropDownModal;

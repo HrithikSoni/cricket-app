@@ -67,8 +67,8 @@ export default function MatchDetails({ navigation }) {
         <Button
           // bottom={true}
           onButtonPress={() =>
-            // navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
-            console.log(matchDetails.current, 'iiiiiiiii')
+            {navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
+            console.log(matchDetails.current, 'iiiiiiiii')}
           }
           // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />
