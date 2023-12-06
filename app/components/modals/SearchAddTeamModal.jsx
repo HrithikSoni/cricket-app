@@ -3,6 +3,9 @@ import { StyleSheet, View } from "react-native";
 
 import SearchAndAdd from "../search/SearchAndAdd";
 import AddNewTeamModal from "./AddNewTeamModal";
+import RetiredHurtModal from "./ScoringScreenModals/RetiredHurtModal";
+import PenaltyRunsModal from "./ScoringScreenModals/PenaltyRunsModal";
+import FallOfWicketModal from "./ScoringScreenModals/FallOfWicketModal";
 
 export default function SearchAddTeamModal() {
   const [modal, setModal] = useState({
@@ -17,7 +20,7 @@ export default function SearchAddTeamModal() {
         searchPlaceholder="Search Team"
       />
       <View style={{ height: 20 }} />
-      <AddNewTeamModal
+      <FallOfWicketModal
         visible={modal.addTeamModal}
         onRequestClose={() => toggleModal("addTeamModal")}
       />

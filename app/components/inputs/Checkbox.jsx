@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 
-import { CheckIcon } from "../constants/others/Icons";
 import UTILS from "../../utils";
+import Icons from "../others/Icons";
 
 const Checkbox = (props) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -33,9 +33,9 @@ const Checkbox = (props) => {
             alignItems: "center",
           }}
         >
-          {isChecked && <CheckIcon />}
+          {isChecked && <Icons.CheckIcon />}
         </View>
-        <Text style={{ marginLeft: 8 }}>{props?.label || "Checkbox"}</Text>
+        <Text style={{ marginLeft: 8 }}>{props?.label}</Text>
       </View>
     </TouchableOpacity>
   );

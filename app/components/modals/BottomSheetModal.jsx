@@ -12,9 +12,12 @@ import {
 import UTILS from "../../utils";
 import SearchBar from "../inputs/SearchBar";
 import AppText from "../text/AppText";
+import Icons from "../others/Icons";
+
+const colors = UTILS.COLORS;
+const style = UTILS.STYLES;
 
 export default function BottomSheetModal(props) {
-  
   return (
     <Modal
       visible={props.visible}
@@ -26,12 +29,14 @@ export default function BottomSheetModal(props) {
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
           <ScrollView>
-            <View style={UTILS.STYLES.center}>
-              <AppText style={styles.header}>{props?.header}</AppText>
-              {props?.searchBarLabel && (
-                <SearchBar label={props?.searchBarLabel} />
-              )}
+            <View style={style.rowSpaceBtw}>
+              <AppText style={styles.header}>{props.header}</AppText>
+              <Icons.CrossIcon
+                onPress={props.onRequestClose}
+                color={colors.themeColor}
+              />
             </View>
+            {props.searchBarLabel && <SearchBar label={props.searchBarLabel} />}
             {props?.data.map((option, index) => (
               <TouchableOpacity
                 key={index}
@@ -39,12 +44,12 @@ export default function BottomSheetModal(props) {
                 onPress={() => handleOptionSelection(option)}
               >
                 <View style={styles.optionContent}>
-                  {option?.imgUrl && (
-                    <Image source={option.imgUrl} style={styles.header} />
+                  {option.imgUrl && (
+                    <Image source={option.imgUrl} style={styles.imgStyle} />
                   )}
-                  <Text style={[styles.text]}>{option.label}</Text>
+                  <Text style={styles.text}>{option.label}</Text>
                 </View>
-                {option?.rightText && <Text>{option.rightText}</Text>}
+                {option.rightText && <Text>{option.rightText}</Text>}
               </TouchableOpacity>
             ))}
           </ScrollView>
@@ -59,10 +64,10 @@ export default function BottomSheetModal(props) {
 }
 
 const styles = StyleSheet.create({
-  header: { fontSize: 20, marginVertical: 5 },
+  header: { fontSize: 20, marginVertical: 5, fontWeight: "700" },
   container: {
     flex: 1,
-    backgroundColor: UTILS.COLORS.opacity50,
+    backgroundColor: colors.opacity50,
     // alignItems: "center",
   },
   formContainer: {
