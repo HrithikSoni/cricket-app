@@ -16,7 +16,6 @@ const FallOfWicketModal = (props) => {
 
   return (
     <Modal
-      O
       visible={props.visible}
       onRequestClose={props.onRequestClose}
       transparent
