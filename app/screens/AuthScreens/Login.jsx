@@ -1,19 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { useRef } from "react";
+import { StyleSheet, Text, View } from "react-native";
 
+import Button from "../../components/button/Button";
+import RegisterContactInput from "../../components/inputs/RegisterContactInput";
+import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
+import useRTKQuery from "../../hooks/useRtKQuery";
+import authApi from "../../services/store/api/authApi";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
-import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import useApi from "../../hooks/useApi";
-import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
-import { useNavigation } from "@react-navigation/native";
-import RegisterContactInput from "../../components/inputs/RegisterContactInput";
-import Button from "../../components/button/Button";
 
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 
-  const { login } = useLogin(loginData.current);
+  const { post: login } = useRTKQuery(authApi.useLoginMutation, (e) => {
+    console.log(e, "resp");
+    navigation.navigate(
+      UTILS.SCREEN_NAMES.AUTH_SCREENS.OTP,
+      loginData.current.contact
+    );
+  });
 
   return (
     <ParentWrapperWithBG
@@ -32,7 +37,7 @@ export default function Login({ navigation }) {
               //     phoneNo: loginData.current.phoneNo,
               //   })
               // }
-              onButtonPress={login}
+              onButtonPress={() => login(loginData.current)}
             />
           </View>
         </View>
@@ -53,28 +58,6 @@ export default function Login({ navigation }) {
       </View>
     </ParentWrapperWithBG>
   );
-}
-
-function useLogin(body) {
-  const navigation = useNavigation();
-
-  const { request } = useApi({
-    onSuccess: (e) => {
-      navigation.navigate(AUTH_SCREENS.OTP, body.contact);
-    },
-  });
-
-  async function login() {
-    const requestConfig = {
-      endpoint: AUTH_ENDPOINTS.LOGIN,
-      body,
-    };
-    const resp = await request(requestConfig);
-
-    console.log(resp.data, "rrrrrr");
-  }
-
-  return { login };
 }
 
 const styles = StyleSheet.create({

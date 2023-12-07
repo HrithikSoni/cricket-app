@@ -7,7 +7,7 @@ import InputSelector from "../../components/inputs/ComponentHandler";
 import Button from "../../components/button/Button";
 import AppText from "../../components/text/AppText";
 import useManageTeam from "../../hooks/useManageTeam";
-import { usersApi } from "../../services/store/api/usersApi";
+// import { usersApi } from "../../services/store/api/usersApi";
 
 export default function MatchDetails({ navigation }) {
   const matchDetails = useRef({});
@@ -15,9 +15,9 @@ export default function MatchDetails({ navigation }) {
   const updateMatchDetails = (e) => {
     matchDetails.current = { ...matchDetails.current, ...e };
   };
-  const { data, error, isLoading } = usersApi.useGetUsersQuery();
+  // const { data, error, isLoading } = usersApi.useGetUsersQuery();
 
-  console.log(data, "oooooo");
+  // console.log(data, "oooooo");
 
   const { handleSubmitMatchDetails } = useMatchDetails();
 

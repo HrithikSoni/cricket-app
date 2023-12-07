@@ -11,13 +11,26 @@ import permanentStorage from "../../services/permanentStorage";
 import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
 import useAuth from "../../hooks/useAuth";
+import useRTKQuery from "../../hooks/useRtKQuery";
+import authApi from "../../services/store/api/authApi";
 
 const Otp = ({ navigation, route }) => {
   const otpInput = useRef({ otp: "" });
 
+  const { post: handleOtp, data } = useRTKQuery(
+    authApi.useConfirmOtpMutation,
+    handleOtpSuccess,
+    (e) => console.log(e)
+  );
+
+  console.log(data, "rrrr");
+  function handleOtpSuccess(e) {
+    console.log(e);
+  }
+
   const contact = route.params;
 
-  const { handleOtp } = useOtp();
+  // const { handleOtp } = useOtp();
   const { timer, setTimer, timerRunning, setTimerRunning } = useTimer();
   const { handleResendOtp } = useResendOtp({
     contact: contact,
