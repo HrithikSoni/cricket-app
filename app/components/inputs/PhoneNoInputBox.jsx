@@ -68,7 +68,9 @@ const PhoneNoInputBox = (props) => {
     <>
       <View style={containerStyle}>
         <View style={styles.codeAndPhoneNoContainer}>
-          <Text style={styles.text}>{props?.code || "+91"}</Text>
+          <AppText style={style.commonTextStyleNormal}>
+            {props?.code || "+91"}
+          </AppText>
           <TextInput
             keyboardType="phone-pad"
             key="Mobile No"

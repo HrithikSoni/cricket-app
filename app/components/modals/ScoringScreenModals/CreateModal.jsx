@@ -15,7 +15,7 @@ const CreateModal = (props) => {
       visible={props.visible}
       onRequestClose={props.onRequestClose}
       transparent
-      animationrightText="slide"
+      animationType="slide"
     >
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />

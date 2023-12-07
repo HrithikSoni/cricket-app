@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+
 import UTILS from "../../utils";
 import RadioButton from "../button/RadioButton";
-import { TouchableOpacity } from "react-native";
 import AppText from "../text/AppText";
 
 function RadioBtnWithTextComp(props) {
@@ -22,7 +22,9 @@ function RadioBtnWithTextComp(props) {
           style={styles.radioBtnContainer}
         >
           <RadioButton checked={isSelected == item.id} />
-          <AppText>{item.label}</AppText>
+          <AppText style={UTILS.STYLES.commonTextStyleNormal}>
+            {item.label}
+          </AppText>
         </TouchableOpacity>
       ))}
     </View>

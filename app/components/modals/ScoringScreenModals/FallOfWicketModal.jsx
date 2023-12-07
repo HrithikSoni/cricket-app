@@ -21,23 +21,21 @@ const FallOfWicketModal = (props) => {
       data: wicketTypeData,
       bottomSheetHeader: "Select Wicket Type",
       onBottomSheetSelect: (e) =>
-        (fallOfWicketData.current.wicketType = e.value),
+        (fallOfWicketData.current.wicketType = e.label),
     },
     {
       title: "Bowler Name",
       boxLabel: "Select Bowler",
       data: playerData,
       bottomSheetHeader: "Select Bowler",
-      onBottomSheetSelect: (e) =>
-        (fallOfWicketData.current.bowlerName = e.label),
+      onBottomSheetSelect: (e) => (fallOfWicketData.current.bowlerName = e),
     },
     {
       title: "New Batsman",
       boxLabel: "Select Batsman",
       data: playerData,
       bottomSheetHeader: "Select Batsman",
-      onBottomSheetSelect: (e) =>
-        (fallOfWicketData.current.batsManName = e.label),
+      onBottomSheetSelect: (e) => (fallOfWicketData.current.batsManName = e),
     },
   ];
 
@@ -76,7 +74,7 @@ const FallOfWicketModal = (props) => {
             <Checkbox />
           </View>
           {form.map((item, index) => (
-            <BottomSheetWithTitle {...item} key={index} />
+            <BottomSheetList {...item} key={index} />
           ))}
           <Button
             label={"Done"}
@@ -87,7 +85,7 @@ const FallOfWicketModal = (props) => {
     </Modal>
   );
 
-  function BottomSheetWithTitle(props) {
+  function BottomSheetList(props) {
     return (
       <>
         <AppText style={styles.title}>{props.title}</AppText>

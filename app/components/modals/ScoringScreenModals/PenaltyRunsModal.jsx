@@ -8,6 +8,7 @@ import AppText from "../../text/AppText";
 import RadioBtnWithTextComp from "../RadioBtnWithTextComp";
 import SelectOptionModal from "./SelectOptionModal";
 import InputBox from "../../inputs/InputBox";
+import SmallGreyText from "../../text/SmallGreyText";
 
 const style = UTILS.STYLES;
 const colors = UTILS.COLORS;
@@ -33,7 +34,6 @@ const PenaltyRunsModal = (props) => {
             />
           </View>
           <View style={styles.detailsContainer}>
-            <AppText style={style.commonTextStyle}>Penalty Run</AppText>
             <InputBox
               label={"Runs"}
               onChangeText={(e) => (penaltyRunsData.current.penaltyRuns = e)}
@@ -74,7 +74,7 @@ const penaltyTypeData = [
 export default PenaltyRunsModal;
 
 const styles = StyleSheet.create({
-  header: { fontSize: 20, marginVertical: 10, fontWeight: "700" },
+  header: { fontSize: 20, fontWeight: "700" },
   container: {
     flex: 1,
     backgroundColor: UTILS.COLORS.opacity50,
