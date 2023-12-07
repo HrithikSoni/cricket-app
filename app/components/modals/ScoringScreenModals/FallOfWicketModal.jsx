@@ -14,6 +14,33 @@ const colors = UTILS.COLORS;
 const FallOfWicketModal = (props) => {
   const fallOfWicketData = useRef({});
 
+  const form = [
+    {
+      title: "How Wicket Fall?",
+      boxLabel: "Select Wicket Type",
+      data: wicketTypeData,
+      bottomSheetHeader: "Select Wicket Type",
+      onBottomSheetSelect: (e) =>
+        (fallOfWicketData.current.wicketType = e.value),
+    },
+    {
+      title: "Bowler Name",
+      boxLabel: "Select Bowler",
+      data: playerData,
+      bottomSheetHeader: "Select Bowler",
+      onBottomSheetSelect: (e) =>
+        (fallOfWicketData.current.bowlerName = e.label),
+    },
+    {
+      title: "New Batsman",
+      boxLabel: "Select Batsman",
+      data: playerData,
+      bottomSheetHeader: "Select Batsman",
+      onBottomSheetSelect: (e) =>
+        (fallOfWicketData.current.batsManName = e.label),
+    },
+  ];
+
   return (
     <Modal
       visible={props.visible}
@@ -48,33 +75,9 @@ const FallOfWicketModal = (props) => {
             <AppText style={styles.themeColorText}>Out</AppText>
             <Checkbox />
           </View>
-          <BottomSheetWithTitle
-            title={"How Wicket Fall?"}
-            boxLabel={"Select Wicket Type"}
-            data={wicketTypeData}
-            bottomSheetHeader={"Select Wicket Type"}
-            onBottomSheetSelect={(e) =>
-              (fallOfWicketData.current.wicketType = e.value)
-            }
-          />
-          <BottomSheetWithTitle
-            title={"Bowler Name"}
-            boxLabel={"Select Bowler"}
-            data={playerData}
-            bottomSheetHeader={"Select Bowler"}
-            onBottomSheetSelect={(e) =>
-              (fallOfWicketData.current.bowlerName = e.label)
-            }
-          />
-          <BottomSheetWithTitle
-            title={"New Batsman"}
-            boxLabel={"Select Batsman"}
-            data={playerData}
-            bottomSheetHeader={"Select Batsman"}
-            onBottomSheetSelect={(e) =>
-              (fallOfWicketData.current.batsManName = e.label)
-            }
-          />
+          {form.map((item, index) => (
+            <BottomSheetWithTitle {...item} key={index} />
+          ))}
           <Button
             label={"Done"}
             onButtonPress={() => console.log(fallOfWicketData.current)}

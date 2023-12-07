@@ -7,12 +7,15 @@ import {
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 
-
 import UTILS from "../../utils";
 import OTPInputBox from "./OTPInputBox";
 import useApi from "../../hooks/useApi";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import useTimer from "../../hooks/useTimer";
+import AppText from "../text/AppText";
+
+const style = UTILS.STYLES;
+const colors = UTILS.COLORS;
 
 const PhoneNoInputBox = (props) => {
   const [data, setData] = useState({});
@@ -22,7 +25,7 @@ const PhoneNoInputBox = (props) => {
 
   const { handleSendOtp } = useSendOtp({ contact: mobileNo });
 
-  const {timer, setTimer, timerRunning, setTimerRunning} = useTimer();
+  const { timer, setTimer, timerRunning, setTimerRunning } = useTimer();
 
   function handleOnChange(e) {
     setMobileNo(e);
@@ -41,89 +44,69 @@ const PhoneNoInputBox = (props) => {
     handleSendOtp();
   }
 
+  const containerStyle = [
+    style.commonStyle,
+    styles.container,
+    { justifyContent: props?.isVerify ? "space-between" : "flex-start" },
+  ];
+
+  const resendTextStyle = [
+    styles.verifyText,
+    {
+      color: timerRunning ? colors.gray2 : colors.themeColor,
+    },
+  ];
+
+  const codeSentTextStyle = [style.commonTextStyle, { color: colors.gray2 }];
+
+  const mobileNoStyle = [
+    style.commonTextStyle,
+    { color: colors.black, marginLeft: 5 },
+  ];
+
   return (
     <>
-      <View
-        style={[
-          UTILS.STYLES.commonStyle,
-          styles.container,
-          { justifyContent: props?.isVerify ? "space-between" : "flex-start" },
-        ]}
-      >
-        <View style={[styles.codeContainer]}>
-          <View>
-            <Text style={styles.text}>{props?.code || "+91"}</Text>
-          </View>
-        </View>
-        <View
-          style={[
-            styles.inputContainer,
-            { marginLeft: props?.isVerify ? -130 : 10 },
-          ]}
-        >
+      <View style={containerStyle}>
+        <View style={styles.codeAndPhoneNoContainer}>
+          <Text style={styles.text}>{props?.code || "+91"}</Text>
           <TextInput
             keyboardType="phone-pad"
             key="Mobile No"
             placeholder="Mobile No"
-            defaultValue={props?.defaultValue}
             onChangeText={(e) => handleOnChange(e)}
-            style={[styles.text]}
+            placeholderTextColor={UTILS.COLORS.gray2}
+            style={style.commonTextStyleNormal}
           />
         </View>
         {props?.isVerify && (
-          <View>
+          <>
             {isVerifyPressed ? (
               <TouchableOpacity
                 onPress={handleOnResend}
                 disabled={timerRunning}
               >
-                <Text
-                  style={[
-                    styles.verifyText,
-                    {
-                      color: timerRunning
-                        ? UTILS.COLORS.gray2
-                        : UTILS.COLORS.themeColor,
-                    },
-                  ]}
-                >
-                  Resend
-                </Text>
+                <AppText style={resendTextStyle}>Resend</AppText>
               </TouchableOpacity>
             ) : (
               mobileNo.length === 10 && (
                 <TouchableOpacity onPress={handleOnVerify}>
-                  <Text style={[styles.verifyText]}>Verify</Text>
+                  <AppText style={[styles.verifyText]}>Verify</AppText>
                 </TouchableOpacity>
               )
             )}
-          </View>
+          </>
         )}
       </View>
       {isVerifyPressed && (
         <View style={[styles.otpBox]}>
           <View style={[UTILS.STYLES.rowSpaceBtw]}>
             <View style={[UTILS.STYLES.rowCenter]}>
-              <Text
-                style={[
-                  UTILS.STYLES.commonTextStyle,
-                  { color: UTILS.COLORS.gray2 },
-                ]}
-              >
-                Code is sent to
-              </Text>
-              <Text
-                style={[
-                  UTILS.STYLES.commonTextStyle,
-                  { color: UTILS.COLORS.black, marginLeft: 5 },
-                ]}
-              >
-                {mobileNo}
-              </Text>
+              <AppText style={codeSentTextStyle}>Code is sent to</AppText>
+              <AppText style={mobileNoStyle}>{mobileNo}</AppText>
             </View>
             <Text style={[styles.verifyText]}>0:{timer}</Text>
           </View>
-          <View style={{marginTop: 10}}>
+          <View style={{ marginTop: 10 }}>
             <OTPInputBox {...props} />
           </View>
         </View>
@@ -156,15 +139,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
-  codeContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputContainer: {},
-  text: {
-    fontSize: 17,
-  },
   verifyText: {
     fontSize: 17,
     fontWeight: "500",
@@ -173,5 +147,10 @@ const styles = StyleSheet.create({
   otpBox: {
     marginTop: 10,
     paddingHorizontal: 5,
+  },
+  codeAndPhoneNoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
   },
 });

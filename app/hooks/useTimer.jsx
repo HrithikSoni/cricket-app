@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 export default function useTimer(time = 60) {
   const [timer, setTimer] = useState(time);
-  const [timerRunning, setTimerRunning] = useState(true);
+  const [timerRunning, setTimerRunning] = useState(false);
 
   useEffect(() => {
     let interval;

@@ -13,6 +13,7 @@ import AddSelectInput from "../modals/AddSelectInput";
 import LocationPicker from "./LocationPicker";
 import DateTimePicker from "./DateTimePicker";
 import MatchTypes from "./MatchTypes";
+import PhoneNoInputBox from "./PhoneNoInputBox";
 
 const ComponentHandler = (props) => {
   const { type } = props;
@@ -20,6 +21,9 @@ const ComponentHandler = (props) => {
   switch (type) {
     case UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT:
       return <RegisterContactInput {...props} />;
+
+    case UTILS.INPUT_TYPE.PHONE_NO_INPUT_BOX:
+      return <PhoneNoInputBox {...props} />;
 
     case UTILS.INPUT_TYPE.LOCATION_PICKER:
       return <LocationPicker {...props} />;
@@ -39,8 +43,8 @@ const ComponentHandler = (props) => {
     case UTILS.INPUT_TYPE.DROPDOWN:
       return <DropDownModal {...props} />;
 
-    case UTILS.INPUT_TYPE.DROPDOWN:
-      return <DropDownModal {...props} />;
+    // case UTILS.INPUT_TYPE.DROPDOWN:
+    //   return <DropDownModal {...props} />;
 
     case UTILS.INPUT_TYPE.POWER_PLAY:
       return <PowerPlayInput {...props} />;
