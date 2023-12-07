@@ -5,7 +5,7 @@ import PairBtn from "../../components/button/PairButton";
 import Button from "../../components/button/Button";
 import UTILS from "../../utils";
 
-const {AUTH_SCREENS, TEST_SCREENS} = UTILS.SCREEN_NAMES
+const { AUTH_SCREENS, TEST_SCREENS } = UTILS.SCREEN_NAMES;
 
 const OnBoarding = ({ navigation }) => {
   return (
@@ -33,7 +33,13 @@ const OnBoarding = ({ navigation }) => {
             rightBtnText={"Create"}
   /> */}
         </View>
-        <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} />
+        {/* <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} /> */}
+        <Button
+          label={"Login"}
+          onButtonPress={() =>
+            navigation.navigate(UTILS.SCREEN_NAMES.AUTH_SCREENS.LOGIN)
+          }
+        />
       </View>
     </ImageBackground>
   );
@@ -47,7 +53,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingTop: 100,
-
   },
   bgImage: {},
   upperContainer: {

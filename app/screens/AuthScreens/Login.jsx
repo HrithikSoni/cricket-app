@@ -5,7 +5,7 @@ import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useApi from "../../hooks/useApi";
-import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import { useNavigation } from "@react-navigation/native";
 import RegisterContactInput from "../../components/inputs/RegisterContactInput";
 import Button from "../../components/button/Button";
@@ -70,6 +70,8 @@ function useLogin(body) {
       body,
     };
     const resp = await request(requestConfig);
+
+    console.log(resp.data, "rrrrrr");
   }
 
   return { login };

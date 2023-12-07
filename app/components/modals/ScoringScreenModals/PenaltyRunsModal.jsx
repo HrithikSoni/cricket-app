@@ -47,10 +47,7 @@ const PenaltyRunsModal = (props) => {
             />
           </View>
           <View style={styles.btnContainer}>
-            <Button
-              label={"Submit"}
-              onButtonPress={() => console.log(penaltyRunsData.current)}
-            />
+            <Button label={"Submit"} onButtonPress={() => {}} />
           </View>
         </View>
       </View>

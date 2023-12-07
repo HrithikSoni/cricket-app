@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 import useAuth from "./useAuth";
-import api from "../services/api";
+import api from "../services/store/api";
 import UTILS from "../utils";
 
 const getHeader = (token) => {

@@ -13,7 +13,7 @@ import UTILS from "../../utils";
 import Button from "../../components/button/Button";
 import ComponentHandler from "../../components/inputs/ComponentHandler";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
 import { updateAuth } from "../../services/store/reducers/authReducer";
 

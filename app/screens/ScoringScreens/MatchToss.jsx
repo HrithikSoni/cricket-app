@@ -22,11 +22,7 @@ const MatchToss = () => {
         data={tossInfo}
         onSelect={(e) => (tossData.current.chooseTo = e)}
       />
-      <Button
-        label={"Confirm"}
-        onButtonPress={() => console.log(tossData.current, "oooo")}
-        bottom={true}
-      />
+      <Button label={"Confirm"} onButtonPress={() => {}} bottom={true} />
     </ParentWrapper>
   );
 };
@@ -48,7 +44,7 @@ function TossOptionSelector(props) {
             {...item}
             key={index}
             selected={selected == item.id}
-            onPress={()=>handleSelect(item.id)}
+            onPress={() => handleSelect(item.id)}
           />
         ))}
       </View>

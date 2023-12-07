@@ -18,7 +18,8 @@ export default function Root() {
   }, []);
 
   async function request() {
-    await permanentStorage.getDetails(permanentStorage.userDetail)
+    await permanentStorage
+      .getDetails(permanentStorage.userDetail)
       .then((response) => {
         if (response) {
           dispatch(updateAuth(response));
@@ -30,6 +31,7 @@ export default function Root() {
   return (
     // role ? role === ROLE.PLAYER ? <PlayerNavigator /> : <AdminNavigator /> : <AuthNavigator />
     role ? <AppNavigator /> : <AuthNavigator />
+    // true ? <AppNavigator /> : <AuthNavigator />
   );
 }
 

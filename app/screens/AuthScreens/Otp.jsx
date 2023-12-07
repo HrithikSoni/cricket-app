@@ -6,17 +6,18 @@ import Button from "../../components/button/Button";
 import OTPInputBox from "../../components/inputs/OTPInputBox";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useTimer from "../../hooks/useTimer";
-import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
 import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
+import useAuth from "../../hooks/useAuth";
 
 const Otp = ({ navigation, route }) => {
   const otpInput = useRef({ otp: "" });
 
   const contact = route.params;
 
-  const { handleOtp } = useOtp({ contact, otp: otpInput.current.otp });
+  const { handleOtp } = useOtp();
   const { timer, setTimer, timerRunning, setTimerRunning } = useTimer();
   const { handleResendOtp } = useResendOtp({
     contact: contact,
@@ -41,7 +42,11 @@ const Otp = ({ navigation, route }) => {
           <View style={{ marginTop: 30 }}>
             <OTPInputBox onOtpInput={(e) => (otpInput.current.otp = e)} />
           </View>
-          <Button onButtonPress={handleOtp} />
+          <Button
+            onButtonPress={() =>
+              handleOtp({ contact, otp: otpInput.current.otp })
+            }
+          />
         </View>
         <View style={[styles.lowerContainer]}>
           {timer === 0 ? (
@@ -79,16 +84,17 @@ const Otp = ({ navigation, route }) => {
 
 export default Otp;
 
-function useOtp(body) {
+function useOtp() {
   const dispatch = useDispatch();
+  const { setAuth } = useAuth();
 
   const { request } = useApi({
     onSuccess: (e) => {
       permanentStorage.saveDetails(permanentStorage.userDetail, e);
-      dispatch(updateAuth(e));
+      setAuth(e);
     },
   });
-  async function handleOtp() {
+  async function handleOtp(body) {
     const requestConfig = {
       endpoint: AUTH_ENDPOINTS.CONFIRM_OTP,
       body,

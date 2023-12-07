@@ -11,9 +11,7 @@ import LocationPicker from "../../components/inputs/LocationPicker";
 export default function CreateTeam() {
   const teamData = useRef({});
 
-  function handleEditProfilePic() {
-    console.log(teamData.current, "iiiiiiiiiiiii");
-  }
+  function handleEditProfilePic() {}
 
   return (
     <ParentWrapper screenTitle="Create New Team">
@@ -34,14 +32,18 @@ export default function CreateTeam() {
             />
           </View>
         </View>
-        <LocationPicker onLocationSelect={(e) => (teamData.current = {...teamData.current, ...e})} />
-        <View style={[styles.button]}>
-        <Button
-          bgColor={UTILS.COLORS.gray1}
-          label={"Add Players"}
-          textColor={UTILS.COLORS.themeColor}
-          onButtonPress={() => {}}
+        <LocationPicker
+          onLocationSelect={(e) =>
+            (teamData.current = { ...teamData.current, ...e })
+          }
         />
+        <View style={[styles.button]}>
+          <Button
+            bgColor={UTILS.COLORS.gray1}
+            label={"Add Players"}
+            textColor={UTILS.COLORS.themeColor}
+            onButtonPress={() => {}}
+          />
         </View>
       </View>
       <Button
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,
   },
-  teamDetailContainer:{
-    width: "100%"
+  teamDetailContainer: {
+    width: "100%",
   },
   imgTextContianer: {
     flexDirection: "row",
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 20,
   },
-  button:{
-    marginTop: 10
-  }
+  button: {
+    marginTop: 10,
+  },
 });

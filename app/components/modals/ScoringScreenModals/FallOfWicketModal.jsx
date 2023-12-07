@@ -76,10 +76,7 @@ const FallOfWicketModal = (props) => {
           {form.map((item, index) => (
             <BottomSheetList {...item} key={index} />
           ))}
-          <Button
-            label={"Done"}
-            onButtonPress={() => console.log(fallOfWicketData.current)}
-          />
+          <Button label={"Done"} onButtonPress={() => {}} />
         </View>
       </View>
     </Modal>

@@ -4,6 +4,7 @@ import TeamVersusCard from "../../components/cards/TeamVesesCard";
 import UTILS from "../../utils";
 import Button from "../../components/button/Button";
 import AppText from "../../components/text/AppText";
+import useManageTeam from "../../hooks/useManageTeam";
 // import useManageTeam from "../../hooks/useManageTeam";
 
 const teamDetails = {
@@ -14,7 +15,7 @@ const teamDetails = {
   teamName: "Team A",
 };
 export default function TeamsVersus({ navigation }) {
-  // const { handleUpdateCurrentTeam } = useManageTeam();
+  const { handleUpdateCurrentTeam } = useManageTeam();
 
   return (
     <ParentWrapper screenTitle="Teams" showBack={true}>
@@ -22,7 +23,7 @@ export default function TeamsVersus({ navigation }) {
         <TeamVersusCard
           {...teamDetails}
           onPress={() => {
-            // handleUpdateCurrentTeam(UTILS.TEAM_NAME.TEAM_A);
+            handleUpdateCurrentTeam(UTILS.TEAM_NAME.TEAM_A);
             navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.SELECT_TEAM);
           }}
         />
@@ -30,7 +31,7 @@ export default function TeamsVersus({ navigation }) {
         <TeamVersusCard
           {...teamDetails}
           onPress={() => {
-            // handleUpdateCurrentTeam(UTILS.TEAM_NAME.TEAM_B);
+            handleUpdateCurrentTeam(UTILS.TEAM_NAME.TEAM_B);
             navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.SELECT_TEAM);
           }}
         />

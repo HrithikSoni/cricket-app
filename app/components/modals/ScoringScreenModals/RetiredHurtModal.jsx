@@ -54,10 +54,7 @@ const RetiredHurtModal = (props) => {
             />
           </View>
           <View style={styles.btnContainer}>
-            <Button
-              label={"Done"}
-              onButtonPress={() => console.log(retiredHurtBatsmanData.current)}
-            />
+            <Button label={"Done"} onButtonPress={() => {}} />
           </View>
         </View>
       </View>
