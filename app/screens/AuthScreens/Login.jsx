@@ -1,14 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { useRef } from "react";
+import { StyleSheet, View } from "react-native";
 
-import UTILS from "../../utils";
-import { AUTH_SCREENS } from "../../utils/constants/screenNames";
+import { useNavigation } from "@react-navigation/native";
+import Button from "../../components/button/Button";
+import RegisterContactInput from "../../components/inputs/RegisterContactInput";
+import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useApi from "../../hooks/useApi";
 import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
-import { useNavigation } from "@react-navigation/native";
-import RegisterContactInput from "../../components/inputs/RegisterContactInput";
-import Button from "../../components/button/Button";
+import UTILS from "../../utils";
+import { AUTH_SCREENS } from "../../utils/constants/screenNames";
+
+const colors = UTILS.COLORS;
 
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
@@ -18,14 +21,14 @@ export default function Login({ navigation }) {
   return (
     <ParentWrapperWithBG
       title={"Welcome Back!"}
-      discp={"Enter your phone number and login your account"}
+      description={"Enter your phone number and login your account"}
     >
-      <View style={[styles.container]}>
-        <View style={[styles.middleContainer]}>
+      <View style={styles.container}>
+        <View style={styles.middleContainer}>
           <RegisterContactInput
             onChangeText={(e) => (loginData.current.contact = e)}
           />
-          <View style={{ marginTop: 50 }}>
+          <View style={styles.btnContainer}>
             <Button
               // onButtonPress={() =>
               //   navigation.navigate(AUTH_SCREENS.OTP, {
@@ -36,19 +39,19 @@ export default function Login({ navigation }) {
             />
           </View>
         </View>
-        <View style={[styles.lowerContainer]}>
+        <View style={styles.lowerContainer}>
           <Button
             label={"Don't have an account"}
-            bgColor={UTILS.COLORS.gray3}
-            textColor={UTILS.COLORS.black}
+            bgColor={colors.gray3}
+            textColor={colors.black}
             onButtonPress={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
           />
-          <Text style={{ lineHeight: 25, textAlign: "center" }}>
+          <AppText style={styles.bottomText}>
             By creating passcode you agree with our{" "}
-            <Text style={{ color: UTILS.COLORS.themeColor }}>
+            <AppText style={{ color: colors.themeColor }}>
               Terms & Conditions and Privacy Policy
-            </Text>
-          </Text>
+            </AppText>
+          </AppText>
         </View>
       </View>
     </ParentWrapperWithBG>
@@ -65,11 +68,12 @@ function useLogin(body) {
   });
 
   async function login() {
-    const requestConfig = {
-      endpoint: AUTH_ENDPOINTS.LOGIN,
-      body,
-    };
-    const resp = await request(requestConfig);
+    // const requestConfig = {
+    //   endpoint: AUTH_ENDPOINTS.LOGIN,
+    //   body,
+    // };
+    // const resp = await request(requestConfig);
+    navigation.navigate(AUTH_SCREENS.OTP);
   }
 
   return { login };
@@ -77,8 +81,7 @@ function useLogin(body) {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1,
   },
   middleContainer: {
     paddingTop: 50,
@@ -90,4 +93,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  bottomText: { lineHeight: 25, textAlign: "center" },
+  btnContainer: { marginTop: 50 },
 });

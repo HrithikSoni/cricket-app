@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 
@@ -10,19 +10,25 @@ import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
 import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
+import AppText from "../../components/text/AppText";
 
 const Otp = ({ navigation, route }) => {
   const otpInput = useRef({ otp: "" });
-
   const contact = route.params;
 
   const { handleOtp } = useOtp({ contact, otp: otpInput.current.otp });
   const { timer, setTimer, timerRunning, setTimerRunning } = useTimer();
-  const { handleResendOtp } = useResendOtp({
-    contact: contact,
-    setTimer,
-    setTimerRunning,
-  });
+  const { handleResendOtp } = useResendOtp({ contact: contact });
+
+  useEffect(() => {
+    setTimerRunning(true);
+  }, []);
+
+  function onResendOtp() {
+    handleResendOtp();
+    setTimer(60);
+    setTimerRunning(true);
+  }
 
   const resendTextStyle = {
     color: timerRunning ? UTILS.COLORS.gray2 : UTILS.COLORS.themeColor,
@@ -32,43 +38,26 @@ const Otp = ({ navigation, route }) => {
   return (
     <ParentWrapperWithBG
       title={"OTP verification"}
-      discp={`Code is sent to ` + contact}
-      navigation={navigation}
+      description={`Code is sent to ` + contact}
       PTTextCon={100}
     >
-      <View style={[styles.container]}>
-        <View style={[styles.middleContainer]}>
-          <View style={{ marginTop: 30 }}>
-            <OTPInputBox onOtpInput={(e) => (otpInput.current.otp = e)} />
-          </View>
+      <View style={styles.container}>
+        <View style={styles.middleContainer}>
+          <OTPInputBox onOtpInput={(e) => (otpInput.current.otp = e)} />
           <Button onButtonPress={handleOtp} />
         </View>
-        <View style={[styles.lowerContainer]}>
+        <View style={styles.lowerContainer}>
           {timer === 0 ? (
-            <Text
-              style={{
-                color: UTILS.COLORS.themeColor,
-                fontSize: 20,
-                fontWeight: "bold",
-              }}
-            >
-              0:00
-            </Text>
+            <AppText style={styles.otpTimerText}>0:00</AppText>
           ) : (
-            <Text
-              style={{
-                color: UTILS.COLORS.themeColor,
-                fontSize: 20,
-                fontWeight: "bold",
-              }}
-            >
-              0:{timer}
-            </Text>
+            <AppText style={styles.otpTimerText}>0:{timer}</AppText>
           )}
-          <View style={{ flexDirection: "row", gap: 5 }}>
-            <Text style={[styles.bottomText]}>Didn't receive code?</Text>
-            <TouchableOpacity onPress={handleResendOtp} disabled={timerRunning}>
-              <Text style={[styles.bottomText, resendTextStyle]}>Resend</Text>
+          <View style={styles.resendOtpContainer}>
+            <AppText style={styles.bottomText}>Didn't receive code?</AppText>
+            <TouchableOpacity onPress={onResendOtp} disabled={timerRunning}>
+              <AppText style={[styles.bottomText, resendTextStyle]}>
+                Resend
+              </AppText>
             </TouchableOpacity>
           </View>
         </View>
@@ -100,20 +89,16 @@ function useOtp(body) {
 }
 
 function useResendOtp(body) {
-  const { contact, setTimer, setTimerRunning } = body;
-
   const { request } = useApi({
     onSuccess: (e) => {},
   });
   async function handleResendOtp() {
     const requestConfig = {
       endpoint: AUTH_ENDPOINTS.SEND_OTP,
-      body: { contact },
+      body,
     };
 
     await request(requestConfig);
-    setTimer(60);
-    setTimerRunning(true);
   }
 
   return { handleResendOtp };
@@ -122,7 +107,9 @@ function useResendOtp(body) {
 const styles = StyleSheet.create({
   container: {},
   middleContainer: {
-    marginVertical: 30,
+    marginVertical: 20,
+    paddingTop: 50,
+    paddingBottom: 20,
     gap: 70,
   },
   lowerContainer: {
@@ -132,5 +119,11 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     fontSize: 17,
+  },
+  resendOtpContainer: { flexDirection: "row", gap: 5 },
+  otpTimerText: {
+    color: UTILS.COLORS.themeColor,
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });

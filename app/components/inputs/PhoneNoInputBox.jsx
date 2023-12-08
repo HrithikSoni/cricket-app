@@ -77,7 +77,7 @@ const PhoneNoInputBox = (props) => {
             placeholder="Mobile No"
             onChangeText={(e) => handleOnChange(e)}
             placeholderTextColor={UTILS.COLORS.gray2}
-            style={style.commonTextStyleNormal}
+            style={styles.textInput}
           />
         </View>
         {props?.isVerify && (
@@ -154,5 +154,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
+  },
+  textInput: {
+    ...style.commonTextStyleNormal,
+    width: "70%",
   },
 });
