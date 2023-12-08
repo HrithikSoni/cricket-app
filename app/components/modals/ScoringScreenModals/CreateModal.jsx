@@ -4,7 +4,7 @@ import { Modal, StyleSheet, View, TouchableOpacity } from "react-native";
 import UTILS from "../../../utils";
 import Button from "../../button/Button";
 import InputBox from "../../inputs/InputBox";
-import HeaderWithCross from "../../others/HeaderWithCross";
+import BottomSheetHeader from "../../others/BottomSheetHeader";
 import AppText from "../../text/AppText";
 
 const CreateModal = (props) => {
@@ -20,7 +20,7 @@ const CreateModal = (props) => {
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
-          <HeaderWithCross {...props} />
+          <BottomSheetHeader {...props} />
           <AppText style={styles.themeColorText}>{props.title}</AppText>
           <InputBox
             label={props.label}

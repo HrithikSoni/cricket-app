@@ -13,8 +13,10 @@ import MatchCard from "../components/cards/MatchCard";
 import SearchBar from "../components/inputs/SearchBar";
 import SelectionModal from "../components/modals/SelectionModal";
 import UTILS from "../utils";
+import AppText from "../components/text/AppText";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
+
 export default function Home({ navigation }) {
   const [showModal, setShowModal] = useState(false);
 
@@ -37,34 +39,35 @@ export default function Home({ navigation }) {
     </View>
   );
 
+  const viewAllTextStyle = [
+    UTILS.STYLES.commonTextStyle,
+    styles.themeColorStyle,
+  ];
+
   return (
     <>
-        <View style={[styles.container]}>
-          <HomeTopCard />
-          <SearchBar />
-          <View>
-            <View style={[styles.cardContainer]}>
-              <Text style={[UTILS.STYLES.commonTextStyle]}>Live Match</Text>
-              <TouchableOpacity onPress={() => {}}>
-                <Text
-                  style={[UTILS.STYLES.commonTextStyle, styles.themeColorStyle]}
-                >
-                  View All
-                </Text>
-              </TouchableOpacity>
-            </View>
-
-            <FlatList
-              horizontal
-              data={matchData}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString()}
-              showsHorizontalScrollIndicator={false}
-            />
+      <View style={styles.container}>
+        <HomeTopCard />
+        <SearchBar />
+        <View>
+          <View style={styles.cardContainer}>
+            <AppText style={UTILS.STYLES.commonTextStyle}>Live Match</AppText>
+            <TouchableOpacity onPress={() => {}}>
+              <AppText style={viewAllTextStyle}>View All</AppText>
+            </TouchableOpacity>
           </View>
-        </View>
 
-        <PlusButton onPress={handleModal} />
+          <FlatList
+            horizontal
+            data={matchData}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+      </View>
+
+      <PlusButton onPress={handleModal} />
       <SelectionModal
         visible={showModal}
         onDone={handleOnSelect}
@@ -87,7 +90,7 @@ export default function Home({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 20,
   },
   cardContainer: {
     flexDirection: "row",

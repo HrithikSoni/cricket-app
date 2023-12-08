@@ -21,8 +21,8 @@ export default function MatchTypes(props) {
     <>
       <BoldText style={styles.matchType}>Match Type</BoldText>
       <DropDownModal
-        arrayData={UTILS.MATCH_TYPES}
-        title="Select Type of Match"
+        data={UTILS.MATCH_TYPES}
+        header="Select Type of Match"
         onDropdownSelect={(e) => updateMatchDetails({ matchType: e.value })}
       />
 

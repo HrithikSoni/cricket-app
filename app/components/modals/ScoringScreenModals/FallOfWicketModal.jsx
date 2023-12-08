@@ -4,7 +4,7 @@ import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 import UTILS from "../../../utils";
 import Button from "../../button/Button";
 import Checkbox from "../../inputs/Checkbox";
-import HeaderWithCross from "../../others/HeaderWithCross";
+import BottomSheetHeader from "../../others/BottomSheetHeader";
 import AppText from "../../text/AppText";
 import SelectOptionModal from "./SelectOptionModal";
 
@@ -49,7 +49,7 @@ const FallOfWicketModal = (props) => {
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
-          <HeaderWithCross header={"Fall Of Wicket"} {...props} />
+          <BottomSheetHeader header={"Fall Of Wicket"} {...props} />
           <AppText style={styles.themeColorText}>Run</AppText>
           <View style={[style.rowCenter, styles.runCardsCon]}>
             {runCardData.map((item, index) => (

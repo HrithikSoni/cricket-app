@@ -7,7 +7,6 @@ import RegisterContactInput from "../../components/inputs/RegisterContactInput";
 import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useApi from "../../hooks/useApi";
-import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 
@@ -68,12 +67,11 @@ function useLogin(body) {
   });
 
   async function login() {
-    // const requestConfig = {
-    //   endpoint: AUTH_ENDPOINTS.LOGIN,
-    //   body,
-    // };
-    // const resp = await request(requestConfig);
-    navigation.navigate(AUTH_SCREENS.OTP);
+    const requestConfig = {
+      endpoint: AUTH_ENDPOINTS.LOGIN,
+      body,
+    };
+    const resp = await request(requestConfig);
   }
 
   return { login };

@@ -1,12 +1,12 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import UTILS from "../../utils";
-import InputSelector from "../../components/inputs/ComponentHandler";
 import Button from "../../components/button/Button";
+import InputSelector from "../../components/inputs/ComponentHandler";
 import AppText from "../../components/text/AppText";
+import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import useManageTeam from "../../hooks/useManageTeam";
+import UTILS from "../../utils";
 
 export default function MatchDetails({ navigation }) {
   const matchDetails = useRef({});
@@ -41,7 +41,7 @@ export default function MatchDetails({ navigation }) {
           <InputSelector
             {...i}
             data={umpireNamesArray}
-            onBottomSheetSelect={(e)=> matchDetails.current[i.key] = e}
+            onBottomSheetSelect={(e) => (matchDetails.current[i.key] = e)}
             header={"Select A Umpire"}
           />
         ))}
@@ -51,7 +51,7 @@ export default function MatchDetails({ navigation }) {
           type={UTILS.INPUT_TYPE.ADD_SELECT}
           label="Referee"
           data={refereeNamesArray}
-          onBottomSheetSelect={(e)=> matchDetails.current.referee = e}
+          onBottomSheetSelect={(e) => (matchDetails.current.referee = e)}
           header={"Select A Referee"}
         />
 
@@ -60,16 +60,16 @@ export default function MatchDetails({ navigation }) {
           type={UTILS.INPUT_TYPE.ADD_SELECT}
           label="Scorer"
           data={umpireNamesArray}
-          onBottomSheetSelect={(e)=> matchDetails.current.scorer = e}
+          onBottomSheetSelect={(e) => (matchDetails.current.scorer = e)}
           header={"Select A Scorer"}
         />
         <View style={{ height: 40 }} />
         <Button
           // bottom={true}
-          onButtonPress={() =>
-            {navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
-            console.log(matchDetails.current, 'iiiiiiiii')}
-          }
+          onButtonPress={() => {
+            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS);
+            console.log(matchDetails.current, "iiiiiiiii");
+          }}
           // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />
       </ScrollView>
@@ -78,15 +78,13 @@ export default function MatchDetails({ navigation }) {
 }
 
 function useMatchDetails() {
-  
-
   const { addMatchDetails } = useManageTeam();
   function handleSubmitMatchDetails(body) {
     addMatchDetails(body);
   }
 
   return {
-    handleSubmitMatchDetails
+    handleSubmitMatchDetails,
   };
 }
 

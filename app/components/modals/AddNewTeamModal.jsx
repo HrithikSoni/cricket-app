@@ -7,6 +7,7 @@ import InputBox from "../inputs/InputBox";
 import LocationPicker from "../inputs/LocationPicker";
 import Icons from "../others/Icons";
 import AppText from "../text/AppText";
+import BottomSheetHeader from "../others/BottomSheetHeader";
 
 export default function AddNewTeamModal(props) {
   const teamData = useRef({});
@@ -21,7 +22,7 @@ export default function AddNewTeamModal(props) {
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
-          <AppText style={styles.header}>Add New Team</AppText>
+          <BottomSheetHeader header={"Add Team"} {...props} />
           <ProfileInfoComp label={"Team Name"} />
           <LocationPicker
             onLocationSelect={(e) =>

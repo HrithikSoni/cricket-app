@@ -9,7 +9,6 @@ import AuthNavigator from "../routes/AuthNavigator";
 import permanentStorage from "../services/permanentStorage";
 
 export default function Root() {
-  const user = false;
   const { role } = useAuth();
   const dispatch = useDispatch();
 
@@ -18,7 +17,8 @@ export default function Root() {
   }, []);
 
   async function request() {
-    await permanentStorage.getDetails(permanentStorage.userDetail)
+    await permanentStorage
+      .getDetails(permanentStorage.userDetail)
       .then((response) => {
         if (response) {
           dispatch(updateAuth(response));

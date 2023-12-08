@@ -26,14 +26,17 @@ const OnBoarding = ({ navigation }) => {
           </Text>
         </View>
         <View style={[styles.lowerContainer]}>
-          <PairBtn
+          {/* <PairBtn
             onPressLeft={() => navigation.navigate(AUTH_SCREENS.LOGIN)}
             leftBtnText={"Login"}
             onPressRight={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
             rightBtnText={"Create"}
-          />
+          /> */}
         </View>
-        {/* <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} /> */}
+        <Button
+          label={"Login"}
+          onButtonPress={() => navigation.navigate(TEST_SCREENS.TEST_LOGIN)}
+        />
       </View>
     </ImageBackground>
   );
@@ -48,7 +51,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 100,
   },
-  bgImage: {},
   upperContainer: {
     marginTop: 20,
   },
