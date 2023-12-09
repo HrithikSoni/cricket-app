@@ -5,20 +5,25 @@ import Button from "../../components/button/Button";
 import RegisterContactInput from "../../components/inputs/RegisterContactInput";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useRTKQuery from "../../hooks/useRtKQuery";
-import authApi from "../../services/store/api/authApi";
+import authApi from "../../services/authServices/authApi";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 
-  const { post: login } = useRTKQuery(authApi.useLoginMutation, (e) => {
-    console.log(e, "resp");
+  const { post: login } = useRTKQuery(
+    authApi.useLoginMutation,
+    handleLoginSuccess
+  );
+
+  function handleLoginSuccess(e) {
+    console.log(e);
     navigation.navigate(
       UTILS.SCREEN_NAMES.AUTH_SCREENS.OTP,
       loginData.current.contact
     );
-  });
+  }
 
   return (
     <ParentWrapperWithBG

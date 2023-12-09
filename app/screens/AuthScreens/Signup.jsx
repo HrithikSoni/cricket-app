@@ -15,7 +15,7 @@ import ComponentHandler from "../../components/inputs/ComponentHandler";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
-import { updateAuth } from "../../services/store/reducers/authReducer";
+// import { updateAuth } from "../../services/store/reducers/authReducer";
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
@@ -94,12 +94,12 @@ const Signup = ({ navigation }) => {
       defaultValue: signUpData.current.stateId,
       type: UTILS.INPUT_TYPE.DROPDOWN,
     },
-    {
-      key: "contact",
-      defaultValue: signUpData.current.phoneNo,
-      type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
-      isVerify: true,
-    },
+    // {
+    //   key: "contact",
+    //   defaultValue: signUpData.current.phoneNo,
+    //   type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
+    //   isVerify: true,
+    // },
   ];
 
   return (
@@ -153,7 +153,7 @@ function useSignUp(body) {
   const { request } = useApi({
     onSuccess: (e) => {
       permanentStorage.saveDetails(permanentStorage.userDetail, e);
-      dispatch(updateAuth(e));
+      // dispatch(updateAuth(e));
     },
     onFail: (e) => {},
   });

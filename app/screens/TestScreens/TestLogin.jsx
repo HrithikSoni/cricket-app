@@ -6,7 +6,7 @@ import Button from "../../components/button/Button";
 import InputBox from "../../components/inputs/InputBox";
 import PhoneNoInputBox from "../../components/inputs/PhoneNoInputBox";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import { updateAuth } from "../../services/store/reducers/authReducer";
+// import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
 import Icons from "../../components/others/Icons";
 
@@ -21,12 +21,12 @@ export default function TestLogin({ navigation }) {
   const responseUser = { data: { role: "User", firstName: "User" } };
 
   function handleLogin() {
-    dispatch(updateAuth(responseAdmin));
+    // dispatch(updateAuth(responseAdmin));
 
     return;
     if (loginData.current.mobileNo === registeredNo) {
       if (loginData.current.password === registeredPassword) {
-        dispatch(updateAuth(responseAdmin));
+        // dispatch(updateAuth(responseAdmin));
         // permanentStorage(permanentStorage.userDetail, response)
       } else {
         return alert("Your Password is Incorrect");
@@ -61,7 +61,7 @@ export default function TestLogin({ navigation }) {
             label={"Continue as Guest"}
             bgColor={UTILS.COLORS.gray3}
             textColor={UTILS.COLORS.black}
-            onButtonPress={() => dispatch(updateAuth(responseUser))}
+            // onButtonPress={() => dispatch(updateAuth(responseUser))}
           />
           <Text style={{ lineHeight: 25, textAlign: "center" }}>
             By creating passcode you agree with our{" "}

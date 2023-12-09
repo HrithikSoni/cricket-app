@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import authReducer from "./reducers/authReducer.jsx";
 import matchReduce from "./reducers/matchReduce.jsx";
 import { api } from "./api/appApi.jsx";
-import authApi from "./api/authApi.jsx";
+import authReducer from "../authServices/authReducer.jsx";
+import authApi from "../authServices/authApi.jsx";
 
 export const store = configureStore({
   reducer: {
