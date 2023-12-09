@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 
@@ -13,10 +13,10 @@ import UTILS from "../../utils";
 import useAuth from "../../hooks/useAuth";
 import useRTKQuery from "../../hooks/useRtKQuery";
 import authApi from "../../services/authServices/authApi";
+import AppText from "../../components/text/AppText";
 
 const Otp = ({ navigation, route }) => {
   const otpInput = useRef({ otp: "" });
-
   const contact = route.params;
 
   const { timer, timerRunning, handleOtp, handleResendOtp } = useOtpService();
@@ -29,8 +29,7 @@ const Otp = ({ navigation, route }) => {
   return (
     <ParentWrapperWithBG
       title={"OTP verification"}
-      discp={`Code is sent to ` + contact}
-      navigation={navigation}
+      description={`Code is sent to ` + contact}
       PTTextCon={100}
     >
       <View style={[styles.container]}>
@@ -44,27 +43,11 @@ const Otp = ({ navigation, route }) => {
             }
           />
         </View>
-        <View style={[styles.lowerContainer]}>
+        <View style={styles.lowerContainer}>
           {timer === 0 ? (
-            <Text
-              style={{
-                color: UTILS.COLORS.themeColor,
-                fontSize: 20,
-                fontWeight: "bold",
-              }}
-            >
-              0:00
-            </Text>
+            <AppText style={styles.otpTimerText}>0:00</AppText>
           ) : (
-            <Text
-              style={{
-                color: UTILS.COLORS.themeColor,
-                fontSize: 20,
-                fontWeight: "bold",
-              }}
-            >
-              0:{timer}
-            </Text>
+            <AppText style={styles.otpTimerText}>0:{timer}</AppText>
           )}
           <View style={{ flexDirection: "row", gap: 5 }}>
             <Text style={[styles.bottomText]}>Didn't receive code?</Text>
@@ -121,7 +104,9 @@ function useOtpService() {
 const styles = StyleSheet.create({
   container: {},
   middleContainer: {
-    marginVertical: 30,
+    marginVertical: 20,
+    paddingTop: 50,
+    paddingBottom: 20,
     gap: 70,
   },
   lowerContainer: {
@@ -131,5 +116,11 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     fontSize: 17,
+  },
+  resendOtpContainer: { flexDirection: "row", gap: 5 },
+  otpTimerText: {
+    color: UTILS.COLORS.themeColor,
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });

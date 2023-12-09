@@ -13,6 +13,7 @@ import UTILS from "../../utils";
 import SearchBar from "../inputs/SearchBar";
 import AppText from "../text/AppText";
 import Icons from "../others/Icons";
+import BottomSheetHeader from "../others/BottomSheetHeader";
 
 const colors = UTILS.COLORS;
 const style = UTILS.STYLES;
@@ -29,13 +30,7 @@ export default function BottomSheetModal(props) {
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
           <ScrollView>
-            <View style={style.rowSpaceBtw}>
-              <AppText style={styles.header}>{props.header}</AppText>
-              <Icons.CrossIcon
-                onPress={props.onRequestClose}
-                color={colors.themeColor}
-              />
-            </View>
+            <BottomSheetHeader {...props} />
             {props.searchBarLabel && <SearchBar label={props.searchBarLabel} />}
             {props?.data.map((option, index) => (
               <TouchableOpacity
@@ -44,12 +39,12 @@ export default function BottomSheetModal(props) {
                 onPress={() => handleOptionSelection(option)}
               >
                 <View style={styles.optionContent}>
-                  {option.imgUrl && (
-                    <Image source={option.imgUrl} style={styles.imgStyle} />
+                  {option.flag && (
+                    <AppText style={styles.flagStyle}>{option.flag}</AppText>
                   )}
-                  <Text style={styles.text}>{option.label}</Text>
+                  <AppText style={styles.text}>{option.label}</AppText>
                 </View>
-                {option.rightText && <Text>{option.rightText}</Text>}
+                {option.rightText && <AppText>{option.rightText}</AppText>}
               </TouchableOpacity>
             ))}
           </ScrollView>

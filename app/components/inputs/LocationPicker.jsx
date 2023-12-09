@@ -10,12 +10,14 @@ const LocationPicker = (props) => {
     {
       label: "Country",
       key: "countryId",
-      arrayData: UTILS.COUNTRY_INFO,
+      header: "Select A Country",
+      data: UTILS.COUNTRY_INFO,
     },
     {
       label: "State",
       key: "stateId",
-      arrayData: statesArray,
+      header: "Select A State",
+      data: statesArray,
     },
   ];
 

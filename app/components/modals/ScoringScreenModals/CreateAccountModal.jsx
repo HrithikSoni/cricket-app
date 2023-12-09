@@ -3,7 +3,7 @@ import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import UTILS from "../../../utils";
 import ComponentHandler from "../../inputs/ComponentHandler";
-import HeaderWithCross from "../../others/HeaderWithCross";
+import BottomSheetHeader from "../../others/BottomSheetHeader";
 import Button from "../../button/Button";
 
 const CreateAccountModal = (props) => {
@@ -34,7 +34,7 @@ const CreateAccountModal = (props) => {
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
-          <HeaderWithCross header={"Create Account"} {...props} />
+          <BottomSheetHeader header={"Create Account"} {...props} />
           {form.map((item, index) => (
             <ComponentHandler
               {...item}

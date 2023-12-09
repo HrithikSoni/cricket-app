@@ -9,7 +9,6 @@ import AuthNavigator from "../routes/AuthNavigator";
 import permanentStorage from "../services/permanentStorage";
 
 export default function Root() {
-  const user = false;
   const { role } = useAuth();
   const dispatch = useDispatch();
 

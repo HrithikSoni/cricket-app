@@ -1,21 +1,17 @@
 import React, { useRef } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { CameraIcon } from "../../components/others/Icons";
-import UTILS from "../../utils";
 import Button from "../../components/button/Button";
 import ComponentHandler from "../../components/inputs/ComponentHandler";
+import { CameraIcon } from "../../components/others/Icons";
+import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
 // import { updateAuth } from "../../services/store/reducers/authReducer";
+import { updateAuth } from "../../services/store/reducers/authReducer";
+import UTILS from "../../utils";
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
@@ -106,20 +102,18 @@ const Signup = ({ navigation }) => {
     <ScrollView>
       <ParentWrapperWithBG
         title={"Create account"}
-        discp={"Please Enter Your details and create your account"}
+        description={"Please Enter Your details and create your account"}
         navigation={navigation}
       >
-        <View style={[styles.container]}>
-          <View style={[styles.profilePicCon]}>
+        <View style={styles.container}>
+          <View style={styles.profilePicCon}>
             <TouchableOpacity onPress={handleEditProfilePic}>
               <View style={styles.userDp}>
                 <CameraIcon />
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={handleEditProfilePic}>
-              <Text style={{ marginLeft: 30, fontSize: 17, fontWeight: "500" }}>
-                Set profile picture
-              </Text>
+              <AppText style={styles.text}>Set profile picture</AppText>
             </TouchableOpacity>
           </View>
           <View style={[styles.formContainer]}></View>
@@ -171,6 +165,65 @@ function useSignUp(body) {
   };
 }
 
+const form = [
+  {
+    label: "First Name",
+    key: "firstName",
+  },
+  {
+    label: "Last Name",
+    key: "lastName",
+  },
+  {
+    label: "Email",
+    key: "email",
+  },
+  {
+    label: "Gender",
+    key: "gender",
+    type: UTILS.INPUT_TYPE.DROPDOWN,
+    arrayData: [
+      { label: "Male", value: "MALE" },
+      { label: "Female", value: "FEMALE" },
+      { label: "Other", value: "OTHER" },
+    ],
+    title: "Select Gender",
+  },
+  {
+    label: "Date Of Birth",
+    key: "dob",
+    type: UTILS.INPUT_TYPE.DATE_PICKER,
+  },
+  {
+    label: "Role",
+    key: "role",
+    type: UTILS.INPUT_TYPE.DROPDOWN,
+    arrayData: [
+      { label: "Player", value: "PLAYER" },
+      { label: "Admin", value: "ADMIN" },
+      { label: "User", value: "USER" },
+      { label: "Umpire", value: "UMPIRE" },
+      { label: "Referee", value: "REFEREE" },
+    ],
+    title: "Select Role",
+  },
+  {
+    label: "Country",
+    key: "countryId",
+    type: UTILS.INPUT_TYPE.DROPDOWN,
+  },
+  {
+    label: "State",
+    key: "stateId",
+    type: UTILS.INPUT_TYPE.DROPDOWN,
+  },
+  {
+    key: "contact",
+    type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
+    isVerify: true,
+  },
+];
+
 const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
@@ -178,7 +231,7 @@ const styles = StyleSheet.create({
   profilePicCon: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   formContainer: {
     marginTop: 10,
@@ -190,7 +243,7 @@ const styles = StyleSheet.create({
     backgroundColor: UTILS.COLORS.gray1,
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: -90,
     marginRight: 20,
   },
+  text: { fontSize: 17, fontWeight: "500" },
 });

@@ -1,14 +1,15 @@
-import React, { useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useRef } from "react";
+import { StyleSheet, View } from "react-native";
 
 import { useDispatch } from "react-redux";
 import Button from "../../components/button/Button";
 import InputBox from "../../components/inputs/InputBox";
 import PhoneNoInputBox from "../../components/inputs/PhoneNoInputBox";
+import Icons from "../../components/others/Icons";
+import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 // import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
-import Icons from "../../components/others/Icons";
 
 export default function TestLogin({ navigation }) {
   const loginData = useRef({ mobileNo: "", password: "" });
@@ -16,7 +17,6 @@ export default function TestLogin({ navigation }) {
 
   const registeredNo = "9999999999";
   const registeredPassword = "password";
-  const { TEST_SCREENS } = UTILS.SCREEN_NAMES;
   const responseAdmin = { data: { role: "Admin", firstName: "Admin" } };
   const responseUser = { data: { role: "User", firstName: "User" } };
 
@@ -39,7 +39,7 @@ export default function TestLogin({ navigation }) {
   return (
     <ParentWrapperWithBG
       title={"Welcome Back!"}
-      discp={"Enter your phone number and login your account"}
+      description={"Enter your phone number and login your account"}
     >
       <View style={[styles.container]}>
         <View style={[styles.middleContainer]}>
@@ -56,19 +56,19 @@ export default function TestLogin({ navigation }) {
             <Button onButtonPress={handleLogin} />
           </View>
         </View>
-        <View style={[styles.lowerContainer]}>
+        <View style={styles.lowerContainer}>
           <Button
             label={"Continue as Guest"}
             bgColor={UTILS.COLORS.gray3}
             textColor={UTILS.COLORS.black}
             // onButtonPress={() => dispatch(updateAuth(responseUser))}
           />
-          <Text style={{ lineHeight: 25, textAlign: "center" }}>
+          <AppText style={{ lineHeight: 25, textAlign: "center" }}>
             By creating passcode you agree with our{" "}
-            <Text style={{ color: UTILS.COLORS.themeColor }}>
+            <AppText style={{ color: UTILS.COLORS.themeColor }}>
               Terms & Conditions and Privacy Policy
-            </Text>
-          </Text>
+            </AppText>
+          </AppText>
         </View>
       </View>
     </ParentWrapperWithBG>

@@ -31,7 +31,7 @@ const OnBoarding = ({ navigation }) => {
             leftBtnText={"Login"}
             onPressRight={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
             rightBtnText={"Create"}
-  /> */}
+          /> */}
         </View>
         {/* <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} /> */}
         <Button
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 100,
   },
-  bgImage: {},
   upperContainer: {
     marginTop: 20,
   },

@@ -1,13 +1,13 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import UTILS from "../../utils";
-import InputSelector from "../../components/inputs/ComponentHandler";
 import Button from "../../components/button/Button";
+import InputSelector from "../../components/inputs/ComponentHandler";
 import AppText from "../../components/text/AppText";
+import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import useManageTeam from "../../hooks/useManageTeam";
 // import { usersApi } from "../../services/store/api/usersApi";
+import UTILS from "../../utils";
 
 export default function MatchDetails({ navigation }) {
   const matchDetails = useRef({});

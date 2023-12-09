@@ -1,14 +1,9 @@
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
 import React from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+
 import UTILS from "../../utils";
-import AppText from "../text/AppText";
 import Icons from "../others/Icons";
+import AppText from "../text/AppText";
 
 export default function SearchAndAdd(props) {
   return (

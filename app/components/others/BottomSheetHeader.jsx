@@ -5,9 +5,10 @@ import UTILS from "../../utils";
 import Icons from "./Icons";
 import AppText from "../text/AppText";
 
-const HeaderWithCross = (props) => {
+const BottomSheetHeader = (props) => {
   return (
-    <View style={UTILS.STYLES.rowSpaceBtw}>
+    <View style={styles.container}>
+      <View style={{ width: 20 }} />
       <AppText style={styles.header}>{props.header}</AppText>
       <Icons.CrossIcon
         onPress={props.onRequestClose}
@@ -17,8 +18,13 @@ const HeaderWithCross = (props) => {
   );
 };
 
-export default HeaderWithCross;
+export default BottomSheetHeader;
 
 const styles = StyleSheet.create({
   header: { fontSize: 20, marginVertical: 10, fontWeight: "700" },
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
 });
