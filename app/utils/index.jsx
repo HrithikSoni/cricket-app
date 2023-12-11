@@ -11,7 +11,6 @@ import SCREEN_NAMES from "./constants/screenNames";
 import countryInfo from "./constants/selctedCountry";
 import TEAM_NAME from "./enum/teamName";
 import MATCH_TYPES from "./enum/matchTypes";
-import COMPONENT_NAMES from "./constants/componentNames";
 
 const HELPERS = {
   handlePlatform,
@@ -29,7 +28,6 @@ const UTILS = {
   DIMENSIONS,
   TOAST_TYPE: ToastType,
   SCREEN_NAMES,
-  COMPONENT_NAMES,
   TEAM_NAME,
   MATCH_TYPES,
 };

@@ -1,14 +1,13 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { Text, View } from "react-native";
 
 import UTILS from "../utils";
-import LiveMatchTopCard from "../components/cards/LiveMatchTopCard";
-import ScoringCard from "../components/cards/ScoringCard";
-import { Text, View } from "react-native";
+import TeamScoreWithScoreTableComp from "../components/ScoringScreensComponent/TeamScoreWithScoreTableComp";
+import ScoringTableComp from "../components/ScoringScreensComponent/ScoringTableComp";
 
 const Tab = createMaterialTopTabNavigator();
 const colors = UTILS.COLORS;
-const { TOP_TAB_COMPONENTS } = UTILS.COMPONENT_NAMES;
 
 export default function TopTabNavigator() {
   return (
@@ -21,19 +20,25 @@ export default function TopTabNavigator() {
           fontWeight: "bold",
           textTransform: "none",
         },
-        tabBarStyle: { backgroundColor: colors.themeColor },
+        tabBarStyle: {
+          backgroundColor: colors.themeColor,
+          width: 200,
+          height: 50,
+          borderRadius: 100,
+          marginBottom: 10,
+        },
         tabBarIndicatorStyle: { backgroundColor: "transparent" },
       }}
     >
       <Tab.Screen
-        name={TOP_TAB_COMPONENTS.LIVE_MATCH_CARD}
-        component={LiveMatchTopCard}
-        options={{ tabBarLabel: "Profile" }}
+        name={"Team Score With Table Comp"}
+        component={TeamScoreWithScoreTableComp}
+        options={{ tabBarLabel: "Live" }}
       />
       <Tab.Screen
-        name={TOP_TAB_COMPONENTS.SCORING_CARD}
-        component={ScoringCard}
-        options={{ tabBarLabel: "Profile" }}
+        name={"Scoring Table Comp"}
+        component={ScoringTableComp}
+        options={{ tabBarLabel: "Scorecard" }}
       />
     </Tab.Navigator>
   );

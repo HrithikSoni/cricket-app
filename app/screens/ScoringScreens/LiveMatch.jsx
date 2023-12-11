@@ -1,7 +1,7 @@
 import { StatusBar, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-import LiveMatchTopCard from "../../components/cards/LiveMatchTopCard";
+import LiveMatchTopCard from "../../components/ScoringScreensComponent/TeamScoreWithScoreTableComp";
 import UTILS from "../../utils";
 import Icons from "../../components/others/Icons";
 import AppText from "../../components/text/AppText";
@@ -12,16 +12,14 @@ const LiveMatch = (props) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <View style={styles.header}>
-          <Icons.LeftChevron
-            onPress={onBackBtnPress}
-            style={{ position: "absolute", left: 10 }}
-          />
-          <AppText style={{ fontSize: 18 }}>Live Match</AppText>
-        </View>
+      <View style={styles.header}>
+        <Icons.LeftChevron
+          onPress={onBackBtnPress}
+          style={{ position: "absolute", left: 10 }}
+        />
+        <AppText style={{ fontSize: 18 }}>Live Match</AppText>
       </View>
-      <View style={{ flex: 1, backgroundColor: "gray" }}>
+      <View style={styles.tabBarContainer}>
         <TopTabNavigator />
       </View>
     </View>
@@ -41,17 +39,17 @@ export default LiveMatch;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  topContainer: {
+    paddingHorizontal: 20,
     backgroundColor: UTILS.COLORS.gray1,
     paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight + 20),
-    borderBottomLeftRadius: 35,
-    borderBottomRightRadius: 35,
   },
   header: {
     height: 20,
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 20,
+  },
+  tabBarContainer: {
+    flex: 1,
   },
 });

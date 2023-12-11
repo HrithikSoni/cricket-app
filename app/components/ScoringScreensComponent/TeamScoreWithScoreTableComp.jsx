@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 
 import TeamScoreCard from "../cards/TeamScoreCard";
 
-const LiveMatchTopCard = (props) => {
+const TeamScoreWithScoreTableComp = (props) => {
   const navigation = useNavigation();
 
   return (
@@ -17,7 +17,7 @@ const LiveMatchTopCard = (props) => {
   );
 };
 
-export default LiveMatchTopCard;
+export default TeamScoreWithScoreTableComp;
 
 const currentInningTeamData = {
   imgUrl: require("../../../assets/cricket-team.png"),
