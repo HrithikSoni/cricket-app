@@ -35,7 +35,7 @@ const initialState = {
 };
 
 export const matchSlice = createSlice({
-  name: "auth",
+  name: "match",
   initialState,
   reducers: {
     addPlayerInTeam: (state, action) => {
@@ -93,7 +93,7 @@ export const matchSlice = createSlice({
     },
 
     updateCurrenTeam: (state, action) => {
-      state.match.currentTeam = action.payload;
+      state.currentTeam = action.payload;
 
       return state;
     },

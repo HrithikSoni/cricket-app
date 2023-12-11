@@ -9,10 +9,10 @@ export default function AddSelectInput(props) {
   const [selectedValue, setSelectedValue] = useState("");
   const [modal, setModal] = useState(false);
 
-  function handleOnSelect(option){
-    setSelectedValue(option.label)
-    props.onBottomSheetSelect(option.value)
-    setModal(false)
+  function handleOnSelect(option) {
+    setSelectedValue(option.label);
+    props.onBottomSheetSelect(option);
+    setModal(false);
   }
 
   return (
@@ -24,7 +24,10 @@ export default function AddSelectInput(props) {
   function SelectorBtn() {
     return (
       <>
-        <TouchableOpacity style={styles.selectorBtn} onPress={() => setModal(true)}>
+        <TouchableOpacity
+          style={styles.selectorBtn}
+          onPress={() => setModal(true)}
+        >
           <AppText style={{ color: UTILS.COLORS.themeColor }}>Add</AppText>
         </TouchableOpacity>
         <BottomSheetModal

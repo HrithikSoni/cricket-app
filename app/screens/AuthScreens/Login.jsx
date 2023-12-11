@@ -1,21 +1,29 @@
 import React, { useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-import { useNavigation } from "@react-navigation/native";
 import Button from "../../components/button/Button";
 import RegisterContactInput from "../../components/inputs/RegisterContactInput";
-import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import useApi from "../../hooks/useApi";
+import useRTKQuery from "../../hooks/useRtKQuery";
+import authApi from "../../services/authServices/authApi";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
-
-const colors = UTILS.COLORS;
 
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 
-  const { login } = useLogin(loginData.current);
+  const { post: login } = useRTKQuery(
+    authApi.useLoginMutation,
+    handleLoginSuccess
+  );
+
+  function handleLoginSuccess(e) {
+    console.log(e);
+    navigation.navigate(
+      UTILS.SCREEN_NAMES.AUTH_SCREENS.OTP,
+      loginData.current.contact
+    );
+  }
 
   return (
     <ParentWrapperWithBG
@@ -34,7 +42,7 @@ export default function Login({ navigation }) {
               //     phoneNo: loginData.current.phoneNo,
               //   })
               // }
-              onButtonPress={login}
+              onButtonPress={() => login(loginData.current)}
             />
           </View>
         </View>
@@ -55,26 +63,6 @@ export default function Login({ navigation }) {
       </View>
     </ParentWrapperWithBG>
   );
-}
-
-function useLogin(body) {
-  const navigation = useNavigation();
-
-  const { request } = useApi({
-    onSuccess: (e) => {
-      navigation.navigate(AUTH_SCREENS.OTP, body.contact);
-    },
-  });
-
-  async function login() {
-    const requestConfig = {
-      endpoint: AUTH_ENDPOINTS.LOGIN,
-      body,
-    };
-    const resp = await request(requestConfig);
-  }
-
-  return { login };
 }
 
 const styles = StyleSheet.create({

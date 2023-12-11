@@ -6,6 +6,7 @@ import InputSelector from "../../components/inputs/ComponentHandler";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import useManageTeam from "../../hooks/useManageTeam";
+// import { usersApi } from "../../services/store/api/usersApi";
 import UTILS from "../../utils";
 
 export default function MatchDetails({ navigation }) {
@@ -14,6 +15,9 @@ export default function MatchDetails({ navigation }) {
   const updateMatchDetails = (e) => {
     matchDetails.current = { ...matchDetails.current, ...e };
   };
+  // const { data, error, isLoading } = usersApi.useGetUsersQuery();
+
+  // console.log(data, "oooooo");
 
   const { handleSubmitMatchDetails } = useMatchDetails();
 
@@ -28,7 +32,7 @@ export default function MatchDetails({ navigation }) {
             // onChangeText={(e) => updateMatchDetails((i.key = e))}
             // onDropdownSelect={(e) => updateMatchDetails((i.key = e.value))}
             // onLocationSelect={(e) => updateMatchDetails(e)}
-            onDropdownSelect={(e) => console.log(e)}
+            onDropdownSelect={(e) => {}}
             onChangeText={(e) => updateMatchDetails({ [i.key]: e })}
             onLocationSelect={updateMatchDetails}
             onAppend={updateMatchDetails}
@@ -36,44 +40,54 @@ export default function MatchDetails({ navigation }) {
           />
         ))}
 
-        <AppText style={styles.formLabel}>Add Umpires</AppText>
-        {umpireForm.map((i) => (
-          <InputSelector
-            {...i}
-            data={umpireNamesArray}
-            onBottomSheetSelect={(e) => (matchDetails.current[i.key] = e)}
-            header={"Select A Umpire"}
-          />
-        ))}
-
-        <AppText style={styles.formLabel}>Add Referee</AppText>
-        <InputSelector
-          type={UTILS.INPUT_TYPE.ADD_SELECT}
-          label="Referee"
-          data={refereeNamesArray}
-          onBottomSheetSelect={(e) => (matchDetails.current.referee = e)}
-          header={"Select A Referee"}
+        <SelectInput
+          label={"Add Umpires"}
+          form={umpireForm}
+          list={umpireNamesArray}
+          onSelect={updateMatchDetails}
         />
 
-        <AppText style={styles.formLabel}>Add Scorer</AppText>
-        <InputSelector
-          type={UTILS.INPUT_TYPE.ADD_SELECT}
-          label="Scorer"
-          data={umpireNamesArray}
-          onBottomSheetSelect={(e) => (matchDetails.current.scorer = e)}
-          header={"Select A Scorer"}
+        <SelectInput
+          label={"Add Referee"}
+          form={refereeForm}
+          list={refereeNamesArray}
+          onSelect={updateMatchDetails}
         />
+
+        <SelectInput
+          label={"Add Scorer"}
+          form={scorerFrom}
+          list={umpireNamesArray}
+          onSelect={updateMatchDetails}
+        />
+
         <View style={{ height: 40 }} />
         <Button
           // bottom={true}
           onButtonPress={() => {
             navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS);
-            console.log(matchDetails.current, "iiiiiiiii");
+            // console.log(matchDetails.current, "iiiiiiiii");
           }}
           // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />
       </ScrollView>
     </ParentWrapper>
+  );
+}
+
+function SelectInput({ label, form, list, onSelect }) {
+  return (
+    <>
+      <AppText style={styles.formLabel}>{label}</AppText>
+      {form.map((i) => (
+        <InputSelector
+          {...i}
+          data={list}
+          onBottomSheetSelect={(e) => onSelect({ [i.key]: e })}
+          header={"Select A Umpire"}
+        />
+      ))}
+    </>
   );
 }
 
@@ -108,11 +122,11 @@ const umpireForm = [
 ];
 
 const refereeForm = [
-  { label: "Referee", key: "umpire1", type: UTILS.INPUT_TYPE.ADD_SELECT },
+  { label: "Referee", key: "referee", type: UTILS.INPUT_TYPE.ADD_SELECT },
 ];
 
 const scorerFrom = [
-  { label: "Scorer", key: "umpire1", type: UTILS.INPUT_TYPE.ADD_SELECT },
+  { label: "Scorer", key: "scorer", type: UTILS.INPUT_TYPE.ADD_SELECT },
 ];
 
 const umpireNamesArray = [

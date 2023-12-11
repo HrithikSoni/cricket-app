@@ -33,9 +33,12 @@ const OnBoarding = ({ navigation }) => {
             rightBtnText={"Create"}
           /> */}
         </View>
+        {/* <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} /> */}
         <Button
           label={"Login"}
-          onButtonPress={() => navigation.navigate(TEST_SCREENS.TEST_LOGIN)}
+          onButtonPress={() =>
+            navigation.navigate(UTILS.SCREEN_NAMES.AUTH_SCREENS.LOGIN)
+          }
         />
       </View>
     </ImageBackground>

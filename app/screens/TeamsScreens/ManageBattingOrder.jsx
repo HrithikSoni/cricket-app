@@ -1,22 +1,17 @@
-import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
+import Button from "../../components/button/Button";
+import PlayerManageCard from "../../components/cards/PlayerManageCard";
+import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import SearchAndAdd from "../../components/search/SearchAndAdd";
-import AppText from "../../components/text/AppText";
-import PlayerDetailsCard from "../../components/cards/PlayerDetailsCard";
+import useManageTeam from "../../hooks/useManageTeam";
 import {
   addPlayerInTeam,
   getCurrentTeam,
 } from "../../services/store/reducers/matchReduce";
-import Button from "../../components/button/Button";
-import SearchTeamModal from "../../components/modals/SearchTeamModal";
-import AddNewPlayerModal from "../../components/modals/AddNewPlayerModal";
-import PlayerManageCard from "../../components/cards/PlayerManageCard";
-import useManageTeam from "../../hooks/useManageTeam";
 import UTILS from "../../utils";
-import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
 
 export default function ManageBattingOrder({ navigation }) {
   return (
@@ -71,7 +66,7 @@ function List() {
     </ScrollView>
   );
 }
-
+// $$$$$$$$$$
 const playerData = [
   { id: 1, name: "Jason", type: "Bowler" },
   { id: 2, name: "Jerome", type: "Bowler" },

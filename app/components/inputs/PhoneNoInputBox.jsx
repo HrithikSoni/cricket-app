@@ -10,7 +10,7 @@ import React, { useContext, useEffect, useState } from "react";
 import UTILS from "../../utils";
 import OTPInputBox from "./OTPInputBox";
 import useApi from "../../hooks/useApi";
-import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import useTimer from "../../hooks/useTimer";
 import AppText from "../text/AppText";
 
@@ -121,8 +121,8 @@ export default PhoneNoInputBox;
 
 function useSendOtp(body) {
   const { request } = useApi({
-    onSuccess: (e) => console.log(e.message, "tttttttttttttt"),
-    onFail: (e) => console.log(e, "rrrrr"),
+    onSuccess: (e) => {},
+    onFail: (e) => {},
   });
 
   async function handleSendOtp() {

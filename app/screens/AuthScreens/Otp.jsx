@@ -6,29 +6,20 @@ import Button from "../../components/button/Button";
 import OTPInputBox from "../../components/inputs/OTPInputBox";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useTimer from "../../hooks/useTimer";
-import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
-import { updateAuth } from "../../services/store/reducers/authReducer";
+import { updateAuth } from "../../services/authServices/authReducer";
 import UTILS from "../../utils";
+import useAuth from "../../hooks/useAuth";
+import useRTKQuery from "../../hooks/useRtKQuery";
+import authApi from "../../services/authServices/authApi";
 import AppText from "../../components/text/AppText";
 
 const Otp = ({ navigation, route }) => {
   const otpInput = useRef({ otp: "" });
   const contact = route.params;
 
-  const { handleOtp } = useOtp({ contact, otp: otpInput.current.otp });
-  const { timer, setTimer, timerRunning, setTimerRunning } = useTimer();
-  const { handleResendOtp } = useResendOtp({ contact: contact });
-
-  useEffect(() => {
-    setTimerRunning(true);
-  }, []);
-
-  function onResendOtp() {
-    handleResendOtp();
-    setTimer(60);
-    setTimerRunning(true);
-  }
+  const { timer, timerRunning, handleOtp, handleResendOtp } = useOtpService();
 
   const resendTextStyle = {
     color: timerRunning ? UTILS.COLORS.gray2 : UTILS.COLORS.themeColor,
@@ -41,10 +32,16 @@ const Otp = ({ navigation, route }) => {
       description={`Code is sent to ` + contact}
       PTTextCon={100}
     >
-      <View style={styles.container}>
-        <View style={styles.middleContainer}>
-          <OTPInputBox onOtpInput={(e) => (otpInput.current.otp = e)} />
-          <Button onButtonPress={handleOtp} />
+      <View style={[styles.container]}>
+        <View style={[styles.middleContainer]}>
+          <View style={{ marginTop: 30 }}>
+            <OTPInputBox onOtpInput={(e) => (otpInput.current.otp = e)} />
+          </View>
+          <Button
+            onButtonPress={() =>
+              handleOtp({ contact, otp: otpInput.current.otp })
+            }
+          />
         </View>
         <View style={styles.lowerContainer}>
           {timer === 0 ? (
@@ -52,12 +49,13 @@ const Otp = ({ navigation, route }) => {
           ) : (
             <AppText style={styles.otpTimerText}>0:{timer}</AppText>
           )}
-          <View style={styles.resendOtpContainer}>
-            <AppText style={styles.bottomText}>Didn't receive code?</AppText>
-            <TouchableOpacity onPress={onResendOtp} disabled={timerRunning}>
-              <AppText style={[styles.bottomText, resendTextStyle]}>
-                Resend
-              </AppText>
+          <View style={{ flexDirection: "row", gap: 5 }}>
+            <Text style={[styles.bottomText]}>Didn't receive code?</Text>
+            <TouchableOpacity
+              onPress={() => handleResendOtp({ contact })}
+              disabled={timerRunning}
+            >
+              <Text style={[styles.bottomText, resendTextStyle]}>Resend</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -68,40 +66,39 @@ const Otp = ({ navigation, route }) => {
 
 export default Otp;
 
-function useOtp(body) {
-  const dispatch = useDispatch();
+function useOtpService() {
+  const { timer, startTimer, timerRunning } = useTimer(10);
+  const { setAuth } = useAuth();
 
-  const { request } = useApi({
-    onSuccess: (e) => {
-      permanentStorage.saveDetails(permanentStorage.userDetail, e);
-      dispatch(updateAuth(e));
-    },
-  });
-  async function handleOtp() {
-    const requestConfig = {
-      endpoint: AUTH_ENDPOINTS.CONFIRM_OTP,
-      body,
-    };
-    await request(requestConfig);
+  const { post: handleOtp } = useRTKQuery(
+    authApi.useConfirmOtpMutation,
+    handleOtpSuccess
+  );
+
+  // for (let x in authApi) {
+  //   console.log(x);
+  // }
+
+  const { post: handleResendOtp } = useRTKQuery(
+    authApi.useSendOtpMutation,
+    handleResendOtpSuccess
+  );
+
+  function handleOtpSuccess(e) {
+    setAuth(e);
   }
 
-  return { handleOtp };
-}
-
-function useResendOtp(body) {
-  const { request } = useApi({
-    onSuccess: (e) => {},
-  });
-  async function handleResendOtp() {
-    const requestConfig = {
-      endpoint: AUTH_ENDPOINTS.SEND_OTP,
-      body,
-    };
-
-    await request(requestConfig);
+  function handleResendOtpSuccess(e) {
+    console.log(e, "success");
+    startTimer();
   }
 
-  return { handleResendOtp };
+  return {
+    timer,
+    timerRunning,
+    handleOtp,
+    handleResendOtp,
+  };
 }
 
 const styles = StyleSheet.create({

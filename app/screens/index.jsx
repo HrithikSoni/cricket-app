@@ -30,6 +30,7 @@ export default function Root() {
   return (
     // role ? role === ROLE.PLAYER ? <PlayerNavigator /> : <AdminNavigator /> : <AuthNavigator />
     role ? <AppNavigator /> : <AuthNavigator />
+    // true ? <AppNavigator /> : <AuthNavigator />
   );
 }
 

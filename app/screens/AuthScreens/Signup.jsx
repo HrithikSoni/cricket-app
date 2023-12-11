@@ -7,8 +7,9 @@ import ComponentHandler from "../../components/inputs/ComponentHandler";
 import { CameraIcon } from "../../components/others/Icons";
 import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import AUTH_ENDPOINTS from "../../services/api/authEndpoints";
+import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
+// import { updateAuth } from "../../services/store/reducers/authReducer";
 import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
 
@@ -28,6 +29,74 @@ const Signup = ({ navigation }) => {
   });
 
   const { handleSignUp } = useSignUp(signUpData.current);
+
+  const form = [
+    {
+      label: "First Name",
+      key: "firstName",
+      defaultValue: signUpData.current.firstName,
+    },
+    {
+      label: "Last Name",
+      key: "lastName",
+      defaultValue: signUpData.current.lastName,
+    },
+    {
+      label: "Email",
+      key: "email",
+      defaultValue: signUpData.current.email,
+    },
+    {
+      label: "Gender",
+      key: "gender",
+      defaultValue: signUpData.current.gender,
+      type: UTILS.INPUT_TYPE.DROPDOWN,
+      arrayData: [
+        { label: "Male", value: "MALE" },
+        { label: "Female", value: "FEMALE" },
+        { label: "Other", value: "OTHER" },
+      ],
+      title: "Select Gender",
+    },
+    {
+      label: "Date Of Birth",
+      key: "dob",
+      defaultValue: signUpData.current.dob,
+      type: UTILS.INPUT_TYPE.DATE_PICKER,
+    },
+    {
+      label: "Role",
+      key: "role",
+      defaultValue: signUpData.current.role,
+      type: UTILS.INPUT_TYPE.DROPDOWN,
+      arrayData: [
+        { label: "Player", value: "PLAYER" },
+        { label: "Admin", value: "ADMIN" },
+        { label: "User", value: "USER" },
+        { label: "Umpire", value: "UMPIRE" },
+        { label: "Referee", value: "REFEREE" },
+      ],
+      title: "Select Role",
+    },
+    {
+      label: "Country",
+      key: "countryId",
+      defaultValue: signUpData.current.countryId,
+      type: UTILS.INPUT_TYPE.DROPDOWN,
+    },
+    {
+      label: "State",
+      key: "stateId",
+      defaultValue: signUpData.current.stateId,
+      type: UTILS.INPUT_TYPE.DROPDOWN,
+    },
+    // {
+    //   key: "contact",
+    //   defaultValue: signUpData.current.phoneNo,
+    //   type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
+    //   isVerify: true,
+    // },
+  ];
 
   return (
     <ScrollView>
@@ -78,7 +147,7 @@ function useSignUp(body) {
   const { request } = useApi({
     onSuccess: (e) => {
       permanentStorage.saveDetails(permanentStorage.userDetail, e);
-      dispatch(updateAuth(e));
+      // dispatch(updateAuth(e));
     },
     onFail: (e) => {},
   });
