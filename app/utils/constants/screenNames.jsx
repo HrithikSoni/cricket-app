@@ -16,6 +16,7 @@ export const NAV_SCREENS = {
   APP_NAVIGATOR: "App Navigator",
   AUTH_NAVIGATOR: "Auth Navigator",
   BOTTOM_TAB_NAVIGATOR: "Bottom Tab Navigator",
+  TOP_TAB_NAVIGATOR: "Top Tab Navigator",
 };
 
 const TOURNAMENT_SCREENS = {
@@ -29,7 +30,9 @@ const MATCH_DETAILS_SCREENS = {
 
 const SCORING_SCREENS = {
   MATCH_TOSS: "Match Toss",
-}
+  LIVE_MATCH: "Live Match",
+  SCORING: "Scoring",
+};
 
 const TEAMS = {
   MANAGE_TEAM: "Add Plyers In Team",
@@ -44,8 +47,8 @@ const TEAMS = {
 
 const TEST_SCREENS = {
   TEST_LOGIN: "Test Login",
-  TEST_HOME: "Test Home"
-}
+  TEST_HOME: "Test Home",
+};
 
 const SCREEN_NAMES = {
   TOURNAMENT_SCREENS,
@@ -55,7 +58,7 @@ const SCREEN_NAMES = {
   NAV_SCREENS,
   TEAMS,
   TEST_SCREENS,
-  SCORING_SCREENS
+  SCORING_SCREENS,
 };
 
 export default SCREEN_NAMES;

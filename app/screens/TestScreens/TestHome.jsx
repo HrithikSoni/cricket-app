@@ -1,41 +1,48 @@
 import React from "react";
-import {
-  StyleSheet,
-  View
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import PlusButton from "../../components/button/PlusButton";
 import HomeTopCard from "../../components/cards/HomeTopCard";
 import TournamentMatchesCard from "../../components/cards/TournamentMatchesCard";
 import AppText from "../../components/text/AppText";
 import UTILS from "../../utils";
+import Button from "../../components/button/Button";
 
-const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS, SCORING_SCREENS } = UTILS.SCREEN_NAMES;
+const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS, SCORING_SCREENS } =
+  UTILS.SCREEN_NAMES;
 export default function Home({ navigation }) {
-
   const tournamentDetails = [
     {
       date: "25 Jul 22",
       overs: "20",
       location: "Weekend WarZone Baliawas, Gurgaon",
       team1: "DTU CSK",
-      team2: "Team Indigo"
-    }
-  ]
+      team2: "Team Indigo",
+    },
+  ];
 
   return (
     <>
       <View style={[styles.container]}>
         <HomeTopCard />
         <View style={[styles.contentContainer]}>
-          <AppText style={[UTILS.STYLES.commonTextStyle
-          ]}>
+          <AppText style={[UTILS.STYLES.commonTextStyle]}>
             Upcoming Matches
           </AppText>
           <View style={[styles.cardContainer]}>
-          <TournamentMatchesCard arrayData={tournamentDetails} onPressLeftButton={()=> navigation.navigate(SCORING_SCREENS.MATCH_TOSS)} onPressRightButton={()=>{
-            
-          }}/>
+            <TournamentMatchesCard
+              arrayData={tournamentDetails}
+              onPressLeftButton={() =>
+                navigation.navigate(SCORING_SCREENS.MATCH_TOSS)
+              }
+              onPressRightButton={() => {}}
+            />
+            <Button
+              label={"Go To Live Match Screen"}
+              onButtonPress={() =>
+                navigation.navigate(SCORING_SCREENS.LIVE_MATCH)
+              }
+            />
           </View>
         </View>
       </View>
@@ -45,7 +52,7 @@ export default function Home({ navigation }) {
   );
 
   function handleModal() {
-    navigation.navigate(MATCH_DETAILS_SCREENS.FORM)
+    navigation.navigate(MATCH_DETAILS_SCREENS.FORM);
   }
 }
 
@@ -55,12 +62,11 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     marginTop: 20,
-    
   },
   contentContainer: {
     marginTop: 20,
     marginRight: 15,
-    width:"100%"
+    width: "100%",
   },
   themeColorStyle: {
     color: UTILS.COLORS.themeColor,

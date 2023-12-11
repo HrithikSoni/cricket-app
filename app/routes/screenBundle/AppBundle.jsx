@@ -1,9 +1,12 @@
 import teamsBundle from "../../screens/TeamsScreens";
-import { NAV_SCREENS } from "../../utils/constants/screenNames";
 import BottomTabNavigator from "../BottomTabNavigator";
 import matchesBundle from "./MatchesBundle";
 import tournamentBundle from "./TournamentMatchesBundle";
-import scoringScreenBundle from "../../screens/ScoringScreens/index"
+import scoringScreenBundle from "../../screens/ScoringScreens/index";
+import UTILS from "../../utils";
+import TopTabNavigator from "../TopTabNavigator";
+
+const { NAV_SCREENS } = UTILS.SCREEN_NAMES;
 
 const appBundle = [
   {
@@ -13,7 +16,7 @@ const appBundle = [
   ...tournamentBundle,
   ...matchesBundle,
   ...teamsBundle,
-  ...scoringScreenBundle
+  ...scoringScreenBundle,
 ];
 
 export default appBundle;
