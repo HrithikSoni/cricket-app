@@ -3,6 +3,7 @@ import BottomTabNavigator from "../BottomTabNavigator";
 import matchesBundle from "./MatchesBundle";
 import tournamentBundle from "./TournamentMatchesBundle";
 import scoringScreenBundle from "../../screens/ScoringScreens/index";
+import testScreensBundle from "../../screens/TestScreens/index";
 import UTILS from "../../utils";
 import TopTabNavigator from "../TopTabNavigator";
 

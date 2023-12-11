@@ -10,7 +10,6 @@ import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
 // import { updateAuth } from "../../services/store/reducers/authReducer";
-import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
 
 const Signup = ({ navigation }) => {

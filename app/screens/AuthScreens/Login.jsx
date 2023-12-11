@@ -8,6 +8,9 @@ import useRTKQuery from "../../hooks/useRtKQuery";
 import authApi from "../../services/authServices/authApi";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
+import AppText from "../../components/text/AppText";
+
+const colors = UTILS.COLORS;
 
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });

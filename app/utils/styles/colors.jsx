@@ -7,6 +7,7 @@ export default {
 
   backGround: "white",
   background1: "#3672DD1A",
+  background2: "#112437",
   black: "black",
   blue: "blue",
   blue2: "#0f255eff",

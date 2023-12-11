@@ -6,13 +6,11 @@ import Home from "../screens/Home";
 import Social from "../screens/Social";
 import Tournament from "../screens/Tournament";
 import Profile from "../screens/Profile";
-import TestHome from "../screens/TestScreens/TestHome"
+import TestHome from "../screens/TestScreens/TestHome";
 import Icons from "../components/others/Icons";
 
-
-
 const Tab = createBottomTabNavigator();
-const {TAB_SCREENS, TEST_SCREENS} = UTILS.SCREEN_NAMES
+const { TAB_SCREENS, TEST_SCREENS } = UTILS.SCREEN_NAMES;
 
 export default function BottomTabNavigator() {
   return (
@@ -36,9 +34,7 @@ export default function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color }) => <Icons.HomeIcon color={color} />,
           tabBarLabel: ({ color, focused }) =>
-            focused ? (
-              <Text style={{ color: color }}>Home</Text>
-            ) : null,
+            focused ? <Text style={{ color: color }}>Home</Text> : null,
         }}
       />
 

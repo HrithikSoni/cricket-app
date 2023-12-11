@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Text, View } from "react-native";
 
 import UTILS from "../utils";
-import TeamScoreWithScoreTableComp from "../components/ScoringScreensComponent/TeamScoreWithScoreTableComp";
+import TeamScoreWithTableComp from "../components/ScoringScreensComponent/TeamScoreWithTableComp";
 import ScoringTableComp from "../components/ScoringScreensComponent/ScoringTableComp";
 
 const Tab = createMaterialTopTabNavigator();
@@ -32,7 +32,7 @@ export default function TopTabNavigator() {
     >
       <Tab.Screen
         name={"Team Score With Table Comp"}
-        component={TeamScoreWithScoreTableComp}
+        component={TeamScoreWithTableComp}
         options={{ tabBarLabel: "Live" }}
       />
       <Tab.Screen

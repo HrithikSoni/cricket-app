@@ -7,7 +7,7 @@ const Stack = createStackNavigator();
 function AuthNavigator() {
   return (
     <Stack.Navigator>
-      {bundle.authBundle.map((item, index) => (
+      {bundle.testAuthScreensBundle.map((item, index) => (
         <Stack.Screen
           key={index}
           name={item.name}

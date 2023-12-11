@@ -37,7 +37,7 @@ const OnBoarding = ({ navigation }) => {
         <Button
           label={"Login"}
           onButtonPress={() =>
-            navigation.navigate(UTILS.SCREEN_NAMES.AUTH_SCREENS.LOGIN)
+            navigation.navigate(UTILS.SCREEN_NAMES.TEST_SCREENS.TEST_LOGIN)
           }
         />
       </View>

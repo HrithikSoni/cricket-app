@@ -8,8 +8,8 @@ import PhoneNoInputBox from "../../components/inputs/PhoneNoInputBox";
 import Icons from "../../components/others/Icons";
 import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-// import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
+import { updateAuth } from "../../services/authServices/authReducer";
 
 export default function TestLogin({ navigation }) {
   const loginData = useRef({ mobileNo: "", password: "" });
@@ -21,7 +21,7 @@ export default function TestLogin({ navigation }) {
   const responseUser = { data: { role: "User", firstName: "User" } };
 
   function handleLogin() {
-    // dispatch(updateAuth(responseAdmin));
+    dispatch(updateAuth(responseAdmin));
 
     return;
     if (loginData.current.mobileNo === registeredNo) {
@@ -61,7 +61,7 @@ export default function TestLogin({ navigation }) {
             label={"Continue as Guest"}
             bgColor={UTILS.COLORS.gray3}
             textColor={UTILS.COLORS.black}
-            // onButtonPress={() => dispatch(updateAuth(responseUser))}
+            onButtonPress={() => dispatch(updateAuth(responseUser))}
           />
           <AppText style={{ lineHeight: 25, textAlign: "center" }}>
             By creating passcode you agree with our{" "}
