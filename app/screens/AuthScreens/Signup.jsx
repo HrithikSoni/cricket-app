@@ -7,10 +7,8 @@ import ComponentHandler from "../../components/inputs/ComponentHandler";
 import { CameraIcon } from "../../components/others/Icons";
 import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import permanentStorage from "../../services/permanentStorage";
-// import { updateAuth } from "../../services/store/reducers/authReducer";
-import { updateAuth } from "../../services/store/reducers/authReducer";
+import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import UTILS from "../../utils";
 
 const Signup = ({ navigation }) => {
@@ -30,73 +28,7 @@ const Signup = ({ navigation }) => {
 
   const { handleSignUp } = useSignUp(signUpData.current);
 
-  const form = [
-    {
-      label: "First Name",
-      key: "firstName",
-      defaultValue: signUpData.current.firstName,
-    },
-    {
-      label: "Last Name",
-      key: "lastName",
-      defaultValue: signUpData.current.lastName,
-    },
-    {
-      label: "Email",
-      key: "email",
-      defaultValue: signUpData.current.email,
-    },
-    {
-      label: "Gender",
-      key: "gender",
-      defaultValue: signUpData.current.gender,
-      type: UTILS.INPUT_TYPE.DROPDOWN,
-      arrayData: [
-        { label: "Male", value: "MALE" },
-        { label: "Female", value: "FEMALE" },
-        { label: "Other", value: "OTHER" },
-      ],
-      title: "Select Gender",
-    },
-    {
-      label: "Date Of Birth",
-      key: "dob",
-      defaultValue: signUpData.current.dob,
-      type: UTILS.INPUT_TYPE.DATE_PICKER,
-    },
-    {
-      label: "Role",
-      key: "role",
-      defaultValue: signUpData.current.role,
-      type: UTILS.INPUT_TYPE.DROPDOWN,
-      arrayData: [
-        { label: "Player", value: "PLAYER" },
-        { label: "Admin", value: "ADMIN" },
-        { label: "User", value: "USER" },
-        { label: "Umpire", value: "UMPIRE" },
-        { label: "Referee", value: "REFEREE" },
-      ],
-      title: "Select Role",
-    },
-    {
-      label: "Country",
-      key: "countryId",
-      defaultValue: signUpData.current.countryId,
-      type: UTILS.INPUT_TYPE.DROPDOWN,
-    },
-    {
-      label: "State",
-      key: "stateId",
-      defaultValue: signUpData.current.stateId,
-      type: UTILS.INPUT_TYPE.DROPDOWN,
-    },
-    // {
-    //   key: "contact",
-    //   defaultValue: signUpData.current.phoneNo,
-    //   type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
-    //   isVerify: true,
-    // },
-  ];
+  console.log("first");
 
   return (
     <ScrollView>
@@ -182,7 +114,7 @@ const form = [
     label: "Gender",
     key: "gender",
     type: UTILS.INPUT_TYPE.DROPDOWN,
-    arrayData: [
+    data: [
       { label: "Male", value: "MALE" },
       { label: "Female", value: "FEMALE" },
       { label: "Other", value: "OTHER" },
@@ -198,7 +130,7 @@ const form = [
     label: "Role",
     key: "role",
     type: UTILS.INPUT_TYPE.DROPDOWN,
-    arrayData: [
+    data: [
       { label: "Player", value: "PLAYER" },
       { label: "Admin", value: "ADMIN" },
       { label: "User", value: "USER" },
@@ -211,19 +143,21 @@ const form = [
     label: "Country",
     key: "countryId",
     type: UTILS.INPUT_TYPE.DROPDOWN,
+    data: [{}],
   },
   {
     label: "State",
     key: "stateId",
     type: UTILS.INPUT_TYPE.DROPDOWN,
+    data: [{}],
   },
-  {
-    key: "contact",
-    type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
-    isVerify: true,
-  },
+  // {
+  //   key: "contact",
+  //   defaultValue: signUpData.current.phoneNo,
+  //   type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
+  //   isVerify: true,
+  // },
 ];
-
 const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
@@ -247,3 +181,61 @@ const styles = StyleSheet.create({
   },
   text: { fontSize: 17, fontWeight: "500" },
 });
+// const form = [
+//   {
+//     label: "First Name",
+//     key: "firstName",
+//   },
+//   {
+//     label: "Last Name",
+//     key: "lastName",
+//   },
+//   {
+//     label: "Email",
+//     key: "email",
+//   },
+//   {
+//     label: "Gender",
+//     key: "gender",
+//     type: UTILS.INPUT_TYPE.DROPDOWN,
+//     arrayData: [
+//       { label: "Male", value: "MALE" },
+//       { label: "Female", value: "FEMALE" },
+//       { label: "Other", value: "OTHER" },
+//     ],
+//     title: "Select Gender",
+//   },
+//   {
+//     label: "Date Of Birth",
+//     key: "dob",
+//     type: UTILS.INPUT_TYPE.DATE_PICKER,
+//   },
+//   {
+//     label: "Role",
+//     key: "role",
+//     type: UTILS.INPUT_TYPE.DROPDOWN,
+//     arrayData: [
+//       { label: "Player", value: "PLAYER" },
+//       { label: "Admin", value: "ADMIN" },
+//       { label: "User", value: "USER" },
+//       { label: "Umpire", value: "UMPIRE" },
+//       { label: "Referee", value: "REFEREE" },
+//     ],
+//     title: "Select Role",
+//   },
+//   {
+//     label: "Country",
+//     key: "countryId",
+//     type: UTILS.INPUT_TYPE.DROPDOWN,
+//   },
+//   {
+//     label: "State",
+//     key: "stateId",
+//     type: UTILS.INPUT_TYPE.DROPDOWN,
+//   },
+//   {
+//     key: "contact",
+//     type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
+//     isVerify: true,
+//   },
+// ];

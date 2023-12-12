@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight + 20),
-    paddingHorizontal: 20,
   },
   title: {
     width: UTILS.DIMENSIONS.width * 0.8,
@@ -60,5 +59,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: "100%",
     height: "40%",
+    paddingHorizontal: 20,
   },
 });
