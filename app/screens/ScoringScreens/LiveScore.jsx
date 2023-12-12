@@ -2,11 +2,11 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import TeamScoreCard from "../cards/TeamScoreCard";
-import LiveScoreTable from "../table/LiveScoreTable";
+import TeamScoreCard from "../../components/cards/TeamScoreCard";
+import LiveScoreTable from "../../components/table/LiveScoreTable";
 import UTILS from "../../utils";
 
-const TeamScoreWithTableComp = (props) => {
+const LiveScore = (props) => {
   const navigation = useNavigation();
 
   return (
@@ -24,7 +24,7 @@ const TeamScoreWithTableComp = (props) => {
   );
 };
 
-export default TeamScoreWithTableComp;
+export default LiveScore;
 
 const tableData = [
   { title: "name", subTitle: null, data: [1, 2, 3, 4, 5] },

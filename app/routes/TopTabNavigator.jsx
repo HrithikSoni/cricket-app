@@ -1,13 +1,12 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-import { Text, View } from "react-native";
 
+import LiveScore from "../screens/ScoringScreens/LiveScore";
+import Scorecard from "../screens/ScoringScreens/Scorecard";
 import UTILS from "../utils";
-import TeamScoreWithTableComp from "../components/ScoringScreensComponent/TeamScoreWithTableComp";
-import ScoringTableComp from "../components/ScoringScreensComponent/ScoringTableComp";
 
 const Tab = createMaterialTopTabNavigator();
 const colors = UTILS.COLORS;
+const { SCORING_SCREENS } = UTILS.SCREEN_NAMES;
 
 export default function TopTabNavigator() {
   return (
@@ -21,9 +20,9 @@ export default function TopTabNavigator() {
           textTransform: "none",
         },
         tabBarStyle: {
-          backgroundColor: colors.themeColor,
-          width: 200,
-          height: 50,
+          // backgroundColor: colors.themeColor,
+          // width: 200,
+          // height: 50,
           borderRadius: 100,
           marginBottom: 10,
         },
@@ -31,13 +30,13 @@ export default function TopTabNavigator() {
       }}
     >
       <Tab.Screen
-        name={"Team Score With Table Comp"}
-        component={TeamScoreWithTableComp}
+        name={SCORING_SCREENS.LIVE_SCORE}
+        component={LiveScore}
         options={{ tabBarLabel: "Live" }}
       />
       <Tab.Screen
-        name={"Scoring Table Comp"}
-        component={ScoringTableComp}
+        name={SCORING_SCREENS.SCORECARD}
+        component={Scorecard}
         options={{ tabBarLabel: "Scorecard" }}
       />
     </Tab.Navigator>

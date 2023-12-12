@@ -32,6 +32,8 @@ const SCORING_SCREENS = {
   MATCH_TOSS: "Match Toss",
   LIVE_MATCH: "Live Match",
   SCORING: "Scoring",
+  SCORECARD: "Scorecard",
+  LIVE_SCORE: "Live Score",
 };
 
 const TEAMS = {

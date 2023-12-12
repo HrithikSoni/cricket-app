@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import LiveScoreTable from "../table/LiveScoreTable";
+import LiveScoreTable from "../../components/table/LiveScoreTable";
 import UTILS from "../../utils";
 
-const ScoringTable = () => {
+const Scorecard = () => {
   return (
     <View>
       <LiveScoreTable
@@ -19,7 +19,7 @@ const ScoringTable = () => {
   );
 };
 
-export default ScoringTable;
+export default Scorecard;
 
 const tableData = [
   { title: "name", subTitle: null, data: [1, 2, 3, 4, 5, 6] },
