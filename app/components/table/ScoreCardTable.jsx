@@ -1,41 +1,49 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
-import TableRow from "./TableRow";
 import TableHeaderContainer from "./TableHeaderContainer";
+import TableRow from "./TableRow";
 
 const style = UTILS.STYLES;
 const colors = UTILS.COLORS;
 
 const ScoreCardTable = (props) => {
   return (
-    <View style={styles.container}>
-      <TableHeaderContainer>
-        <ScoreDetails />
-      </TableHeaderContainer>
-      <TableRow {...props.batsManHeaderRowData} />
-      <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
-        {props?.tableData.map((e, i) => (
-          <TableRow {...e} key={i} />
-        ))}
+    <ScrollView>
+      <View style={styles.container}>
+        <TableHeaderContainer>
+          <ScoreDetails />
+        </TableHeaderContainer>
+        <TableRow {...props.batsManHeaderRowData} />
+        <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
+          {props?.tableData.map((e, i) => (
+            <TableRow {...e} key={i} />
+          ))}
+        </View>
+
+        <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
+          {props?.batsManBottomData.map((e, i) => (
+            <TableRow {...e} key={i} titleStyle={{ color: colors.black }} />
+          ))}
+        </View>
+
+        <TableRow
+          title="Bowler"
+          data={["O", "M", "R", "W", "Eco"]}
+          {...props.bowlerHeaderStyle}
+        />
+
+        <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
+          {props?.tableData.map((e, i) => (
+            <TableRow {...e} key={i} />
+          ))}
+        </View>
+
+        <BottomTable />
       </View>
-
-      <TableRow
-        title="Bowler"
-        data={["O", "M", "R", "W", "Eco"]}
-        {...props.bowlerHeaderStyle}
-      />
-
-      <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
-        {props?.tableData.map((e, i) => (
-          <TableRow {...e} key={i} />
-        ))}
-      </View>
-
-      <BottomTable />
-    </View>
+    </ScrollView>
   );
 
   function ScoreDetails() {

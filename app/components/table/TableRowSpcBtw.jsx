@@ -3,21 +3,17 @@ import React from "react";
 import SmallGreyText from "../text/SmallGreyText";
 import UTILS from "../../utils";
 
-export default function TableRow({
+export default function TableRowSpcBtw({
   title,
   subTitle,
   data,
   textStyle = {},
   titleStyle = {},
+  backgroundColor = {},
   containerStyle = {},
   key,
 }) {
-  const dataContainerStyle = {
-    flexDirection: "row",
-    flex: 3,
-    justifyContent: "space-around",
-    alignItems: "center",
-  };
+  console.log(backgroundColor);
   return (
     <>
       <View
@@ -25,7 +21,7 @@ export default function TableRow({
           {
             flexDirection: "row",
             padding: 10,
-            // justifyContent: "space-between",
+            justifyContent: "space-between",
           },
           containerStyle,
         ]}
@@ -38,7 +34,14 @@ export default function TableRow({
           {subTitle && <SmallGreyText>{subTitle}</SmallGreyText>}
         </View>
 
-        <View style={dataContainerStyle}>
+        <View
+          style={{
+            flexDirection: "row",
+            flex: 3,
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           {data.map((i) => (
             <View key={i}>
               <Text style={[{ color: "gray", textAlign: "center" }, textStyle]}>

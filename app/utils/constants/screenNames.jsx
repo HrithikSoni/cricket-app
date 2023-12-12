@@ -33,7 +33,7 @@ const SCORING_SCREENS = {
   LIVE_MATCH: "Live Match",
   SCORING: "Scoring",
   SCORECARD: "Scorecard",
-  LIVE_SCORE: "Live Score",
+  LIVE_SCORE: "Live",
 };
 
 const TEAMS = {

@@ -13,6 +13,7 @@ const Scorecard = () => {
         bowlerHeaderStyle={bowlerHeaderStyle}
         bottomTableHeaderRowData={bottomTableHeaderRowData}
         bottomTableData={bottomTableData}
+        batsManBottomData={batsManBottomData}
         teamName={"New Delhi Heroes"}
         score={"173/8(20.0ov)"}
       />
@@ -56,6 +57,12 @@ const bottomTableHeaderRowData = {
     backgroundColor: UTILS.COLORS.background2,
   },
 };
+
+const batsManBottomData = [
+  { title: "Extras:", data: ["3 ( Wd 3 )"] },
+  { title: "Total", data: ["124/9 (20.0v) CRR 6.20"] },
+  { title: "To Bat:", data: ["Kunal Raman rohit"] },
+];
 
 const bottomTableData = [
   { title: "1. Kathryn Murphy", data: ["0 (0.1 Ov)"] },

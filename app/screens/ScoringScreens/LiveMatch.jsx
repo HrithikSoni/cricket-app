@@ -39,7 +39,7 @@ export default LiveMatch;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: UTILS.COLORS.gray1,
+    backgroundColor: UTILS.COLORS.background3,
     paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight + 20),
   },
   header: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   tabBarContainer: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: UTILS.COLORS.gray1,
+    backgroundColor: "white",
   },
   topContainer: {},
 });

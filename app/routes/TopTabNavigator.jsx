@@ -1,44 +1,39 @@
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-
+import { createMyNavigator } from "./CustomNavigator";
 import LiveScore from "../screens/ScoringScreens/LiveScore";
 import Scorecard from "../screens/ScoringScreens/Scorecard";
 import UTILS from "../utils";
+import { StyleSheet } from "react-native";
 
-const Tab = createMaterialTopTabNavigator();
-const colors = UTILS.COLORS;
+const TopTab = createMyNavigator();
 const { SCORING_SCREENS } = UTILS.SCREEN_NAMES;
 
 export default function TopTabNavigator() {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        // tabBarActiveTintColor: colors.textColor,
-        // tabBarInactiveTintColor: colors.black,
-        tabBarLabelStyle: {
-          fontSize: 15,
-          fontWeight: "bold",
-          textTransform: "none",
-        },
-        tabBarStyle: {
-          // backgroundColor: colors.themeColor,
-          // width: 200,
-          // height: 50,
-          borderRadius: 100,
-          marginBottom: 10,
-        },
-        tabBarIndicatorStyle: { backgroundColor: "transparent" },
-      }}
+    <TopTab.Navigator
+      tabBarStyle={tabBarStyle}
+      contentStyle={contentStyle}
+      labelStyle={labelStyle}
     >
-      <Tab.Screen
-        name={SCORING_SCREENS.LIVE_SCORE}
-        component={LiveScore}
-        options={{ tabBarLabel: "Live" }}
-      />
-      <Tab.Screen
-        name={SCORING_SCREENS.SCORECARD}
-        component={Scorecard}
-        options={{ tabBarLabel: "Scorecard" }}
-      />
-    </Tab.Navigator>
+      <TopTab.Screen name={SCORING_SCREENS.LIVE_SCORE} component={LiveScore} />
+      <TopTab.Screen name={SCORING_SCREENS.SCORECARD} component={Scorecard} />
+    </TopTab.Navigator>
   );
 }
+
+const tabBarStyle = StyleSheet.create({
+  padding: 10,
+  gap: 30,
+  width: 120,
+  borderRadius: 30,
+});
+
+const contentStyle = StyleSheet.create({});
+
+const labelStyle = StyleSheet.create({
+  fontSize: 17,
+  fontWeight: "600",
+});
+
+const styles = StyleSheet.create({
+  container: {},
+});
