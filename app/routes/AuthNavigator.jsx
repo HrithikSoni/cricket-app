@@ -1,19 +1,14 @@
 import { createStackNavigator } from "@react-navigation/stack";
 
-import bundle from "./screenBundle/AuthBundle";
+import AuthScreens from "../screens/AuthScreens";
 
 const Stack = createStackNavigator();
 
 function AuthNavigator() {
   return (
     <Stack.Navigator>
-      {bundle.authBundle.map((item, index) => (
-        <Stack.Screen
-          key={index}
-          name={item.name}
-          component={item.Component}
-          options={{ headerShown: false }}
-        />
+      {AuthScreens.map((item, index) => (
+        <Stack.Screen key={index} {...item} options={{ headerShown: false }} />
       ))}
     </Stack.Navigator>
   );

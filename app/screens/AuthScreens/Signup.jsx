@@ -7,28 +7,17 @@ import ComponentHandler from "../../components/inputs/ComponentHandler";
 import { CameraIcon } from "../../components/others/Icons";
 import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import permanentStorage from "../../services/permanentStorage";
 import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
+import permanentStorage from "../../services/permanentStorage";
+// import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
-    firstName: "",
-    contact: "",
-    otp: "",
-    countryId: "12",
-    dob: "",
-    email: "",
-    gender: "",
-    lastName: "",
     profilePic: "string",
-    stateId: "12",
-    role: "",
   });
 
   const { handleSignUp } = useSignUp(signUpData.current);
-
-  console.log("first");
 
   return (
     <ScrollView>
@@ -58,6 +47,13 @@ const Signup = ({ navigation }) => {
               onDropdownSelect={(e) => (signUpData.current[item.key] = e.value)}
               onDateSelect={(e) => (signUpData.current[item.key] = e)}
               onOtpInput={(e) => (signUpData.current.otp = e)}
+              onLocationSelect={(e) => (
+                (signUpData.current.countryId = e.countryId),
+                (signUpData.current.stateId = e.stateId)
+              )}
+              onDateTimeSelect={(e) => {
+                signUpData.current[item.key] = e;
+              }}
             />
           ))}
           <View style={{ marginTop: 20 }}>
@@ -79,7 +75,7 @@ function useSignUp(body) {
   const { request } = useApi({
     onSuccess: (e) => {
       permanentStorage.saveDetails(permanentStorage.userDetail, e);
-      // dispatch(updateAuth(e));
+      dispatch(updateAuth(e));
     },
     onFail: (e) => {},
   });
@@ -90,6 +86,7 @@ function useSignUp(body) {
       body,
     };
     await request(requestConfig);
+    console.log(body, "oooooooooo");
   }
 
   return {
@@ -119,12 +116,13 @@ const form = [
       { label: "Female", value: "FEMALE" },
       { label: "Other", value: "OTHER" },
     ],
-    title: "Select Gender",
+    header: "Select Gender",
   },
   {
     label: "Date Of Birth",
     key: "dob",
     type: UTILS.INPUT_TYPE.DATE_PICKER,
+    mode: "date",
   },
   {
     label: "Role",
@@ -137,27 +135,18 @@ const form = [
       { label: "Umpire", value: "UMPIRE" },
       { label: "Referee", value: "REFEREE" },
     ],
-    title: "Select Role",
+    header: "Select A Role",
   },
   {
-    label: "Country",
-    key: "countryId",
-    type: UTILS.INPUT_TYPE.DROPDOWN,
-    data: [{}],
+    type: UTILS.INPUT_TYPE.LOCATION_PICKER,
   },
   {
-    label: "State",
-    key: "stateId",
-    type: UTILS.INPUT_TYPE.DROPDOWN,
-    data: [{}],
+    key: "contact",
+    type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
+    isVerify: true,
   },
-  // {
-  //   key: "contact",
-  //   defaultValue: signUpData.current.phoneNo,
-  //   type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
-  //   isVerify: true,
-  // },
 ];
+
 const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
@@ -181,61 +170,3 @@ const styles = StyleSheet.create({
   },
   text: { fontSize: 17, fontWeight: "500" },
 });
-// const form = [
-//   {
-//     label: "First Name",
-//     key: "firstName",
-//   },
-//   {
-//     label: "Last Name",
-//     key: "lastName",
-//   },
-//   {
-//     label: "Email",
-//     key: "email",
-//   },
-//   {
-//     label: "Gender",
-//     key: "gender",
-//     type: UTILS.INPUT_TYPE.DROPDOWN,
-//     arrayData: [
-//       { label: "Male", value: "MALE" },
-//       { label: "Female", value: "FEMALE" },
-//       { label: "Other", value: "OTHER" },
-//     ],
-//     title: "Select Gender",
-//   },
-//   {
-//     label: "Date Of Birth",
-//     key: "dob",
-//     type: UTILS.INPUT_TYPE.DATE_PICKER,
-//   },
-//   {
-//     label: "Role",
-//     key: "role",
-//     type: UTILS.INPUT_TYPE.DROPDOWN,
-//     arrayData: [
-//       { label: "Player", value: "PLAYER" },
-//       { label: "Admin", value: "ADMIN" },
-//       { label: "User", value: "USER" },
-//       { label: "Umpire", value: "UMPIRE" },
-//       { label: "Referee", value: "REFEREE" },
-//     ],
-//     title: "Select Role",
-//   },
-//   {
-//     label: "Country",
-//     key: "countryId",
-//     type: UTILS.INPUT_TYPE.DROPDOWN,
-//   },
-//   {
-//     label: "State",
-//     key: "stateId",
-//     type: UTILS.INPUT_TYPE.DROPDOWN,
-//   },
-//   {
-//     key: "contact",
-//     type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
-//     isVerify: true,
-//   },
-// ];

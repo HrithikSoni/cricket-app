@@ -15,9 +15,6 @@ export default function MatchDetails({ navigation }) {
   const updateMatchDetails = (e) => {
     matchDetails.current = { ...matchDetails.current, ...e };
   };
-  // const { data, error, isLoading } = usersApi.useGetUsersQuery();
-
-  // console.log(data, "oooooo");
 
   const { handleSubmitMatchDetails } = useMatchDetails();
 
@@ -66,7 +63,6 @@ export default function MatchDetails({ navigation }) {
           // bottom={true}
           onButtonPress={() => {
             navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS);
-            // console.log(matchDetails.current, "iiiiiiiii");
           }}
           // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />

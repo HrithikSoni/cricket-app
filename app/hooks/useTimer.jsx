@@ -19,7 +19,7 @@ export default function useTimer(time = 60) {
   }, [timer, timerRunning]);
 
   // const timerRunning = timer !== 0
-  return { timer, setTimer, timerRunning };
+  return { timer, setTimer, timerRunning, setTimerRunning };
 }
 
 const styles = StyleSheet.create({});

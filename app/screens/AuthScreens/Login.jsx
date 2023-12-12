@@ -11,6 +11,7 @@ import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 import AppText from "../../components/text/AppText";
 
 const colors = UTILS.COLORS;
+
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 

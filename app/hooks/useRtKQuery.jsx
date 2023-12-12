@@ -6,18 +6,6 @@ export default function useRTKQuery(
   onFail = () => {}
 ) {
   const [request, { isLoading, isSuccess, isError, data, ...rest }] = api();
-  // console.log(rest, "rest");
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     onSuccess(data);
-  //   }
-
-  //   if (isError) {
-  //     console.log(data, "fail");
-  //     onFail();
-  //   }
-  // }, [isSuccess, isError]);
 
   async function post(body) {
     try {

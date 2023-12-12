@@ -8,9 +8,7 @@ export const URL = "http://localhost:3000";
 export const baseQuery = fetchBaseQuery({
   baseUrl: URL,
   prepareHeaders: (headers, { getState }) => {
-    console.log(getState(), "ttttttt");
     const token = getState().auth.token;
-    console.log(token, "token in baseQuery");
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
