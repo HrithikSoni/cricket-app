@@ -1,0 +1,94 @@
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+
+import UTILS from "../../utils";
+import AppText from "../text/AppText";
+import TableRow from "./TableRow";
+import TableHeaderContainer from "./TableHeaderContainer";
+
+const style = UTILS.STYLES;
+const colors = UTILS.COLORS;
+
+const ScoreCardTable = (props) => {
+  return (
+    <View style={styles.container}>
+      <TableHeaderContainer>
+        <ScoreDetails />
+      </TableHeaderContainer>
+      <TableRow {...props.batsManHeaderRowData} />
+      <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
+        {props?.tableData.map((e, i) => (
+          <TableRow {...e} key={i} />
+        ))}
+      </View>
+
+      <TableRow
+        title="Bowler"
+        data={["O", "M", "R", "W", "Eco"]}
+        {...props.bowlerHeaderStyle}
+      />
+
+      <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
+        {props?.tableData.map((e, i) => (
+          <TableRow {...e} key={i} />
+        ))}
+      </View>
+
+      <BottomTable />
+    </View>
+  );
+
+  function ScoreDetails() {
+    return (
+      <View style={styles.scoreDetailsContainer}>
+        <AppText style={styles.scoreText}>{props.teamName}</AppText>
+        <AppText style={styles.scoreText}>{props.score}</AppText>
+      </View>
+    );
+  }
+
+  function BottomTable() {
+    return (
+      <View>
+        <TableRow {...props.bottomTableHeaderRowData} />
+        <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
+          {props?.bottomTableData.map((e, i) => (
+            <TableRow {...e} key={i} />
+          ))}
+          <View style={styles.bottomScoreContainer}>
+            <AppText style={styles.scoreText}>{props.teamName}</AppText>
+            <AppText style={styles.scoreText}>{props.score}</AppText>
+          </View>
+        </View>
+      </View>
+    );
+  }
+};
+
+export default ScoreCardTable;
+
+const styles = StyleSheet.create({
+  scoreText: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: colors.textColor,
+  },
+  scoreDetailsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
+  },
+  container: {
+    paddingTop: 30,
+  },
+  bottomScoreContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 20,
+    backgroundColor: UTILS.COLORS.themeColor,
+    borderRadius: 20,
+    marginVertical: 10,
+  },
+});

@@ -12,8 +12,8 @@ export default function TopTabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: colors.textColor,
-        tabBarInactiveTintColor: colors.black,
+        // tabBarActiveTintColor: colors.textColor,
+        // tabBarInactiveTintColor: colors.black,
         tabBarLabelStyle: {
           fontSize: 15,
           fontWeight: "bold",

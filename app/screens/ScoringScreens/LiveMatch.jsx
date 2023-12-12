@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   tabBarContainer: {
     flex: 1,
     paddingHorizontal: 20,
+    backgroundColor: UTILS.COLORS.gray1,
   },
   topContainer: {},
 });

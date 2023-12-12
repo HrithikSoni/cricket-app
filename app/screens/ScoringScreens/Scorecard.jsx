@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import LiveScoreTable from "../../components/table/LiveScoreTable";
+import { StyleSheet, View } from "react-native";
+
+import ScoreCardTable from "../../components/table/ScoreCardTable";
 import UTILS from "../../utils";
 
 const Scorecard = () => {
   return (
     <View>
-      <LiveScoreTable
+      <ScoreCardTable
         tableData={tableData}
         batsManHeaderRowData={batsManHeaderRowData}
         bowlerHeaderStyle={bowlerHeaderStyle}
