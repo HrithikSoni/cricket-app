@@ -25,7 +25,12 @@ const ScoreCardTable = (props) => {
 
         <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
           {props?.batsManBottomData.map((e, i) => (
-            <TableRow {...e} key={i} titleStyle={{ color: colors.black }} />
+            <TableRow
+              {...e}
+              key={i}
+              titleStyle={{ color: colors.black }}
+              isSpcBtw={true}
+            />
           ))}
         </View>
 
@@ -58,10 +63,10 @@ const ScoreCardTable = (props) => {
   function BottomTable() {
     return (
       <View>
-        <TableRow {...props.bottomTableHeaderRowData} />
+        <TableRow {...props.bottomTableHeaderRowData} isSpcBtw={true} />
         <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
           {props?.bottomTableData.map((e, i) => (
-            <TableRow {...e} key={i} />
+            <TableRow {...e} key={i} isSpcBtw={true} />
           ))}
           <View style={styles.bottomScoreContainer}>
             <AppText style={styles.scoreText}>{props.teamName}</AppText>

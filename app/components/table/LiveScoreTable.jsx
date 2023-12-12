@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import TableRow from "./TableRow";
-import TableHeaderContainer from "./TableHeaderContainer";
+import { StyleSheet, View } from "react-native";
+
 import UTILS from "../../utils";
-import AppText from "../text/AppText";
+import TableHeaderContainer from "./TableHeaderContainer";
+import TableRow from "./TableRow";
 
 const style = UTILS.STYLES;
 const colors = UTILS.COLORS;

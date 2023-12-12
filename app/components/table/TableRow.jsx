@@ -11,13 +11,11 @@ export default function TableRow({
   titleStyle = {},
   containerStyle = {},
   key,
+  isSpcBtw,
 }) {
-  const dataContainerStyle = {
-    flexDirection: "row",
-    flex: 3,
-    justifyContent: "space-around",
-    alignItems: "center",
-  };
+  const dataContainerStyle = isSpcBtw
+    ? { justifyContent: "space-between" }
+    : { flex: 3, justifyContent: "space-around" };
   return (
     <>
       <View
@@ -38,7 +36,12 @@ export default function TableRow({
           {subTitle && <SmallGreyText>{subTitle}</SmallGreyText>}
         </View>
 
-        <View style={dataContainerStyle}>
+        <View
+          style={[
+            { flexDirection: "row", alignItems: "center" },
+            dataContainerStyle,
+          ]}
+        >
           {data.map((i) => (
             <View key={i}>
               <Text style={[{ color: "gray", textAlign: "center" }, textStyle]}>

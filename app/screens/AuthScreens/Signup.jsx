@@ -14,88 +14,10 @@ import UTILS from "../../utils";
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
-    firstName: "",
-    contact: "",
-    otp: "",
-    countryId: "12",
-    dob: "",
-    email: "",
-    gender: "",
-    lastName: "",
     profilePic: "string",
-    stateId: "12",
-    role: "",
   });
 
   const { handleSignUp } = useSignUp(signUpData.current);
-
-  const form = [
-    {
-      label: "First Name",
-      key: "firstName",
-      defaultValue: signUpData.current.firstName,
-    },
-    {
-      label: "Last Name",
-      key: "lastName",
-      defaultValue: signUpData.current.lastName,
-    },
-    {
-      label: "Email",
-      key: "email",
-      defaultValue: signUpData.current.email,
-    },
-    {
-      label: "Gender",
-      key: "gender",
-      defaultValue: signUpData.current.gender,
-      type: UTILS.INPUT_TYPE.DROPDOWN,
-      arrayData: [
-        { label: "Male", value: "MALE" },
-        { label: "Female", value: "FEMALE" },
-        { label: "Other", value: "OTHER" },
-      ],
-      title: "Select Gender",
-    },
-    {
-      label: "Date Of Birth",
-      key: "dob",
-      defaultValue: signUpData.current.dob,
-      type: UTILS.INPUT_TYPE.DATE_PICKER,
-    },
-    {
-      label: "Role",
-      key: "role",
-      defaultValue: signUpData.current.role,
-      type: UTILS.INPUT_TYPE.DROPDOWN,
-      arrayData: [
-        { label: "Player", value: "PLAYER" },
-        { label: "Admin", value: "ADMIN" },
-        { label: "User", value: "USER" },
-        { label: "Umpire", value: "UMPIRE" },
-        { label: "Referee", value: "REFEREE" },
-      ],
-      title: "Select Role",
-    },
-    {
-      label: "Country",
-      key: "countryId",
-      defaultValue: signUpData.current.countryId,
-      type: UTILS.INPUT_TYPE.DROPDOWN,
-    },
-    {
-      label: "State",
-      key: "stateId",
-      defaultValue: signUpData.current.stateId,
-      type: UTILS.INPUT_TYPE.DROPDOWN,
-    },
-    // {
-    //   key: "contact",
-    //   defaultValue: signUpData.current.phoneNo,
-    //   type: UTILS.INPUT_TYPE.REGISTER_CONTACT_INPUT,
-    //   isVerify: true,
-    // },
-  ];
 
   return (
     <ScrollView>
@@ -125,6 +47,13 @@ const Signup = ({ navigation }) => {
               onDropdownSelect={(e) => (signUpData.current[item.key] = e.value)}
               onDateSelect={(e) => (signUpData.current[item.key] = e)}
               onOtpInput={(e) => (signUpData.current.otp = e)}
+              onLocationSelect={(e) => (
+                (signUpData.current.countryId = e.countryId),
+                (signUpData.current.stateId = e.stateId)
+              )}
+              onDateTimeSelect={(e) => {
+                signUpData.current[item.key] = e;
+              }}
             />
           ))}
           <View style={{ marginTop: 20 }}>
@@ -146,7 +75,7 @@ function useSignUp(body) {
   const { request } = useApi({
     onSuccess: (e) => {
       permanentStorage.saveDetails(permanentStorage.userDetail, e);
-      // dispatch(updateAuth(e));
+      dispatch(updateAuth(e));
     },
     onFail: (e) => {},
   });
@@ -157,6 +86,7 @@ function useSignUp(body) {
       body,
     };
     await request(requestConfig);
+    console.log(body, "oooooooooo");
   }
 
   return {
@@ -181,40 +111,34 @@ const form = [
     label: "Gender",
     key: "gender",
     type: UTILS.INPUT_TYPE.DROPDOWN,
-    arrayData: [
+    data: [
       { label: "Male", value: "MALE" },
       { label: "Female", value: "FEMALE" },
       { label: "Other", value: "OTHER" },
     ],
-    title: "Select Gender",
+    header: "Select Gender",
   },
   {
     label: "Date Of Birth",
     key: "dob",
     type: UTILS.INPUT_TYPE.DATE_PICKER,
+    mode: "date",
   },
   {
     label: "Role",
     key: "role",
     type: UTILS.INPUT_TYPE.DROPDOWN,
-    arrayData: [
+    data: [
       { label: "Player", value: "PLAYER" },
       { label: "Admin", value: "ADMIN" },
       { label: "User", value: "USER" },
       { label: "Umpire", value: "UMPIRE" },
       { label: "Referee", value: "REFEREE" },
     ],
-    title: "Select Role",
+    header: "Select A Role",
   },
   {
-    label: "Country",
-    key: "countryId",
-    type: UTILS.INPUT_TYPE.DROPDOWN,
-  },
-  {
-    label: "State",
-    key: "stateId",
-    type: UTILS.INPUT_TYPE.DROPDOWN,
+    type: UTILS.INPUT_TYPE.LOCATION_PICKER,
   },
   {
     key: "contact",

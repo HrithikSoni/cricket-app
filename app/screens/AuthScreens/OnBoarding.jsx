@@ -26,20 +26,19 @@ const OnBoarding = ({ navigation }) => {
           </Text>
         </View>
         <View style={[styles.lowerContainer]}>
-          {/* <PairBtn
+          <PairBtn
             onPressLeft={() => navigation.navigate(AUTH_SCREENS.LOGIN)}
             leftBtnText={"Login"}
             onPressRight={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
             rightBtnText={"Create"}
-          /> */}
+          />
         </View>
-        {/* <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} /> */}
-        <Button
+        {/* <Button
           label={"Login"}
           onButtonPress={() =>
             navigation.navigate(UTILS.SCREEN_NAMES.TEST_SCREENS.TEST_LOGIN)
           }
-        />
+        /> */}
       </View>
     </ImageBackground>
   );
