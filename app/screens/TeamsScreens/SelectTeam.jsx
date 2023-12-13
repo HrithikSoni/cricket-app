@@ -8,31 +8,9 @@ import SelectTeamCard from "../../components/cards/SelectTeamCard";
 import SearchAddTeamModal from "../../components/modals/SearchAddTeamModal";
 
 export default function SelectTeam({ navigation }) {
-  const teamInfo = [
-    {
-      mainImage: require("../../../assets/cricket-team.png"),
-      name: "Delhi Heroes",
-      discp: "Rajouri Garden",
-      rightText: "25 players",
-      player1Image: require("../../../assets/player-1.png"),
-      player2Image: require("../../../assets/player-2.png"),
-      player3Image: require("../../../assets/player-3.png"),
-    },
-    {
-      mainImage: require("../../../assets/cricket-team.png"),
-      name: "Delhi Heroes",
-      discp: "Rajouri Garden",
-      rightText: "25 players",
-      player1Image: require("../../../assets/player-1.png"),
-      player2Image: require("../../../assets/player-2.png"),
-      player3Image: require("../../../assets/player-3.png"),
-    },
-  ];
-
   return (
     <ParentWrapper screenTitle="Select Team (A)">
-      {/* <View style={styles.container}></View> */}
-     <SearchAddTeamModal />
+      <SearchAddTeamModal />
 
       <ScrollView>
         {teamInfo.map((item, index) => (
@@ -58,6 +36,27 @@ export default function SelectTeam({ navigation }) {
     </ParentWrapper>
   );
 }
+
+const teamInfo = [
+  {
+    mainImage: require("../../../assets/cricket-team.png"),
+    name: "Delhi Heroes",
+    discp: "Rajouri Garden",
+    rightText: "25 players",
+    player1Image: require("../../../assets/player-1.png"),
+    player2Image: require("../../../assets/player-2.png"),
+    player3Image: require("../../../assets/player-3.png"),
+  },
+  {
+    mainImage: require("../../../assets/cricket-team.png"),
+    name: "Delhi Heroes",
+    discp: "Rajouri Garden",
+    rightText: "25 players",
+    player1Image: require("../../../assets/player-1.png"),
+    player2Image: require("../../../assets/player-2.png"),
+    player3Image: require("../../../assets/player-3.png"),
+  },
+];
 
 const styles = StyleSheet.create({
   container: {

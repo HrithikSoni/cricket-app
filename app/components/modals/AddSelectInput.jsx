@@ -1,43 +1,93 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
+import api from "../../services/store/appApi";
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
-import BottomSheetModal from "../modals/BottomSheetModal";
+import AddNewPersonModal from "./AddNewPersonModal";
+import PersonSelectionModal from "./PersonSelectionModal";
 
 export default function AddSelectInput(props) {
-  const [selectedValue, setSelectedValue] = useState("");
-  const [modal, setModal] = useState(false);
+  const [data, setData] = useState([]);
+  const [selectedValue, setSelectedValue] = useState({
+    id: "",
+    firstName: "",
+    lastName: "",
+  });
+  const [modal, setModal] = useState({
+    getListModal: false,
+    addListModal: false,
+  });
+
+  // useEffect(() => {
+  //   fetch();
+  // }, [modal.getListModal]);
+
+  // const fetch = async () => {
+  //   const { data: list } = await api.useGetUmpireQuery();
+  // };
+
+  const { data: list } = api.useGetUmpireQuery();
+
+  function onListPress() {
+    toggleModal("getListModal");
+    setData(list);
+  }
 
   function handleOnSelect(option) {
-    setSelectedValue(option.label);
+    setSelectedValue({
+      firstName: option.firstName,
+      lastName: option.lastName,
+    });
     props.onBottomSheetSelect(option);
-    setModal(false);
+    toggleModal("getListModal");
   }
 
   return (
-    <View style={[UTILS.STYLES.commonStyle, styles.inputContainer]}>
-      <AppText style={styles.label}>{selectedValue || props.label}</AppText>
-      <SelectorBtn />
-    </View>
+    <>
+      <TouchableOpacity
+        style={[UTILS.STYLES.commonStyle, styles.inputContainer]}
+        onPress={onListPress}
+      >
+        <View style={styles.nameContainer}>
+          <AppText style={styles.label}>
+            {selectedValue.firstName || props.label}
+          </AppText>
+          {selectedValue.lastName && (
+            <AppText style={styles.label}>{selectedValue.lastName}</AppText>
+          )}
+        </View>
+        <SelectorBtn />
+      </TouchableOpacity>
+      <PersonSelectionModal
+        visible={modal.getListModal}
+        onRequestClose={() => toggleModal("getListModal")}
+        data={data}
+        {...props}
+        onPersonSelect={handleOnSelect}
+      />
+    </>
   );
   function SelectorBtn() {
     return (
       <>
         <TouchableOpacity
           style={styles.selectorBtn}
-          onPress={() => setModal(true)}
+          onPress={() => toggleModal("addListModal")}
         >
           <AppText style={{ color: UTILS.COLORS.themeColor }}>Add</AppText>
         </TouchableOpacity>
-        <BottomSheetModal
-          visible={modal}
-          onRequestClose={() => setModal(false)}
+        <AddNewPersonModal
+          visible={modal.addListModal}
+          onRequestClose={() => toggleModal("addListModal")}
           {...props}
-          onBottomSheetSelect={handleOnSelect}
         />
       </>
     );
+  }
+
+  function toggleModal(v) {
+    setModal({ ...modal, [v]: !modal[v] });
   }
 }
 
@@ -60,5 +110,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: UTILS.COLORS.background1,
+  },
+  nameContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

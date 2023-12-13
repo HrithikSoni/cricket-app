@@ -40,8 +40,10 @@ export default function MatchDetails({ navigation }) {
         <SelectInput
           label={"Add Umpires"}
           form={umpireForm}
-          list={umpireNamesArray}
           onSelect={updateMatchDetails}
+          header={"Select A Umpire"}
+          onAddingHeader={"Add Umpire"}
+          role={"UMPIRE"}
         />
 
         <SelectInput
@@ -49,6 +51,9 @@ export default function MatchDetails({ navigation }) {
           form={refereeForm}
           list={refereeNamesArray}
           onSelect={updateMatchDetails}
+          header={"Select A Referee"}
+          onAddingHeader={"Add Referee"}
+          role={"REFEREE"}
         />
 
         <SelectInput
@@ -56,6 +61,9 @@ export default function MatchDetails({ navigation }) {
           form={scorerFrom}
           list={umpireNamesArray}
           onSelect={updateMatchDetails}
+          header={"Select A Scorer"}
+          onAddingHeader={"Add Scorer"}
+          role={"SCORER"}
         />
 
         <View style={{ height: 40 }} />
@@ -71,16 +79,25 @@ export default function MatchDetails({ navigation }) {
   );
 }
 
-function SelectInput({ label, form, list, onSelect }) {
+function SelectInput({
+  label,
+  form,
+  list,
+  onSelect,
+  header,
+  onAddingHeader,
+  role,
+}) {
   return (
     <>
       <AppText style={styles.formLabel}>{label}</AppText>
       {form.map((i) => (
         <InputSelector
           {...i}
-          data={list}
           onBottomSheetSelect={(e) => onSelect({ [i.key]: e })}
-          header={"Select A Umpire"}
+          header={header}
+          onAddingHeader={onAddingHeader}
+          role={role}
         />
       ))}
     </>
@@ -112,9 +129,21 @@ const form = [
 ];
 
 const umpireForm = [
-  { label: "1 Umpire", key: "umpire1", type: UTILS.INPUT_TYPE.ADD_SELECT },
-  { label: "2 Umpire", key: "umpire2", type: UTILS.INPUT_TYPE.ADD_SELECT },
-  { label: "3 Umpire", key: "umpire3", type: UTILS.INPUT_TYPE.ADD_SELECT },
+  {
+    label: "1 Umpire",
+    key: "umpire1",
+    type: UTILS.INPUT_TYPE.ADD_SELECT,
+  },
+  {
+    label: "2 Umpire",
+    key: "umpire2",
+    type: UTILS.INPUT_TYPE.ADD_SELECT,
+  },
+  {
+    label: "3 Umpire",
+    key: "umpire3",
+    type: UTILS.INPUT_TYPE.ADD_SELECT,
+  },
 ];
 
 const refereeForm = [

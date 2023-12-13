@@ -53,10 +53,10 @@ export default function Home({ navigation }) {
 
   // usersApi
 
-  const { data: umpireList } = api.useGetUmpireQuery();
-  const [request] = api.useAddUmpireMutation();
+  // const { data } = api.useGetUmpireQuery();
+  // const [request] = api.useAddUmpireMutation();
 
-  console.log(data?.length, "9");
+  // console.log(data, "9");
 
   // for (let x in usersApi) {
   //   console.log(x, "oooo");
@@ -66,7 +66,7 @@ export default function Home({ navigation }) {
     <>
       <View style={styles.container}>
         <HomeTopCard />
-        <Button
+        {/* <Button
           onButtonPress={() =>
             request({
               firstName: "kush",
@@ -74,7 +74,7 @@ export default function Home({ navigation }) {
               role: "UMPIRE",
             })
           }
-        />
+        /> */}
         <SearchBar />
         <View>
           <View style={styles.cardContainer}>

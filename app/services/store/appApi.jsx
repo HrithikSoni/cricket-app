@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // $$$$ add url here
-export const URL = "http://localhost:3000";
+export const URL = "https://0d77-103-15-255-245.ngrok-free.app";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: URL,
