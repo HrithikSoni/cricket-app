@@ -1,31 +1,18 @@
 import React, { useState } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import PlusButton from "../../components/button/PlusButton";
 import HomeTopCard from "../../components/cards/HomeTopCard";
 import MatchCard from "../../components/cards/MatchCard";
 import SearchBar from "../../components/inputs/SearchBar";
 import SelectionModal from "../../components/modals/SelectionModal";
-import UTILS from "../../utils";
 import AppText from "../../components/text/AppText";
-import useAuth from "../../hooks/useAuth";
-import ROLE from "../../utils/enum/role";
-import usersApi from "../../services/usersServices/usersApi";
-import Button from "../../components/button/Button";
-import api from "../../services/store/appApi";
+import UTILS from "../../utils";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
 
 export default function Home({ navigation }) {
   const [showModal, setShowModal] = useState(false);
-
-  const { role } = useAuth();
 
   const btnDetails = [
     {

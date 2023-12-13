@@ -6,7 +6,7 @@ import OTPInputBox from "../../components/inputs/OTPInputBox";
 import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useAuth from "../../hooks/useAuth";
-import useRTKQuery from "../../hooks/useRtKQuery";
+import useRTKQuery from "../../hooks/useRTKQuery";
 import useTimer from "../../hooks/useTimer";
 import authApi from "../../services/authServices/authApi";
 import UTILS from "../../utils";
@@ -66,12 +66,12 @@ function useOtpService() {
   const { timer, startTimer, timerRunning } = useTimer(10);
   const { saveUserData } = useAuth();
 
-  const { post: handleOtp } = useRTKQuery(
+  const { request: handleOtp } = useRTKQuery(
     authApi.useConfirmOtpMutation,
     handleOtpSuccess
   );
 
-  const { post: handleResendOtp } = useRTKQuery(
+  const { request: handleResendOtp } = useRTKQuery(
     authApi.useSendOtpMutation,
     handleResendOtpSuccess
   );

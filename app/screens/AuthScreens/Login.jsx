@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Button from "../../components/button/Button";
 import RegisterContactInput from "../../components/inputs/RegisterContactInput";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import useRTKQuery from "../../hooks/useRtKQuery";
+import useRTKQuery from "../../hooks/useRTKQuery";
 import authApi from "../../services/authServices/authApi";
 import UTILS from "../../utils";
 import { AUTH_SCREENS } from "../../utils/constants/screenNames";
@@ -15,7 +15,7 @@ const colors = UTILS.COLORS;
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 
-  const { post: login } = useRTKQuery(
+  const { request: login } = useRTKQuery(
     authApi.useLoginMutation,
     handleLoginSuccess
   );

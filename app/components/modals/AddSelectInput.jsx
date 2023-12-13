@@ -8,7 +8,6 @@ import AddNewPersonModal from "./AddNewPersonModal";
 import PersonSelectionModal from "./PersonSelectionModal";
 
 export default function AddSelectInput(props) {
-  const [data, setData] = useState([]);
   const [selectedValue, setSelectedValue] = useState({
     id: "",
     firstName: "",
@@ -20,10 +19,10 @@ export default function AddSelectInput(props) {
   });
 
   const { data: list } = api.useGetUmpireQuery();
+  console.log(list?.length, "list");
 
   function onListPress() {
     toggleModal("getListModal");
-    setData(list);
   }
 
   function handleOnSelect(option) {
@@ -54,7 +53,7 @@ export default function AddSelectInput(props) {
       <PersonSelectionModal
         visible={modal.getListModal}
         onRequestClose={() => toggleModal("getListModal")}
-        data={data}
+        data={list}
         {...props}
         onPersonSelect={handleOnSelect}
       />

@@ -5,11 +5,11 @@ export default function useRTKQuery(
   onSuccess = () => {},
   onFail = () => {}
 ) {
-  const [request, { isLoading, isSuccess, isError, data, ...rest }] = api();
+  const [post, { isLoading, isSuccess, isError, data, ...rest }] = api();
 
-  async function post(body) {
+  async function request(body) {
     try {
-      const resp = await request(body);
+      const resp = await post(body);
       if (resp.error) {
         onFail(resp?.error?.data);
       } else {
@@ -20,5 +20,5 @@ export default function useRTKQuery(
     }
   }
 
-  return { post, isLoading, isSuccess, isError, data };
+  return { request, isLoading, isSuccess, isError, data };
 }

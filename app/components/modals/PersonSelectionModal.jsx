@@ -30,20 +30,21 @@ export default function PersonSelectionModal(props) {
           <ScrollView>
             <BottomSheetHeader {...props} />
             {props.searchBarLabel && <SearchBar label={props.searchBarLabel} />}
-            {props?.data.map((option, index) => (
-              <TouchableOpacity
-                key={index}
-                style={styles.optionItem}
-                onPress={() => handleOptionSelection(option)}
-              >
-                <View style={styles.optionContent}>
-                  <AppText style={styles.text}>{option.firstName}</AppText>
-                  {option.lastName && (
-                    <AppText style={styles.text}>{option.lastName}</AppText>
-                  )}
-                </View>
-              </TouchableOpacity>
-            ))}
+            {props.data?.length > 0 &&
+              props?.data.map((option, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.optionItem}
+                  onPress={() => handleOptionSelection(option)}
+                >
+                  <View style={styles.optionContent}>
+                    <AppText style={styles.text}>{option.firstName}</AppText>
+                    {option.lastName && (
+                      <AppText style={styles.text}>{option.lastName}</AppText>
+                    )}
+                  </View>
+                </TouchableOpacity>
+              ))}
           </ScrollView>
         </View>
       </View>

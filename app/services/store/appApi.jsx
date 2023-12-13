@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // $$$$ add url here
-export const URL = "https://0d77-103-15-255-245.ngrok-free.app";
+// export const URL = "https://0d77-103-15-255-245.ngrok-free.app";
+export const URL = "http://localhost:3000";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: URL,
@@ -13,12 +14,11 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-export const getQuery = (endpoint, type = "") => ({
+export const getQuery = (endpoint) => ({
   query: () => endpoint,
-  providesTag: [{ type }],
 });
 
-export const postQuery = (endpoint, type = "") => {
+export const postQuery = (endpoint) => {
   return {
     query(body) {
       return {
@@ -27,7 +27,6 @@ export const postQuery = (endpoint, type = "") => {
         body,
       };
     },
-    invalidatesTags: [{ type }],
   };
 };
 

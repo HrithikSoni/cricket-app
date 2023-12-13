@@ -6,15 +6,24 @@ import Button from "../button/Button";
 import InputBox from "../inputs/InputBox";
 import BottomSheetHeader from "../others/BottomSheetHeader";
 import api from "../../services/store/appApi";
+import useRTKQuery from "../../hooks/useRTKQuery";
 
 export default function AddNewPersonModal(props) {
   const personData = useRef({ role: props.role });
 
-  const [request, details] = api.useAddUmpireMutation();
+  const { request: addUser } = useRTKQuery(
+    api.useAddUmpireMutation,
+    handleUserCreatedSuccess,
+    handleUserCreatedFail
+  );
 
-  function handleOnAddPress() {
-    request(personData.current);
-    console.log(details, personData.current);
+  // const [request, details] = api.useAddUmpireMutation();
+
+  function handleUserCreatedSuccess() {
+    props.onRequestClose();
+  }
+  function handleUserCreatedFail(e) {
+    console.log(e);
   }
 
   return (
@@ -38,7 +47,10 @@ export default function AddNewPersonModal(props) {
               onChangeText={(e) => (personData.current.contact = e)}
             />
           </View>
-          <Button label="Add" onButtonPress={handleOnAddPress} />
+          <Button
+            label="Add"
+            onButtonPress={() => addUser(personData.current)}
+          />
         </View>
       </View>
     </Modal>
