@@ -1,15 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import matchReduce from "./reducers/matchReduce.jsx";
-import { api } from "./api/appApi.jsx";
+import matchReducer from "../matchServices/matchReducer.jsx";
 import authReducer from "../authServices/authReducer.jsx";
 import authApi from "../authServices/authApi.jsx";
+import usersApi from "../usersServices/usersApi.jsx";
+import api from "./appApi.jsx";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    match: matchReduce,
+    match: matchReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

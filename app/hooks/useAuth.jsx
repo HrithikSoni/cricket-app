@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, updateAuth } from "../services/authServices/authReducer";
 import { useEffect } from "react";
-import permanentStorage from "../services/permanentStorage";
+import permanentStorage from "../services/store/permanentStorage";
 
 function useAuth() {
   const { auth, role, token } = useSelector((state) => state.auth);

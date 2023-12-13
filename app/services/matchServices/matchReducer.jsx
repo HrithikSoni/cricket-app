@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import UTILS from "../../../utils";
+import UTILS from "../../utils";
 
 const { TEAM_A, TEAM_B } = UTILS.TEAM_NAME;
 

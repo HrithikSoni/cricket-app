@@ -7,11 +7,11 @@ import PlayerManageCard from "../../components/cards/PlayerManageCard";
 import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import useManageTeam from "../../hooks/useManageTeam";
+import UTILS from "../../utils";
 import {
   addPlayerInTeam,
   getCurrentTeam,
-} from "../../services/store/reducers/matchReduce";
-import UTILS from "../../utils";
+} from "../../services/matchServices/matchReducer";
 
 export default function ManageBattingOrder({ navigation }) {
   return (

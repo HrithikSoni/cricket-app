@@ -16,6 +16,9 @@ import UTILS from "../../utils";
 import AppText from "../../components/text/AppText";
 import useAuth from "../../hooks/useAuth";
 import ROLE from "../../utils/enum/role";
+import usersApi from "../../services/usersServices/usersApi";
+import Button from "../../components/button/Button";
+import api from "../../services/store/appApi";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
 
@@ -48,10 +51,30 @@ export default function Home({ navigation }) {
     styles.themeColorStyle,
   ];
 
+  // usersApi
+
+  const { data } = api.useGetUmpireQuery();
+  const [request] = api.useAddUmpireMutation();
+
+  console.log(data?.length, "9");
+
+  // for (let x in usersApi) {
+  //   console.log(x, "oooo");
+  // }
+
   return (
     <>
       <View style={styles.container}>
         <HomeTopCard />
+        <Button
+          onButtonPress={() =>
+            request({
+              firstName: "kush",
+              contact: "9129997799",
+              role: "UMPIRE",
+            })
+          }
+        />
         <SearchBar />
         <View>
           <View style={styles.cardContainer}>

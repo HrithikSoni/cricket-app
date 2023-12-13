@@ -7,12 +7,12 @@ import PlayerDetailsCard from "../../components/cards/PlayerDetailsCard";
 import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import UTILS from "../../utils";
 import {
   addPlayerInTeam,
   getCurrentTeam,
   totalPlayer,
-} from "../../services/store/reducers/matchReduce";
-import UTILS from "../../utils";
+} from "../../services/matchServices/matchReducer";
 
 export default function ManageTeam({ navigation }) {
   return (
