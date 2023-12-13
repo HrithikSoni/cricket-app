@@ -53,7 +53,7 @@ export default function Home({ navigation }) {
 
   // usersApi
 
-  const { data } = api.useGetUmpireQuery();
+  const { data: umpireList } = api.useGetUmpireQuery();
   const [request] = api.useAddUmpireMutation();
 
   console.log(data?.length, "9");

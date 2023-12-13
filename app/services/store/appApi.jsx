@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+// $$$$ add url here
 export const URL = "http://localhost:3000";
 
 const baseQuery = fetchBaseQuery({
@@ -32,7 +33,7 @@ export const postQuery = (endpoint, type = "") => {
 
 const api = createApi({
   baseQuery,
-  tagTypes: ["umpire"],
+  tagTypes: ["umpire", "player"],
   endpoints: () => ({}),
 });
 
