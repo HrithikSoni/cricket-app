@@ -1,16 +1,17 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import PlusButton from "../../components/button/PlusButton";
 import HomeTopCard from "../../components/cards/HomeTopCard";
 import TournamentMatchesCard from "../../components/cards/TournamentMatchesCard";
 import AppText from "../../components/text/AppText";
 import UTILS from "../../utils";
 import Button from "../../components/button/Button";
+import useAuth from "../../hooks/useAuth";
 
-const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS, SCORING_SCREENS } =
-  UTILS.SCREEN_NAMES;
-export default function Home({ navigation }) {
+const { LIVE_MATCHES } = UTILS.SCREEN_NAMES;
+
+export default function UpComingMatches({ navigation }) {
+  const { deleteUserData } = useAuth();
   const tournamentDetails = [
     {
       date: "25 Jul 22",
@@ -32,28 +33,23 @@ export default function Home({ navigation }) {
           <View style={[styles.cardContainer]}>
             <TournamentMatchesCard
               arrayData={tournamentDetails}
-              onPressLeftButton={() =>
-                navigation.navigate(SCORING_SCREENS.MATCH_TOSS)
+              onPressLeftButton={
+                () => {}
+                // navigation.navigate(LIVE_MATCHES.MATCH_TOSS)
               }
               onPressRightButton={() => {}}
             />
             <Button
               label={"Go To Live Match Screen"}
-              onButtonPress={() =>
-                navigation.navigate(SCORING_SCREENS.LIVE_MATCH)
-              }
+              onButtonPress={() => navigation.navigate(LIVE_MATCHES.LIVE_MATCH)}
             />
+
+            <Button label={"Logout"} onButtonPress={deleteUserData} />
           </View>
         </View>
       </View>
-
-      <PlusButton onPress={handleModal} />
     </>
   );
-
-  function handleModal() {
-    navigation.navigate(MATCH_DETAILS_SCREENS.FORM);
-  }
 }
 
 const styles = StyleSheet.create({

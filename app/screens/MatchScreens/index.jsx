@@ -1,4 +1,4 @@
-import MatchDetails from "../../screens/MatchScreens/MatchDetails";
+import MatchDetails from "./MatchDetails";
 import UTILS from "../../utils";
 
 const { MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;

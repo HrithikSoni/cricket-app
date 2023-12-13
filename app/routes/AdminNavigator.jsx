@@ -1,17 +1,17 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import appBundle from './screenBundle/AppBundle'
+import adminScreens from "../screens/AdminScreens";
 import { View } from "react-native";
 
 const Stack = createStackNavigator();
 
-export default function AppNavigator() {
+export default function AdminNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      {appBundle.map((item, index) => (
+      {adminScreens.map((item, index) => (
         <Stack.Screen
           key={index}
           {...item}

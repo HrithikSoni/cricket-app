@@ -1,18 +1,17 @@
+import React, { useState } from "react";
 import {
-  TouchableOpacity,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
 
-import UTILS from "../../utils";
-import OTPInputBox from "./OTPInputBox";
 import useApi from "../../hooks/useApi";
-import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
 import useTimer from "../../hooks/useTimer";
+import UTILS from "../../utils";
 import AppText from "../text/AppText";
+import OTPInputBox from "./OTPInputBox";
 
 const style = UTILS.STYLES;
 const colors = UTILS.COLORS;
@@ -126,11 +125,11 @@ function useSendOtp(body) {
   });
 
   async function handleSendOtp() {
-    const requestConfig = {
-      endpoint: AUTH_ENDPOINTS.SEND_OTP,
-      body,
-    };
-    await request(requestConfig);
+    // const requestConfig = {
+    //   endpoint: AUTH_ENDPOINTS.SEND_OTP,
+    //   body,
+    // };
+    // await request(requestConfig);
   }
   return { handleSendOtp };
 }

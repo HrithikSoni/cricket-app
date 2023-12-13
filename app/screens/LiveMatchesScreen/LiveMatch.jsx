@@ -1,16 +1,16 @@
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import UTILS from "../../utils";
 import Icons from "../../components/others/Icons";
 import AppText from "../../components/text/AppText";
-import TopTabNavigator from "../../routes/TopTabNavigator";
+import TopTabNavigator from "../../routes/others/TopTabNavigator";
 import { useNavigation } from "@react-navigation/native";
 
 const LiveMatch = (props) => {
   const navigation = useNavigation();
   return (
-    <>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Icons.LeftChevron
@@ -23,7 +23,7 @@ const LiveMatch = (props) => {
       <View style={styles.tabBarContainer}>
         <TopTabNavigator />
       </View>
-    </>
+    </SafeAreaView>
   );
 
   function onBackBtnPress() {

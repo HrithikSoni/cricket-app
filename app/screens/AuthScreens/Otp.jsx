@@ -1,19 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useDispatch } from "react-redux";
 
 import Button from "../../components/button/Button";
 import OTPInputBox from "../../components/inputs/OTPInputBox";
+import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import useTimer from "../../hooks/useTimer";
-import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
-import permanentStorage from "../../services/permanentStorage";
-import { updateAuth } from "../../services/authServices/authReducer";
-import UTILS from "../../utils";
 import useAuth from "../../hooks/useAuth";
 import useRTKQuery from "../../hooks/useRtKQuery";
+import useTimer from "../../hooks/useTimer";
 import authApi from "../../services/authServices/authApi";
-import AppText from "../../components/text/AppText";
+import UTILS from "../../utils";
 
 const Otp = ({ navigation, route }) => {
   const otpInput = useRef({ otp: "" });
@@ -68,16 +64,12 @@ export default Otp;
 
 function useOtpService() {
   const { timer, startTimer, timerRunning } = useTimer(10);
-  const { setAuth } = useAuth();
+  const { saveUserData } = useAuth();
 
   const { post: handleOtp } = useRTKQuery(
     authApi.useConfirmOtpMutation,
     handleOtpSuccess
   );
-
-  // for (let x in authApi) {
-  //   console.log(x);
-  // }
 
   const { post: handleResendOtp } = useRTKQuery(
     authApi.useSendOtpMutation,
@@ -85,11 +77,10 @@ function useOtpService() {
   );
 
   function handleOtpSuccess(e) {
-    setAuth(e);
+    saveUserData(e);
   }
 
   function handleResendOtpSuccess(e) {
-    console.log(e, "success");
     startTimer();
   }
 

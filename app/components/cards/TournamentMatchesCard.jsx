@@ -4,9 +4,12 @@ import { StyleSheet, Text, View } from "react-native";
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
 import SmallButton from "../button/SmallButton";
+import useAuth from "../../hooks/useAuth";
 
 export default function TournamentMatchesCard(props) {
   const countDown = 10;
+  const { role } = useAuth();
+  const isAdmin = role === UTILS.ROLE.ADMIN;
   return (
     <View style={styles.container}>
       {props?.arrayData.map((item, index) => (
@@ -25,17 +28,24 @@ export default function TournamentMatchesCard(props) {
           <View style={styles.teams}>
             <View style={[styles.teamInnerCon]}>
               <AppText style={styles.teamText}>{item.team1}</AppText>
-              <SmallButton label={"Match Toss"} onPress={props.onPressLeftButton} />
+              {isAdmin && (
+                <SmallButton
+                  label={"Match Toss"}
+                  onPress={props.onPressLeftButton}
+                />
+              )}
             </View>
             <AppText>V/S</AppText>
             <View style={[styles.teamInnerCon]}>
               <AppText style={styles.teamText}>{item.team2}</AppText>
-              <SmallButton
-                label={"Start Scorekeeping"}
-                onPress={props.onPressRightButton}
-                bgColor={UTILS.COLORS.gray2}
-                textColor={UTILS.COLORS.textColor}
-              />
+              {isAdmin && (
+                <SmallButton
+                  label={"Start Scorekeeping"}
+                  onPress={props.onPressRightButton}
+                  bgColor={UTILS.COLORS.gray2}
+                  textColor={UTILS.COLORS.textColor}
+                />
+              )}
             </View>
           </View>
         </View>

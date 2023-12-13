@@ -1,23 +1,12 @@
-import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import SearchAndAdd from "../../components/search/SearchAndAdd";
-import AppText from "../../components/text/AppText";
-import PlayerDetailsCard from "../../components/cards/PlayerDetailsCard";
-import {
-  addPlayerInTeam,
-  getCurrentTeam,
-  totalPlayer,
-} from "../../services/store/reducers/matchReduce";
 import Button from "../../components/button/Button";
-import SearchTeamModal from "../../components/modals/SearchTeamModal";
-import AddNewPlayerModal from "../../components/modals/AddNewPlayerModal";
-import UTILS from "../../utils";
 import CaptainWicketKeeperCard from "../../components/cards/CaptainWicketKeeperCard";
-import useManageTeam from "../../hooks/useManageTeam";
 import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
+import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import useManageTeam from "../../hooks/useManageTeam";
+import UTILS from "../../utils";
 
 export default function SelectCaptain({ navigation }) {
   return (

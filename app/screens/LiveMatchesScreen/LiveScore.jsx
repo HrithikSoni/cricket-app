@@ -1,14 +1,10 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import TeamScoreCard from "../../components/cards/TeamScoreCard";
 import LiveScoreTable from "../../components/table/LiveScoreTable";
-import UTILS from "../../utils";
 
 const LiveScore = (props) => {
-  const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
@@ -28,7 +24,7 @@ export default LiveScore;
 
 const tableData = [
   { title: "name", subTitle: null, data: [1, 2, 3, 4, 5] },
-  { title: "new Team", subTitle: "game", data: [12, 24, 35, "00:00", 50] },
+  { title: "new Team", subTitle: "game", data: [12, 24, 35, 0, 50] },
 ];
 
 const batsManHeaderRowData = {

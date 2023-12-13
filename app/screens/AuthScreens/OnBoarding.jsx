@@ -30,9 +30,10 @@ const OnBoarding = ({ navigation }) => {
             onPressLeft={() => navigation.navigate(AUTH_SCREENS.LOGIN)}
             leftBtnText={"Login"}
             onPressRight={() => navigation.navigate(AUTH_SCREENS.SIGNUP)}
-            rightBtnText={"Create"}
+            rightBtnText={"Create Account"}
           />
         </View>
+        {/* <Button label={"Login"} onButtonPress={()=>navigation.navigate(TEST_SCREENS.TEST_LOGIN)} /> */}
         {/* <Button
           label={"Login"}
           onButtonPress={() =>

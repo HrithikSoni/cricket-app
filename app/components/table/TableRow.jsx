@@ -17,15 +17,26 @@ export default function TableRow({
     ? { justifyContent: "space-between" }
     : { flex: 3, justifyContent: "space-around" };
   return (
-    <>
+    <View
+      style={[
+        {
+          flexDirection: "row",
+          padding: 10,
+        },
+        containerStyle,
+      ]}
+    >
+      <View style={{ flex: 1.5 }}>
+        <Text style={[{ color: UTILS.COLORS.themeColor }, titleStyle]}>
+          {title}
+        </Text>
+        {subTitle && <SmallGreyText>{subTitle}</SmallGreyText>}
+      </View>
+
       <View
         style={[
-          {
-            flexDirection: "row",
-            padding: 10,
-            // justifyContent: "space-between",
-          },
-          containerStyle,
+          { flexDirection: "row", alignItems: "center" },
+          dataContainerStyle,
         ]}
         key={key}
       >
@@ -51,7 +62,7 @@ export default function TableRow({
           ))}
         </View>
       </View>
-    </>
+    </View>
   );
 }
 

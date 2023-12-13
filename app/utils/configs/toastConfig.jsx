@@ -1,10 +1,8 @@
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 
 import { TouchableOpacity } from "react-native";
+import colors from "../styles/colors";
 
-import UTILS from "../../utils";
-
-const colors = UTILS.COLORS;
 const width = 300;
 const customStyles = {};
 export const toastConfig = {

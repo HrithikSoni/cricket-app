@@ -1,37 +1,18 @@
-import React, { useEffect } from "react";
-import { StyleSheet } from "react-native";
+import React from "react";
 import "react-native-gesture-handler";
 
-import { useDispatch } from "react-redux";
-import useAuth from "../hooks/useAuth";
-import AppNavigator from "../routes/AppNavigator";
+import { useGetAuthFromStore } from "../hooks/useAuth";
+import AdminNavigator from "../routes/AdminNavigator";
 import AuthNavigator from "../routes/AuthNavigator";
-import permanentStorage from "../services/permanentStorage";
+import UserNavigator from "../routes/UserNavigator";
+import ROLE from "../utils/enum/role";
 
 export default function Root() {
-  const { role } = useAuth();
-  const dispatch = useDispatch();
+  const { role } = useGetAuthFromStore();
 
-  useEffect(() => {
-    request();
-  }, []);
+  if (!role) return <AuthNavigator />;
 
-  async function request() {
-    await permanentStorage
-      .getDetails(permanentStorage.userDetail)
-      .then((response) => {
-        if (response) {
-          dispatch(updateAuth(response));
-        }
-      })
-      .catch((error) => {});
-  }
+  if (role == ROLE.ADMIN) return <AdminNavigator />;
 
-  return (
-    // role ? role === ROLE.PLAYER ? <PlayerNavigator /> : <AdminNavigator /> : <AuthNavigator />
-    role ? <AppNavigator /> : <AuthNavigator />
-    // true ? <AppNavigator /> : <AuthNavigator />
-  );
+  return <UserNavigator />;
 }
-
-const styles = StyleSheet.create({});

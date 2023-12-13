@@ -1,9 +1,7 @@
-import React, { useState } from "react";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 
-import useAuth from "./useAuth";
-import api from "../services/store/api";
 import UTILS from "../utils";
+import useAuth from "./useAuth";
 
 const getHeader = (token) => {
   return {
@@ -40,13 +38,13 @@ export default useApi = (hookConfig = {}) => {
       }
 
       const { headers } = getHeader(token);
-      const data = await api.any({
-        url: endpoint,
-        params,
-        headers,
-        method,
-        data: body,
-      });
+      // const data = await api.any({
+      //   url: endpoint,
+      //   params,
+      //   headers,
+      //   method,
+      //   data: body,
+      // });
 
       Toast.hide();
       if (data.ok) {

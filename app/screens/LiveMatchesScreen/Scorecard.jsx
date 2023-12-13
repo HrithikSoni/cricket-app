@@ -25,7 +25,7 @@ export default Scorecard;
 
 const tableData = [
   { title: "name", subTitle: null, data: [1, 2, 3, 4, 5, 6] },
-  { title: "new Team", subTitle: "game", data: [12, 24, 35, "00:00", 50, 50] },
+  { title: "new Team", subTitle: "game", data: [12, 24, 35, 0, 50, 49] },
 ];
 
 const batsManHeaderRowData = {

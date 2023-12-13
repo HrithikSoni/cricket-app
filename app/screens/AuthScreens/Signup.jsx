@@ -7,8 +7,7 @@ import ComponentHandler from "../../components/inputs/ComponentHandler";
 import { CameraIcon } from "../../components/others/Icons";
 import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import AUTH_ENDPOINTS from "../../services/store/api/authEndpoints";
-import permanentStorage from "../../services/permanentStorage";
+import permanentStorage from "../../services/store/permanentStorage";
 // import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
 

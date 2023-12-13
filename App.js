@@ -1,6 +1,5 @@
-import React from "react";
-// import 'react-native-reanimated';
 import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 import "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
@@ -8,7 +7,7 @@ import { Provider } from "react-redux";
 import { AppProvider } from "./app/context/AppContext";
 import Root from "./app/screens";
 import { store } from "./app/services/store";
-import { toastConfig } from "./app/services/toast/toastConfig";
+import UTILS from "./app/utils";
 
 export default function App() {
   return (
@@ -20,7 +19,7 @@ export default function App() {
           </Provider>
         </AppProvider>
       </NavigationContainer>
-      <Toast config={toastConfig} topOffset={300} />
+      <Toast config={UTILS.CONFIG.toastConfig} topOffset={300} />
     </>
   );
 }

@@ -9,7 +9,7 @@ import {
   totalPlayer,
   handleMatchDetails,
   updateCurrenTeam,
-} from "../services/store/reducers/matchReduce";
+} from "../services/matchServices/matchReducer";
 
 const nullFunction = () => null;
 

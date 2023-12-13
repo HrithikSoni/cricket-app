@@ -11,6 +11,7 @@ import SCREEN_NAMES from "./constants/screenNames";
 import countryInfo from "./constants/selctedCountry";
 import TEAM_NAME from "./enum/teamName";
 import MATCH_TYPES from "./enum/matchTypes";
+import CONFIG from "./configs";
 
 const HELPERS = {
   handlePlatform,
@@ -30,6 +31,7 @@ const UTILS = {
   SCREEN_NAMES,
   TEAM_NAME,
   MATCH_TYPES,
+  CONFIG,
 };
 
 export default UTILS;

@@ -1,13 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 
-import UTILS from "../utils";
-import Home from "../screens/Home";
-import Social from "../screens/Social";
-import Tournament from "../screens/Tournament";
-import Profile from "../screens/Profile";
-import TestHome from "../screens/TestScreens/TestHome";
-import Icons from "../components/others/Icons";
+import UTILS from "../../utils";
+import Home from "../../screens/Other/Home";
+import Social from "../../screens/Other/Social";
+import Tournament from "../../screens/Other/Tournament";
+import Profile from "../../screens/Other/Profile";
+import TestHome from "../../screens/LiveMatchesScreen/UpComingMatches";
+import Icons from "../../components/others/Icons";
 
 const Tab = createBottomTabNavigator();
 const { TAB_SCREENS, TEST_SCREENS } = UTILS.SCREEN_NAMES;
@@ -28,7 +28,7 @@ export default function BottomTabNavigator() {
         },
       }}
     >
-      <Tab.Screen
+      {/* <Tab.Screen
         name={TEST_SCREENS.TEST_HOME}
         component={TestHome}
         options={{
@@ -36,9 +36,9 @@ export default function BottomTabNavigator() {
           tabBarLabel: ({ color, focused }) =>
             focused ? <Text style={{ color: color }}>Home</Text> : null,
         }}
-      />
+      /> */}
 
-      {/* <Tab.Screen
+      <Tab.Screen
         name={TAB_SCREENS.HOME}
         component={Home}
         options={{
@@ -81,7 +81,7 @@ export default function BottomTabNavigator() {
               <Text style={{ color: color }}>{TAB_SCREENS.PROFILE}</Text>
             ) : null,
         }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 }
