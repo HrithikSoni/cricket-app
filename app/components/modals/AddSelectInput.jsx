@@ -19,14 +19,6 @@ export default function AddSelectInput(props) {
     addListModal: false,
   });
 
-  // useEffect(() => {
-  //   fetch();
-  // }, [modal.getListModal]);
-
-  // const fetch = async () => {
-  //   const { data: list } = await api.useGetUmpireQuery();
-  // };
-
   const { data: list } = api.useGetUmpireQuery();
 
   function onListPress() {

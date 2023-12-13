@@ -10,10 +10,11 @@ import api from "../../services/store/appApi";
 export default function AddNewPersonModal(props) {
   const personData = useRef({ role: props.role });
 
-  const [request] = api.useAddUmpireMutation();
+  const [request, details] = api.useAddUmpireMutation();
 
   function handleOnAddPress() {
     request(personData.current);
+    console.log(details, personData.current);
   }
 
   return (
@@ -29,12 +30,12 @@ export default function AddNewPersonModal(props) {
           <BottomSheetHeader {...props} header={props.onAddingHeader} />
           <InputBox
             label="Name"
-            onChangeText={(e) => (personData.current.name = e)}
+            onChangeText={(e) => (personData.current.firstName = e)}
           />
           <View style={styles.contactSpecializationContainer}>
             <InputBox
               label="Phone Number"
-              onChangeText={(e) => (personData.current.phoneNumber = e)}
+              onChangeText={(e) => (personData.current.contact = e)}
             />
           </View>
           <Button label="Add" onButtonPress={handleOnAddPress} />
