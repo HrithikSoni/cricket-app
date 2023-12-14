@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import UTILS from "../../utils";
 import Icons from "../others/Icons";
@@ -9,6 +9,13 @@ const style = UTILS.STYLES;
 
 const ToggleButton = (props) => {
   const [selectedOption, setSelectedOption] = useState(props.option1);
+  const [userClicked, setUserClicked] = useState(false);
+
+  useEffect(() => {
+    if (!userClicked) {
+      props?.onToggleSelect(props.option1);
+    }
+  }, [userClicked, props.option1]);
 
   const text = {
     color: selectedOption ? UTILS.COLORS.black : UTILS.COLORS.gray2,
@@ -17,6 +24,7 @@ const ToggleButton = (props) => {
   function handleOnPress() {
     const newSelectedOption =
       selectedOption === props.option1 ? props.option2 : props.option1;
+    setUserClicked(true);
     setSelectedOption(newSelectedOption);
     props?.onToggleSelect(newSelectedOption);
   }

@@ -7,24 +7,25 @@ import {
   View,
 } from "react-native";
 
+import useRTKQuery from "../../hooks/useRTKQuery";
+import api from "../../services/store/appApi";
 import UTILS from "../../utils";
 import Button from "../button/Button";
 import ToggleButton from "../button/ToggleButton";
 import BattingBowlingStyle from "../inputs/BattingBowlingStyle";
 import InputBox from "../inputs/InputBox";
-import BoldText from "../text/BoldText";
-import useRTKQuery from "../../hooks/useRTKQuery";
-import api from "../../services/store/appApi";
 import BottomSheetHeader from "../others/BottomSheetHeader";
 
 export default function AddNewPlayerModal(props) {
   const playerData = useRef({});
 
-  const { request: addPlayer } = useRTKQuery(
+  const { request: addPlayer, data } = useRTKQuery(
     api.useAddPlayerMutation,
     handleUserCreatedSuccess,
     handleUserCreatedFail
   );
+
+  console.log(data, "iiiiiiiiiii");
 
   function handleUserCreatedSuccess() {
     props.onRequestClose();
@@ -50,18 +51,22 @@ export default function AddNewPlayerModal(props) {
               onChangeText={(e) => (playerData.current.firstName = e)}
             />
             <View style={styles.contactSpecializationContainer}>
-              <InputBox
-                label="Phone Number"
-                onChangeText={(e) => (playerData.current.contact = e)}
-              />
-              <ToggleButton
-                label={"Specialization"}
-                option1={{ label: "Batsman", value: "BATTING" }}
-                option2={{ label: "Bowler", value: "BOWLING" }}
-                onToggleSelect={(e) =>
-                  (playerData.current.specialization = e.value)
-                }
-              />
+              <View style={styles.phoneNoContainer}>
+                <InputBox
+                  label="Phone Number"
+                  onChangeText={(e) => (playerData.current.contact = e)}
+                />
+              </View>
+              <View style={styles.toggleButtonContainer}>
+                <ToggleButton
+                  label={"Specialization"}
+                  option1={{ label: "Batsman", value: "BATTING" }}
+                  option2={{ label: "Bowler", value: "BOWLING" }}
+                  onToggleSelect={(e) =>
+                    (playerData.current.specialization = e.value)
+                  }
+                />
+              </View>
             </View>
             <BattingBowlingStyle
               onBattinBowlingSelect={(e) =>
@@ -96,5 +101,13 @@ const styles = StyleSheet.create({
   },
   contactSpecializationContainer: {
     marginBottom: 30,
+    flexDirection: "row",
+    gap: 5,
+  },
+  phoneNoContainer: {
+    width: "50%",
+  },
+  toggleButtonContainer: {
+    width: "50%",
   },
 });

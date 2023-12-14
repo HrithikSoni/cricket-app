@@ -30,12 +30,10 @@ const DropDownModal = (props) => {
     },
   ];
 
-  const boxStyle = [styles.box, UTILS.STYLES.commonStyle, { paddingLeft: 0.5 }];
-
   return (
     <>
       <View style={[styles.container]}>
-        <TouchableOpacity style={boxStyle} onPress={toggleModal}>
+        <TouchableOpacity style={styles.box} onPress={toggleModal}>
           <View style={styles.boxContent}>
             <View style={styles.boxText}>
               {selectedOption?.url ||
@@ -68,9 +66,17 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
+    width: "100%",
   },
   box: {
     paddingVertical: 15,
+    paddingLeft: 0.5,
+    backgroundColor: UTILS.COLORS.gray1,
+    paddingHorizontal: 20,
+    fontSize: 17,
+    borderRadius: 20,
+    marginTop: 10,
+    width: "100%",
   },
   boxContent: {
     flexDirection: "row",

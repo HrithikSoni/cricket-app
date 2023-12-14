@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -53,7 +53,7 @@ function List(props) {
     dispatch(
       addPlayerInTeam({
         team: currentTeam,
-        player: playerData[index],
+        player: props.list[index],
       })
     );
   }

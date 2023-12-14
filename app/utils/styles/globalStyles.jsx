@@ -6,9 +6,7 @@ const commonStyle = {
   paddingHorizontal: 20,
   fontSize: 17,
   borderRadius: 20,
-  borderWidth: 0,
   marginTop: 10,
-  width: "100%",
 };
 
 export const commonTextStyle = {
