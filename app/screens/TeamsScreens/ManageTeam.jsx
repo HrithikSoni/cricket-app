@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,14 +7,21 @@ import PlayerDetailsCard from "../../components/cards/PlayerDetailsCard";
 import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import UTILS from "../../utils";
+import useManageTeam from "../../hooks/useManageTeam";
 import {
   addPlayerInTeam,
   getCurrentTeam,
-  totalPlayer,
 } from "../../services/matchServices/matchReducer";
+import api from "../../services/store/appApi";
+import UTILS from "../../utils";
 
 export default function ManageTeam({ navigation }) {
+  const { data: list, isLoading } = api.useGetPlayerQuery();
+
+  if (!list) {
+    return isLoading;
+  }
+
   return (
     <>
       <ParentWrapper screenTitle="Team Name">
@@ -23,12 +30,14 @@ export default function ManageTeam({ navigation }) {
         </View>
 
         <PlayersListHeader />
-        <List />
+        <List list={list} />
 
         <Button
           bottom={true}
           onButtonPress={() =>
-            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.MANAGE_BATTING_ORDER)
+            navigation.navigate(
+              UTILS.SCREEN_firstNameS.TEAMS.MANAGE_BATTING_ORDER
+            )
           }
         />
       </ParentWrapper>
@@ -36,7 +45,7 @@ export default function ManageTeam({ navigation }) {
   );
 }
 
-function List() {
+function List(props) {
   const dispatch = useDispatch();
   const currentTeam = useSelector(getCurrentTeam);
 
@@ -52,7 +61,7 @@ function List() {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View>
-        {playerData.map((e, i) => (
+        {props.list.map((e, i) => (
           <PlayerDetailsCard
             {...e}
             key={i}
@@ -66,8 +75,10 @@ function List() {
 }
 
 function PlayersListHeader() {
-  const currentTeam = useSelector(getCurrentTeam);
-  const totalPLayers = useSelector(totalPlayer(currentTeam));
+  // const currentTeam = useSelector(getCurrentTeam);
+  // const totalPLayers = useSelector(totalPlayer(currentTeam));
+
+  const { totalPLayers } = useManageTeam();
 
   return (
     <View style={styles.playersListHeader}>
@@ -78,16 +89,16 @@ function PlayersListHeader() {
 }
 
 const playerData = [
-  { id: 1, name: "Jason", type: "Bowler" },
-  { id: 2, name: "Jerome", type: "Bowler" },
-  { id: 3, name: "Fransis", type: "Bowler" },
-  { id: 4, name: "Arlene", type: "Bowler" },
-  { id: 5, name: "Darele", type: "Bowler" },
-  { id: 6, name: "Kathrene", type: "Bowler" },
-  { id: 7, name: "Jason", type: "Bowler" },
-  { id: 8, name: "Fransis", type: "Bowler" },
-  { id: 9, name: "Kathrene", type: "Bowler" },
-  { id: 10, name: "Jerome", type: "Bowler" },
+  { id: 1, firstName: "Jason", playerDetail: { specialization: "Bowler" } },
+  { id: 2, firstName: "Jerome", playerDetail: { specialization: "Bowler" } },
+  { id: 3, firstName: "Fransis", playerDetail: { specialization: "Bowler" } },
+  { id: 4, firstName: "Arlene", playerDetail: { specialization: "Bowler" } },
+  { id: 5, firstName: "Darele", playerDetail: { specialization: "Bowler" } },
+  { id: 6, firstName: "Kathrene", playerDetail: { specialization: "Bowler" } },
+  { id: 7, firstName: "Jason", playerDetail: { specialization: "Bowler" } },
+  { id: 8, firstName: "Fransis", playerDetail: { specialization: "Bowler" } },
+  { id: 9, firstName: "Kathrene", playerDetail: { specialization: "Bowler" } },
+  { id: 10, firstName: "Jerome", playerDetail: { specialization: "Bowler" } },
 ];
 
 const styles = StyleSheet.create({

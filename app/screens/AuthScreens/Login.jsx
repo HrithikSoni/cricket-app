@@ -7,13 +7,13 @@ import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import useRTKQuery from "../../hooks/useRTKQuery";
 import authApi from "../../services/authServices/authApi";
 import UTILS from "../../utils";
-import { AUTH_SCREENS } from "../../utils/constants/screenNames";
 import AppText from "../../components/text/AppText";
 
 const colors = UTILS.COLORS;
+const { AUTH_SCREENS } = UTILS.SCREEN_NAMES;
 
 export default function Login({ navigation }) {
-  const loginData = useRef({ countryId: "", contact: "123" });
+  const loginData = useRef({ countryId: "", contact: "" });
 
   const { request: login } = useRTKQuery(
     authApi.useLoginMutation,

@@ -1,35 +1,76 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import BoldText from "../text/BoldText";
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
+import Button from "../button/Button";
 
-export default function BattingBowlingStyle() {
-  const bowlImages = [
-    require("../../assets/images/rightBowl.png"),
-    require("../../assets/images/leftBowl.png"),
+export default function BattingBowlingStyle(props) {
+  const battingBowlingData = useRef({});
+
+  const bowlData = [
+    {
+      imgUrl: require("../../assets/images/rightBowl.png"),
+      value: "RIGHT_HANDED",
+      label: "Right Hand",
+    },
+    {
+      imgUrl: require("../../assets/images/leftBowl.png"),
+      value: "LEFT_HANDED",
+      label: "Left Hand",
+    },
   ];
 
-  const batImages = [
-    require("../../assets/images/rightBat.png"),
-    require("../../assets/images/leftBat.png"),
+  const batData = [
+    {
+      imgUrl: require("../../assets/images/rightBat.png"),
+      value: "RIGHT_HANDED",
+      label: "Right Hand",
+    },
+    {
+      imgUrl: require("../../assets/images/leftBat.png"),
+      value: "LEFT_HANDED",
+      label: "Left Hand",
+    },
   ];
+  const form = [
+    { label: "Batting Style", customKey: "battingStyle", data: batData },
+    { label: "Bowling Style", customKey: "bowlingStyle", data: bowlData },
+  ];
+
+  function handleOnSelect(e, customKey) {
+    battingBowlingData.current[customKey] = e.value;
+    props.onBattinBowlingSelect(battingBowlingData.current);
+  }
 
   return (
     <View>
-      <BoldText>Batting Style</BoldText>
-      <SelectionBtn data={batImages} />
-      <BoldText>Bowling Style</BoldText>
-      <SelectionBtn data={bowlImages} />
+      {form.map((item, index) => {
+        return (
+          <View key={index}>
+            <BoldText>{item.label}</BoldText>
+            <SelectionBtn
+              data={item.data}
+              {...props}
+              selectedValue={(e) => handleOnSelect(e, item.customKey)}
+            />
+          </View>
+        );
+      })}
     </View>
   );
 }
-function SelectionBtn({ data }) {
+function SelectionBtn(props) {
   const [selectedBtn, setSelectedBtn] = useState(0);
+
+  function handleOnSelect(e, i) {
+    props.selectedValue(e);
+    setSelectedBtn(i);
+  }
 
   return (
     <View style={styles.styleContainer}>
-      {data.map((e, i) => {
+      {props.data.map((e, i) => {
         const leftMargin = i == 1 ? styles.btnSpace : {};
         const selectedStyle = selectedBtn === i ? styles.selected : {};
 
@@ -37,16 +78,17 @@ function SelectionBtn({ data }) {
           <TouchableOpacity
             style={[styles.btn, leftMargin, selectedStyle]}
             key={i}
-            onPress={() => setSelectedBtn(i)}
+            onPress={() => handleOnSelect(e, i)}
           >
-            <Image source={e} />
-            <AppText style={styles.label}> Right Hand</AppText>
+            <Image source={e.imgUrl} />
+            <AppText style={styles.label}>{e.label}</AppText>
           </TouchableOpacity>
         );
       })}
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   styleContainer: {
     flexDirection: "row",

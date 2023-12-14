@@ -1,6 +1,11 @@
 import React, { useRef } from "react";
-import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
-
+import {
+  Modal,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import UTILS from "../../utils";
 import Button from "../button/Button";
@@ -8,9 +13,24 @@ import ToggleButton from "../button/ToggleButton";
 import BattingBowlingStyle from "../inputs/BattingBowlingStyle";
 import InputBox from "../inputs/InputBox";
 import BoldText from "../text/BoldText";
+import useRTKQuery from "../../hooks/useRTKQuery";
+import api from "../../services/store/appApi";
 
 export default function AddNewPlayerModal(props) {
   const playerData = useRef({});
+
+  const { request: addPlayer } = useRTKQuery(
+    api.useAddPlayerMutation,
+    handleUserCreatedSuccess,
+    handleUserCreatedFail
+  );
+
+  function handleUserCreatedSuccess() {
+    props.onRequestClose();
+  }
+  function handleUserCreatedFail(e) {
+    console.log(e);
+  }
 
   return (
     <Modal
@@ -22,23 +42,36 @@ export default function AddNewPlayerModal(props) {
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
-          <BoldText style={styles.header}>Add New Player</BoldText>
-          <InputBox label="Name" />
-          <View style={styles.contactSpecializationContainer}>
-            <InputBox label="Phone Number" />
-            <ToggleButton
-            label={"Specialization"}
-            option1={"Batsman"}
-            option2={"Bowler"}
-            onToggleSelect={(e) => (playerData.current.Specialization = e)
-            }
-          />
-          </View>
-          <BattingBowlingStyle />
+          <ScrollView>
+            <BoldText style={styles.header}>Add New Player</BoldText>
+            <InputBox
+              label="Name"
+              onChangeText={(e) => (playerData.current.firstName = e)}
+            />
+            <View style={styles.contactSpecializationContainer}>
+              <InputBox
+                label="Phone Number"
+                onChangeText={(e) => (playerData.current.contact = e)}
+              />
+              <ToggleButton
+                label={"Specialization"}
+                option1={{ label: "Batsman", value: "BATTING" }}
+                option2={{ label: "Bowler", value: "BOWLING" }}
+                onToggleSelect={(e) =>
+                  (playerData.current.specialization = e.value)
+                }
+              />
+            </View>
+            <BattingBowlingStyle
+              onBattinBowlingSelect={(e) =>
+                (playerData.current = { ...playerData.current, ...e })
+              }
+            />
+          </ScrollView>
           <Button
             label="Add player in team"
             //   bottom={true}
-            onButtonPress={props.onRequestClose}
+            onButtonPress={() => addPlayer(playerData.current)}
           />
         </View>
       </View>

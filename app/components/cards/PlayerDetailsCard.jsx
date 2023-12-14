@@ -30,8 +30,11 @@ function PlayerDetailsCard(props) {
     <TouchableOpacity style={container} onPress={handleOnPress}>
       <View style={styles.imageContainer} />
       <View style={styles.playerDetails}>
-        <BoldText>{props.name}</BoldText>
-        <SmallGreyText>{props.type}</SmallGreyText>
+        <View style={styles.playerNameContainer}>
+          <BoldText>{props.firstName}</BoldText>
+          {/* <BoldText>{props.lastName}</BoldText> */}
+        </View>
+        <SmallGreyText>{props.playerDetail.specialization}</SmallGreyText>
       </View>
     </TouchableOpacity>
   );
@@ -55,5 +58,9 @@ const styles = StyleSheet.create({
   playerDetails: {
     marginLeft: 12,
     justifyContent: "space-evenly",
+  },
+  playerNameContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

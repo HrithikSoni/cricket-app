@@ -1,7 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 
-
 import UTILS from "../../utils";
 import Icons from "../others/Icons";
 import AppText from "../text/AppText";
@@ -16,7 +15,8 @@ const ToggleButton = (props) => {
   };
 
   function handleOnPress() {
-    const newSelectedOption = selectedOption === props.option1 ? props.option2 : props.option1;
+    const newSelectedOption =
+      selectedOption === props.option1 ? props.option2 : props.option1;
     setSelectedOption(newSelectedOption);
     props?.onToggleSelect(newSelectedOption);
   }
@@ -27,7 +27,7 @@ const ToggleButton = (props) => {
       onPress={handleOnPress}
     >
       <AppText style={[text, style.commonTextStyleNormal]}>
-        {selectedOption || props.label}
+        {selectedOption.label || props.label}
       </AppText>
       <Icons.CheveronIcon />
     </TouchableOpacity>
@@ -38,6 +38,6 @@ export default ToggleButton;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-between'
+    justifyContent: "space-between",
   },
 });

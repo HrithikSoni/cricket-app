@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, StyleSheet, View } from "react-native";
 
-
 import Button from "../button/Button";
 import PlayerDetailsCard from "../cards/PlayerDetailsCard";
 import SearchBar from "../inputs/SearchBar";
@@ -23,8 +22,8 @@ export default function SearchTeamModal({ visible, onRequestClose }) {
           <View style={{ height: 10 }} />
           <PlayerDetailsCard
             id={1}
-            name={"Jerome"}
-            type={"Bowler"}
+            firstName={"Jerome"}
+            playerDetail={{ specialization: "Bowler" }}
             onPress={() => {}} // add player in team
           />
         </View>
