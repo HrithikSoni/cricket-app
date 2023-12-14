@@ -19,8 +19,20 @@ const usersApi = api.injectEndpoints({
       invalidatesTags: [{ type: "umpire" }],
     }),
 
-    getPlayer: builder.query(getQuery("/user/player", "player")),
-    addPlayer: builder.mutation(postQuery("/user/player", "player")),
+    getPlayer: builder.query({
+      query: () => "/user/player",
+      providesTags: [{ type: "player" }],
+    }),
+    addPlayer: builder.mutation({
+      query(body) {
+        return {
+          url: "/user/player",
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: [{ type: "player" }],
+    }),
   }),
   overrideExisting: true,
 });
