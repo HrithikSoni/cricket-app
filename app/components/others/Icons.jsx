@@ -1,36 +1,35 @@
 import React from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import {
-  MaterialCommunityIcons,
-  Feather,
-  MaterialIcons,
-  FontAwesome5,
-  Foundation,
-  EvilIcons,
-  FontAwesome,
-  Ionicons,
   AntDesign,
-  Zocial,
   Entypo,
-  Octicons,
-  Fontisto,
-  SimpleLineIcons,
+  Feather,
+  FontAwesome,
+  Foundation,
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
 } from "react-native-vector-icons";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-
-import UTILS from "../../utils";
-
-const colors = UTILS.COLORS;
+import colors from "../../utils/styles/colors";
 
 export const SearchIcon = () => (
   <Feather name="search" size={24} color={colors.themeColor} />
 );
 
 export const CalendarIcon = (props) => (
-  <AntDesign name="calendar" size={24} color={props?.isFilled ? colors.themeColor : colors.gray2} />
+  <AntDesign
+    name="calendar"
+    size={24}
+    color={props?.isFilled ? colors.themeColor : colors.gray2}
+  />
 );
 
 export const ClockIcon = (props) => (
-  <Feather name="clock" size={24} color={props?.isFilled ? colors.themeColor : colors.gray2} />
+  <Feather
+    name="clock"
+    size={24}
+    color={props?.isFilled ? colors.themeColor : colors.gray2}
+  />
 );
 
 export const CheckIcon = () => (
@@ -57,7 +56,9 @@ export const ImageIcon = () => (
 
 export const CheveronIcon = (props) => (
   <Ionicons
-    name={props?.isListVisible ? "chevron-up" : "chevron-down" || "chevron-down"}
+    name={
+      props?.isListVisible ? "chevron-up" : "chevron-down" || "chevron-down"
+    }
     size={24}
     color={props.color || colors.gray2}
   />
@@ -130,6 +131,10 @@ const Icons = {
     <TouchableOpacity onPress={onPress}>
       <Feather name="arrow-down-circle" size={28} color={color} />
     </TouchableOpacity>
+  ),
+
+  Failed: () => (
+    <AntDesign name="exclamationcircleo" size={20} color={colors.red} />
   ),
 };
 

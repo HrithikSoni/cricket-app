@@ -19,7 +19,10 @@ export default function App() {
           </Provider>
         </AppProvider>
       </NavigationContainer>
-      <Toast config={UTILS.CONFIG.toastConfig} topOffset={300} />
+      <Toast
+        config={UTILS.CONFIG.toastConfig}
+        // topOffset={20}
+      />
     </>
   );
 }

@@ -2,9 +2,12 @@ import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 
 import { TouchableOpacity } from "react-native";
 import colors from "../styles/colors";
+import Icons from "../../components/others/Icons";
+import globalStyles from "../styles/globalStyles";
+import DIMENSIONS from "../helpers/dimensions";
 
-const width = 300;
-const customStyles = {};
+const width = DIMENSIONS.width;
+
 export const toastConfig = {
   success: (props) => {
     return (
@@ -82,9 +85,14 @@ export const toastConfig = {
 
   error: (props) => {
     return (
-      <View style={[styles.messageCard, { borderLeftColor: colors.cancelRed }]}>
-        {/* <Icons.Failed /> */}
-        <Text style={styles.sText1}>{props.text1}</Text>
+      <View
+        style={[
+          styles.messageCard,
+          { borderLeftColor: colors.red, flexDirection: "row" },
+        ]}
+      >
+        <Icons.Failed />
+        {/* <Text style={styles.sText1}>Failed</Text> */}
         <Text style={styles.sText2}>{props.text2}</Text>
       </View>
     );
@@ -148,18 +156,22 @@ const styles = StyleSheet.create({
   sText2: {
     fontSize: 14,
     fontWeight: "400",
-    color: colors.gray2,
+    marginHorizontal: 10,
+    // color: colors.gray2,
   },
   messageCard: {
-    width: width - 100,
-    height: 200,
+    margin: 20,
+    // width: width - 20,
+
+    paddingHorizontal: 20,
+    paddingVertical: 15,
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
-    justifyContent: "center",
-    borderLeftColor: colors.green1,
+    // justifyContent: "center",
+    borderLeftColor: colors.themeColor,
     borderLeftWidth: 5,
-    // ...customStyles.elevation,
+    ...globalStyles.elevation,
   },
 
   alertMessageCard: {

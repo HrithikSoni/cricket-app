@@ -15,7 +15,7 @@ const colors = UTILS.COLORS;
 export default function Login({ navigation }) {
   const loginData = useRef({ countryId: "", contact: "123" });
 
-  const { request: login } = useRTKQuery(
+  const { request: login, isLoading } = useRTKQuery(
     authApi.useLoginMutation,
     handleLoginSuccess
   );
@@ -40,6 +40,7 @@ export default function Login({ navigation }) {
           />
           <View style={styles.btnContainer}>
             <Button
+              label={isLoading ? "...Loading" : "Continue"}
               // onButtonPress={() =>
               //   navigation.navigate(AUTH_SCREENS.OTP, {
               //     phoneNo: loginData.current.phoneNo,
