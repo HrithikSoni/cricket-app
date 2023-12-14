@@ -27,6 +27,7 @@ export default function SearchAddPlayerModal() {
       <AddNewPlayerModal
         visible={modal.addPlayerModal}
         onRequestClose={() => toggleModal("addPlayerModal")}
+        header={"Add New Player"}
       />
     </>
   );

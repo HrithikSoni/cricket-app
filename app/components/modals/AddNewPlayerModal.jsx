@@ -15,6 +15,7 @@ import InputBox from "../inputs/InputBox";
 import BoldText from "../text/BoldText";
 import useRTKQuery from "../../hooks/useRTKQuery";
 import api from "../../services/store/appApi";
+import BottomSheetHeader from "../others/BottomSheetHeader";
 
 export default function AddNewPlayerModal(props) {
   const playerData = useRef({});
@@ -43,7 +44,7 @@ export default function AddNewPlayerModal(props) {
         <TouchableOpacity style={{ flex: 1 }} onPress={props.onRequestClose} />
         <View style={styles.formContainer}>
           <ScrollView>
-            <BoldText style={styles.header}>Add New Player</BoldText>
+            <BottomSheetHeader {...props} />
             <InputBox
               label="Name"
               onChangeText={(e) => (playerData.current.firstName = e)}
