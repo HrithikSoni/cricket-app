@@ -12,6 +12,8 @@ import useTimer from "../../hooks/useTimer";
 import UTILS from "../../utils";
 import AppText from "../text/AppText";
 import OTPInputBox from "./OTPInputBox";
+import useRTKQuery from "../../hooks/useRTKQuery";
+import authApi from "../../services/authServices/authApi";
 
 const style = UTILS.STYLES;
 const colors = UTILS.COLORS;
@@ -22,9 +24,16 @@ const PhoneNoInputBox = (props) => {
   const [mobileNo, setMobileNo] = useState("");
   const [isVerifyPressed, setIsVerifyPressed] = useState(false);
 
-  const { handleSendOtp } = useSendOtp({ contact: mobileNo });
-
   const { timer, setTimer, timerRunning, setTimerRunning } = useTimer();
+
+  const { request: sendOtp, isLoading } = useRTKQuery(
+    authApi.useSendOtpMutation,
+    handleOtpSuccess
+  );
+
+  function handleOtpSuccess(e) {
+    console.log(e);
+  }
 
   function handleOnChange(e) {
     setMobileNo(e);
@@ -34,13 +43,15 @@ const PhoneNoInputBox = (props) => {
   function handleOnVerify() {
     setIsVerifyPressed(true);
     setTimerRunning(true);
-    handleSendOtp();
+    // handleSendOtp();
+    sendOtp({ contact: mobileNo });
   }
 
   function handleOnResend() {
     setTimer(30);
     setTimerRunning(true);
-    handleSendOtp();
+    // handleSendOtp();
+    sendOtp({ contact: mobileNo });
   }
 
   const containerStyle = [
@@ -118,21 +129,21 @@ const PhoneNoInputBox = (props) => {
 
 export default PhoneNoInputBox;
 
-function useSendOtp(body) {
-  const { request } = useApi({
-    onSuccess: (e) => {},
-    onFail: (e) => {},
-  });
+// function useSendOtp(body) {
+//   const { request } = useApi({
+//     onSuccess: (e) => {},
+//     onFail: (e) => {},
+//   });
 
-  async function handleSendOtp() {
-    // const requestConfig = {
-    //   endpoint: AUTH_ENDPOINTS.SEND_OTP,
-    //   body,
-    // };
-    // await request(requestConfig);
-  }
-  return { handleSendOtp };
-}
+//   async function handleSendOtp() {
+//     // const requestConfig = {
+//     //   endpoint: AUTH_ENDPOINTS.SEND_OTP,
+//     //   body,
+//     // };
+//     // await request(requestConfig);
+//   }
+//   return { handleSendOtp };
+// }
 
 const styles = StyleSheet.create({
   container: {

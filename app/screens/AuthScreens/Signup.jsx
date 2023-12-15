@@ -10,13 +10,25 @@ import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
 import permanentStorage from "../../services/store/permanentStorage";
 // import { updateAuth } from "../../services/store/reducers/authReducer";
 import UTILS from "../../utils";
+import useRTKQuery from "../../hooks/useRTKQuery";
+import authApi from "../../services/authServices/authApi";
+
+const { AUTH_SCREENS } = UTILS.SCREEN_NAMES;
 
 const Signup = ({ navigation }) => {
   const signUpData = useRef({
     profilePic: "string",
   });
 
-  const { handleSignUp } = useSignUp(signUpData.current);
+  const { request: signup, isLoading } = useRTKQuery(
+    authApi.useRegisterUserMutation,
+    handleRegisterUserSuccess
+  );
+
+  function handleRegisterUserSuccess(e) {
+    console.log(e);
+    navigation.navigate(AUTH_SCREENS.LOGIN);
+  }
 
   return (
     <ScrollView>
@@ -56,7 +68,7 @@ const Signup = ({ navigation }) => {
             />
           ))}
           <View style={{ marginTop: 20 }}>
-            <Button onButtonPress={handleSignUp} />
+            <Button onButtonPress={() => signup(signUpData.current)} />
           </View>
         </View>
       </ParentWrapperWithBG>
@@ -68,30 +80,30 @@ export default Signup;
 
 const handleEditProfilePic = () => {};
 
-function useSignUp(body) {
-  const dispatch = useDispatch();
+// function useSignUp(body) {
+//   const dispatch = useDispatch();
 
-  const { request } = useApi({
-    onSuccess: (e) => {
-      permanentStorage.saveDetails(permanentStorage.userDetail, e);
-      dispatch(updateAuth(e));
-    },
-    onFail: (e) => {},
-  });
+//   const { request } = useApi({
+//     onSuccess: (e) => {
+//       permanentStorage.saveDetails(permanentStorage.userDetail, e);
+//       dispatch(updateAuth(e));
+//     },
+//     onFail: (e) => {},
+//   });
 
-  async function handleSignUp() {
-    const requestConfig = {
-      endpoint: AUTH_ENDPOINTS.REGISTER_USER,
-      body,
-    };
-    await request(requestConfig);
-    console.log(body, "oooooooooo");
-  }
+//   async function handleSignUp() {
+//     const requestConfig = {
+//       endpoint: AUTH_ENDPOINTS.REGISTER_USER,
+//       body,
+//     };
+//     await request(requestConfig);
+//     console.log(body, "oooooooooo");
+//   }
 
-  return {
-    handleSignUp,
-  };
-}
+//   return {
+//     handleSignUp,
+//   };
+// }
 
 const form = [
   {
