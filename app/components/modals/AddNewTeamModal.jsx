@@ -10,7 +10,7 @@ import AppText from "../text/AppText";
 import BottomSheetHeader from "../others/BottomSheetHeader";
 
 export default function AddNewTeamModal(props) {
-  const teamData = useRef({});
+  const teamData = useRef({ imgUrl: "" });
 
   return (
     <Modal
@@ -37,7 +37,10 @@ export default function AddNewTeamModal(props) {
               onButtonPress={() => {}}
             />
           </View>
-          <Button label="Add Team" onButtonPress={props.onRequestClose} />
+          <Button
+            label="Add Team"
+            onButtonPress={() => console.log(teamData.current)}
+          />
         </View>
       </View>
     </Modal>

@@ -1,11 +1,11 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import { ScrollView, StyleSheet, View } from "react-native";
+
 import Button from "../../components/button/Button";
-import UTILS from "../../utils";
-import SearchAndAdd from "../../components/search/SearchAndAdd";
 import SelectTeamCard from "../../components/cards/SelectTeamCard";
 import SearchAddTeamModal from "../../components/modals/SearchAddTeamModal";
+import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import UTILS from "../../utils";
 
 export default function SelectTeam({ navigation }) {
   return (
