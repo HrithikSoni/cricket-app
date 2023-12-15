@@ -49,7 +49,7 @@ export default function MatchDetails({ navigation }) {
         <SelectInput
           label={"Add Referee"}
           form={refereeForm}
-          list={refereeNamesArray}
+          // list={refereeNamesArray}
           onSelect={updateMatchDetails}
           header={"Select A Referee"}
           onAddingHeader={"Add Referee"}
@@ -59,7 +59,7 @@ export default function MatchDetails({ navigation }) {
         <SelectInput
           label={"Add Scorer"}
           form={scorerFrom}
-          list={umpireNamesArray}
+          // list={umpireNamesArray}
           onSelect={updateMatchDetails}
           header={"Select A Scorer"}
           onAddingHeader={"Add Scorer"}
@@ -70,7 +70,7 @@ export default function MatchDetails({ navigation }) {
         <Button
           // bottom={true}
           onButtonPress={() => {
-            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS);
+            console.log(matchDetails.current);
           }}
           // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />

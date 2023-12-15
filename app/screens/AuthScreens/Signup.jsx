@@ -1,17 +1,15 @@
 import React, { useRef } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useDispatch } from "react-redux";
 
 import Button from "../../components/button/Button";
 import ComponentHandler from "../../components/inputs/ComponentHandler";
 import { CameraIcon } from "../../components/others/Icons";
 import AppText from "../../components/text/AppText";
 import ParentWrapperWithBG from "../../components/wrappers/ParentWrapperWithBG";
-import permanentStorage from "../../services/store/permanentStorage";
 // import { updateAuth } from "../../services/store/reducers/authReducer";
-import UTILS from "../../utils";
 import useRTKQuery from "../../hooks/useRTKQuery";
 import authApi from "../../services/authServices/authApi";
+import UTILS from "../../utils";
 
 const { AUTH_SCREENS } = UTILS.SCREEN_NAMES;
 
@@ -80,31 +78,6 @@ export default Signup;
 
 const handleEditProfilePic = () => {};
 
-// function useSignUp(body) {
-//   const dispatch = useDispatch();
-
-//   const { request } = useApi({
-//     onSuccess: (e) => {
-//       permanentStorage.saveDetails(permanentStorage.userDetail, e);
-//       dispatch(updateAuth(e));
-//     },
-//     onFail: (e) => {},
-//   });
-
-//   async function handleSignUp() {
-//     const requestConfig = {
-//       endpoint: AUTH_ENDPOINTS.REGISTER_USER,
-//       body,
-//     };
-//     await request(requestConfig);
-//     console.log(body, "oooooooooo");
-//   }
-
-//   return {
-//     handleSignUp,
-//   };
-// }
-
 const form = [
   {
     label: "First Name",
@@ -119,7 +92,7 @@ const form = [
     key: "email",
   },
   {
-    label: "Gender",
+    name: "Gender",
     key: "gender",
     type: UTILS.INPUT_TYPE.DROPDOWN,
     data: [
@@ -136,7 +109,7 @@ const form = [
     mode: "date",
   },
   {
-    label: "Role",
+    name: "Role",
     key: "role",
     type: UTILS.INPUT_TYPE.DROPDOWN,
     data: [

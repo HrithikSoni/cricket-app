@@ -42,9 +42,9 @@ export default function BottomSheetModal(props) {
                   {option.flag && (
                     <AppText style={styles.flagStyle}>{option.flag}</AppText>
                   )}
-                  <AppText style={styles.text}>{option.label}</AppText>
+                  <AppText style={styles.text}>{option.name}</AppText>
                 </View>
-                {option.rightText && <AppText>{option.rightText}</AppText>}
+                {option.countryId && <AppText>{option.countryId}</AppText>}
               </TouchableOpacity>
             ))}
           </ScrollView>

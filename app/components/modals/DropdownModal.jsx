@@ -44,7 +44,7 @@ const DropDownModal = (props) => {
                 ))}
               <AppText style={labelTextStyle}>
                 {selectedOption
-                  ? selectedOption?.label
+                  ? selectedOption?.name
                   : props?.label || "Select Option"}
               </AppText>
             </View>

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // $$$$ add url here
-export const URL = "https://api.cricketapp.kalpvaig.com";
+export const URL = "https://004a-103-200-86-187.ngrok-free.app";
 // export const URL = "http://localhost:3000";
 
 const baseQuery = fetchBaseQuery({
@@ -32,7 +32,7 @@ export const postQuery = (endpoint) => {
 
 const api = createApi({
   baseQuery,
-  tagTypes: ["umpire", "player"],
+  tagTypes: ["umpire", "player", "country", "state", "city"],
   endpoints: () => ({}),
 });
 

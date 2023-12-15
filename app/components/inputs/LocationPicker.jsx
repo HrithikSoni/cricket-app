@@ -2,22 +2,35 @@ import React, { useRef } from "react";
 import { StyleSheet, View } from "react-native";
 import UTILS from "../../utils";
 import DropDownModal from "../modals/DropdownModal";
+import api from "../../services/store/appApi";
 
 const LocationPicker = (props) => {
   const locationData = useRef({});
+
+  const { data: countryList, isLoading: isCountryListLoading } =
+    api.useGetCountryQuery();
+
+  const { data: stateList, isLoading: isStateListLoading } =
+    api.useGetStateQuery();
+
+  console.log(countryList, "list");
+
+  if (!countryList || !stateList) {
+    return isCountryListLoading || isStateListLoading;
+  }
 
   const form = [
     {
       label: "Country",
       key: "countryId",
       header: "Select A Country",
-      data: UTILS.COUNTRY_INFO,
+      data: countryList,
     },
     {
       label: "State",
       key: "stateId",
       header: "Select A State",
-      data: statesArray,
+      data: stateList,
     },
   ];
 
@@ -32,43 +45,43 @@ const LocationPicker = (props) => {
         <DropDownModal
           key={index}
           {...item}
-          onDropdownSelect={(e) => handleOnSelect(item.key, e.value)}
+          onDropdownSelect={(e) => handleOnSelect(item.key, e.name)}
         />
       ))}
     </View>
   );
 };
 
-const statesArray = [
-  { label: "Andhra Pradesh", value: "ANDHRA PRADESH" },
-  { label: "Arunachal Pradesh", value: "ARUNACHAL PRADESH" },
-  { label: "Assam", value: "ASSAM" },
-  { label: "Bihar", value: "BIHAR" },
-  { label: "Chhattisgarh", value: "CHHATTISGARH" },
-  { label: "Delhi", value: "DELHI" },
-  { label: "Gujarat", value: "GUJARAT" },
-  { label: "Haryana", value: "HARYANA" },
-  { label: "Himachal Pradesh", value: "HIMACHAL PRADESH" },
-  { label: "Jharkhand", value: "JHARKHAND" },
-  { label: "Karnataka", value: "KARNATAKA" },
-  { label: "Kerala", value: "KERALA" },
-  { label: "Madhya Pradesh", value: "MADHYA PRADESH" },
-  { label: "Maharashtra", value: "MAHARASHTRA" },
-  { label: "Manipur", value: "MANIPUR" },
-  { label: "Meghalaya", value: "MEGHALAYA" },
-  { label: "Mizoram", value: "MIZORAM" },
-  { label: "Nagaland", value: "NAGALAND" },
-  { label: "Odisha", value: "ODISHA" },
-  { label: "Punjab", value: "PUNJAB" },
-  { label: "Rajasthan", value: "RAJASTHAN" },
-  { label: "Sikkim", value: "SIKKIM" },
-  { label: "Tamil Nadu", value: "TAMIL NADU" },
-  { label: "Telangana", value: "TELANGANA" },
-  { label: "Tripura", value: "TRIPURA" },
-  { label: "Uttar Pradesh", value: "UTTAR PRADESH" },
-  { label: "Uttarakhand", value: "UTTARAKHAND" },
-  { label: "West Bengal", value: "WEST BENGAL" },
-];
+// const statesArray = [
+//   { label: "Andhra Pradesh", value: "ANDHRA PRADESH" },
+//   { label: "Arunachal Pradesh", value: "ARUNACHAL PRADESH" },
+//   { label: "Assam", value: "ASSAM" },
+//   { label: "Bihar", value: "BIHAR" },
+//   { label: "Chhattisgarh", value: "CHHATTISGARH" },
+//   { label: "Delhi", value: "DELHI" },
+//   { label: "Gujarat", value: "GUJARAT" },
+//   { label: "Haryana", value: "HARYANA" },
+//   { label: "Himachal Pradesh", value: "HIMACHAL PRADESH" },
+//   { label: "Jharkhand", value: "JHARKHAND" },
+//   { label: "Karnataka", value: "KARNATAKA" },
+//   { label: "Kerala", value: "KERALA" },
+//   { label: "Madhya Pradesh", value: "MADHYA PRADESH" },
+//   { label: "Maharashtra", value: "MAHARASHTRA" },
+//   { label: "Manipur", value: "MANIPUR" },
+//   { label: "Meghalaya", value: "MEGHALAYA" },
+//   { label: "Mizoram", value: "MIZORAM" },
+//   { label: "Nagaland", value: "NAGALAND" },
+//   { label: "Odisha", value: "ODISHA" },
+//   { label: "Punjab", value: "PUNJAB" },
+//   { label: "Rajasthan", value: "RAJASTHAN" },
+//   { label: "Sikkim", value: "SIKKIM" },
+//   { label: "Tamil Nadu", value: "TAMIL NADU" },
+//   { label: "Telangana", value: "TELANGANA" },
+//   { label: "Tripura", value: "TRIPURA" },
+//   { label: "Uttar Pradesh", value: "UTTAR PRADESH" },
+//   { label: "Uttarakhand", value: "UTTARAKHAND" },
+//   { label: "West Bengal", value: "WEST BENGAL" },
+// ];
 
 export default LocationPicker;
 
