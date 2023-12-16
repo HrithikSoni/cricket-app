@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { FlashList } from "@shopify/flash-list";
 
 import Button from "../../components/button/Button";
 import PlayerDetailsCard from "../../components/cards/PlayerDetailsCard";
@@ -18,10 +19,6 @@ import UTILS from "../../utils";
 export default function ManageTeam({ navigation }) {
   const { data: list, isLoading } = api.useGetPlayerQuery();
 
-  if (!list) {
-    return isLoading;
-  }
-
   return (
     <>
       <ParentWrapper screenTitle="Team Name">
@@ -30,7 +27,7 @@ export default function ManageTeam({ navigation }) {
         </View>
 
         <PlayersListHeader />
-        <List list={list} />
+        <List list={list || []} />
 
         <Button
           bottom={true}
@@ -59,18 +56,20 @@ function List(props) {
   }
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View>
-        {props.list.map((e, i) => (
+    <FlashList
+      data={props.list}
+      renderItem={({ item, index }) => (
+        <>
           <PlayerDetailsCard
-            {...e}
-            key={i}
+            {...item}
+            key={index}
             onPress={() => handleAddPlayer(i)}
           />
-        ))}
-        <View style={{ height: 100 }} />
-      </View>
-    </ScrollView>
+        </>
+      )}
+      estimatedItemSize={20}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
 

@@ -32,21 +32,22 @@ export default function BottomSheetModal(props) {
           <ScrollView>
             <BottomSheetHeader {...props} />
             {props.searchBarLabel && <SearchBar label={props.searchBarLabel} />}
-            {props?.data.map((option, index) => (
-              <TouchableOpacity
-                key={index}
-                style={styles.optionItem}
-                onPress={() => handleOptionSelection(option)}
-              >
-                <View style={styles.optionContent}>
-                  {option.flag && (
-                    <AppText style={styles.flagStyle}>{option.flag}</AppText>
-                  )}
-                  <AppText style={styles.text}>{option.name}</AppText>
-                </View>
-                {option.countryId && <AppText>{option.countryId}</AppText>}
-              </TouchableOpacity>
-            ))}
+            {props.data.length > 0 &&
+              props.data.map((option, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.optionItem}
+                  onPress={() => handleOptionSelection(option)}
+                >
+                  <View style={styles.optionContent}>
+                    {option.flag && (
+                      <AppText style={styles.flagStyle}>{option.flag}</AppText>
+                    )}
+                    <AppText style={styles.text}>{option.name}</AppText>
+                  </View>
+                  {option.countryId && <AppText>{option.countryId}</AppText>}
+                </TouchableOpacity>
+              ))}
           </ScrollView>
         </View>
       </View>

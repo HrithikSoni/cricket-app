@@ -9,6 +9,8 @@ import useManageTeam from "../../hooks/useManageTeam";
 // import { usersApi } from "../../services/store/api/usersApi";
 import UTILS from "../../utils";
 
+const { TEAMS } = UTILS.SCREEN_NAMES;
+
 export default function MatchDetails({ navigation }) {
   const matchDetails = useRef({});
 
@@ -70,7 +72,8 @@ export default function MatchDetails({ navigation }) {
         <Button
           // bottom={true}
           onButtonPress={() => {
-            console.log(matchDetails.current);
+            // console.log(matchDetails.current);
+            navigation.navigate(TEAMS.TEAMS_VERSUS);
           }}
           // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />

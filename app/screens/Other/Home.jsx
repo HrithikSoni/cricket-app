@@ -27,27 +27,10 @@ export default function Home({ navigation }) {
     { id: 2, title: "Match 2" },
   ];
 
-  const renderItem = ({ item }) => (
-    <View style={[styles.matchCardContainer]}>
-      <MatchCard />
-    </View>
-  );
-
   const viewAllTextStyle = [
     UTILS.STYLES.commonTextStyle,
     styles.themeColorStyle,
   ];
-
-  // usersApi
-
-  // const { data } = api.useGetUmpireQuery();
-  // const [request] = api.useAddUmpireMutation();
-
-  // console.log(data, "9");
-
-  // for (let x in usersApi) {
-  //   console.log(x, "oooo");
-  // }
 
   return (
     <>
@@ -74,7 +57,11 @@ export default function Home({ navigation }) {
           <FlatList
             horizontal
             data={matchData}
-            renderItem={renderItem}
+            renderItem={({ item }) => (
+              <View style={[styles.matchCardContainer]}>
+                <MatchCard {...item} />
+              </View>
+            )}
             keyExtractor={(item, index) => index.toString()}
             showsHorizontalScrollIndicator={false}
           />

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 // @react-native-masked-view/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// @shopify/flash-list
+import com.shopify.reactnative.flash_list.ReactNativeFlashListPackage;
 // expo
 import expo.modules.ExpoModulesPackage;
 // react-native-date-picker
@@ -75,6 +77,7 @@ public class PackageList {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
       new RNCMaskedViewPackage(),
+      new ReactNativeFlashListPackage(),
       new ExpoModulesPackage(),
       new DatePickerPackage(),
       new RNGestureHandlerPackage(),

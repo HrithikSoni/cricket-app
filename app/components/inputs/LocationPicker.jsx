@@ -15,22 +15,22 @@ const LocationPicker = (props) => {
 
   console.log(countryList, "list");
 
-  if (!countryList || !stateList) {
-    return isCountryListLoading || isStateListLoading;
-  }
+  // if (!countryList || !stateList) {
+  //   return isCountryListLoading || isStateListLoading;
+  // }
 
   const form = [
     {
       label: "Country",
       key: "countryId",
       header: "Select A Country",
-      data: countryList,
+      data: countryList || [],
     },
     {
       label: "State",
       key: "stateId",
       header: "Select A State",
-      data: stateList,
+      data: stateList || [],
     },
   ];
 
