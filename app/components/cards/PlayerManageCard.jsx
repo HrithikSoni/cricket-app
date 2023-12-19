@@ -4,7 +4,6 @@ import UTILS from "../../utils";
 import BoldText from "../text/BoldText";
 import SmallGreyText from "../text/SmallGreyText";
 import NumberChip from "../others/NumberChip";
-import useManageTeam from "../../hooks/useManageTeam";
 import Icons from "../others/Icons";
 
 function PlayerManageCard(props) {

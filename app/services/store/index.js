@@ -1,21 +1,26 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import matchReducer from "../matchServices/matchReducer.jsx";
+import api from "../api";
+
+import teamReducer from "../teamServices/teamReducer.jsx";
 import authReducer from "../authServices/authReducer.jsx";
+
 import authApi from "../authServices/authApi.jsx";
-import usersApi from "../usersServices/usersApi.jsx";
-import regionReducer from "../regionServices/regionApi.jsx";
-import api from "./appApi.jsx";
+import matchApi from "../matchServices/matchApi.jsx";
 import regionApi from "../regionServices/regionApi.jsx";
+import usersApi from "../usersServices/usersApi.jsx";
+import teamApi from "../teamServices/teamApi.jsx";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    match: matchReducer,
-    region: regionReducer,
+    team: teamReducer,
     [authApi.reducerPath]: authApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [regionApi.reducerPath]: regionApi.reducer,
+    [matchApi.reducerPath]: matchApi.reducer,
+    [teamApi.reducerPath]: teamApi.reducer,
+    // [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

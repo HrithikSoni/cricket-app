@@ -1,4 +1,4 @@
-import api, { getQuery, postQuery } from "../store/appApi";
+import api, { getQuery, postQuery } from "../api";
 
 const usersApi = api.injectEndpoints({
   endpoints: (builder) => ({

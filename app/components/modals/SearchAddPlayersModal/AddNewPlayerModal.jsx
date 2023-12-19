@@ -7,31 +7,32 @@ import {
   View,
 } from "react-native";
 
-import useRTKQuery from "../../hooks/useRTKQuery";
-import api from "../../services/store/appApi";
-import UTILS from "../../utils";
-import Button from "../button/Button";
-import ToggleButton from "../button/ToggleButton";
-import BattingBowlingStyle from "../inputs/BattingBowlingStyle";
-import InputBox from "../inputs/InputBox";
-import BottomSheetHeader from "../others/BottomSheetHeader";
+import useRTKQuery from "../../../hooks/useRTKQuery";
+import api from "../../../services/api";
+import UTILS from "../../../utils";
+import Button from "../../button/Button";
+import ToggleButton from "../../button/ToggleButton";
+import BattingBowlingStyle from "../../inputs/BattingBowlingStyle";
+import InputBox from "../../inputs/InputBox";
+import BottomSheetHeader from "../../others/BottomSheetHeader";
+import { useCurrentTeamDetailsSelector } from "../../../services/teamServices/useManageTeam";
 
 export default function AddNewPlayerModal(props) {
-  const playerData = useRef({});
+  const { id } = useCurrentTeamDetailsSelector();
+  const playerData = useRef({
+    teamId: id,
+    battingStyle: "RIGHT_HANDED",
+    bowlingStyle: "RIGHT_HANDED",
+    specialization: "BATTING",
+  });
 
-  const { request: addPlayer, data } = useRTKQuery(
-    api.useAddPlayerMutation,
-    handleUserCreatedSuccess,
-    handleUserCreatedFail
+  const { request: addPlayerInTeam, data: player } = useRTKQuery(
+    api.useAddTeamPlayersMutation,
+    () => props.onRequestClose()
   );
 
-  console.log(data, "iiiiiiiiiii");
-
-  function handleUserCreatedSuccess() {
-    props.onRequestClose();
-  }
-  function handleUserCreatedFail(e) {
-    console.log(e);
+  function handleAddPlayerInTeam() {
+    addPlayerInTeam(playerData.current);
   }
 
   return (
@@ -69,7 +70,7 @@ export default function AddNewPlayerModal(props) {
               </View>
             </View>
             <BattingBowlingStyle
-              onBattinBowlingSelect={(e) =>
+              onBattingBowlingSelect={(e) =>
                 (playerData.current = { ...playerData.current, ...e })
               }
             />
@@ -77,7 +78,7 @@ export default function AddNewPlayerModal(props) {
           <Button
             label="Add player in team"
             //   bottom={true}
-            onButtonPress={() => addPlayer(playerData.current)}
+            onButtonPress={handleAddPlayerInTeam}
           />
         </View>
       </View>

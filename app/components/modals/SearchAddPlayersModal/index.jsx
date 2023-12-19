@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 
-import SearchAndAdd from "../search/SearchAndAdd";
+import SearchAndAdd from "../../search/SearchAndAdd";
 import SearchTeamModal from "./SearchTeamModal";
 import AddNewPlayerModal from "./AddNewPlayerModal";
 

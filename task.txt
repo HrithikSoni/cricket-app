@@ -1,9 +1,0 @@
-+ add match screen
-
-
-+ add player using modal 
-+ specialization modal
-+ set current team
-+ add team name
-+ contact search 
-+ add team and select team

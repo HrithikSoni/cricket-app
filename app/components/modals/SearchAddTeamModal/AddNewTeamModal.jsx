@@ -1,16 +1,24 @@
 import React, { useRef } from "react";
 import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import UTILS from "../../utils";
-import Button from "../button/Button";
-import InputBox from "../inputs/InputBox";
-import LocationPicker from "../inputs/LocationPicker";
-import Icons from "../others/Icons";
-import AppText from "../text/AppText";
-import BottomSheetHeader from "../others/BottomSheetHeader";
+import UTILS from "../../../utils";
+import Button from "../../button/Button";
+import InputBox from "../../inputs/InputBox";
+import LocationPicker from "../../inputs/LocationPicker";
+import Icons from "../../others/Icons";
+import AppText from "../../text/AppText";
+import BottomSheetHeader from "../../others/BottomSheetHeader";
+import api from "../../../services/api";
+import useRTKQuery from "../../../hooks/useRTKQuery";
 
 export default function AddNewTeamModal(props) {
-  const teamData = useRef({ imgUrl: "" });
+  const teamData = useRef({});
+
+  const { request: addTeam } = useRTKQuery(
+    api.useAddTeamMutation,
+    (e) => props.onRequestClose(),
+    (f) => console.log(f, "error")
+  );
 
   return (
     <Modal
@@ -29,17 +37,11 @@ export default function AddNewTeamModal(props) {
               (teamData.current = { ...teamData.current, ...e })
             }
           />
-          <View style={[styles.button]}>
-            <Button
-              bgColor={UTILS.COLORS.gray1}
-              label={"Add Players"}
-              textColor={UTILS.COLORS.themeColor}
-              onButtonPress={() => {}}
-            />
-          </View>
+
+          <View style={{ height: 20 }} />
           <Button
             label="Add Team"
-            onButtonPress={() => console.log(teamData.current)}
+            onButtonPress={() => addTeam(teamData.current)}
           />
         </View>
       </View>
@@ -60,7 +62,7 @@ export default function AddNewTeamModal(props) {
           </AppText>
           <InputBox
             label={"Enter"}
-            onChangeText={(e) => (teamData.current.teamName = e)}
+            onChangeText={(e) => (teamData.current.name = e)}
           />
         </View>
       </View>

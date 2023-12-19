@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../components/button/Button";
 import PlayerManageCard from "../../components/cards/PlayerManageCard";
-import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import useManageTeam from "../../hooks/useManageTeam";
 import UTILS from "../../utils";
+import SearchAddPlayerModal from "../../components/modals/SearchAddPlayersModal";
+import useManageTeam from "../../services/teamServices/useManageTeam";
 import {
-  addPlayerInTeam,
   getCurrentTeam,
-} from "../../services/matchServices/matchReducer";
+  addPlayerInTeam,
+} from "../../services/teamServices/teamReducer";
 
 export default function ManageBattingOrder({ navigation }) {
   return (

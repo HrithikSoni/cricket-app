@@ -32,7 +32,7 @@ const PhoneNoInputBox = (props) => {
   );
 
   function handleOtpSuccess(e) {
-    console.log(e);
+    console.warn(e);
   }
 
   function handleOnChange(e) {

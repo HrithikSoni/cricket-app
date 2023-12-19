@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
-import api from "../../services/store/appApi";
-import UTILS from "../../utils";
-import AppText from "../text/AppText";
+import api from "../../../services/api";
+import UTILS from "../../../utils";
+import AppText from "../../text/AppText";
 import AddNewPersonModal from "./AddNewPersonModal";
 import PersonSelectionModal from "./PersonSelectionModal";
 
@@ -19,7 +19,6 @@ export default function AddSelectInput(props) {
   });
 
   const { data: list } = api.useGetUmpireQuery();
-  console.log(list?.length, "list");
 
   function onListPress() {
     toggleModal("getListModal");

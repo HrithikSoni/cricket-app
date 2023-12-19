@@ -3,10 +3,11 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 import Button from "../../components/button/Button";
 import CaptainWicketKeeperCard from "../../components/cards/CaptainWicketKeeperCard";
-import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
+
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import useManageTeam from "../../hooks/useManageTeam";
 import UTILS from "../../utils";
+import SearchAddPlayerModal from "../../components/modals/SearchAddPlayersModal";
+import useManageTeam from "../../services/teamServices/useManageTeam";
 
 export default function SelectCaptain({ navigation }) {
   return (

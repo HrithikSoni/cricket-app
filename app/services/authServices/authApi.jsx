@@ -1,4 +1,4 @@
-import api, { postQuery } from "../store/appApi";
+import api, { postQuery } from "../api";
 
 // const postQuery = (endpoint) => ({
 //   query: (userData) => ({

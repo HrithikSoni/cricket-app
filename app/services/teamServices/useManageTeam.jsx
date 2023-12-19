@@ -9,7 +9,8 @@ import {
   totalPlayer,
   handleMatchDetails,
   updateCurrenTeam,
-} from "../services/matchServices/matchReducer";
+  setCurrentTeamDetails,
+} from "./teamReducer";
 
 const nullFunction = () => null;
 
@@ -64,6 +65,14 @@ export default function useManageTeam(
     );
   }
 
+  function assignCaptain(user) {
+    dispatch(
+      assign({
+        captain: user,
+      })
+    );
+  }
+
   function assignWicketKeeper(user) {
     dispatch(
       assign({
@@ -74,10 +83,6 @@ export default function useManageTeam(
 
   function addMatchDetails(details) {
     dispatch(handleMatchDetails(details));
-  }
-
-  function handleUpdateCurrentTeam(team) {
-    dispatch(updateCurrenTeam(team));
   }
 
   return {
@@ -95,6 +100,20 @@ export default function useManageTeam(
       wicketKeeper,
     },
     addMatchDetails,
-    handleUpdateCurrentTeam,
+  };
+}
+
+export function useCurrentTeamSelector() {
+  return useSelector(getCurrentTeam);
+}
+
+export function useCurrentTeamDetailsSelector() {
+  return useSelector((state) => state.team[state.team.currentTeam].teamDetails);
+}
+
+export function useUpdateCurrentTeamDetails() {
+  const dispatch = useDispatch();
+  return function (data) {
+    dispatch(setCurrentTeamDetails(data));
   };
 }

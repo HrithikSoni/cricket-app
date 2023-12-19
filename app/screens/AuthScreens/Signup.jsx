@@ -24,7 +24,6 @@ const Signup = ({ navigation }) => {
   );
 
   function handleRegisterUserSuccess(e) {
-    console.log(e);
     navigation.navigate(AUTH_SCREENS.LOGIN);
   }
 

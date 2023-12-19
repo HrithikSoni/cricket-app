@@ -1,4 +1,4 @@
-import api from "../store/appApi";
+import api from "../api";
 
 const regionApi = api.injectEndpoints({
   endpoints: (builder) => ({

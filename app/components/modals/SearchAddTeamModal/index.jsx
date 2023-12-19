@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
-import SearchAndAdd from "../search/SearchAndAdd";
+import SearchAndAdd from "../../search/SearchAndAdd";
 import AddNewTeamModal from "./AddNewTeamModal";
 
 export default function SearchAddTeamModal() {

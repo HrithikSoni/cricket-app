@@ -1,7 +1,7 @@
 const MATCH_TYPES = [
-  { name: "T20(20 Overs)", value: "TWENTY_TWENTY" },
+  { name: "T20(20 Overs)", value: "T_TWENTY" },
   { name: "One Day(50 Overs)", value: "ONE_DAY" },
-  { name: "Test", value: "TEST_MATCH" },
+  { name: "Test", value: "TEST" },
   { name: "Custom", value: "CUSTOM" },
 ];
 

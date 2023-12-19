@@ -8,11 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Toast from "react-native-toast-message";
 
-import UTILS from "../../utils";
-import SearchBar from "../inputs/SearchBar";
-import AppText from "../text/AppText";
-import BottomSheetHeader from "../others/BottomSheetHeader";
+import UTILS from "../../../utils";
+import SearchBar from "../../inputs/SearchBar";
+import AppText from "../../text/AppText";
+import BottomSheetHeader from "../../others/BottomSheetHeader";
 
 const colors = UTILS.COLORS;
 

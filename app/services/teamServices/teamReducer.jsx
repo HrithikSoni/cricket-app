@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import UTILS from "../../utils";
 
 const { TEAM_A, TEAM_B } = UTILS.TEAM_NAME;
-
 const defaultCaptainWicketKeeper = { id: null, name: null, type: null };
 const matchDetailsInitial = {
   ballType: "RED_BALL",
@@ -21,12 +20,14 @@ const initialState = {
   matchDetails: matchDetailsInitial,
   [TEAM_A]: {
     name: "team A",
+    teamDetails: {},
     captain: defaultCaptainWicketKeeper,
     wicketKeeper: defaultCaptainWicketKeeper,
     players: [],
   },
   [TEAM_B]: {
     name: "team B",
+    teamDetails: {},
     captain: defaultCaptainWicketKeeper,
     wicketKeeper: defaultCaptainWicketKeeper,
     players: [],
@@ -34,8 +35,8 @@ const initialState = {
   currentTeam: TEAM_A,
 };
 
-export const matchSlice = createSlice({
-  name: "match",
+export const teamSlice = createSlice({
+  name: "team",
   initialState,
   reducers: {
     addPlayerInTeam: (state, action) => {
@@ -87,6 +88,11 @@ export const matchSlice = createSlice({
       return state;
     },
 
+    setCurrentTeamDetails: (state, action) => {
+      state[state.currentTeam].teamDetails = action.payload;
+      return state;
+    },
+
     handleMatchDetails: (state, action) => {
       state.matchDetails = action.payload;
       return state;
@@ -106,22 +112,21 @@ export const {
   assign,
   handleMatchDetails,
   updateCurrenTeam,
-} = matchSlice.actions;
+  setCurrentTeamDetails,
+} = teamSlice.actions;
 
 export const totalPlayer = (state) =>
-  state.match[state.match.currentTeam].players.length;
+  state.team[state.team.currentTeam].players.length;
 
-export const allPlayers = (state) =>
-  state.match[state.match.currentTeam].players;
+export const allPlayers = (state) => state.team[state.team.currentTeam].players;
 
-export const getCurrentTeam = (state) => state.match.currentTeam;
+export const getCurrentTeam = (state) => state.team.currentTeam;
 
-export const getCaptain = (state) =>
-  state.match[state.match.currentTeam].captain;
+export const getCaptain = (state) => state.team[state.team.currentTeam].captain;
 
 export const getWicketKeeper = (state) =>
-  state.match[state.match.currentTeam].wicketKeeper;
+  state.team[state.team.currentTeam].wicketKeeper;
 
-export const getMatchDetails = (state) => state.match.matchDetails;
+export const getMatchDetails = (state) => state.team.matchDetails;
 
-export default matchSlice.reducer;
+export default teamSlice.reducer;

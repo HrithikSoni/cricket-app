@@ -40,7 +40,7 @@ export default function BattingBowlingStyle(props) {
 
   function handleOnSelect(e, customKey) {
     battingBowlingData.current[customKey] = e.value;
-    props.onBattinBowlingSelect(battingBowlingData.current);
+    props.onBattingBowlingSelect(battingBowlingData.current);
   }
 
   return (

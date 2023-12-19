@@ -2,18 +2,16 @@ import React, { useRef } from "react";
 import { StyleSheet, View } from "react-native";
 import UTILS from "../../utils";
 import DropDownModal from "../modals/DropdownModal";
-import api from "../../services/store/appApi";
+import api from "../../services/api";
 
 const LocationPicker = (props) => {
   const locationData = useRef({});
 
-  const { data: countryList, isLoading: isCountryListLoading } =
-    api.useGetCountryQuery();
+  const { data: countryList } = api.useGetCountryQuery();
 
-  const { data: stateList, isLoading: isStateListLoading } =
-    api.useGetStateQuery();
+  const { data: stateList } = api.useGetStateQuery();
 
-  console.log(countryList, "list");
+  const { data: cityList } = api.useGetCityQuery();
 
   // if (!countryList || !stateList) {
   //   return isCountryListLoading || isStateListLoading;
@@ -32,6 +30,13 @@ const LocationPicker = (props) => {
       header: "Select A State",
       data: stateList || [],
     },
+
+    {
+      label: "City",
+      key: "cityId",
+      header: "Select A city",
+      data: cityList || [],
+    },
   ];
 
   function handleOnSelect(key, value) {
@@ -45,7 +50,7 @@ const LocationPicker = (props) => {
         <DropDownModal
           key={index}
           {...item}
-          onDropdownSelect={(e) => handleOnSelect(item.key, e.name)}
+          onDropdownSelect={(e) => handleOnSelect(item.key, e.id)}
         />
       ))}
     </View>

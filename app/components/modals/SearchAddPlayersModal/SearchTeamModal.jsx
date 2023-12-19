@@ -1,10 +1,10 @@
 import React from "react";
 import { Modal, StyleSheet, View } from "react-native";
 
-import Button from "../button/Button";
-import PlayerDetailsCard from "../cards/PlayerDetailsCard";
-import SearchBar from "../inputs/SearchBar";
-import ParentWrapper from "../wrappers/ParentWrapper";
+import Button from "../../button/Button";
+import PlayerDetailsCard from "../../cards/PlayerDetailsCard";
+import SearchBar from "../../inputs/SearchBar";
+import ParentWrapper from "../../wrappers/ParentWrapper";
 
 export default function SearchTeamModal({ visible, onRequestClose }) {
   return (

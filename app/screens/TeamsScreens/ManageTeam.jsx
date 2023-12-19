@@ -1,40 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { FlashList } from "@shopify/flash-list";
+// import { FlashList } from "@shopify/flash-list";
 
 import Button from "../../components/button/Button";
 import PlayerDetailsCard from "../../components/cards/PlayerDetailsCard";
-import SearchAddPlayerModal from "../../components/modals/SearchAddPlayerModal";
+import SearchAddPlayerModal from "../../components/modals/SearchAddPlayersModal";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import useManageTeam from "../../hooks/useManageTeam";
+
+import api from "../../services/api";
+import UTILS from "../../utils";
+import useManageTeam, {
+  useCurrentTeamDetailsSelector,
+} from "../../services/teamServices/useManageTeam";
 import {
   addPlayerInTeam,
   getCurrentTeam,
-} from "../../services/matchServices/matchReducer";
-import api from "../../services/store/appApi";
-import UTILS from "../../utils";
+} from "../../services/teamServices/teamReducer";
 
 export default function ManageTeam({ navigation }) {
-  const { data: list, isLoading } = api.useGetPlayerQuery();
+  const currentTeamDetails = useCurrentTeamDetailsSelector();
+
+  const { data: teamPlayers } = api.useGetTeamPlayersQuery(
+    currentTeamDetails?.id
+  );
 
   return (
     <>
-      <ParentWrapper screenTitle="Team Name">
+      <ParentWrapper screenTitle={currentTeamDetails.name}>
         <View style={styles.container}>
           <SearchAddPlayerModal />
         </View>
 
         <PlayersListHeader />
-        <List list={list || []} />
+        <List list={teamPlayers || []} />
 
         <Button
           bottom={true}
           onButtonPress={() =>
-            navigation.navigate(
-              UTILS.SCREEN_firstNameS.TEAMS.MANAGE_BATTING_ORDER
-            )
+            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.MANAGE_BATTING_ORDER)
           }
         />
       </ParentWrapper>
@@ -56,18 +61,20 @@ function List(props) {
   }
 
   return (
-    <FlashList
+    <FlatList
       data={props.list}
       renderItem={({ item, index }) => (
         <>
           <PlayerDetailsCard
             {...item}
+            name={item?.player?.user?.firstName || null}
+            specialization={item?.player?.specialization || null}
             key={index}
             onPress={() => handleAddPlayer(i)}
           />
         </>
       )}
-      estimatedItemSize={20}
+      // estimatedItemSize={20}
       showsVerticalScrollIndicator={false}
     />
   );
@@ -86,19 +93,6 @@ function PlayersListHeader() {
     </View>
   );
 }
-
-const playerData = [
-  { id: 1, firstName: "Jason", playerDetail: { specialization: "Bowler" } },
-  { id: 2, firstName: "Jerome", playerDetail: { specialization: "Bowler" } },
-  { id: 3, firstName: "Fransis", playerDetail: { specialization: "Bowler" } },
-  { id: 4, firstName: "Arlene", playerDetail: { specialization: "Bowler" } },
-  { id: 5, firstName: "Darele", playerDetail: { specialization: "Bowler" } },
-  { id: 6, firstName: "Kathrene", playerDetail: { specialization: "Bowler" } },
-  { id: 7, firstName: "Jason", playerDetail: { specialization: "Bowler" } },
-  { id: 8, firstName: "Fransis", playerDetail: { specialization: "Bowler" } },
-  { id: 9, firstName: "Kathrene", playerDetail: { specialization: "Bowler" } },
-  { id: 10, firstName: "Jerome", playerDetail: { specialization: "Bowler" } },
-];
 
 const styles = StyleSheet.create({
   container: {},

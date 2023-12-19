@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import UTILS from "../../utils";
 import BoldText from "../../components/text/BoldText";
 import SmallGreyText from "../text/SmallGreyText";
-import useManageTeam from "../../hooks/useManageTeam";
+import useManageTeam from "../../services/teamServices/useManageTeam";
 
 function PlayerDetailsCard(props) {
   const { teamMembers } = useManageTeam();
@@ -31,10 +31,10 @@ function PlayerDetailsCard(props) {
       <View style={styles.imageContainer} />
       <View style={styles.playerDetails}>
         <View style={styles.playerNameContainer}>
-          <BoldText>{props.firstName}</BoldText>
+          <BoldText>{props.name}</BoldText>
           {/* <BoldText>{props.lastName}</BoldText> */}
         </View>
-        <SmallGreyText>{props.playerDetail.specialization}</SmallGreyText>
+        <SmallGreyText>{props.specialization}</SmallGreyText>
       </View>
     </TouchableOpacity>
   );

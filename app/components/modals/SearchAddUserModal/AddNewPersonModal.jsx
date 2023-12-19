@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
 import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import UTILS from "../../utils";
-import Button from "../button/Button";
-import InputBox from "../inputs/InputBox";
-import BottomSheetHeader from "../others/BottomSheetHeader";
-import api from "../../services/store/appApi";
-import useRTKQuery from "../../hooks/useRTKQuery";
+import UTILS from "../../../utils";
+import Button from "../../button/Button";
+import InputBox from "../../inputs/InputBox";
+import BottomSheetHeader from "../../others/BottomSheetHeader";
+import api from "../../../services/api";
+import useRTKQuery from "../../../hooks/useRTKQuery";
 
 export default function AddNewPersonModal(props) {
   const personData = useRef({ role: props.role });
@@ -23,7 +23,7 @@ export default function AddNewPersonModal(props) {
     props.onRequestClose();
   }
   function handleUserCreatedFail(e) {
-    console.log(e);
+    props.onRequestClose();
   }
 
   return (

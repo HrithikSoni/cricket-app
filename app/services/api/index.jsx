@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // $$$$ add url here
-export const URL = "https://api.cricketapp.kalpvaig.com";
-// export const URL = "http://localhost:3000";
+// export const URL = "https://api.cricketapp.kalpvaig.com";
+export const URL = "http://localhost:3000";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: URL,
@@ -30,9 +30,27 @@ export const postQuery = (endpoint) => {
   };
 };
 
+export const getQueryTag = (endpoint, tag) => ({
+  query: (param = "") => endpoint + `/${param}`,
+  providesTags: [{ type: tag }],
+});
+
+export const postQueryTag = (endpoint, tag) => {
+  return {
+    query(body) {
+      return {
+        url: endpoint,
+        method: "POST",
+        body,
+      };
+    },
+    invalidatesTags: [{ type: tag }],
+  };
+};
+
 const api = createApi({
   baseQuery,
-  tagTypes: ["umpire", "player", "country", "state", "city"],
+  tagTypes: ["umpire", "player", "teams", "country", "state", "city"],
   endpoints: () => ({}),
 });
 

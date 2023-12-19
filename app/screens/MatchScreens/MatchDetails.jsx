@@ -1,13 +1,15 @@
 import React, { useRef } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import Toast from "react-native-toast-message";
 
 import Button from "../../components/button/Button";
 import InputSelector from "../../components/inputs/ComponentHandler";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import useManageTeam from "../../hooks/useManageTeam";
-// import { usersApi } from "../../services/store/api/usersApi";
 import UTILS from "../../utils";
+import useRTKQuery from "../../hooks/useRTKQuery";
+import api from "../../services/api";
+import { useNavigation } from "@react-navigation/native";
 
 const { TEAMS } = UTILS.SCREEN_NAMES;
 
@@ -70,16 +72,39 @@ export default function MatchDetails({ navigation }) {
 
         <View style={{ height: 40 }} />
         <Button
-          // bottom={true}
-          onButtonPress={() => {
-            // console.log(matchDetails.current);
-            navigation.navigate(TEAMS.TEAMS_VERSUS);
-          }}
+          onButtonPress={() => navigation.navigate(TEAMS.TEAMS_VERSUS)}
           // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />
       </ScrollView>
     </ParentWrapper>
   );
+}
+
+function useMatchDetails() {
+  const navigation = useNavigation();
+
+  const { request } = useRTKQuery(api.useAddNewMatchMutation, () =>
+    navigation.navigate(TEAMS.TEAMS_VERSUS)
+  );
+
+  async function handleSubmitMatchDetails(body) {
+    if (
+      body.umpireOneId === body.umpireTwoId ||
+      body.umpireOneId === body.umpireThreeId ||
+      body.umpireTwoId === body.umpireThreeId
+    ) {
+      Toast.show({ type: "error", text2: "Can not repeat umpire" });
+      return;
+    }
+
+    await request(body);
+  }
+
+  //
+
+  return {
+    handleSubmitMatchDetails,
+  };
 }
 
 function SelectInput({
@@ -97,7 +122,7 @@ function SelectInput({
       {form.map((i) => (
         <InputSelector
           {...i}
-          onBottomSheetSelect={(e) => onSelect({ [i.key]: e })}
+          onBottomSheetSelect={(e) => onSelect({ [i.key]: e.id })}
           header={header}
           onAddingHeader={onAddingHeader}
           role={role}
@@ -105,17 +130,6 @@ function SelectInput({
       ))}
     </>
   );
-}
-
-function useMatchDetails() {
-  const { addMatchDetails } = useManageTeam();
-  function handleSubmitMatchDetails(body) {
-    addMatchDetails(body);
-  }
-
-  return {
-    handleSubmitMatchDetails,
-  };
 }
 
 const form = [
@@ -126,7 +140,8 @@ const form = [
   },
 
   { type: UTILS.INPUT_TYPE.DATE_TIME_PICKER },
-  { label: "Ground Name", key: "groundName", type: UTILS.INPUT_TYPE.NUMBER },
+  { label: "Match Name", key: "matchName", type: UTILS.INPUT_TYPE.STRING },
+  { label: "Ground Name", key: "groundName", type: UTILS.INPUT_TYPE.STRING },
   { type: UTILS.INPUT_TYPE.LOCATION_PICKER },
   { label: "Ball Type", key: "ballType", type: UTILS.INPUT_TYPE.BALL_TYPE },
 ];
@@ -134,39 +149,27 @@ const form = [
 const umpireForm = [
   {
     label: "1 Umpire",
-    key: "umpire1",
+    key: "umpireOneId",
     type: UTILS.INPUT_TYPE.ADD_SELECT,
   },
   {
     label: "2 Umpire",
-    key: "umpire2",
+    key: "umpireTwoId",
     type: UTILS.INPUT_TYPE.ADD_SELECT,
   },
   {
     label: "3 Umpire",
-    key: "umpire3",
+    key: "umpireThreeId",
     type: UTILS.INPUT_TYPE.ADD_SELECT,
   },
 ];
 
 const refereeForm = [
-  { label: "Referee", key: "referee", type: UTILS.INPUT_TYPE.ADD_SELECT },
+  { label: "Referee", key: "refereeId", type: UTILS.INPUT_TYPE.ADD_SELECT },
 ];
 
 const scorerFrom = [
-  { label: "Scorer", key: "scorer", type: UTILS.INPUT_TYPE.ADD_SELECT },
-];
-
-const umpireNamesArray = [
-  { label: "John Doe", value: "JOHN_DOE" },
-  { label: "Alice Smith", value: "ALICE_SMITH" },
-  { label: "David Brown", value: "DAVID_BROWN" },
-];
-
-const refereeNamesArray = [
-  { label: "Max", value: "MAX" },
-  { label: "Smith", value: "Smith" },
-  { label: "Black", value: "BLACK" },
+  { label: "Scorer", key: "scorerId", type: UTILS.INPUT_TYPE.ADD_SELECT },
 ];
 
 const styles = StyleSheet.create({

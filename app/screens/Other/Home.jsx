@@ -69,11 +69,11 @@ export default function Home({ navigation }) {
       </View>
 
       <PlusButton onPress={handleModal} />
-      <SelectionModal
+      {/* <SelectionModal
         visible={showModal}
         onDone={handleOnSelect}
         selections={btnDetails}
-      />
+      /> */}
     </>
   );
 
@@ -86,6 +86,7 @@ export default function Home({ navigation }) {
 
   function handleModal() {
     setShowModal(!showModal);
+    navigation.navigate(MATCH_DETAILS_SCREENS.FORM);
   }
 }
 

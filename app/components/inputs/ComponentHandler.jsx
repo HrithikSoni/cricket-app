@@ -9,11 +9,12 @@ import UTILS from "../../utils";
 import RegisterContactInput from "./RegisterContactInput";
 import PowerPlayInput from "./PowerPlayInput";
 import BallType from "./BallType";
-import AddSelectInput from "../modals/AddSelectInput";
+
 import LocationPicker from "./LocationPicker";
 import DateTimePicker from "./DateTimePicker";
 import MatchTypes from "./MatchTypes";
 import PhoneNoInputBox from "./PhoneNoInputBox";
+import AddSelectInput from "../modals/SearchAddUserModal/AddSelectInput";
 
 const ComponentHandler = (props) => {
   const { type } = props;

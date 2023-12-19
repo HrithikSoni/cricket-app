@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
+
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import TeamVersusCard from "../../components/cards/TeamVesesCard";
 import UTILS from "../../utils";
 import Button from "../../components/button/Button";
 import AppText from "../../components/text/AppText";
-import useManageTeam from "../../hooks/useManageTeam";
-// import useManageTeam from "../../hooks/useManageTeam";
+import { updateCurrenTeam } from "../../services/teamServices/teamReducer";
 
 const teamDetails = {
   name: "team A",
@@ -15,7 +16,11 @@ const teamDetails = {
   teamName: "Team A",
 };
 export default function TeamsVersus({ navigation }) {
-  const { handleUpdateCurrentTeam } = useManageTeam();
+  const dispatch = useDispatch();
+
+  function handleUpdateCurrentTeam(team) {
+    dispatch(updateCurrenTeam(team));
+  }
 
   return (
     <ParentWrapper screenTitle="Teams" showBack={true}>
