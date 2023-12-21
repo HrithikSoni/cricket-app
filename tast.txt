@@ -3,3 +3,25 @@
 
 /// add players in team and match 
 assign player captain and wicket keeper
+
+
+handle versus page to assign team a and team b
+ 
+ exclude team and player in team and player list
+
+
+
+ ctrl enter 
+ ctrl shift l
+
+ match table
+ current status
+ (canceled complete upcoming ongoing)
+
+ match result 
+ matchId
+ teamsId
+ result
+ wonby run
+ wicket
+ man of match (bowler bats man fielder)

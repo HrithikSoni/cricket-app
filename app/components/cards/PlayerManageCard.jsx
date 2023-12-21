@@ -7,31 +7,13 @@ import NumberChip from "../others/NumberChip";
 import Icons from "../others/Icons";
 
 function PlayerManageCard(props) {
-  const [itemSelected, setItemSelected] = useState(false);
-
-  let container = styles.container;
-
-  const selected = {
-    backgroundColor: UTILS.COLORS.gray1,
-    borderColor: "white",
-  };
-
-  if (itemSelected) {
-    container = { ...container, ...selected };
-  }
-
-  function handleOnPress() {
-    setItemSelected(!itemSelected);
-    props.onPress();
-  }
-
   const upColor =
     props.serialNo === 1 ? UTILS.COLORS.gray2 : UTILS.COLORS.themeColor;
 
   const downColor = props.last ? UTILS.COLORS.gray2 : UTILS.COLORS.themeColor;
 
   return (
-    <View style={container} onPress={handleOnPress}>
+    <View style={styles.container}>
       <View style={styles.imageContainer}>
         <NumberChip number={props.serialNo} style={styles.chipStyle} />
       </View>

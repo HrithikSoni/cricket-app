@@ -5,23 +5,56 @@ import Button from "../../components/button/Button";
 import CaptainWicketKeeperCard from "../../components/cards/CaptainWicketKeeperCard";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 
+import {
+  useAllCurrentTeamPlayers,
+  useAssignCaptainWicketKeeper,
+  useCaptainWicketKeeperSelector,
+  useTeamDetailsSelector,
+} from "../../services/teamServices/useManageTeam";
 import UTILS from "../../utils";
-import SearchAddPlayerModal from "../../components/modals/SearchAddPlayersModal";
-import useManageTeam from "../../services/teamServices/useManageTeam";
+import useRTKQuery from "../../hooks/useRTKQuery";
+import api from "../../services/api";
 
 export default function SelectWicketKeeper({ navigation }) {
+  const matchTeams = useTeamDetailsSelector();
+  const { request } = useRTKQuery(
+    api.useAddPlayersInMatchMutation,
+    handleAddTeamMatchSuccess
+  );
+
+  function handleAddTeamMatchSuccess() {
+    navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS);
+  }
+
+  async function handleAddTeamMember() {
+    const data = [];
+    const teamData = matchTeams[matchTeams.currentTeam];
+    teamData.players.forEach((e, index) => {
+      data.push({
+        order: JSON.stringify(index + 1),
+        isCaptain: teamData.captain.id == e.id,
+        isPlaying: true,
+        isWicketKeeper: teamData.wicketKeeper.id == e.id,
+        matchId: matchTeams.matchDetails.id,
+        teamId: teamData.teamDetails.id,
+        playerId: e.player.user.id,
+      });
+    });
+
+    request(data);
+  }
+
   return (
     <>
       <ParentWrapper screenTitle="Select WicketKeeper">
-        <SearchAddPlayerModal />
-
         <List />
-
         <Button
           bottom={true}
-          onButtonPress={() =>
-            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
-          }
+          label="Add Team In Match"
+          onButtonPress={() => {
+            handleAddTeamMember();
+            // navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
+          }}
         />
       </ParentWrapper>
     </>
@@ -29,8 +62,9 @@ export default function SelectWicketKeeper({ navigation }) {
 }
 
 function List() {
-  const { teamMembers, assignWicketKeeper, captainWicketKeeper } =
-    useManageTeam();
+  const teamMembers = useAllCurrentTeamPlayers();
+  const captainWicketKeeper = useCaptainWicketKeeperSelector();
+  const { assignWicketKeeper } = useAssignCaptainWicketKeeper();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -38,6 +72,8 @@ function List() {
         {teamMembers.map((e, i) => (
           <CaptainWicketKeeperCard
             {...e}
+            name={e.player.user.firstName}
+            type={e.player.specialization}
             key={i}
             serialNo={i + 1}
             captainWicketKeeper={captainWicketKeeper}

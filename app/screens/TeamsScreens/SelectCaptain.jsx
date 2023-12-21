@@ -7,13 +7,17 @@ import CaptainWicketKeeperCard from "../../components/cards/CaptainWicketKeeperC
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import UTILS from "../../utils";
 import SearchAddPlayerModal from "../../components/modals/SearchAddPlayersModal";
-import useManageTeam from "../../services/teamServices/useManageTeam";
+import useManageTeam, {
+  useAllCurrentTeamPlayers,
+  useAssignCaptainWicketKeeper,
+  useCaptainWicketKeeperSelector,
+} from "../../services/teamServices/useManageTeam";
 
 export default function SelectCaptain({ navigation }) {
   return (
     <>
       <ParentWrapper screenTitle="Select Captain">
-        <SearchAddPlayerModal />
+        {/* <SearchAddPlayerModal /> */}
 
         <List />
 
@@ -29,7 +33,9 @@ export default function SelectCaptain({ navigation }) {
 }
 
 function List() {
-  const { teamMembers, assignCaptain, captainWicketKeeper } = useManageTeam();
+  const teamMembers = useAllCurrentTeamPlayers();
+  const captainWicketKeeper = useCaptainWicketKeeperSelector();
+  const { assignCaptain } = useAssignCaptainWicketKeeper();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -37,6 +43,8 @@ function List() {
         {teamMembers.map((e, i) => (
           <CaptainWicketKeeperCard
             {...e}
+            name={e.player.user.firstName}
+            type={e.player.specialization}
             key={i}
             serialNo={i + 1}
             captainWicketKeeper={captainWicketKeeper}

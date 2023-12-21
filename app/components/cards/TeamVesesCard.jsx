@@ -6,8 +6,7 @@ import Icons from "../others/Icons";
 
 const COLORS = UTILS.COLORS;
 
-export default function 
-TeamVersusCard(props) {
+export default function TeamVersusCard(props) {
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <View style={styles.teamProfileContainer} />
@@ -20,7 +19,7 @@ TeamVersusCard(props) {
 
         <View style={styles.capDetails}>
           <View style={styles.capProfileContainer} />
-          <AppText>{props.captainProfile.name}</AppText>
+          <AppText>{props.captainName}</AppText>
         </View>
       </View>
       <View style={[styles.editIconCon]}>
@@ -65,14 +64,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  text:{
+  text: {
     color: COLORS.gray2,
     fontSize: 15,
-    fontWeight: "700"
+    fontWeight: "700",
   },
-  editIconCon:{
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingBottom: 10
-  }
+  editIconCon: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingBottom: 10,
+  },
 });

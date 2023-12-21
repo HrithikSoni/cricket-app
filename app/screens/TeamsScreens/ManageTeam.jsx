@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 // import { FlashList } from "@shopify/flash-list";
 
 import Button from "../../components/button/Button";
@@ -10,20 +9,19 @@ import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 
 import api from "../../services/api";
-import UTILS from "../../utils";
-import useManageTeam, {
+import {
+  useAddPlayerInCurrentTeam,
+  useAllCurrentTeamPlayers,
   useCurrentTeamDetailsSelector,
 } from "../../services/teamServices/useManageTeam";
-import {
-  addPlayerInTeam,
-  getCurrentTeam,
-} from "../../services/teamServices/teamReducer";
+import UTILS from "../../utils";
 
 export default function ManageTeam({ navigation }) {
   const currentTeamDetails = useCurrentTeamDetailsSelector();
 
   const { data: teamPlayers } = api.useGetTeamPlayersQuery(
-    currentTeamDetails?.id
+    currentTeamDetails?.id,
+    { refetchOnMountOrArgChange: true }
   );
 
   return (
@@ -48,17 +46,7 @@ export default function ManageTeam({ navigation }) {
 }
 
 function List(props) {
-  const dispatch = useDispatch();
-  const currentTeam = useSelector(getCurrentTeam);
-
-  function handleAddPlayer(index) {
-    dispatch(
-      addPlayerInTeam({
-        team: currentTeam,
-        player: props.list[index],
-      })
-    );
-  }
+  const dispatchPlayerInCurrentTeam = useAddPlayerInCurrentTeam();
 
   return (
     <FlatList
@@ -70,7 +58,7 @@ function List(props) {
             name={item?.player?.user?.firstName || null}
             specialization={item?.player?.specialization || null}
             key={index}
-            onPress={() => handleAddPlayer(i)}
+            onPress={() => dispatchPlayerInCurrentTeam(item)}
           />
         </>
       )}
@@ -81,15 +69,12 @@ function List(props) {
 }
 
 function PlayersListHeader() {
-  // const currentTeam = useSelector(getCurrentTeam);
-  // const totalPLayers = useSelector(totalPlayer(currentTeam));
-
-  const { totalPLayers } = useManageTeam();
+  const totalPLayers = useAllCurrentTeamPlayers();
 
   return (
     <View style={styles.playersListHeader}>
       <AppText>Add Player</AppText>
-      <AppText>{totalPLayers}</AppText>
+      <AppText>{totalPLayers.length}</AppText>
     </View>
   );
 }

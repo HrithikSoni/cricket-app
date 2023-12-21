@@ -9,6 +9,10 @@ const teamApi = api.injectEndpoints({
     addTeamPlayers: builder.mutation(
       postQueryTag("/team/add-new-team-player", "teams")
     ),
+
+    addPlayersInMatch: builder.mutation(
+      postQueryTag("/team/add-players-in-match", "match-players")
+    ),
   }),
   overrideExisting: true,
 });

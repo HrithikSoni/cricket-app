@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import Toast from "react-native-toast-message";
+import { useNavigation } from "@react-navigation/native";
 
 import Button from "../../components/button/Button";
 import InputSelector from "../../components/inputs/ComponentHandler";
@@ -9,7 +10,7 @@ import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import UTILS from "../../utils";
 import useRTKQuery from "../../hooks/useRTKQuery";
 import api from "../../services/api";
-import { useNavigation } from "@react-navigation/native";
+import { useAddMatchDetails } from "../../services/teamServices/useManageTeam";
 
 const { TEAMS } = UTILS.SCREEN_NAMES;
 
@@ -30,9 +31,6 @@ export default function MatchDetails({ navigation }) {
           <InputSelector
             {...i}
             onDateTimeSelect={updateMatchDetails}
-            // onChangeText={(e) => updateMatchDetails((i.key = e))}
-            // onDropdownSelect={(e) => updateMatchDetails((i.key = e.value))}
-            // onLocationSelect={(e) => updateMatchDetails(e)}
             onDropdownSelect={(e) => {}}
             onChangeText={(e) => updateMatchDetails({ [i.key]: e })}
             onLocationSelect={updateMatchDetails}
@@ -53,7 +51,6 @@ export default function MatchDetails({ navigation }) {
         <SelectInput
           label={"Add Referee"}
           form={refereeForm}
-          // list={refereeNamesArray}
           onSelect={updateMatchDetails}
           header={"Select A Referee"}
           onAddingHeader={"Add Referee"}
@@ -63,7 +60,6 @@ export default function MatchDetails({ navigation }) {
         <SelectInput
           label={"Add Scorer"}
           form={scorerFrom}
-          // list={umpireNamesArray}
           onSelect={updateMatchDetails}
           header={"Select A Scorer"}
           onAddingHeader={"Add Scorer"}
@@ -82,10 +78,17 @@ export default function MatchDetails({ navigation }) {
 
 function useMatchDetails() {
   const navigation = useNavigation();
-
-  const { request } = useRTKQuery(api.useAddNewMatchMutation, () =>
-    navigation.navigate(TEAMS.TEAMS_VERSUS)
+  const dispatchMatchDetails = useAddMatchDetails();
+  const { request } = useRTKQuery(
+    api.useAddNewMatchMutation,
+    handleMatchCreateSuccess
   );
+
+  function handleMatchCreateSuccess(e) {
+    // dispatchMatchDetails({ id: e.data?.id || null });
+    // console.log(e);
+    // navigation.navigate(TEAMS.TEAMS_VERSUS);
+  }
 
   async function handleSubmitMatchDetails(body) {
     if (
@@ -99,8 +102,6 @@ function useMatchDetails() {
 
     await request(body);
   }
-
-  //
 
   return {
     handleSubmitMatchDetails,

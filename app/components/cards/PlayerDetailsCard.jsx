@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import UTILS from "../../utils";
 import BoldText from "../../components/text/BoldText";
 import SmallGreyText from "../text/SmallGreyText";
-import useManageTeam from "../../services/teamServices/useManageTeam";
+import { useAllCurrentTeamPlayers } from "../../services/teamServices/useManageTeam";
 
 function PlayerDetailsCard(props) {
-  const { teamMembers } = useManageTeam();
+  const teamMembers = useAllCurrentTeamPlayers();
   const playerIsSelected = teamMembers.filter((i) => i.id === props.id);
   const [itemSelected, setItemSelected] = useState(playerIsSelected.length > 0);
 

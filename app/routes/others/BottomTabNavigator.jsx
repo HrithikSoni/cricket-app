@@ -2,12 +2,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 
 import UTILS from "../../utils";
-import Home from "../../screens/Other/Home";
 import Social from "../../screens/Other/Social";
 import Tournament from "../../screens/Other/Tournament";
 import Profile from "../../screens/Other/Profile";
 import TestHome from "../../screens/LiveMatchesScreen/UpComingMatches";
 import Icons from "../../components/others/Icons";
+import AllMatches from "../../screens/MatchScreens/AllMatches";
 
 const Tab = createBottomTabNavigator();
 const { TAB_SCREENS, TEST_SCREENS } = UTILS.SCREEN_NAMES;
@@ -40,7 +40,7 @@ export default function BottomTabNavigator() {
 
       <Tab.Screen
         name={TAB_SCREENS.HOME}
-        component={Home}
+        component={AllMatches}
         options={{
           tabBarIcon: ({ color }) => <Icons.HomeIcon color={color} />,
           tabBarLabel: ({ color, focused }) =>

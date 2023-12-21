@@ -1,23 +1,20 @@
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../components/button/Button";
 import PlayerManageCard from "../../components/cards/PlayerManageCard";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import UTILS from "../../utils";
-import SearchAddPlayerModal from "../../components/modals/SearchAddPlayersModal";
-import useManageTeam from "../../services/teamServices/useManageTeam";
 import {
-  getCurrentTeam,
-  addPlayerInTeam,
-} from "../../services/teamServices/teamReducer";
+  useAllCurrentTeamPlayers,
+  useMoveUpDown,
+} from "../../services/teamServices/useManageTeam";
+import UTILS from "../../utils";
 
 export default function ManageBattingOrder({ navigation }) {
   return (
     <>
       <ParentWrapper screenTitle="Batting Order">
-        <SearchAddPlayerModal />
+        {/* <SearchAddPlayerModal /> */}
 
         <List />
 
@@ -32,18 +29,8 @@ export default function ManageBattingOrder({ navigation }) {
   );
 }
 function List() {
-  const dispatch = useDispatch();
-  const currentTeam = useSelector(getCurrentTeam);
-  const { teamMembers, moveUp, moveDown } = useManageTeam();
-
-  function handleAddPlayer(index) {
-    dispatch(
-      addPlayerInTeam({
-        team: currentTeam,
-        player: playerData[index],
-      })
-    );
-  }
+  const teamMembers = useAllCurrentTeamPlayers();
+  const { moveUp, moveDown } = useMoveUpDown();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -51,14 +38,13 @@ function List() {
         {teamMembers.length > 0 &&
           teamMembers.map((e, i) => (
             <PlayerManageCard
-              {...e}
+              name={e.player?.user?.firstName}
+              type={e.player?.specialization}
               key={i}
               serialNo={i + 1}
               last={i == teamMembers.length - 1}
-              onPress={() => handleAddPlayer(i)}
               moveUp={moveUp}
               moveDown={moveDown}
-              // onPress={() => memoizedSelectedItem(i)}
             />
           ))}
         <View style={{ height: 100 }} />

@@ -8,24 +8,15 @@ import SearchBar from "../../components/inputs/SearchBar";
 import SelectionModal from "../../components/modals/SelectionModal";
 import AppText from "../../components/text/AppText";
 import UTILS from "../../utils";
+import api from "../../services/api";
+import AddTeamsInMatchCard from "../../components/cards/AddTeamsInMatchCard";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
 
-export default function Home({ navigation }) {
+export default function AllMatches({ navigation }) {
   const [showModal, setShowModal] = useState(false);
 
-  const btnDetails = [
-    {
-      name: "Start Tournament",
-      screenName: TOURNAMENT_SCREENS.CREATE_TOURNAMENT,
-    },
-    { name: "Start Match", screenName: MATCH_DETAILS_SCREENS.FORM },
-  ];
-
-  const matchData = [
-    { id: 1, title: "Match 1" },
-    { id: 2, title: "Match 2" },
-  ];
+  const { data } = api.useGetAllMatchesQuery();
 
   const viewAllTextStyle = [
     UTILS.STYLES.commonTextStyle,
@@ -36,36 +27,14 @@ export default function Home({ navigation }) {
     <>
       <View style={styles.container}>
         <HomeTopCard />
-        {/* <Button
-          onButtonPress={() =>
-            request({
-              firstName: "kush",
-              contact: "9129997799",
-              role: "UMPIRE",
-            })
-          }
-        /> */}
-        <SearchBar />
-        <View>
-          <View style={styles.cardContainer}>
-            <AppText style={UTILS.STYLES.commonTextStyle}>Live Match</AppText>
-            <TouchableOpacity onPress={() => {}}>
-              <AppText style={viewAllTextStyle}>View All</AppText>
-            </TouchableOpacity>
-          </View>
 
-          <FlatList
-            horizontal
-            data={matchData}
-            renderItem={({ item }) => (
-              <View style={[styles.matchCardContainer]}>
-                <MatchCard {...item} />
-              </View>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
+        {/* <SearchBar /> */}
+
+        <LiveMatchesList />
+        {data?.data?.length > 0 &&
+          data?.data.map((item) => (
+            <AddTeamsInMatchCard item={item} key={item.id} />
+          ))}
       </View>
 
       <PlusButton onPress={handleModal} />
@@ -76,6 +45,31 @@ export default function Home({ navigation }) {
       /> */}
     </>
   );
+
+  function LiveMatchesList() {
+    return (
+      <View>
+        <View style={styles.cardContainer}>
+          <AppText style={UTILS.STYLES.commonTextStyle}>Live Match</AppText>
+          <TouchableOpacity onPress={() => {}}>
+            <AppText style={viewAllTextStyle}>View All</AppText>
+          </TouchableOpacity>
+        </View>
+
+        <FlatList
+          horizontal
+          data={matchData}
+          renderItem={({ item }) => (
+            <View style={[styles.matchCardContainer]}>
+              <MatchCard {...item} />
+            </View>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    );
+  }
 
   function handleOnSelect(e) {
     handleModal();
@@ -89,6 +83,18 @@ export default function Home({ navigation }) {
     navigation.navigate(MATCH_DETAILS_SCREENS.FORM);
   }
 }
+const btnDetails = [
+  {
+    name: "Start Tournament",
+    screenName: TOURNAMENT_SCREENS.CREATE_TOURNAMENT,
+  },
+  { name: "Start Match", screenName: MATCH_DETAILS_SCREENS.FORM },
+];
+
+const matchData = [
+  { id: 1, title: "Match 1" },
+  { id: 2, title: "Match 2" },
+];
 
 const styles = StyleSheet.create({
   container: {

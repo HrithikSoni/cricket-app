@@ -1,41 +1,67 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  allPlayers,
+  addMatchDetails,
+  addPlayerInTeam,
   assign,
   changeOrder,
-  getCaptain,
-  getWicketKeeper,
   getCurrentTeam,
-  totalPlayer,
-  handleMatchDetails,
-  updateCurrenTeam,
   setCurrentTeamDetails,
+  updateCurrenTeam,
 } from "./teamReducer";
 
-const nullFunction = () => null;
+// selectors ------------------------------
+export function useAllCurrentTeamPlayers() {
+  return useSelector((state) => state.team[state.team.currentTeam].players);
+}
 
-export default function useManageTeam(
-  selectCurrentTeam = true,
-  selectTeamMembers = true,
-  selectTotalPlayers = true,
-  selectCaptain = true,
-  selectWicketKeeper = true
-) {
+export function useCurrentTeamSelector() {
+  return useSelector((state) => state.currentTeam);
+}
+
+export function useCurrentTeamDetailsSelector() {
+  return useSelector((state) => state.team[state.team.currentTeam].teamDetails);
+}
+
+export function useTotalPlayerInCurrentTeamSelector() {
+  return useSelector(
+    (state) => state.team[state.team.currentTeam].players.length
+  );
+}
+
+export function useCaptainWicketKeeperSelector() {
+  const captain = useSelector(
+    (state) => state.team[state.team.currentTeam].captain
+  );
+  const wicketKeeper = useSelector(
+    (state) => state.team[state.team.currentTeam].wicketKeeper
+  );
+  return { captain, wicketKeeper };
+}
+
+export function useTeamDetailsSelector() {
+  return useSelector((state) => state.team);
+}
+
+// dispatches ------------------------------
+
+export function useAddPlayerInCurrentTeam() {
+  const dispatch = useDispatch();
+  return function (data) {
+    dispatch(addPlayerInTeam(data));
+  };
+}
+
+export function useUpdateCurrentTeamDetails() {
+  const dispatch = useDispatch();
+  return function (data) {
+    dispatch(setCurrentTeamDetails(data));
+  };
+}
+
+export function useMoveUpDown() {
   const dispatch = useDispatch();
 
-  const currentTeam = useSelector(
-    selectCurrentTeam ? getCurrentTeam : nullFunction
-  );
-
-  const teamMembers = useSelector(allPlayers);
-  const totalPlayers = useSelector(totalPlayer);
-  const captain = useSelector(getCaptain);
-  const wicketKeeper = useSelector(getWicketKeeper);
-
-  function isPlayerInTeam(id) {
-    const filter = teamMembers.filter((i) => i.id == id);
-    return filter.length > 0;
-  }
+  const totalPlayers = useTotalPlayerInCurrentTeamSelector();
 
   function moveUp(index) {
     if (index == 0) return;
@@ -56,14 +82,11 @@ export default function useManageTeam(
       })
     );
   }
+  return { moveDown, moveUp };
+}
 
-  function assignCaptain(user) {
-    dispatch(
-      assign({
-        captain: user,
-      })
-    );
-  }
+export function useAssignCaptainWicketKeeper() {
+  const dispatch = useDispatch();
 
   function assignCaptain(user) {
     dispatch(
@@ -80,40 +103,20 @@ export default function useManageTeam(
       })
     );
   }
+  return { assignCaptain, assignWicketKeeper };
+}
 
-  function addMatchDetails(details) {
-    dispatch(handleMatchDetails(details));
-  }
-
-  return {
-    currentTeam,
-    dispatch,
-    teamMembers,
-    isPlayerInTeam,
-    totalPlayers,
-    moveUp,
-    moveDown,
-    assignCaptain,
-    assignWicketKeeper,
-    captainWicketKeeper: {
-      captain,
-      wicketKeeper,
-    },
-    addMatchDetails,
+export function useUpdateCurrentTeamKey() {
+  const dispatch = useDispatch();
+  return function (team) {
+    dispatch(updateCurrenTeam(team));
   };
 }
 
-export function useCurrentTeamSelector() {
-  return useSelector(getCurrentTeam);
-}
-
-export function useCurrentTeamDetailsSelector() {
-  return useSelector((state) => state.team[state.team.currentTeam].teamDetails);
-}
-
-export function useUpdateCurrentTeamDetails() {
+/// add match details to store when match is created
+export function useAddMatchDetails() {
   const dispatch = useDispatch();
-  return function (data) {
-    dispatch(setCurrentTeamDetails(data));
+  return function (matchDetails) {
+    dispatch(addMatchDetails(matchDetails));
   };
 }

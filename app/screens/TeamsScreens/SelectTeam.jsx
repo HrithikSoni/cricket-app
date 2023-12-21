@@ -6,13 +6,24 @@ import SelectTeamCard from "../../components/cards/SelectTeamCard";
 import SearchAddTeamModal from "../../components/modals/SearchAddTeamModal";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import api from "../../services/api";
-import { useUpdateCurrentTeamDetails } from "../../services/teamServices/useManageTeam";
+import {
+  useCurrentTeamSelector,
+  useTeamDetailsSelector,
+  useUpdateCurrentTeamDetails,
+} from "../../services/teamServices/useManageTeam";
 import UTILS from "../../utils";
+
+const { TEAM_A, TEAM_B } = UTILS.TEAM_NAME;
 
 export default function SelectTeam({ navigation }) {
   const { data: teamsList } = api.useGetTeamsQuery();
 
   const updateCurrentTeamDetails = useUpdateCurrentTeamDetails();
+
+  const teamsData = useTeamDetailsSelector();
+
+  const teamAId = teamsData[TEAM_A].teamDetails?.id;
+  const teamBId = teamsData[TEAM_B].teamDetails?.id;
 
   function handleSelectTeam(details) {
     updateCurrentTeamDetails(details);
@@ -26,19 +37,31 @@ export default function SelectTeam({ navigation }) {
       <ScrollView>
         {teamsList?.length > 0 &&
           teamsList.map((item, index) => (
-            <View key={index} style={[styles.cardContainer]}>
-              <SelectTeamCard
-                {...teamInfo[0]}
-                {...item}
-                onPress={() => handleSelectTeam(item)}
-              />
-            </View>
+            <ListContent item={item} key={index} />
           ))}
       </ScrollView>
 
       <Button onButtonPress={() => {}} bottom={true} />
     </ParentWrapper>
   );
+
+  function ListContent({ item }) {
+    // remove other team for selection of teams
+    if (teamBId && teamsData.currentTeam === TEAM_A && item.id === teamBId)
+      return null;
+    if (teamAId && teamsData.currentTeam === TEAM_B && item.id === teamAId)
+      return null;
+
+    return (
+      <View style={[styles.cardContainer]}>
+        <SelectTeamCard
+          {...teamInfo[0]}
+          {...item}
+          onPress={() => handleSelectTeam(item)}
+        />
+      </View>
+    );
+  }
 }
 
 const teamInfo = [
