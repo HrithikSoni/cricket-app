@@ -10,7 +10,7 @@ export default function TableRow({
   textStyle = {},
   titleStyle = {},
   containerStyle = {},
-  key,
+
   isSpcBtw,
 }) {
   const dataContainerStyle = isSpcBtw
@@ -38,14 +38,13 @@ export default function TableRow({
           { flexDirection: "row", alignItems: "center" },
           dataContainerStyle,
         ]}
-        key={key}
       >
-        <View style={{ flex: 1.5 }}>
+        {/* <View style={{ flex: 1.5 }}>
           <Text style={[{ color: UTILS.COLORS.themeColor }, titleStyle]}>
             {title}
           </Text>
           {subTitle && <SmallGreyText>{subTitle}</SmallGreyText>}
-        </View>
+        </View> */}
 
         <View
           style={[
@@ -53,8 +52,8 @@ export default function TableRow({
             dataContainerStyle,
           ]}
         >
-          {data.map((i) => (
-            <View key={i}>
+          {data.map((i, index) => (
+            <View key={index} style={{ flex: 1 }}>
               <Text style={[{ color: "gray", textAlign: "center" }, textStyle]}>
                 {i}
               </Text>

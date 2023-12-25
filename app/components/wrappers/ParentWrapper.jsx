@@ -10,6 +10,8 @@ import AppText from "../text/AppText";
 export default function ParentWrapper(props) {
   const navigation = useNavigation();
 
+  const paddingHorizontal = props.paddingHorizontal || 20;
+
   return (
     <SafeAreaView
       style={{
@@ -17,7 +19,7 @@ export default function ParentWrapper(props) {
         backgroundColor: "white",
       }}
     >
-      <View style={styles.container}>
+      <View style={[styles.container, { paddingHorizontal }]}>
         <View style={styles.header}>
           <Icons.LeftChevron
             onPress={onBackBtnPress}
@@ -48,7 +50,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     paddingTop: UTILS.HELPERS.handlePlatform(0, StatusBar.currentHeight + 20),
-    paddingHorizontal: 20,
   },
   header: {
     height: 20,

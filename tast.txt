@@ -1,14 +1,17 @@
+## toss and decision
+## match result
+## stop inning stop match
 
 
-
-/// add players in team and match 
-assign player captain and wicket keeper
-
-
-handle versus page to assign team a and team b
  
- exclude team and player in team and player list
 
+
+ 
+ 
+ 
+
+
+ 
 
 
  ctrl enter 
@@ -18,6 +21,9 @@ handle versus page to assign team a and team b
  current status
  (canceled complete upcoming ongoing)
 
+
+
+
  match result 
  matchId
  teamsId
@@ -25,3 +31,7 @@ handle versus page to assign team a and team b
  wonby run
  wicket
  man of match (bowler bats man fielder)
+
+
+ ## handle   batsman and bowler status
+ 

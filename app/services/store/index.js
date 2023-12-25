@@ -10,11 +10,13 @@ import matchApi from "../matchServices/matchApi.jsx";
 import regionApi from "../regionServices/regionApi.jsx";
 import usersApi from "../usersServices/usersApi.jsx";
 import teamApi from "../teamServices/teamApi.jsx";
+import scoringReducer from "../scoringServices/scoringReducer.jsx";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     team: teamReducer,
+    scoring: scoringReducer,
     [authApi.reducerPath]: authApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [regionApi.reducerPath]: regionApi.reducer,

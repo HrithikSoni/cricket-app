@@ -3,7 +3,7 @@ import React from "react";
 
 import UTILS from "../../utils";
 
-const PairBtn = (props) => {
+function PairBtn(props) {
   return (
     <View
       style={[
@@ -43,7 +43,7 @@ const PairBtn = (props) => {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 export default PairBtn;
 

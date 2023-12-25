@@ -86,7 +86,6 @@ function useMatchDetails() {
 
   function handleMatchCreateSuccess(e) {
     // dispatchMatchDetails({ id: e.data?.id || null });
-    // console.log(e);
     // navigation.navigate(TEAMS.TEAMS_VERSUS);
   }
 

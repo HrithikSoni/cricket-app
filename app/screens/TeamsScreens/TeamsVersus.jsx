@@ -25,8 +25,6 @@ export default function TeamsVersus({ navigation }) {
   const teamsData = useTeamDetailsSelector();
   const dispatchCurrentTeamKey = useUpdateCurrentTeamKey();
 
-  // console.log(teamsData.matchDetails);
-
   function handleCardFunction(team) {
     dispatchCurrentTeamKey(team);
     navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.SELECT_TEAM);
