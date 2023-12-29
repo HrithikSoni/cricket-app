@@ -17,7 +17,7 @@ export default function AddNewTeamModal(props) {
   const { request: addTeam } = useRTKQuery(
     api.useAddTeamMutation,
     (e) => props.onRequestClose(),
-    (f) => console.log(f, "error")
+    (f) => console.warn(f, "error")
   );
 
   return (

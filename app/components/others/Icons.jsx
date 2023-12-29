@@ -136,6 +136,17 @@ const Icons = {
   Failed: () => (
     <AntDesign name="exclamationcircleo" size={20} color={colors.red} />
   ),
+  Undo: () => (
+    <Ionicons name="arrow-undo" size={24} color={colors.themeColor} />
+  ),
+  Info: () => <Foundation name="info" size={24} color={colors.themeColor} />,
+  DoubleCheck: () => <Ionicons name="checkmark-done" size={30} color="white" />,
+
+  Close: ({ onPress, style = {} }) => (
+    <TouchableOpacity onPress={onPress} style={style}>
+      <AntDesign name="closecircle" size={24} color={colors.gray2} />
+    </TouchableOpacity>
+  ),
 };
 
 export default Icons;

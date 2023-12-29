@@ -9,11 +9,11 @@ const Scorecard = () => {
     <View>
       <ScoreCardTable
         tableData={tableData}
-        batsManHeaderRowData={batsManHeaderRowData}
+        batsmanHeaderRowData={batsmanHeaderRowData}
         bowlerHeaderStyle={bowlerHeaderStyle}
         bottomTableHeaderRowData={bottomTableHeaderRowData}
         bottomTableData={bottomTableData}
-        batsManBottomData={batsManBottomData}
+        batsmanBottomData={batsmanBottomData}
         teamName={"New Delhi Heroes"}
         score={"173/8(20.0ov)"}
       />
@@ -28,7 +28,7 @@ const tableData = [
   { title: "new Team", subTitle: "game", data: [12, 24, 35, 0, 50, 49] },
 ];
 
-const batsManHeaderRowData = {
+const batsmanHeaderRowData = {
   title: "Batsman",
   data: ["R", "B", "4s", "6s", "SR", "Min"],
   textStyle: { color: "white" },
@@ -58,7 +58,7 @@ const bottomTableHeaderRowData = {
   },
 };
 
-const batsManBottomData = [
+const batsmanBottomData = [
   { title: "Extras:", data: ["3 ( Wd 3 )"] },
   { title: "Total", data: ["124/9 (20.0v) CRR 6.20"] },
   { title: "To Bat:", data: ["Kunal Raman rohit"] },

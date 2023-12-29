@@ -35,3 +35,55 @@
 
  ## handle   batsman and bowler status
  
+
+
+
+
+engine login 
+0- no run        
+ increase no of bowl
+
+
+1 - single      
+ increase no of bowl
+ rotate strike
+ add in total
+ add in batsman status
+ add in bowler stat
+
+ 2 - double      
+ increase no of bowl
+ add in total
+ add in batsman status
+ add in bowler stat
+
+
+3 - triple     
+ increase no of bowl
+ rotate strike
+ add in total
+ add in batsman status
+ add in bowler stat
+
+
+
+4 - boundary      
+ increase no of bowl
+ add in total
+ add in batsman status
+ add in bowler stat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -35,7 +35,7 @@ const FallOfWicketModal = (props) => {
       boxLabel: "Select Batsman",
       data: playerData,
       bottomSheetHeader: "Select Batsman",
-      onBottomSheetSelect: (e) => (fallOfWicketData.current.batsManName = e),
+      onBottomSheetSelect: (e) => (fallOfWicketData.current.batsmanName = e),
     },
   ];
 

@@ -10,7 +10,7 @@ import AppText from "../text/AppText";
 export default function ParentWrapper(props) {
   const navigation = useNavigation();
 
-  const paddingHorizontal = props.paddingHorizontal || 20;
+  const paddingHorizontal = props.paddingHorizontal ?? 20;
 
   return (
     <SafeAreaView
@@ -19,7 +19,7 @@ export default function ParentWrapper(props) {
         backgroundColor: "white",
       }}
     >
-      <View style={[styles.container, { paddingHorizontal }]}>
+      <View style={styles.container}>
         <View style={styles.header}>
           <Icons.LeftChevron
             onPress={onBackBtnPress}
@@ -29,10 +29,12 @@ export default function ParentWrapper(props) {
             <AppText style={{ fontSize: 18 }}>{props.screenTitle}</AppText>
           )}
         </View>
-        {props.description && (
-          <AppText style={styles.description}>{props.description}</AppText>
-        )}
-        {props.children}
+        <View style={{ marginHorizontal: 20 }}>
+          {props.description && (
+            <AppText style={styles.description}>{props.description}</AppText>
+          )}
+        </View>
+        <View style={{ paddingHorizontal, flex: 1 }}>{props.children}</View>
       </View>
     </SafeAreaView>
   );
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 20,
+    marginHorizontal: 20,
   },
   // upperContainer: {
   //   marginTop: 60,

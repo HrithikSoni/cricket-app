@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import UTILS from "../../utils";
 
 const Button = (props) => {
@@ -23,12 +19,12 @@ const Button = (props) => {
     height: 57,
     marginTop: 5,
     width: "100%",
-  }
+  };
 
-  let btnText =  {
+  let btnText = {
     fontSize: 20,
     fontWeight: "bold",
-  }
+  };
 
   if (props.bottom) {
     button = {
@@ -47,15 +43,13 @@ const Button = (props) => {
           opacity: disabled ? 0.6 : 1,
           backgroundColor: props?.bgColor || UTILS.COLORS.themeColor,
         },
+        props.style,
       ]}
       onPress={buttonPress}
       disabled={disabled}
     >
       <Text
-        style={[
-          btnText,
-          { color: props?.textColor || UTILS.COLORS.gray3 },
-        ]}
+        style={[btnText, { color: props?.textColor || UTILS.COLORS.gray3 }]}
       >
         {props?.label || "Continue"}
       </Text>
@@ -69,5 +63,4 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
   },
- 
 });

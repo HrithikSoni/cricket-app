@@ -10,7 +10,6 @@ export default function AddTeamsInMatchCard({ item }) {
   const dispatchMatchDetails = useAddMatchDetails();
 
   const handleCardClick = () => {
-    // console.log(item.id);
     dispatchMatchDetails({ id: item.id || null });
     navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS);
   };

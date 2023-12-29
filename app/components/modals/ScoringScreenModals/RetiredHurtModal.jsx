@@ -37,7 +37,7 @@ const RetiredHurtModal = (props) => {
               Retired Hurt Batsman
             </AppText>
             <RadioBtnWithTextComp
-              data={batsManData}
+              data={batsmanData}
               onSelect={(e) =>
                 (retiredHurtBatsmanData.current.retiredHurtBatsman = e.id)
               }
@@ -73,17 +73,6 @@ const playerData = [
   { id: 8, label: "Fransis", rightText: "BatsMan" },
   { id: 9, label: "Kathrene", rightText: "BatsMan" },
   { id: 10, label: "Jerome", rightText: "BatsMan" },
-];
-
-const batsManData = [
-  {
-    id: 1,
-    label: "BatsMan A",
-  },
-  {
-    id: 2,
-    label: "BatsMan B",
-  },
 ];
 
 export default RetiredHurtModal;

@@ -17,31 +17,6 @@ export default function BottomBtn(props) {
   );
 }
 export const styles = StyleSheet.create({
-  runContainer: {
-    borderWidth: 2,
-    borderColor: UTILS.COLORS.themeColor,
-    height: 30,
-    width: 30,
-    borderRadius: 10,
-    marginHorizontal: 5,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: UTILS.COLORS.opacity1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  dataContainer: {
-    // height: UTILS.DIMENSIONS.height - 500,
-    width: UTILS.DIMENSIONS.width - 50,
-    backgroundColor: "white",
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-  },
   cancelBtn: {
     borderColor: UTILS.COLORS.themeColor,
     borderWidth: 2,
@@ -64,15 +39,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 10,
   },
-  optionsBtn: {
-    padding: 14,
-    marginRight: 10,
-    borderRadius: 16,
-    backgroundColor: UTILS.COLORS.gray1,
-    marginTop: 10,
-    borderWidth: 2,
-  },
-  optionsBtnContainer: { flexDirection: "row", flexWrap: "wrap", marginTop: 0 },
+
   bottomBtnContainer: {
     flexDirection: "row",
     marginTop: 20,

@@ -16,7 +16,7 @@ const ScoreCardTable = (props) => {
         <TableHeaderContainer>
           <ScoreDetails />
         </TableHeaderContainer>
-        <TableRow {...props.batsManHeaderRowData} />
+        <TableRow {...props.batsmanHeaderRowData} />
         <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
           {props?.tableData.map((e, i) => (
             <TableRow {...e} key={i} />
@@ -24,7 +24,7 @@ const ScoreCardTable = (props) => {
         </View>
 
         <View style={{ backgroundColor: UTILS.COLORS.gray1 }}>
-          {props?.batsManBottomData.map((e, i) => (
+          {props?.batsmanBottomData.map((e, i) => (
             <TableRow
               {...e}
               key={i}

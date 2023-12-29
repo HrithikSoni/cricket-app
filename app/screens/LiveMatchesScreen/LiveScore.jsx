@@ -14,7 +14,7 @@ const LiveScore = (props) => {
   }, []);
 
   function handleGetScore() {
-    socket.emit("findAllLiveScoring", {}, (r) => console.log(r, "received"));
+    // socket.emit("findAllLiveScoring", {}, (r) => {});
   }
 
   return (
@@ -24,7 +24,7 @@ const LiveScore = (props) => {
         <TeamScoreCard {...teamData} />
         <LiveScoreTable
           tableData={tableData}
-          batsManHeaderRowData={batsManHeaderRowData}
+          batsmanHeaderRowData={batsmanHeaderRowData}
           bowlerHeaderStyle={bowlerHeaderStyle}
         />
       </View>
@@ -39,7 +39,7 @@ const tableData = [
   { title: "new Team", subTitle: "game", data: [12, 24, 35, 0, 50] },
 ];
 
-const batsManHeaderRowData = {
+const batsmanHeaderRowData = {
   title: "Batsman",
   data: ["R", "B", "4s", "6s", "RS"],
   textStyle: { color: "white" },
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 //         <TeamScoreCard {...teamData} />
 //         <LiveScoreTable
 //           tableData={tableData}
-//           batsManHeaderRowData={batsManHeaderRowData}
+//           batsmanHeaderRowData={batsmanHeaderRowData}
 //           bowlerHeaderStyle={bowlerHeaderStyle}
 //         />
 //       </View>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 //   { title: "new Team", subTitle: "game", data: [12, 24, 35, 0, 50] },
 // ];
 
-// const batsManHeaderRowData = {
+// const batsmanHeaderRowData = {
 //   title: "Batsman",
 //   data: ["R", "B", "4s", "6s", "RS"],
 //   textStyle: { color: "white" },
