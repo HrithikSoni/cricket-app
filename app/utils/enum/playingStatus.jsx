@@ -1,0 +1,12 @@
+export const PLAYING_STATUS = {
+  OUT: "OUT",
+  PLAYING: "PLAYING",
+  BENCH: "BENCH",
+};
+
+export const FIELDING_STATUS = {
+  BOWLING: "BOWLING",
+  OVERS_DONE: "OVERS_DONE",
+  PLAYING: "PLAYING",
+  BENCH: "BENCH",
+};

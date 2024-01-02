@@ -12,10 +12,9 @@ import DismissBatsmanModal from "../modals/DismissBatsmanModal";
 import AppText from "../../../components/text/AppText";
 import UTILS from "../../../utils";
 import ChangeBowlerModal from "../modals/ChangeBowlerModal";
-import {
-  useDispatchResetCurrentOver,
-  useScoreDetails,
-} from "../../../services/scoringServices/useScoringEngine";
+
+import { useDispatchResetCurrentOver } from "../../../services/scoringServices/scoringDispatches";
+import { useScoreDetails } from "../../../services/scoringServices/scoringSelectors";
 
 const scores = [50, 30, 15, 0, 15, 30, 50];
 

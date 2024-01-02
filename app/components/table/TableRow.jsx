@@ -39,13 +39,6 @@ export default function TableRow({
           dataContainerStyle,
         ]}
       >
-        {/* <View style={{ flex: 1.5 }}>
-          <Text style={[{ color: UTILS.COLORS.themeColor }, titleStyle]}>
-            {title}
-          </Text>
-          {subTitle && <SmallGreyText>{subTitle}</SmallGreyText>}
-        </View> */}
-
         <View
           style={[
             { flexDirection: "row", alignItems: "center" },
@@ -55,7 +48,7 @@ export default function TableRow({
           {data.map((i, index) => (
             <View key={index} style={{ flex: 1 }}>
               <Text style={[{ color: "gray", textAlign: "center" }, textStyle]}>
-                {i}
+                {i === "NaN" || i === "Infinity" ? "0" : i}
               </Text>
             </View>
           ))}

@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import UTILS from "../../utils";
 import TableHeaderContainer from "./TableHeaderContainer";
 import TableRow from "./TableRow";
-import { useScoreDetails } from "../../services/scoringServices/useScoringEngine";
+import { useScoreDetails } from "../../services/scoringServices/scoringSelectors";
 
 const style = UTILS.STYLES;
 const colors = UTILS.COLORS;

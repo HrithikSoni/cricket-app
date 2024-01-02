@@ -5,8 +5,9 @@ import Button from "../../components/button/Button";
 import ImageWithTextCard from "../../components/cards/ImageWithTextCard";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import UTILS from "../../utils";
 
-const MatchToss = () => {
+const MatchToss = ({ navigation }) => {
   const tossData = useRef({});
 
   return (
@@ -22,7 +23,13 @@ const MatchToss = () => {
         data={tossInfo}
         onSelect={(e) => (tossData.current.chooseTo = e)}
       />
-      <Button label={"Confirm"} onButtonPress={() => {}} bottom={true} />
+      <Button
+        label={"Confirm"}
+        onButtonPress={() =>
+          navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS)
+        }
+        bottom={true}
+      />
     </ParentWrapper>
   );
 };

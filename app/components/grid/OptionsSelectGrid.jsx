@@ -39,20 +39,26 @@ export default function OptionsSelectGrid({
       if (invalid) return;
       handleSelect(i, index);
     }
+
+    const backgroundColor =
+      selected == index ? UTILS.COLORS.themeColor : UTILS.COLORS.gray1;
+
+    const textColor = invalid
+      ? UTILS.COLORS.gray2
+      : selected == index
+      ? "white"
+      : "black";
     return (
       <TouchableOpacity
         onPress={handlePress}
         style={[
           styles.optionsBtn,
-          { marginTop: 10 },
           {
-            borderColor: selected == index ? UTILS.COLORS.themeColor : "white",
+            backgroundColor,
           },
         ]}
       >
-        <AppText style={{ color: invalid ? UTILS.COLORS.gray2 : "black" }}>
-          {i.name}
-        </AppText>
+        <AppText style={{ color: textColor }}>{i.name}</AppText>
       </TouchableOpacity>
     );
   }
@@ -64,7 +70,8 @@ export const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 16,
     backgroundColor: UTILS.COLORS.gray1,
-    borderWidth: 2,
+    marginTop: 10,
+    // borderWidth: 2,
   },
   optionsBtnContainer: {
     marginTop: 15,

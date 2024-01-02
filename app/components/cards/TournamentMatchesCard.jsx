@@ -5,6 +5,7 @@ import UTILS from "../../utils";
 import AppText from "../text/AppText";
 import SmallButton from "../button/SmallButton";
 import useAuth from "../../hooks/useAuth";
+import Button from "../button/Button";
 
 export default function TournamentMatchesCard(props) {
   const countDown = 10;
@@ -28,26 +29,27 @@ export default function TournamentMatchesCard(props) {
           <View style={styles.teams}>
             <View style={[styles.teamInnerCon]}>
               <AppText style={styles.teamText}>{item.team1}</AppText>
-              {isAdmin && (
-                <SmallButton
-                  label={"Match Toss"}
-                  onPress={props.onPressLeftButton}
-                />
-              )}
             </View>
             <AppText>V/S</AppText>
             <View style={[styles.teamInnerCon]}>
               <AppText style={styles.teamText}>{item.team2}</AppText>
-              {isAdmin && (
+              {/* {isAdmin && (
                 <SmallButton
                   label={"Start Scorekeeping"}
                   onPress={props.onPressRightButton}
                   bgColor={UTILS.COLORS.gray2}
                   textColor={UTILS.COLORS.textColor}
                 />
-              )}
+              )} */}
             </View>
           </View>
+          {isAdmin && (
+            <Button
+              label={"Match Toss"}
+              onButtonPress={props.onPress}
+              style={{ height: 50, marginTop: 20 }}
+            />
+          )}
         </View>
       ))}
     </View>

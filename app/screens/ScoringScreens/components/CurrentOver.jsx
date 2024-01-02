@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import AppText from "../../../components/text/AppText";
-import { useCurrentOverDetailsSelector } from "../../../services/scoringServices/useScoringEngine";
+import { useCurrentOverDetailsSelector } from "../../../services/scoringServices/scoringSelectors";
 import UTILS from "../../../utils";
 
 export default function CurrentOver() {

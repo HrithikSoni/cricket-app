@@ -28,6 +28,12 @@ export default function ParentWrapper(props) {
           {props.screenTitle && (
             <AppText style={{ fontSize: 18 }}>{props.screenTitle}</AppText>
           )}
+          {props.onStatsPress && (
+            <Icons.Stats
+              onPress={props.onStatsPress}
+              style={{ position: "absolute", right: 10 }}
+            />
+          )}
         </View>
         <View style={{ marginHorizontal: 20 }}>
           {props.description && (

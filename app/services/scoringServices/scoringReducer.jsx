@@ -1,17 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
-const PLAYING_STATUS = {
-  OUT: "OUT",
-  PLAYING: "PLAYING",
-  BENCH: "BENCH",
+import UTILS from "../../utils";
+
+const { FIELDING_STATUS, PLAYING_STATUS } = UTILS;
+
+const extras = {
+  over: null,
+  run: null,
+  bowler: null,
 };
 
-const FIELDING_STATUS = {
-  BOWLING: "BOWLING",
-  OVERS_DONE: "OVERS_DONE",
-  PLAYING: "PLAYING",
-  BENCH: "BENCH",
+const currentOver = {
+  bouncer: 0,
+  wides: 0,
+  byes: 0,
+  legByes: 0,
+  deadBall: 0,
+  extras: 0,
+  totalRunsInOver: 0,
+  bowls: [
+    {
+      bowlerId: null,
+      comment: "",
+      deliveryType: null,
+      dismissalType: null,
+      dismissedBatsmanId: null,
+      matchId: null,
+      nonStriker: null,
+      run: 0,
+      striker: null,
+      wicket: false,
+    },
+  ],
 };
-
+// $$$$$$$$$$ different array for batsman and bowler selected from team
 const playingBatsman = [
   {
     name: "John",
@@ -335,36 +356,27 @@ const playingFielders = [
     totalRun: 0,
   },
 ];
-
 const initialState = {
-  currentScore: 0,
-  totalBalls: 0,
-  bouncerInCurrentOver: 0,
-  wickets: 0,
-  ballsPerInning: 200,
-  striker: playingBatsman[0],
-  nonStriker: playingBatsman[1],
-  playingBatsman: playingBatsman,
-  bowler: playingFielders[0],
+  // match Details
   playingFielders: playingFielders,
-  currentOver: [],
-  bowlDetails: [
-    {
-      currentScore: 0,
-      run: 0,
-      bawlNo: 0,
-      overNo: 0,
-      strikerId: "uuid",
-      nonStrikerId: "uuid",
-      bowlerId: "",
-      matchId: "",
-      timestamp: "",
-      dismissBatsman: {
-        dismissalType: "bowled",
-        dismissedBatsmanId: "uuid",
-      },
-    },
-  ],
+  playingBatsman: playingBatsman,
+  ballsPerInning: 200,
+  bowlers: [],
+  batsmen: [],
+
+  //player details
+  striker: null,
+  nonStriker: null,
+  bowler: null,
+
+  //score details
+  bowlDetails: [], // over wise bowl details
+  currentOver: 0, // on going over
+  currentScore: 0, // current score
+  extras: null, // extra run details in entire inning
+  overs: 0, // on going over
+  totalBalls: 0, // on going ball
+  wickets: 0, // no. of wickets down
 };
 
 export const scoringSlice = createSlice({
@@ -482,13 +494,16 @@ export const scoringSlice = createSlice({
     handleResetCurrentOver: (state) => {
       state.currentOver = [];
     },
+
+    handleOverComplete: () => {},
+
+    assignNextBatsman: () => {},
   },
 });
 
 export const {
   validDelivery,
   rotateStrike,
-  updateScorecardDetails,
   handleDismissBatsman,
   handleAddScore,
   handleUpdateBatsmanStat,
@@ -496,6 +511,7 @@ export const {
   handleUpdateBowlerStat,
   handleCurrentOver,
   handleResetCurrentOver,
+  handleOverComplete,
 } = scoringSlice.actions;
 
 export default scoringSlice.reducer;

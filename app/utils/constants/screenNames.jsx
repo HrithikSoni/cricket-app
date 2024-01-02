@@ -30,8 +30,9 @@ const MATCH_DETAILS_SCREENS = {
 
 const SCORING_SCREENS = {
   MATCH_TOSS: "Match Toss",
-
   SCORING: "Scoring",
+  CHOOSE_PLAYERS: "Choose Initial Players",
+  MATCH_STATS: "Match Stats",
 };
 
 const LIVE_MATCHES = {

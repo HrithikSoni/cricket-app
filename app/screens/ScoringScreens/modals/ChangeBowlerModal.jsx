@@ -1,23 +1,16 @@
 import React, { useRef } from "react";
 import { Modal, StyleSheet, View } from "react-native";
-import {
-  useAssignBowler,
-  useScoreDetails,
-} from "../../../services/scoringServices/useScoringEngine";
 
-import UTILS from "../../../utils";
-import BottomBtn from "../../../components/button/BottomBtn";
+import Button from "../../../components/button/Button";
 import OptionsSelectGrid from "../../../components/grid/OptionsSelectGrid";
+import Icons from "../../../components/others/Icons";
+import BoldText from "../../../components/text/BoldText";
+import { useAssignBowler } from "../../../services/scoringServices/scoringDispatches";
+import { useValidBowlerSelector } from "../../../services/scoringServices/scoringSelectors";
+import UTILS from "../../../utils";
 
 export default function ChangeBowlerModal(props) {
-  const { playingFielders, bowlerStat, overs } = useScoreDetails();
-
-  const invalidBowlers = playingFielders.map((i, index) => {
-    if (i.overs.length !== 0) {
-      return overs + 1 - i.overs[i.overs.length - 1] < 1 ? index : null;
-    }
-    return null;
-  });
+  const { playingFielders, invalidBowlers } = useValidBowlerSelector();
 
   const bowler = useRef({ id: null });
 
@@ -36,13 +29,23 @@ export default function ChangeBowlerModal(props) {
     >
       <View style={styles.container}>
         <View style={styles.dataContainer}>
+          <BoldText style={styles.header}>Next Bowler</BoldText>
+          <Icons.Close
+            onPress={props.onRequestClose}
+            style={{ alignSelf: "flex-end" }}
+          />
           <OptionsSelectGrid
-            headerTitle={"Choose Next Bowler"}
+            headerTitle={null}
             data={playingFielders}
             invalidData={invalidBowlers}
             onGridItemPress={(i) => (bowler.current = i)}
           />
-          <BottomBtn {...props} onSubmit={handleSubmit} />
+          {/* <BottomBtn {...props} onSubmit={handleSubmit} /> */}
+          <Button
+            label="Confirm"
+            onButtonPress={handleSubmit}
+            style={{ marginTop: 15 }}
+          />
         </View>
       </View>
     </Modal>
@@ -50,6 +53,14 @@ export default function ChangeBowlerModal(props) {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    textAlign: "center",
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 25,
+    marginBottom: 10,
+  },
   container: {
     flex: 1,
     backgroundColor: UTILS.COLORS.opacity1,
@@ -65,15 +76,3 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 });
-const dismiss = [
-  { name: "Bowled", strikerOnly: true },
-  { name: "Catch", strikerOnly: true },
-  { name: "LBW", strikerOnly: true },
-  { name: "Run Out" },
-  { name: "Stumped" },
-  { name: "Hit Wicket" },
-  { name: "Ball Handled" },
-  { name: "Obstructing Fielding" },
-  { name: "Retired Hurt" },
-  { name: "Timed Out" },
-];

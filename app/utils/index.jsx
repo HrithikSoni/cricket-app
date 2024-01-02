@@ -2,10 +2,11 @@ import CONFIG from "./configs";
 import COUNTRIES from "./constants/country";
 import SCREEN_NAMES from "./constants/screenNames";
 import countryInfo from "./constants/selctedCountry";
-import { DELIVERY_STATUS, DISMISS_TYPES, BATSMAN } from "./enum/deliveryStatus";
+import { BATSMAN, DELIVERY_STATUS, DISMISS_TYPES } from "./enum/deliveryStatus";
 import HTTPS_METHODS from "./enum/httpMethods";
 import INPUT_TYPE from "./enum/inputType";
 import MATCH_TYPES from "./enum/matchTypes";
+import { FIELDING_STATUS, PLAYING_STATUS } from "./enum/playingStatus";
 import ROLE from "./enum/role";
 import TEAM_NAME from "./enum/teamName";
 import ToastType from "./enum/toastTypes";
@@ -36,6 +37,8 @@ const UTILS = {
   DELIVERY_STATUS,
   DISMISS_TYPES,
   BATSMAN,
+  FIELDING_STATUS,
+  PLAYING_STATUS,
 };
 
 export default UTILS;

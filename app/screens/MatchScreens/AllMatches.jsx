@@ -10,8 +10,10 @@ import AppText from "../../components/text/AppText";
 import UTILS from "../../utils";
 import api from "../../services/api";
 import AddTeamsInMatchCard from "../../components/cards/AddTeamsInMatchCard";
+import TournamentMatchesCard from "../../components/cards/TournamentMatchesCard";
 
-const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS } = UTILS.SCREEN_NAMES;
+const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS, SCORING_SCREENS } =
+  UTILS.SCREEN_NAMES;
 
 export default function AllMatches({ navigation }) {
   const [showModal, setShowModal] = useState(false);
@@ -31,6 +33,18 @@ export default function AllMatches({ navigation }) {
         {/* <SearchBar /> */}
 
         <LiveMatchesList />
+        <TournamentMatchesCard
+          arrayData={[
+            {
+              date: "20 oct",
+              location: "garden",
+              team1: "team1",
+              team2: "team2",
+              overs: 20,
+            },
+          ]}
+          onPress={() => navigation.navigate(SCORING_SCREENS.MATCH_TOSS)}
+        />
         {data?.data?.length > 0 &&
           data?.data.map((item) => (
             <AddTeamsInMatchCard item={item} key={item.id} />

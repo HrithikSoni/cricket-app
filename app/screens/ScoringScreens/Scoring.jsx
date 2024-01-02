@@ -17,7 +17,7 @@ const initialState = {
   dismissalType: null,
 };
 
-export default function Scoring() {
+export default function Scoring({ navigation }) {
   const bowlDetails = useRef(initialState);
   const [update, setUpdate] = useState(true);
 
@@ -33,7 +33,13 @@ export default function Scoring() {
   }
 
   return (
-    <ParentWrapper screenTitle="Scorecard" paddingHorizontal={0}>
+    <ParentWrapper
+      screenTitle="Scorecard"
+      paddingHorizontal={0}
+      onStatsPress={() =>
+        navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.MATCH_STATS)
+      }
+    >
       {/* <ScrollView showsVerticalScrollIndicator={false}> */}
       <View style={styles.dataContainer}>
         <View>
@@ -46,7 +52,6 @@ export default function Scoring() {
           </View>
           <View style={{ marginLeft: 20 }}>
             <CurrentOver />
-
             <BowlOptions
               key={update}
               onBowlTypeSelect={(i) => updateDetails({ type: i })}

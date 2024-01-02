@@ -147,6 +147,11 @@ const Icons = {
       <AntDesign name="closecircle" size={24} color={colors.gray2} />
     </TouchableOpacity>
   ),
+  Stats: ({ onPress, style }) => (
+    <TouchableOpacity onPress={onPress} style={[styles.statsContainer, style]}>
+      <Feather name="bar-chart-2" size={20} color={colors.themeColor} />
+    </TouchableOpacity>
+  ),
 };
 
 export default Icons;
@@ -157,4 +162,11 @@ export default Icons;
 //   </TouchableOpacity>
 // );
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  statsContainer: {
+    padding: 1,
+    borderWidth: 1,
+    borderColor: colors.themeColor,
+    borderRadius: 5,
+  },
+});

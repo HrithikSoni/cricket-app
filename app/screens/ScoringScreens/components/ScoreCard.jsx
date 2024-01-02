@@ -3,8 +3,8 @@ import { StyleSheet, View } from "react-native";
 
 import AppText from "../../../components/text/AppText";
 import SmallGreyText from "../../../components/text/SmallGreyText";
-import { useScoreDetails } from "../../../services/scoringServices/useScoringEngine";
 import UTILS from "../../../utils";
+import { useScoreDetails } from "../../../services/scoringServices/scoringSelectors";
 
 export default function Scorecard() {
   const [showChangeBowler, setShowChangeBowler] = useState(false);
