@@ -4,22 +4,13 @@ import { StyleSheet, View } from "react-native";
 import UTILS from "../../utils";
 import TableHeaderContainer from "./TableHeaderContainer";
 import TableRow from "./TableRow";
-import { useScoreDetails } from "../../services/scoringServices/scoringSelectors";
+import { useScoreDetails } from "../../services/scoringServices/hooks/scoringSelectors";
 
 const style = UTILS.STYLES;
 const colors = UTILS.COLORS;
 
 export default function LiveScoreTable(props) {
-  const { striker, nonStriker, playingBatsman, bowler, playingFielders } =
-    useScoreDetails();
-
-  const strikerScore = playingBatsman.find((i) => i.id == striker.id);
-  const nonStrikerScore = playingBatsman.find((i) => i.id == nonStriker.id);
-
-  const strikerRN =
-    (strikerScore.totalRun / strikerScore.ballsPlayed).toFixed(1) || 0;
-  const nonStrikerRN =
-    (nonStrikerScore.totalRun / nonStrikerScore.ballsPlayed).toFixed(1) || 0;
+  const { striker, nonStriker, bowler, playingFielders } = useScoreDetails();
 
   const bowlerStat = playingFielders.find((i) => i.id == bowler.id);
 
@@ -35,22 +26,22 @@ export default function LiveScoreTable(props) {
           title={striker.name}
           subTitle={null}
           data={[
-            strikerScore.totalRun,
-            strikerScore.ballsPlayed,
-            strikerScore[4],
-            strikerScore[6],
-            isNaN(strikerRN) ? 0 : strikerRN,
+            striker.totalRun,
+            striker.ballsPlayed,
+            striker[4],
+            striker[6],
+            striker.strikeRate,
           ]}
         />
         <TableRow
           title={nonStriker.name}
           subTitle={null}
           data={[
-            nonStrikerScore.totalRun,
-            nonStrikerScore.ballsPlayed,
-            nonStrikerScore[4],
-            nonStrikerScore[6],
-            isNaN(nonStrikerRN) ? 0 : nonStrikerRN,
+            nonStriker.totalRun,
+            nonStriker.ballsPlayed,
+            nonStriker[4],
+            nonStriker[6],
+            nonStriker.strikeRate,
           ]}
         />
       </View>
@@ -66,11 +57,11 @@ export default function LiveScoreTable(props) {
           title={bowler.name}
           subTitle={null}
           data={[
-            bowlerStat.totalRun,
-            bowlerStat.wickets,
-            bowlerStat[4],
-            bowlerStat[6],
-            economy == "Infinity" ? 0 : economy,
+            bowler.totalRun,
+            bowler.wickets,
+            bowler[4],
+            bowler[6],
+            bowler.economy,
           ]}
         />
       </View>

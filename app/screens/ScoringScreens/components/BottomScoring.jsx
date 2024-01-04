@@ -12,14 +12,18 @@ import DismissBatsmanModal from "../modals/DismissBatsmanModal";
 import AppText from "../../../components/text/AppText";
 import UTILS from "../../../utils";
 import ChangeBowlerModal from "../modals/ChangeBowlerModal";
+import { useDispatchResetCurrentOver } from "../../../services/scoringServices/hooks/scoringDispatches";
+import { useScoreDetails } from "../../../services/scoringServices/hooks/scoringSelectors";
+import OtherOptionsModal from "../modals/OtherOptionsModal";
 
-import { useDispatchResetCurrentOver } from "../../../services/scoringServices/scoringDispatches";
-import { useScoreDetails } from "../../../services/scoringServices/scoringSelectors";
+// import { useDispatchResetCurrentOver } from "../../../services/scoringServices/scoringDispatches";
+// import { useScoreDetails } from "../../../services/scoringServices/scoringSelectors";
 
 const scores = [50, 30, 15, 0, 15, 30, 50];
 
 const dismissModal = "dismissModal";
 const bowlerModal = "bowlerModal";
+const otherOptionModal = "otherOptionModal";
 
 export default function BottomScoring({ onUpdateScore, ...props }) {
   const [selected, setSelected] = useState(null);
@@ -28,6 +32,7 @@ export default function BottomScoring({ onUpdateScore, ...props }) {
       style={{ height: 230, paddingTop: 20, position: "relative" }}
       source={require("../../../assets/images/scoreBg.png")}
     >
+      <ActionBtn {...props} setNull={() => setSelected(null)} />
       <View style={styles.btnContainer}>
         {scores.map((e, i) => {
           const bg = selected == i ? UTILS.COLORS.themeColor : "white";
@@ -46,7 +51,6 @@ export default function BottomScoring({ onUpdateScore, ...props }) {
           );
         })}
       </View>
-      <ActionBtn {...props} setNull={() => setSelected(null)} />
     </ImageBackground>
   );
 }
@@ -82,7 +86,10 @@ function ActionBtn(props) {
           marginTop={30}
           onPress={() => setShowModal(dismissModal)}
         />
-        <ScoringBtn.OtherOptions marginTop={55} onPress={() => {}} />
+        <ScoringBtn.OtherOptions
+          marginTop={55}
+          onPress={() => setShowModal(otherOptionModal)}
+        />
       </View>
       <DismissBatsmanModal
         visible={showModal == dismissModal}
@@ -93,6 +100,11 @@ function ActionBtn(props) {
       />
       <ChangeBowlerModal
         visible={showModal == bowlerModal}
+        onRequestClose={() => setShowModal(null)}
+      />
+
+      <OtherOptionsModal
+        visible={showModal == otherOptionModal}
         onRequestClose={() => setShowModal(null)}
       />
     </>

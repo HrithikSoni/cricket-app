@@ -2,21 +2,22 @@ import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import AppText from "../../../components/text/AppText";
-import { useCurrentOverDetailsSelector } from "../../../services/scoringServices/scoringSelectors";
+import { useScoreDetails } from "../../../services/scoringServices/hooks/scoringSelectors";
 import UTILS from "../../../utils";
 
 export default function CurrentOver() {
-  const over = useCurrentOverDetailsSelector();
-  const pLength = 6 - over.length;
+  const { currentOver } = useScoreDetails();
+  const over = currentOver.bowls;
+
+  const pLength = 6 - (over?.length || 0);
   const placeHolder = new Array(pLength > 0 ? pLength : 0).fill(0);
 
   return (
     <View style={styles.btnContainer}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.grid}>
-          {over.map((i, index) => (
-            <ScoreChip {...i} key={index} />
-          ))}
+          {over?.length > 0 &&
+            over.map((i, index) => <ScoreChip {...i} key={index} />)}
 
           {placeHolder.map((i, index) => (
             <View style={[styles.scoreBtn, styles.placeHolder]} key={index} />
@@ -27,7 +28,7 @@ export default function CurrentOver() {
   );
 }
 
-function ScoreChip({ run, wicket, type }) {
+function ScoreChip({ run, dismissedBatsman, deliveryType }) {
   let bg = UTILS.COLORS.background3;
   let render = run;
   let textColor = "black";
@@ -42,17 +43,17 @@ function ScoreChip({ run, wicket, type }) {
     textColor = "white";
   }
 
-  if (wicket) {
+  if (dismissedBatsman) {
     render = "W";
     bg = "red";
     textColor = "white";
   }
 
-  if (type == UTILS.DELIVERY_STATUS.NO_BALL) ballStatus = "NB";
-  if (type == UTILS.DELIVERY_STATUS.WIDE) ballStatus = "W";
-  if (type == UTILS.DELIVERY_STATUS.LEG_BYES) ballStatus = "DB";
-  if (type == UTILS.DELIVERY_STATUS.BYES) ballStatus = "B";
-  if (type == UTILS.DELIVERY_STATUS.DEAD_BALL) ballStatus = "DB";
+  if (deliveryType == UTILS.DELIVERY_STATUS.NO_BALL) ballStatus = "NB";
+  if (deliveryType == UTILS.DELIVERY_STATUS.WIDE) ballStatus = "W";
+  if (deliveryType == UTILS.DELIVERY_STATUS.LEG_BYES) ballStatus = "LB";
+  if (deliveryType == UTILS.DELIVERY_STATUS.BYES) ballStatus = "B";
+  if (deliveryType == UTILS.DELIVERY_STATUS.DEAD_BALL) ballStatus = "DB";
 
   return (
     <View style={[styles.scoreBtn, { backgroundColor: bg }]}>

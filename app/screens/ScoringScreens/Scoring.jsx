@@ -4,7 +4,11 @@ import { StyleSheet, View } from "react-native";
 import LiveScoreTable from "../../components/table/LiveScoreTable";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import { useScoreEngine } from "../../services/scoringServices/useScoringEngine";
+import {
+  useAssignStrikerNonStriker,
+  useDismissBatsman,
+} from "../../services/scoringServices/hooks/scoringDispatches";
+import useScoreEngine from "../../services/scoringServices/scoringEngine";
 import UTILS from "../../utils";
 import BottomScoring from "./components/BottomScoring";
 import BowlOptions from "./components/BowlOptions";
@@ -22,12 +26,34 @@ export default function Scoring({ navigation }) {
   const [update, setUpdate] = useState(true);
 
   const { dispatchBowlDetails } = useScoreEngine();
+  const dispatchDismissBatsman = useDismissBatsman();
+  const dispatchNextBatsman = useAssignStrikerNonStriker();
 
   const updateDetails = (details) =>
     (bowlDetails.current = { ...bowlDetails.current, ...details });
 
   function handleSubmitDetails(e = {}) {
-    dispatchBowlDetails({ ...bowlDetails.current, ...e });
+    const submitData = { ...bowlDetails.current, ...e };
+    if (e.dismissalType) {
+      dispatchDismissBatsman(e);
+      if (e.batsman === "striker") {
+        dispatchNextBatsman({
+          strikerId: e.nextBatsman.id,
+        });
+      } else {
+        dispatchNextBatsman({
+          nonStrikerId: e.nextBatsman.id,
+        });
+      }
+      if (
+        e.dismissalType === UTILS.DISMISS_TYPES.RUN_OUT &&
+        submitData.run < 4
+      ) {
+        dispatchBowlDetails(submitData);
+      }
+    } else {
+      dispatchBowlDetails(submitData);
+    }
     bowlDetails.current = initialState;
     setUpdate(!update);
   }

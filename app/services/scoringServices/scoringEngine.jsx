@@ -1,8 +1,8 @@
+import { useDispatch } from "react-redux";
 import UTILS from "../../utils";
-import { store } from "../store";
 import {
   handleAddScore,
-  handleCurrentOver,
+  handleCurrentOverDetails,
   handleUpdateBatsmanStat,
   handleUpdateBowlerStat,
   rotateStrike,
@@ -11,62 +11,64 @@ import {
 
 const { DISMISS_TYPES, DELIVERY_STATUS } = UTILS;
 
-export function useScoreEngine() {
+export default function useScoreEngine() {
+  const dispatch = useDispatch();
+
   function dispatchBowlDetails(bowlDetails) {
     const { batsman, dismissalType, run, type } = bowlDetails;
 
-    if (type === DELIVERY_STATUS.VALID) {
-    }
+    // update bowl details
+    dispatch(
+      handleCurrentOverDetails({
+        deliveryType: type,
+        run,
+        dismissalType: null,
+        dismissedBatsman: null,
+        comment: "",
+      })
+    );
 
-    if (type === DELIVERY_STATUS.WIDE) {
-      store.dispatch(handleAddScore(1));
+    if (dismissalType == DISMISS_TYPES.TIMED_OUT) {
+      // $$$$$$$$$$$$$$ batsman timed out
+      return;
     }
 
     if (type == DELIVERY_STATUS.VALID) {
-      store.dispatch(validDelivery());
-      store.dispatch(handleUpdateBatsmanStat({ run }));
-      store.dispatch(handleUpdateBowlerStat({ run }));
-    }
-
-    // update current delivery stat ()
-    if (dismissalType !== DISMISS_TYPES.TIMED_OUT) {
-      store.dispatch(
-        handleCurrentOver({
-          run,
-          wicket: !!dismissalType,
-          type,
-        })
-      );
-    }
-
-    // Check for various scenarios and update corresponding stats
-    if (type == DELIVERY_STATUS.WIDE) {
-      // Increment wide count in bowler's stats
-      // update total team score
-    }
-
-    if (type == DELIVERY_STATUS.NO_BALL) {
-      // Increment no-ball count in bowler's stats
-    }
-
-    if (run !== null) {
-      store.dispatch(handleAddScore(bowlDetails.run));
-      // Update boundary count for the batsman
-      if (run == 1 || run == 3 || run == 5) {
-        store.dispatch(rotateStrike());
+      dispatch(validDelivery());
+      if (dismissalType) {
+        ///$$$$$$$$$$ handle case of batsman dismiss
+      } else {
+        dispatch(handleUpdateBatsmanStat({ run }));
+        dispatch(handleUpdateBowlerStat({ run }));
       }
-    }
+      if (run == 1 || run == 3 || run == 5) {
+        dispatch(rotateStrike());
+      }
+      dispatch(handleAddScore(run)); /// add runs in total score board
+    } else {
+      // invalid ball details
 
-    if (dismissalType !== null) {
-      // Update dismissal count in the match
-      // Specific dismissal type (e.g., "Bowled", "Caught", etc.)
+      if (type === DELIVERY_STATUS.WIDE) {
+        dispatch(handleAddScore(1));
+        // update current bowler extra and total runs
 
-      if (dismissalType !== "Run Out") {
-        if (batsman === "Striker") {
-          // Update striker's dismissal count
-        } else {
-          // Update non-striker's dismissal count
-        }
+        // update overall extra
+      }
+
+      if (type === DELIVERY_STATUS.NO_BALL) {
+        // $$$$$ handle run out
+        // $$$$$ handle obstruction fielding
+      }
+
+      if (type === DELIVERY_STATUS.BYES) {
+        // dispatch(handleAddScore(1));
+      }
+      if (type === DELIVERY_STATUS.LEG_BYES) {
+        // dispatch(handleAddScore(1));
+      }
+
+      if (type === DELIVERY_STATUS.DEAD_BALL) {
+        // dispatch(handleAddScore(1));
       }
     }
   }

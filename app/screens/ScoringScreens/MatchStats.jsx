@@ -1,23 +1,17 @@
 import React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import UTILS from "../../utils";
-import {
-  useMatchStatsSelector,
-  usePlayerSelector,
-} from "../../services/scoringServices/scoringSelectors";
-
-import AppText from "../../components/text/AppText";
 import TableHeaderContainer from "../../components/table/TableHeaderContainer";
 import TableRow from "../../components/table/TableRow";
+import AppText from "../../components/text/AppText";
 import BoldText from "../../components/text/BoldText";
-import SmallGreyText from "../../components/text/SmallGreyText";
+import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import { useMatchStatsSelector } from "../../services/scoringServices/hooks/scoringSelectors";
+import UTILS from "../../utils";
 
 const colors = UTILS.COLORS;
 export default function MatchStats() {
   const { batsmanStats, bowlerStats } = useMatchStatsSelector();
-
   return (
     <ParentWrapper screenTitle="Match Stats">
       <ScoreCardTable
@@ -69,7 +63,7 @@ function ScoreCardTable(props) {
           ))}
         </View>
 
-        <BottomTable />
+        {/* <BottomTable /> */}
         <View style={styles.bottomScoreContainer}>
           <AppText style={styles.scoreText}>{props.teamName}</AppText>
           <AppText style={styles.scoreText}>{props.score}</AppText>

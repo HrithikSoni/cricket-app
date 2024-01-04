@@ -5,6 +5,7 @@ export const DELIVERY_STATUS = {
   NO_BALL_WIDE: "No ball wide",
   NO_BALL: "No ball",
   WIDE: "Wide",
+  BOUNCER: "Bouncer",
 
   VALID: "Valid",
 };

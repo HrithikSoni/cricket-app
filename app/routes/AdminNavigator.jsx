@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import adminScreens from "../screens/AdminScreens";
-import { View } from "react-native";
+import UTILS from "../utils";
 
 const Stack = createStackNavigator();
 
@@ -10,16 +10,10 @@ export default function AdminNavigator() {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName={UTILS.SCREEN_NAMES.NAV_SCREENS.BOTTOM_TAB_NAVIGATOR}
     >
       {adminScreens.map((item, index) => (
-        <Stack.Screen
-          key={index}
-          {...item}
-          // options={{presentation:""}}
-          // name={item.name}
-          // component={item.Component}
-          // options={{ headerShown: false }}
-        />
+        <Stack.Screen key={index} {...item} />
       ))}
     </Stack.Navigator>
   );

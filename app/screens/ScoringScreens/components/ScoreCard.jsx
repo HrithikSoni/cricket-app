@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import AppText from "../../../components/text/AppText";
 import SmallGreyText from "../../../components/text/SmallGreyText";
+import { useScoreDetails } from "../../../services/scoringServices/hooks/scoringSelectors";
 import UTILS from "../../../utils";
-import { useScoreDetails } from "../../../services/scoringServices/scoringSelectors";
 
 export default function Scorecard() {
   const [showChangeBowler, setShowChangeBowler] = useState(false);
-  const { currentScore, wickets, overs, ballsInCurrentOver, playingBatsman } =
-    useScoreDetails();
-
-  useEffect(() => {
-    setShowChangeBowler(true);
-  }, [overs]);
+  const { currentScore, wickets, overs, totalBalls } = useScoreDetails();
 
   return (
     <>
@@ -27,14 +22,10 @@ export default function Scorecard() {
             {currentScore}/{wickets}
           </AppText>
           <AppText style={styles.runRate}>
-            {ballsInCurrentOver}/{overs} Overs
+            {totalBalls % 6}/{Math.floor(totalBalls / 6)} Overs
           </AppText>
         </View>
       </View>
-      {/* <ChangeBowlerModal
-        visible={showChangeBowler}
-        onRequestClose={() => setShowChangeBowler(false)}
-      /> */}
     </>
   );
 }

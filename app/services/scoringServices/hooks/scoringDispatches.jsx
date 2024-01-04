@@ -1,5 +1,6 @@
 import { store } from "../../store";
 import {
+  assignBatsman,
   handleAssignBowler,
   handleDismissBatsman,
   handleResetCurrentOver,
@@ -17,20 +18,22 @@ export function useAssignBowler() {
   };
 }
 
-export function useAssignStrikerNonStriker() {
-  return function (bowlerId) {
-    store.dispatch(handleAssignBowler({ bowlerId }));
-  };
-}
-
 export function useDismissBatsman() {
-  return function (type) {
-    store.dispatch(handleDismissBatsman({ type }));
+  return function (data) {
+    store.dispatch(handleDismissBatsman(data));
   };
 }
 
-// export function use() {
-//   return function (type) {
-//     store.dispatch(handleDismissBatsman({ type }));
-//   };
-// }
+/// updates
+export function useAssignStrikerNonStriker() {
+  return function ({ strikerId = null, nonStrikerId = null }) {
+    if (strikerId) {
+      store.dispatch(assignBatsman({ id: strikerId, strikeType: "striker" }));
+    }
+    if (nonStrikerId) {
+      store.dispatch(
+        assignBatsman({ id: nonStrikerId, strikeType: "nonStriker" })
+      );
+    }
+  };
+}

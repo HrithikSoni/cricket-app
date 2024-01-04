@@ -8,6 +8,7 @@ import Icons from "../../../components/others/Icons";
 import AppText from "../../../components/text/AppText";
 import BoldText from "../../../components/text/BoldText";
 import UTILS from "../../../utils";
+import { useScoreDetails } from "../../../services/scoringServices/hooks/scoringSelectors";
 
 const batsmanType = UTILS.BATSMAN;
 
@@ -15,7 +16,17 @@ export default function DismissBatsmanModal(props) {
   const [data, setData] = useState({
     batsman: "striker",
     dismissalType: striker[0].value,
+    nextBatsman: null,
   });
+  let notAvailableBatsman = [];
+
+  const { playingBatsman } = useScoreDetails();
+
+  playingBatsman.forEach((i, index) =>
+    i.status !== UTILS.PLAYING_STATUS.BENCH
+      ? notAvailableBatsman.push(index)
+      : null
+  );
 
   const updateData = (e) => setData({ ...data, ...e });
 
@@ -47,6 +58,15 @@ export default function DismissBatsmanModal(props) {
               data.batsman === batsmanType[0].value ? [] : [0, 1, 2, 3]
             }
             onGridItemPress={(i) => updateData({ dismissalType: i.name })}
+          />
+          <View style={{ height: 20 }} />
+          <OptionsSelectGrid
+            headerTitle={"Next Batsman"}
+            data={playingBatsman}
+            invalidData={notAvailableBatsman}
+            onGridItemPress={(i) => {
+              updateData({ nextBatsman: i });
+            }}
           />
           <Button
             label="Confirm"
@@ -156,7 +176,7 @@ const styles = StyleSheet.create({
   tabHeader: {
     backgroundColor: UTILS.COLORS.gray1,
     flex: 1,
-    height: 55,
+    height: 45,
     borderRadius: 14,
     justifyContent: "center",
     alignItems: "center",

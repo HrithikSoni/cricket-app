@@ -3,9 +3,12 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import Button from "../../components/button/Button";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import {
+  useAssignBowler,
+  useAssignStrikerNonStriker,
+} from "../../services/scoringServices/hooks/scoringDispatches";
 import { usePlayerSelector } from "../../services/scoringServices/hooks/scoringSelectors";
 import UTILS from "../../utils";
-import { useAssignBowler } from "../../services/scoringServices/hooks/scoringDispatches";
 
 export default function ChooseInitialPlayers({ navigation }) {
   const [selected, setSelected] = useState("striker");
@@ -17,9 +20,15 @@ export default function ChooseInitialPlayers({ navigation }) {
   const { playingBatsman, playingFielders } = usePlayerSelector();
 
   const dispatchBowler = useAssignBowler();
+  const dispatchBatsman = useAssignStrikerNonStriker();
 
   function handleConfirm() {
     dispatchBowler(playersId.bowler.id);
+    dispatchBatsman({
+      strikerId: playersId.striker.id,
+      nonStrikerId: playersId.nonStriker.id,
+    });
+
     navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.SCORING);
   }
   return (
