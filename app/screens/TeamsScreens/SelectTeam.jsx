@@ -7,7 +7,6 @@ import SearchAddTeamModal from "../../components/modals/SearchAddTeamModal";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import api from "../../services/api";
 import {
-  useCurrentTeamSelector,
   useTeamDetailsSelector,
   useUpdateCurrentTeamDetails,
 } from "../../services/teamServices/useManageTeam";

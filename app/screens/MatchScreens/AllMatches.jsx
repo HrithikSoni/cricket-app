@@ -2,23 +2,19 @@ import React, { useState } from "react";
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import PlusButton from "../../components/button/PlusButton";
+import AddTeamsInMatchCard from "../../components/cards/AddTeamsInMatchCard";
 import HomeTopCard from "../../components/cards/HomeTopCard";
 import MatchCard from "../../components/cards/MatchCard";
-import SearchBar from "../../components/inputs/SearchBar";
-import SelectionModal from "../../components/modals/SelectionModal";
 import AppText from "../../components/text/AppText";
-import UTILS from "../../utils";
 import api from "../../services/api";
-import AddTeamsInMatchCard from "../../components/cards/AddTeamsInMatchCard";
-import TournamentMatchesCard from "../../components/cards/TournamentMatchesCard";
+import UTILS from "../../utils";
+import ManageMatches from "./components/ManageMatches";
 
 const { TOURNAMENT_SCREENS, MATCH_DETAILS_SCREENS, SCORING_SCREENS } =
   UTILS.SCREEN_NAMES;
 
 export default function AllMatches({ navigation }) {
   const [showModal, setShowModal] = useState(false);
-
-  const { data } = api.useGetAllMatchesQuery();
 
   const viewAllTextStyle = [
     UTILS.STYLES.commonTextStyle,
@@ -29,26 +25,9 @@ export default function AllMatches({ navigation }) {
     <>
       <View style={styles.container}>
         <HomeTopCard />
-
         {/* <SearchBar /> */}
-
         <LiveMatchesList />
-        <TournamentMatchesCard
-          arrayData={[
-            {
-              date: "20 oct",
-              location: "garden",
-              team1: "team1",
-              team2: "team2",
-              overs: 20,
-            },
-          ]}
-          onPress={() => navigation.navigate(SCORING_SCREENS.MATCH_TOSS)}
-        />
-        {data?.data?.length > 0 &&
-          data?.data.map((item) => (
-            <AddTeamsInMatchCard item={item} key={item.id} />
-          ))}
+        <MatchesList />
       </View>
 
       <PlusButton onPress={handleModal} />
@@ -95,6 +74,20 @@ export default function AllMatches({ navigation }) {
   function handleModal() {
     setShowModal(!showModal);
     navigation.navigate(MATCH_DETAILS_SCREENS.FORM);
+  }
+
+  function MatchesList() {
+    const { data } = api.useGetAllMatchesQuery();
+
+    if (data?.data && data?.data?.length > 0) {
+      return (
+        <FlatList
+          data={data.data}
+          keyExtractor={(_e, i) => i}
+          renderItem={({ item }) => <ManageMatches {...item} />}
+        />
+      );
+    } else return null;
   }
 }
 const btnDetails = [

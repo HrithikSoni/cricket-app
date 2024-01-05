@@ -30,6 +30,18 @@ export const postQuery = (endpoint) => {
   };
 };
 
+export const patchQuery = (endpoint) => {
+  return {
+    query(body) {
+      return {
+        url: endpoint,
+        method: "PATCH",
+        body,
+      };
+    },
+  };
+};
+
 export const getQueryTag = (endpoint, tag) => ({
   query: (param = "") => endpoint + `/${param}`,
   providesTags: [{ type: tag }],
@@ -58,6 +70,7 @@ const api = createApi({
     "country",
     "state",
     "city",
+    "match",
   ],
   endpoints: () => ({}),
 });

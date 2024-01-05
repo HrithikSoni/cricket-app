@@ -6,9 +6,29 @@ import ImageWithTextCard from "../../components/cards/ImageWithTextCard";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import UTILS from "../../utils";
+import useRTKQuery from "../../hooks/useRTKQuery";
+import api from "../../services/api";
 
-const MatchToss = ({ navigation }) => {
-  const tossData = useRef({});
+const MatchToss = ({ navigation, route }) => {
+  const { teamA, teamB, id: matchId } = route.params;
+  const tossData = useRef({ matchId });
+
+  const { request } = useRTKQuery(api.useAddTossDecisionMutation);
+
+  const teamInfo = [
+    {
+      id: teamA[0].id,
+      imgUrl: require("../../../assets/cricket-team.png"),
+      label: teamA[0].name,
+      value: teamA[0].id,
+    },
+    {
+      id: teamB[0].id,
+      imgUrl: require("../../../assets/cricket-team.png"),
+      label: teamB[0].name,
+      value: teamB[0].id,
+    },
+  ];
 
   return (
     <ParentWrapper screenTitle={"Toss"}>
@@ -25,9 +45,11 @@ const MatchToss = ({ navigation }) => {
       />
       <Button
         label={"Confirm"}
-        onButtonPress={() =>
-          navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS)
-        }
+        onButtonPress={() => {
+          // console.log(tossData.current);
+          request(tossData.current);
+          // navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS)
+        }}
         bottom={true}
       />
     </ParentWrapper>
@@ -37,9 +59,9 @@ const MatchToss = ({ navigation }) => {
 function TossOptionSelector(props) {
   const [selected, setSelected] = useState(null);
 
-  function handleSelect(id) {
-    setSelected(id);
-    props.onSelect(id);
+  function handleSelect(value) {
+    setSelected(value);
+    props.onSelect(value);
   }
 
   return (
@@ -50,8 +72,8 @@ function TossOptionSelector(props) {
           <ImageWithTextCard
             {...item}
             key={index}
-            selected={selected == item.id}
-            onPress={() => handleSelect(item.id)}
+            selected={selected == item.value}
+            onPress={() => handleSelect(item.value)}
           />
         ))}
       </View>
@@ -59,33 +81,18 @@ function TossOptionSelector(props) {
   );
 }
 
-const teamInfo = [
-  {
-    id: 1,
-    imgUrl: require("../../../assets/cricket-team.png"),
-    label: "Team A",
-    value: "TEAM_A",
-  },
-  {
-    id: 2,
-    imgUrl: require("../../../assets/cricket-team.png"),
-    label: "Team B",
-    value: "TEAM_B",
-  },
-];
-
 const tossInfo = [
   {
     id: 1,
     imgUrl: require("../../../assets/bat.png"),
     label: "Bat",
-    value: "BAT",
+    value: "BATTING",
   },
   {
     id: 2,
     imgUrl: require("../../../assets/bowl.png"),
     label: "Bowl",
-    value: "BALL",
+    value: "BOWLING",
   },
 ];
 
@@ -94,7 +101,8 @@ export default MatchToss;
 const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: "row",
-    gap: 30,
+    // gap: 30,
+    justifyContent: "space-between",
   },
   text: {
     fontSize: 30,

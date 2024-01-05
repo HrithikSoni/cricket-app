@@ -10,12 +10,12 @@ import {
 } from "./teamReducer";
 
 // selectors ------------------------------
-export function useAllCurrentTeamPlayers() {
-  return useSelector((state) => state.team[state.team.currentTeam].players);
+export function useTeamSelector() {
+  return useSelector((state) => state.team);
 }
 
-export function useCurrentTeamSelector() {
-  return useSelector((state) => state.currentTeam);
+export function useAllCurrentTeamPlayers() {
+  return useSelector((state) => state.team[state.team.currentTeam].players);
 }
 
 export function useCurrentTeamDetailsSelector() {

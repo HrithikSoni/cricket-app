@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import { useDispatch } from "react-redux";
+import { StyleSheet, View } from "react-native";
+import { useEffect, useState } from "react";
 
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import TeamVersusCard from "../../components/cards/TeamVesesCard";
@@ -11,19 +11,16 @@ import {
   useTeamDetailsSelector,
   useUpdateCurrentTeamKey,
 } from "../../services/teamServices/useManageTeam";
+import api from "../../services/api";
 
 const { TEAM_A, TEAM_B } = UTILS.TEAM_NAME;
 
-const teamDetails = {
-  name: "team A",
-  matchLocation: "Garden",
-  profilePic: "",
-  captainProfile: { profilePic: "", name: "Team Captain" },
-  teamName: "Team A",
-};
-export default function TeamsVersus({ navigation }) {
+export default function TeamsVersus({ navigation, route }) {
+  // console.log(route.params, "ooooooo");
   const teamsData = useTeamDetailsSelector();
   const dispatchCurrentTeamKey = useUpdateCurrentTeamKey();
+
+  const { teamDetails } = useGetData();
 
   function handleCardFunction(team) {
     dispatchCurrentTeamKey(team);
@@ -36,16 +33,16 @@ export default function TeamsVersus({ navigation }) {
         <TeamVersusCard
           matchLocation="Garden"
           teamName="Team A"
-          name={teamsData[TEAM_A]?.teamDetails?.name || "Team A"}
-          captainName={teamsData[TEAM_A]?.captain?.name || "Team A Captain"}
+          name={teamDetails.teamA.name}
+          captainName={teamDetails.teamA.captain}
           onPress={() => handleCardFunction(TEAM_A)}
         />
         <AppText style={styles.versusText}>V/S</AppText>
         <TeamVersusCard
           matchLocation="Garden"
           teamName="Team B"
-          name={teamsData[TEAM_B]?.teamDetails?.name || "Team B"}
-          captainName={teamsData[TEAM_B]?.captain?.name || "Team B Captain"}
+          name={teamDetails.teamB.name}
+          captainName={teamDetails.teamB.captain}
           onPress={() => handleCardFunction(TEAM_B)}
         />
       </View>
@@ -53,6 +50,52 @@ export default function TeamsVersus({ navigation }) {
       <Button title="Continue" bottom={true} onButtonPress={() => {}} />
     </ParentWrapper>
   );
+
+  function useGetData() {
+    const [teamDetails, setTeamDetails] = useState({
+      teamA: { captain: "Team A Captain", name: "Team A" },
+      teamB: { captain: "Team B Captain", name: "Team B" },
+    });
+    const { data } = api.useGetMatchByIdQuery(route.params?.id, {
+      refetchOnMountOrArgChange: true,
+    });
+
+    useEffect(() => {
+      handleDataFetch();
+    }, [data]);
+
+    function handleDataFetch() {
+      if (!data?.data) return;
+      const details = data.data.matchTeamPlayer.reduce((acc, item) => {
+        if (
+          data?.data.teamA[0]?.id &&
+          item.teamId === data?.data.teamA[0].id &&
+          item.isCaptain
+        ) {
+          acc.teamA = {
+            name: data?.data.teamA[0].name,
+            captain: item.player.firstName,
+          };
+        }
+
+        if (
+          data?.data.teamB[0]?.id &&
+          item.teamId === data?.data.teamB[0].id &&
+          item.isCaptain
+        ) {
+          acc.teamB = {
+            name: data?.data.teamB[0].name,
+            captain: item.player.firstName,
+          };
+        }
+        return acc;
+      }, {});
+      setTeamDetails({ ...teamDetails, ...details });
+      console.log({ ...teamDetails, ...details });
+    }
+
+    return { teamDetails };
+  }
 }
 
 const styles = StyleSheet.create({

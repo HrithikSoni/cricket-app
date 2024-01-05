@@ -85,7 +85,7 @@ function useMatchDetails() {
   );
 
   function handleMatchCreateSuccess(e) {
-    // dispatchMatchDetails({ id: e.data?.id || null });
+    dispatchMatchDetails({ id: e.data?.id || null });
     // navigation.navigate(TEAMS.TEAMS_VERSUS);
   }
 

@@ -11,12 +11,14 @@ import ROLE from "./enum/role";
 import TEAM_NAME from "./enum/teamName";
 import ToastType from "./enum/toastTypes";
 import DIMENSIONS from "./helpers/dimensions";
+import oversByMatchType from "./helpers/getOversByMatchType";
 import handlePlatform from "./helpers/handlePlatform";
 import colors from "./styles/colors";
 import STYLES from "./styles/globalStyles";
 
 const HELPERS = {
   handlePlatform,
+  oversByMatchType,
 };
 
 const UTILS = {

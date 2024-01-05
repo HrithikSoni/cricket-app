@@ -5,15 +5,16 @@ import Button from "../../components/button/Button";
 import CaptainWicketKeeperCard from "../../components/cards/CaptainWicketKeeperCard";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 
+import useRTKQuery from "../../hooks/useRTKQuery";
+import api from "../../services/api";
 import {
   useAllCurrentTeamPlayers,
   useAssignCaptainWicketKeeper,
   useCaptainWicketKeeperSelector,
   useTeamDetailsSelector,
+  useTeamSelector,
 } from "../../services/teamServices/useManageTeam";
 import UTILS from "../../utils";
-import useRTKQuery from "../../hooks/useRTKQuery";
-import api from "../../services/api";
 
 export default function SelectWicketKeeper({ navigation }) {
   const matchTeams = useTeamDetailsSelector();
@@ -21,6 +22,7 @@ export default function SelectWicketKeeper({ navigation }) {
     api.useAddPlayersInMatchMutation,
     handleAddTeamMatchSuccess
   );
+  const { currentTeam } = useTeamSelector();
 
   function handleAddTeamMatchSuccess() {
     navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS);
@@ -29,6 +31,7 @@ export default function SelectWicketKeeper({ navigation }) {
   async function handleAddTeamMember() {
     const data = [];
     const teamData = matchTeams[matchTeams.currentTeam];
+    // console.log(matchTeams);
     teamData.players.forEach((e, index) => {
       data.push({
         order: JSON.stringify(index + 1),
@@ -38,10 +41,11 @@ export default function SelectWicketKeeper({ navigation }) {
         matchId: matchTeams.matchDetails.id,
         teamId: teamData.teamDetails.id,
         playerId: e.player.user.id,
+        // team: currentTeam,
       });
     });
-
-    request(data);
+    // console.log(data, "iiiii");
+    request({ team: currentTeam, players: data });
   }
 
   return (
@@ -53,7 +57,7 @@ export default function SelectWicketKeeper({ navigation }) {
           label="Add Team In Match"
           onButtonPress={() => {
             handleAddTeamMember();
-            // navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS)
+            navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS);
           }}
         />
       </ParentWrapper>

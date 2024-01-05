@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, updateAuth } from "../services/authServices/authReducer";
 import { useEffect } from "react";
 import permanentStorage from "../services/store/permanentStorage";
+import UTILS from "../utils";
 
 function useAuth() {
   const { auth, role, token } = useSelector((state) => state.auth);
@@ -29,6 +30,7 @@ function useAuth() {
     saveUserData,
     setAuth,
     token,
+    isAdmin: role === UTILS.ROLE.ADMIN,
   };
 }
 

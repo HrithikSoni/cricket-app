@@ -14,7 +14,7 @@ const Button = (props) => {
   let button = {
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
+    // padding: 10,
     borderRadius: 20,
     height: 57,
     marginTop: 5,
