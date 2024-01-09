@@ -1,110 +1,62 @@
-import React, { useState } from "react";
-import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Modal, StyleSheet, View } from "react-native";
 
 import Button from "../../../components/button/Button";
-import OptionsSelectGrid from "../../../components/grid/OptionsSelectGrid";
-import Divider from "../../../components/others/Divider";
 import Icons from "../../../components/others/Icons";
-import AppText from "../../../components/text/AppText";
 import BoldText from "../../../components/text/BoldText";
+
 import UTILS from "../../../utils";
-import { useScoreDetails } from "../scoringServices/hooks/scoringSelectors";
+import api from "../../../services/api";
+import useRTKQuery from "../../../hooks/useRTKQuery";
+import { useBallsLeftInInningSelector } from "../scoringServices/hooks/scoringSelectors";
 
-const batsmanType = UTILS.BATSMAN;
+export default function InningEndModal(props) {
+  const { ballsLeft, inningComplete } = useBallsLeftInInningSelector();
+  const [show, setShow] = useState(false);
 
-export default function DismissBatsmanModal(props) {
-  const [data, setData] = useState({
-    batsman: "striker",
-    dismissalType: striker[0].value,
-    nextBatsman: null,
-  });
-  let notAvailableBatsman = [];
+  const { request } = useRTKQuery(api.useAddTeamScoreMutation);
 
-  const { playingBatsman } = useScoreDetails();
+  useEffect(() => {
+    if (inningComplete) {
+      setShow(true);
+    }
+  }, [inningComplete]);
 
-  playingBatsman.forEach((i, index) =>
-    i.status !== UTILS.PLAYING_STATUS.BENCH
-      ? notAvailableBatsman.push(index)
-      : null
-  );
-
-  const updateData = (e) => setData({ ...data, ...e });
-
-  const handleSubmit = () => {
-    props.onSubmitDismissDetails(data);
-    props.onRequestClose();
+  const handleInningOver = () => {
+    request({
+      matchId: body.matchId,
+      teamId: body.teamId,
+      inning: body.InningTypes,
+      score: body.score,
+    });
+    // setShow(false);
   };
   return (
     <Modal
-      visible={props.visible}
+      visible={true}
+      //   visible={show}
       transparent={true}
-      onRequestClose={props.onRequestClose}
+      onRequestClose={() => setShow(false)}
     >
       <View style={styles.container}>
         <View style={styles.dataContainer}>
-          <BoldText style={styles.header}>Dismissal</BoldText>
+          <BoldText style={styles.header}>Inning Over</BoldText>
           <Icons.Close
-            onPress={props.onRequestClose}
+            onPress={() => setShow(false)}
             style={{ alignSelf: "flex-end" }}
           />
 
-          <TopTab />
-          <Divider style={{ marginTop: 10 }} />
-          <OptionsSelectGrid
-            key={data.batsman}
-            headerTitle={null}
-            data={striker}
-            invalidData={
-              data.batsman === batsmanType[0].value ? [] : [0, 1, 2, 3]
-            }
-            onGridItemPress={(i) => updateData({ dismissalType: i.name })}
-          />
           <View style={{ height: 20 }} />
-          <OptionsSelectGrid
-            headerTitle={"Next Batsman"}
-            data={playingBatsman}
-            invalidData={notAvailableBatsman}
-            onGridItemPress={(i) => {
-              updateData({ nextBatsman: i });
-            }}
-          />
+
           <Button
             label="Confirm"
-            onButtonPress={handleSubmit}
+            onButtonPress={handleInningOver}
             style={{ marginTop: 15 }}
           />
         </View>
       </View>
     </Modal>
   );
-  function TopTab() {
-    return (
-      <View style={{ flexDirection: "row", marginTop: 20 }}>
-        {batsmanType.map((i) => {
-          const borderColor =
-            data.batsman === i.value
-              ? UTILS.COLORS.themeColor
-              : UTILS.COLORS.gray1;
-
-          return (
-            <TouchableOpacity
-              key={i.name}
-              onPress={() => updateData({ batsman: i.value })}
-              style={[styles.tabHeader, { borderColor }]}
-            >
-              <AppText
-                style={{
-                  fontSize: 16,
-                }}
-              >
-                {i.name}
-              </AppText>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    );
-  }
 }
 
 const styles = StyleSheet.create({

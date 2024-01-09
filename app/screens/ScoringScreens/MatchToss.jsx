@@ -13,7 +13,9 @@ const MatchToss = ({ navigation, route }) => {
   const { teamA, teamB, id: matchId } = route.params;
   const tossData = useRef({ matchId });
 
-  const { request } = useRTKQuery(api.useAddTossDecisionMutation);
+  const { request } = useRTKQuery(api.useAddTossDecisionMutation, () =>
+    navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS)
+  );
 
   const teamInfo = [
     {
@@ -45,11 +47,7 @@ const MatchToss = ({ navigation, route }) => {
       />
       <Button
         label={"Confirm"}
-        onButtonPress={() => {
-          // console.log(tossData.current);
-          request(tossData.current);
-          // navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS)
-        }}
+        onButtonPress={() => request(tossData.current)}
         bottom={true}
       />
     </ParentWrapper>

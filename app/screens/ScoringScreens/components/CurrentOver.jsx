@@ -2,8 +2,8 @@ import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import AppText from "../../../components/text/AppText";
-import { useScoreDetails } from "../../../services/scoringServices/hooks/scoringSelectors";
 import UTILS from "../../../utils";
+import { useScoreDetails } from "../scoringServices/hooks/scoringSelectors";
 
 export default function CurrentOver() {
   const { currentOver } = useScoreDetails();

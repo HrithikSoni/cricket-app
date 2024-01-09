@@ -6,8 +6,9 @@ import TableRow from "../../components/table/TableRow";
 import AppText from "../../components/text/AppText";
 import BoldText from "../../components/text/BoldText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import { useMatchStatsSelector } from "../../services/scoringServices/hooks/scoringSelectors";
+
 import UTILS from "../../utils";
+import { useMatchStatsSelector } from "./scoringServices/hooks/scoringSelectors";
 
 const colors = UTILS.COLORS;
 export default function MatchStats() {

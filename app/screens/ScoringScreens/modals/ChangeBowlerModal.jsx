@@ -6,8 +6,8 @@ import OptionsSelectGrid from "../../../components/grid/OptionsSelectGrid";
 import Icons from "../../../components/others/Icons";
 import BoldText from "../../../components/text/BoldText";
 import UTILS from "../../../utils";
-import { useAssignBowler } from "../../../services/scoringServices/hooks/scoringDispatches";
-import { useValidBowlerSelector } from "../../../services/scoringServices/hooks/scoringSelectors";
+import { useValidBowlerSelector } from "../scoringServices/hooks/scoringSelectors";
+import { useAssignBowler } from "../scoringServices/hooks/scoringDispatches";
 
 export default function ChangeBowlerModal(props) {
   const { playingFielders, invalidBowlers } = useValidBowlerSelector();

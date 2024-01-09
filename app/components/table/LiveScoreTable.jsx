@@ -4,17 +4,10 @@ import { StyleSheet, View } from "react-native";
 import UTILS from "../../utils";
 import TableHeaderContainer from "./TableHeaderContainer";
 import TableRow from "./TableRow";
-import { useScoreDetails } from "../../services/scoringServices/hooks/scoringSelectors";
-
-const style = UTILS.STYLES;
-const colors = UTILS.COLORS;
+import { useScoreDetails } from "../../screens/ScoringScreens/scoringServices/hooks/scoringSelectors";
 
 export default function LiveScoreTable(props) {
-  const { striker, nonStriker, bowler, playingFielders } = useScoreDetails();
-
-  const bowlerStat = playingFielders.find((i) => i.id == bowler.id);
-
-  const economy = (bowlerStat.totalRun / bowlerStat.totalOvers).toFixed(1);
+  const { striker, nonStriker, bowler } = useScoreDetails();
 
   return (
     <View style={styles.container}>

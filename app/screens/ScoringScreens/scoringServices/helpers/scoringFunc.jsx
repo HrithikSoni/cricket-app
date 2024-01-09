@@ -1,4 +1,4 @@
-import UTILS from "../../../utils";
+import UTILS from "../../../../utils";
 
 export const battingStatsHelper = (state, action) => {
   const { run } = action.payload;

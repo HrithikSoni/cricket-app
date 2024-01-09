@@ -1,7 +1,32 @@
-import UTILS from "../../utils";
+import UTILS from "../../../utils";
 
 const { FIELDING_STATUS, PLAYING_STATUS } = UTILS;
+const x = {
+  1: 0,
 
+  2: 0,
+
+  3: 0,
+
+  4: 0,
+
+  6: 0,
+
+  ballsPlayed: 0,
+  economy: 0,
+  extras: 0,
+  maiden: 0,
+  overs: [],
+
+  status: FIELDING_STATUS.PLAYING,
+
+  strikeRate: 0,
+  totalOvers: 0,
+
+  totalRun: 0,
+
+  wickets: 0,
+};
 export const playingBatsman = [
   {
     name: "John",
@@ -27,7 +52,6 @@ export const playingBatsman = [
     6: 0,
     strikeRate: 0,
     ballsPlayed: 0,
-
     totalRun: 0,
   },
   {

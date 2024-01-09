@@ -81,9 +81,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.kalpvaig.cricketRnApp'
+    namespace 'com.kalpvaig.cricscore'
     defaultConfig {
-        applicationId 'com.kalpvaig.cricketRnApp'
+        applicationId 'com.kalpvaig.cricscore'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -1,23 +1,23 @@
+import React, { useEffect, useRef, useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useRef, useState, useEffect } from "react";
 
 import ScoringBtn from "../../../components/button/ScoringBtn";
-import DismissBatsmanModal from "../modals/DismissBatsmanModal";
 import AppText from "../../../components/text/AppText";
 import UTILS from "../../../utils";
 import ChangeBowlerModal from "../modals/ChangeBowlerModal";
-import { useDispatchResetCurrentOver } from "../../../services/scoringServices/hooks/scoringDispatches";
-import { useScoreDetails } from "../../../services/scoringServices/hooks/scoringSelectors";
-import OtherOptionsModal from "../modals/OtherOptionsModal";
+import DismissBatsmanModal from "../modals/DismissBatsmanModal";
 
-// import { useDispatchResetCurrentOver } from "../../../services/scoringServices/scoringDispatches";
-// import { useScoreDetails } from "../../../services/scoringServices/scoringSelectors";
+import OtherOptionsModal from "../modals/OtherOptionsModal";
+import { useDispatchResetCurrentOver } from "../scoringServices/hooks/scoringDispatches";
+import {
+  useBallsLeftInInningSelector,
+  useScoreDetails,
+} from "../scoringServices/hooks/scoringSelectors";
 
 const scores = [50, 30, 15, 0, 15, 30, 50];
 
@@ -57,16 +57,18 @@ export default function BottomScoring({ onUpdateScore, ...props }) {
 function ActionBtn(props) {
   const [showModal, setShowModal] = useState(null);
   const details = useRef({});
+
   const { overs } = useScoreDetails();
+  const { inningComplete } = useBallsLeftInInningSelector();
 
   const dispatchResetOver = useDispatchResetCurrentOver();
 
   useEffect(() => {
-    if (overs != 0) {
+    if (overs != 0 && !inningComplete) {
       dispatchResetOver();
       setShowModal(bowlerModal);
     }
-  }, [overs]);
+  }, [overs, inningComplete]);
 
   function handleSubmit() {
     props.onSubmit(details.current);

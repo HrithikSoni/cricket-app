@@ -31,7 +31,6 @@ export default function SelectWicketKeeper({ navigation }) {
   async function handleAddTeamMember() {
     const data = [];
     const teamData = matchTeams[matchTeams.currentTeam];
-    // console.log(matchTeams);
     teamData.players.forEach((e, index) => {
       data.push({
         order: JSON.stringify(index + 1),
@@ -44,7 +43,6 @@ export default function SelectWicketKeeper({ navigation }) {
         // team: currentTeam,
       });
     });
-    // console.log(data, "iiiii");
     request({ team: currentTeam, players: data });
   }
 

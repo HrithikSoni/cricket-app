@@ -63,14 +63,15 @@ export const postQueryTag = (endpoint, tag) => {
 const api = createApi({
   baseQuery,
   tagTypes: [
-    "umpire",
-    "player",
-    "teams",
-    "match-players",
-    "country",
-    "state",
     "city",
+    "country",
+    "match-players",
     "match",
+    "player",
+    "score",
+    "state",
+    "teams",
+    "umpire",
   ],
   endpoints: () => ({}),
 });

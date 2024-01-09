@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import UTILS from "../../utils";
 import {
   handleAddScore,
   handleCurrentOverDetails,
@@ -8,6 +7,7 @@ import {
   rotateStrike,
   validDelivery,
 } from "./scoringReducer";
+import UTILS from "../../../utils";
 
 const { DISMISS_TYPES, DELIVERY_STATUS } = UTILS;
 

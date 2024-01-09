@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import UTILS from "../../utils";
-import { playingBatsman, playingFielders } from "./list";
 import {
   assignBatsmanHelper,
   dismissBatsmanHelper,
@@ -8,11 +6,10 @@ import {
 } from "./helpers/playerFunc";
 import {
   battingStatsHelper,
-  bowlerStatsHelper,
   bowlDetailsHelper,
+  bowlerStatsHelper,
 } from "./helpers/scoringFunc";
-
-const { FIELDING_STATUS, PLAYING_STATUS } = UTILS;
+import { playingBatsman, playingFielders } from "./list";
 
 const extras = {
   over: null,
@@ -34,15 +31,15 @@ const initialState = {
   // match Details
   playingFielders: playingFielders,
   playingBatsman: playingBatsman,
-  ballsPerInning: 100,
+  ballsPerInning: null,
   bowlers: [],
   batsmen: [],
 
   //player details
   //$$$$$$$ replace by null later
-  striker: playingBatsman[0],
-  nonStriker: playingBatsman[1],
-  bowler: playingFielders[2],
+  striker: null,
+  nonStriker: null,
+  bowler: null,
 
   //score details
   bowlDetails: [], // over wise bowl details
@@ -59,6 +56,16 @@ export const scoringSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    updateBallsPerInning: (state, action) => {
+      state.ballsPerInning = action.payload;
+    },
+    updatePlayingEleven: (state, action) => {
+      const { battingTeam, fieldingTeam } = action.payload;
+
+      state.playingFielders = fieldingTeam;
+      state.playingBatsman = battingTeam;
+    },
+
     validDelivery: (state) => {
       state.totalBalls += 1;
     },
@@ -103,6 +110,8 @@ export const {
   handleAssignBowler,
   handleUpdateBatsmanStat,
   handleUpdateBowlerStat,
+  updatePlayingEleven,
+  updateBallsPerInning,
 } = scoringSlice.actions;
 
 export default scoringSlice.reducer;

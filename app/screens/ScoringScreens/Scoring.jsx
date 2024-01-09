@@ -4,16 +4,17 @@ import { StyleSheet, View } from "react-native";
 import LiveScoreTable from "../../components/table/LiveScoreTable";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import {
-  useAssignStrikerNonStriker,
-  useDismissBatsman,
-} from "../../services/scoringServices/hooks/scoringDispatches";
-import useScoreEngine from "../../services/scoringServices/scoringEngine";
 import UTILS from "../../utils";
 import BottomScoring from "./components/BottomScoring";
 import BowlOptions from "./components/BowlOptions";
 import CurrentOver from "./components/CurrentOver";
 import Scorecard from "./components/ScoreCard";
+import InningEndModal from "./modals/InningEndModal";
+import {
+  useAssignStrikerNonStriker,
+  useDismissBatsman,
+} from "./scoringServices/hooks/scoringDispatches";
+import useScoreEngine from "./scoringServices/scoringEngine";
 
 const initialState = {
   run: 0,
@@ -88,6 +89,7 @@ export default function Scoring({ navigation }) {
           onUpdateScore={(i) => updateDetails({ run: i })}
           onSubmit={handleSubmitDetails}
         />
+        <InningEndModal />
       </View>
       {/* </ScrollView> */}
     </ParentWrapper>

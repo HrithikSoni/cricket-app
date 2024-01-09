@@ -16,7 +16,6 @@ import api from "../../services/api";
 const { TEAM_A, TEAM_B } = UTILS.TEAM_NAME;
 
 export default function TeamsVersus({ navigation, route }) {
-  // console.log(route.params, "ooooooo");
   const teamsData = useTeamDetailsSelector();
   const dispatchCurrentTeamKey = useUpdateCurrentTeamKey();
 
@@ -91,7 +90,6 @@ export default function TeamsVersus({ navigation, route }) {
         return acc;
       }, {});
       setTeamDetails({ ...teamDetails, ...details });
-      console.log({ ...teamDetails, ...details });
     }
 
     return { teamDetails };

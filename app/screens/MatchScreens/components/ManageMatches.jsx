@@ -1,24 +1,32 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
-import UTILS from "../../../utils";
-import AppText from "../../../components/text/AppText";
-import useAuth from "../../../hooks/useAuth";
 import Button from "../../../components/button/Button";
+import AppText from "../../../components/text/AppText";
 import BoldText from "../../../components/text/BoldText";
 import SmallGreyText from "../../../components/text/SmallGreyText";
+import useAuth from "../../../hooks/useAuth";
 import { useAddMatchDetails } from "../../../services/teamServices/useManageTeam";
+import UTILS from "../../../utils";
+import { useUpdateBallsPerInningDispatch } from "../../ScoringScreens/scoringServices/hooks/scoringDispatches";
 
 export default function ManageMatches(props) {
   const { date, matchType, groundName, matchName, teamA, teamB, tossDecision } =
     props;
-  console.log(tossDecision, "ooooooooo");
+
+  const overs =
+    props.noOfOvers || UTILS.HELPERS.oversByMatchType(matchType).overs;
+
   const dispatchMatchDetails = useAddMatchDetails();
-  // console.log(props.id, "props");
+  const dispatchBallPerInning = useUpdateBallsPerInningDispatch();
   const countDown = 10;
   const { isAdmin } = useAuth();
   const navigation = useNavigation();
+
+  function updateMatchesOver() {
+    dispatchBallPerInning(overs * 6);
+  }
 
   return (
     <View style={styles.container}>
@@ -28,7 +36,7 @@ export default function ManageMatches(props) {
             {date} - {countDown} days left
           </Text>
           <View style={styles.overContainer}>
-            <Text>{UTILS.HELPERS.oversByMatchType(matchType).overs} Ov</Text>
+            <Text>{overs} OV</Text>
           </View>
         </View>
 
@@ -66,6 +74,7 @@ export default function ManageMatches(props) {
             id: props.id,
           });
           dispatchMatchDetails({ id: props.id || null });
+          updateMatchesOver();
         },
       };
     if (teamA.length == 0 || teamB.length == 0)
@@ -76,6 +85,7 @@ export default function ManageMatches(props) {
             id: props.id,
           });
           dispatchMatchDetails({ id: props.id || null });
+          updateMatchesOver();
         },
       };
     if (!tossDecision)
@@ -88,15 +98,21 @@ export default function ManageMatches(props) {
             teamB,
           });
           dispatchMatchDetails({ id: props.id || null });
+          updateMatchesOver();
         },
       };
-    if ("scoring")
-      return {
-        label: "Start Scoring",
-        onButtonPress: () => {
-          dispatchMatchDetails({ id: props.id || null });
-        },
-      };
+    return {
+      label: "Start Scoring",
+      onButtonPress: () => {
+        navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS, {
+          id: props.id,
+          teamA,
+          teamB,
+        });
+        dispatchMatchDetails({ id: props.id || null });
+        updateMatchesOver();
+      },
+    };
   }
 }
 

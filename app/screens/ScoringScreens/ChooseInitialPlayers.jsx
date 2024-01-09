@@ -1,23 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+
 import Button from "../../components/button/Button";
 import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import api from "../../services/api";
+import UTILS from "../../utils";
 import {
   useAssignBowler,
   useAssignStrikerNonStriker,
-} from "../../services/scoringServices/hooks/scoringDispatches";
-import { usePlayerSelector } from "../../services/scoringServices/hooks/scoringSelectors";
-import UTILS from "../../utils";
+  useUpdateTeams,
+} from "./scoringServices/hooks/scoringDispatches";
 
-export default function ChooseInitialPlayers({ navigation }) {
+export default function ChooseInitialPlayers({ navigation, route }) {
   const [selected, setSelected] = useState("striker");
   const [playersId, setPlayersId] = useState({
     striker: { id: null },
     nonStriker: { id: null },
     bowler: { id: null },
   });
-  const { playingBatsman, playingFielders } = usePlayerSelector();
+
+  const { playingBatsman, playingFielders } = useMatchPlayers(route.params?.id);
 
   const dispatchBowler = useAssignBowler();
   const dispatchBatsman = useAssignStrikerNonStriker();
@@ -96,6 +99,7 @@ export default function ChooseInitialPlayers({ navigation }) {
               : UTILS.COLORS.gray1;
             const color = s ? UTILS.COLORS.themeColor : "black";
             const backgroundColor = s ? "white" : UTILS.COLORS.gray1;
+
             return (
               <TouchableOpacity
                 key={i}
@@ -134,6 +138,79 @@ export default function ChooseInitialPlayers({ navigation }) {
       </View>
     );
   }
+}
+function useMatchPlayers(id) {
+  const { data } = api.useGetMatchByIdQuery(id);
+  const dispatchTeamPlayers = useUpdateTeams();
+  const [players, setPlayers] = useState({
+    playingBatsman: [],
+    playingFielders: [],
+  });
+
+  useEffect(() => {
+    if (data?.data) {
+      handleSetPlayers();
+    }
+  }, [data]);
+
+  function handleSetPlayers() {
+    const { matchTeamPlayer, teamA, teamB, tossWinner, tossDecision } =
+      data.data;
+
+    let battingTeam = [];
+    let fieldingTeam = [];
+
+    const players = matchTeamPlayer.reduce((acc, player) => {
+      const { teamId } = player;
+      if (!acc[teamId]) {
+        acc[teamId] = [];
+      }
+      acc[teamId].push({
+        ...player,
+        id: player.playerId,
+        name: player.player.firstName,
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        6: 0,
+        ballsPlayed: 0,
+        economy: 0,
+        extras: 0,
+        maiden: 0,
+        overs: [],
+        status: UTILS.FIELDING_STATUS.PLAYING,
+        strikeRate: 0,
+        totalOvers: 0,
+        totalRun: 0,
+        wickets: 0,
+      });
+      return acc;
+    }, {});
+
+    if (tossDecision === "BATTING") {
+      battingTeam =
+        tossWinner[0].id === teamA[0].id
+          ? players[teamA[0].id]
+          : players[teamB[0].id];
+      fieldingTeam =
+        tossWinner[0].id !== teamA[0].id
+          ? players[teamA[0].id]
+          : players[teamB[0].id];
+    } else {
+      fieldingTeam =
+        tossWinner[0].id === teamA[0].id
+          ? players[teamA[0].id]
+          : players[teamB[0].id];
+      battingTeam =
+        tossWinner[0].id !== teamA[0].id
+          ? players[teamA[0].id]
+          : players[teamB[0].id];
+    }
+    dispatchTeamPlayers({ battingTeam, fieldingTeam });
+    setPlayers({ playingBatsman: battingTeam, playingFielders: fieldingTeam });
+  }
+  return players;
 }
 const styles = StyleSheet.create({
   buttonContainer: {

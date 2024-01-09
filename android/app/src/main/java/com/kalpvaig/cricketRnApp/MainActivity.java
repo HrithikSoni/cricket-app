@@ -1,4 +1,4 @@
-package com.kalpvaig.cricketRnApp;
+package com.kalpvaig.cricscore;
 
 import android.os.Build;
 import android.os.Bundle;

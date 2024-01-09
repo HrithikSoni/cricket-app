@@ -76,3 +76,11 @@ export function useMatchStatsSelector() {
 export function useCurrentBatsmanStatsSelector() {
   return useSelector((state) => state.scoring);
 }
+
+export function useBallsLeftInInningSelector() {
+  const { ballsPerInning, totalBalls } = useSelector((state) => state.scoring);
+  return {
+    ballsLeft: ballsPerInning - totalBalls,
+    inningComplete: ballsPerInning - totalBalls === 0,
+  };
+}

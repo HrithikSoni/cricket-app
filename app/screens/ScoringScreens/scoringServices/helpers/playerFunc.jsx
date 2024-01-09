@@ -1,4 +1,4 @@
-import UTILS from "../../../utils";
+import UTILS from "../../../../utils";
 
 export const assignBatsmanHelper = (state, action) => {
   const { id: playerId, strikeType } = action.payload;
@@ -21,7 +21,7 @@ export const handleAssignBowlerHelper = (state, action) => {
   const { bowlerId } = action.payload;
 
   if (state.bowler) {
-    // update bowlers
+    // update bowlers (update the stats of current bowler to on bowlers array before assigning it next bowler)
     const existingIndex = state.bowlers.findIndex(
       (item) => item.id === state.bowler.id
     );
@@ -44,12 +44,17 @@ export const handleAssignBowlerHelper = (state, action) => {
     newBowler = state.playingFielders.find((i) => i.id == bowlerId);
   }
 
-  state.playingFielders = state.playingFielders.map((i) =>
-    i.id == newBowler.id
-      ? { ...i, overs: [...i.overs, Math.floor(state.totalBalls / 6) + 1] }
-      : i
-  );
+  state.playingFielders = state.playingFielders.map((i) => {
+    // if (!i.overs) {
+    //   i.overs = [];
+    // }
 
-  state.currentOver = { ...state.currentOver, bowlerId: newBowler.id };
+    return i.id == newBowler.id
+      ? { ...i, overs: [...i.overs, Math.floor(state.totalBalls / 6) + 1] }
+      : i;
+  });
+
+  state.currentOver.bowlerId = newBowler.id;
+
   state.bowler = newBowler;
 };

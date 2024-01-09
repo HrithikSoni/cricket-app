@@ -48,7 +48,7 @@ export default function TableRow({
           {data.map((i, index) => (
             <View key={index} style={{ flex: 1 }}>
               <Text style={[{ color: "gray", textAlign: "center" }, textStyle]}>
-                {i === "NaN" || i === "Infinity" ? "0" : i}
+                {i === "NaN" || i === "Infinity" || !i ? "0" : i}
               </Text>
             </View>
           ))}

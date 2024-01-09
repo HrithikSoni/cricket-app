@@ -64,13 +64,6 @@ export default function AllMatches({ navigation }) {
     );
   }
 
-  function handleOnSelect(e) {
-    handleModal();
-    if (e?.screenName) {
-      navigation.navigate(e.screenName);
-    }
-  }
-
   function handleModal() {
     setShowModal(!showModal);
     navigation.navigate(MATCH_DETAILS_SCREENS.FORM);
@@ -90,13 +83,6 @@ export default function AllMatches({ navigation }) {
     } else return null;
   }
 }
-const btnDetails = [
-  {
-    name: "Start Tournament",
-    screenName: TOURNAMENT_SCREENS.CREATE_TOURNAMENT,
-  },
-  { name: "Start Match", screenName: MATCH_DETAILS_SCREENS.FORM },
-];
 
 const matchData = [
   { id: 1, title: "Match 1" },

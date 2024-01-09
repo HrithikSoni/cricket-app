@@ -68,8 +68,8 @@ export default function MatchDetails({ navigation }) {
 
         <View style={{ height: 40 }} />
         <Button
-          onButtonPress={() => navigation.navigate(TEAMS.TEAMS_VERSUS)}
-          // onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
+          // onButtonPress={() => navigation.navigate(TEAMS.TEAMS_VERSUS)}
+          onButtonPress={() => handleSubmitMatchDetails(matchDetails.current)}
         />
       </ScrollView>
     </ParentWrapper>
@@ -78,7 +78,9 @@ export default function MatchDetails({ navigation }) {
 
 function useMatchDetails() {
   const navigation = useNavigation();
+
   const dispatchMatchDetails = useAddMatchDetails();
+
   const { request } = useRTKQuery(
     api.useAddNewMatchMutation,
     handleMatchCreateSuccess
@@ -86,7 +88,7 @@ function useMatchDetails() {
 
   function handleMatchCreateSuccess(e) {
     dispatchMatchDetails({ id: e.data?.id || null });
-    // navigation.navigate(TEAMS.TEAMS_VERSUS);
+    navigation.navigate(UTILS.SCREEN_NAMES.TAB_SCREENS.HOME);
   }
 
   async function handleSubmitMatchDetails(body) {

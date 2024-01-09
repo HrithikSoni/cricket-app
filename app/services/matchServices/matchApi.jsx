@@ -1,14 +1,20 @@
-import api, { getQuery, getQueryTag, patchQuery, postQuery } from "../api";
+import api, {
+  getQuery,
+  getQueryTag,
+  patchQuery,
+  postQuery,
+  postQueryTag,
+} from "../api";
 
 const matchApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllMatches: builder.query(getQueryTag("/match/get-match", "match")),
-    getMatchById: builder.query(
-      getQueryTag("/match/get-match-by-id", "match-players")
-    ),
+    getMatchById: builder.query(getQueryTag("/match/get-match-by-id", "match")),
 
-    addNewMatch: builder.mutation(postQuery("/match/add-match")),
-    addTossDecision: builder.mutation(patchQuery("/match/toss-decision")),
+    addNewMatch: builder.mutation(postQueryTag("/match/add-match", "match")),
+    addTossDecision: builder.mutation(
+      postQueryTag("/match/toss-decision", "match")
+    ),
   }),
   overrideExisting: true,
 });

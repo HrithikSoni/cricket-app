@@ -1,11 +1,8 @@
-import { View } from "react-native";
-import TopTabNavigator from "../../routes/others/TopTabNavigator";
 import UTILS from "../../utils";
-import LiveMatch from "../LiveMatchesScreen/LiveMatch";
-import MatchToss from "./MatchToss";
-import Scoring from "./Scoring";
 import ChooseInitialPlayers from "./ChooseInitialPlayers";
 import MatchStats from "./MatchStats";
+import MatchToss from "./MatchToss";
+import Scoring from "./Scoring";
 
 const { SCORING_SCREENS } = UTILS.SCREEN_NAMES;
 
