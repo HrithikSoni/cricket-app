@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import UTILS from "../../../../utils";
 
 export function useValidBowlerSelector() {
   const { playingFielders, totalBalls } = useSelector((s) => s.scoring);
@@ -13,10 +14,11 @@ export function useValidBowlerSelector() {
   return { invalidBowlers, playingFielders };
 }
 
-export function useScoreDetails() {
+export function useScoreDetailsSelector() {
   const data = useSelector((state) => state.scoring);
   const overs = Math.floor(data.totalBalls / 6);
-  return { ...data, overs };
+  const isFirstInning = data.currentInning === UTILS.INNING_TYPES.FIRST;
+  return { ...data, isFirstInning, overs };
 }
 
 export function usePlayerSelector() {

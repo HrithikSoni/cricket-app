@@ -1,5 +1,13 @@
 import UTILS from "../../../../utils";
 
+export const updateScoringDetailsHelper = (state, action) => {
+  const { currentInning } = action.payload;
+
+  if (currentInning) {
+    state.currentInning = currentInning;
+  }
+};
+
 export const battingStatsHelper = (state, action) => {
   const { run } = action.payload;
 

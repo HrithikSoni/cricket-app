@@ -8,6 +8,7 @@ import {
   battingStatsHelper,
   bowlDetailsHelper,
   bowlerStatsHelper,
+  updateScoringDetailsHelper,
 } from "./helpers/scoringFunc";
 import { playingBatsman, playingFielders } from "./list";
 
@@ -25,15 +26,36 @@ const currentOverInit = {
   bowlerId: null,
   bowls: [],
 };
+
+const inningDetails = [
+  {
+    inning: "FIRST",
+    score: "0",
+    teamId: null,
+    teamKey: null,
+  },
+
+  {
+    inning: "SECOND",
+    score: "0",
+    teamId: null,
+    teamKey: null,
+  },
+];
 // $$$$$$$$$$ different array for batsman and bowler selected from team
 
 const initialState = {
   // match Details
+  battingTeam: null,
+  bowlingTeam: null,
+  scoringMatchDetails: null,
   playingFielders: playingFielders,
   playingBatsman: playingBatsman,
   ballsPerInning: null,
   bowlers: [],
   batsmen: [],
+  inningDetails: inningDetails,
+  currentInning: "FIRST",
 
   //player details
   //$$$$$$$ replace by null later
@@ -49,6 +71,7 @@ const initialState = {
   totalExtraRuns: 0,
   overs: 1, // on going over
   totalBalls: 0, // on going ball
+  targetScore: null,
   wickets: 0, // no. of wickets down
 };
 
@@ -56,6 +79,8 @@ export const scoringSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    updateScoringDetails: updateScoringDetailsHelper,
+
     updateBallsPerInning: (state, action) => {
       state.ballsPerInning = action.payload;
     },
@@ -82,15 +107,23 @@ export const scoringSlice = createSlice({
       state.nonStriker = temp;
     },
 
-    handleDismissBatsman: dismissBatsmanHelper,
-
-    handleCurrentOverDetails: bowlDetailsHelper,
-
     handleResetCurrentOver: (state) => {
       state.bowlDetails.push(state.currentOver);
       state.currentOver = currentOverInit;
     },
 
+    updateTeamsDetails: (state, action) => {
+      const { battingTeam, bowlingTeam } = action.payload;
+      state.battingTeam = battingTeam;
+      state.bowlingTeam = bowlingTeam;
+    },
+
+    updateScoringMatchDetails: (state, action) => {
+      state.scoringMatchDetails = action.payload;
+    },
+
+    handleDismissBatsman: dismissBatsmanHelper,
+    handleCurrentOverDetails: bowlDetailsHelper,
     handleAssignBowler: handleAssignBowlerHelper,
     assignBatsman: assignBatsmanHelper,
     handleUpdateBatsmanStat: battingStatsHelper,
@@ -99,10 +132,11 @@ export const scoringSlice = createSlice({
 });
 
 export const {
+  updateScoringDetails,
+
   validDelivery,
   rotateStrike,
   handleAddScore,
-  // new flow
   handleDismissBatsman,
   handleCurrentOverDetails,
   handleResetCurrentOver,
@@ -112,6 +146,8 @@ export const {
   handleUpdateBowlerStat,
   updatePlayingEleven,
   updateBallsPerInning,
+  updateTeamsDetails,
+  updateScoringMatchDetails,
 } = scoringSlice.actions;
 
 export default scoringSlice.reducer;

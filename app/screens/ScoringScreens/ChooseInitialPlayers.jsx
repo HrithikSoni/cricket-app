@@ -6,11 +6,14 @@ import AppText from "../../components/text/AppText";
 import ParentWrapper from "../../components/wrappers/ParentWrapper";
 import api from "../../services/api";
 import UTILS from "../../utils";
-import {
+import useUpdateScoringDetails, {
+  useAddScoringMatchDetails,
+  useAddTeamDetails,
   useAssignBowler,
   useAssignStrikerNonStriker,
   useUpdateTeams,
 } from "./scoringServices/hooks/scoringDispatches";
+import { useScoreDetailsSelector } from "./scoringServices/hooks/scoringSelectors";
 
 export default function ChooseInitialPlayers({ navigation, route }) {
   const [selected, setSelected] = useState("striker");
@@ -142,6 +145,11 @@ export default function ChooseInitialPlayers({ navigation, route }) {
 function useMatchPlayers(id) {
   const { data } = api.useGetMatchByIdQuery(id);
   const dispatchTeamPlayers = useUpdateTeams();
+  const dispatchTeamDetails = useAddTeamDetails();
+  const dispatchScoringMatchDetails = useAddScoringMatchDetails();
+  useUpdateScoringDetails();
+  const { isFirstInning } = useScoreDetailsSelector();
+
   const [players, setPlayers] = useState({
     playingBatsman: [],
     playingFielders: [],
@@ -156,6 +164,9 @@ function useMatchPlayers(id) {
   function handleSetPlayers() {
     const { matchTeamPlayer, teamA, teamB, tossWinner, tossDecision } =
       data.data;
+
+    // store current match details in store
+    dispatchScoringMatchDetails(data.data);
 
     let battingTeam = [];
     let fieldingTeam = [];
@@ -188,26 +199,29 @@ function useMatchPlayers(id) {
       return acc;
     }, {});
 
-    if (tossDecision === "BATTING") {
-      battingTeam =
-        tossWinner[0].id === teamA[0].id
-          ? players[teamA[0].id]
-          : players[teamB[0].id];
-      fieldingTeam =
-        tossWinner[0].id !== teamA[0].id
-          ? players[teamA[0].id]
-          : players[teamB[0].id];
-    } else {
-      fieldingTeam =
-        tossWinner[0].id === teamA[0].id
-          ? players[teamA[0].id]
-          : players[teamB[0].id];
-      battingTeam =
-        tossWinner[0].id !== teamA[0].id
-          ? players[teamA[0].id]
-          : players[teamB[0].id];
+    let tossWinnerTeam = tossWinner[0];
+    let tossLoserTeam = tossWinner[0].id === teamA[0].id ? teamB[0] : teamA[0];
+
+    // for second inning swap values
+    if (!isFirstInning) {
+      const temp = tossWinnerTeam;
+      tossWinnerTeam = tossLoserTeam;
+      tossLoserTeam = temp;
     }
+
+    if (tossDecision === "BATTING") {
+      battingTeam = players[tossWinnerTeam.id];
+      fieldingTeam = players[tossLoserTeam.id];
+      dispatchTeamDetails(tossWinnerTeam, tossLoserTeam);
+    } else {
+      battingTeam = players[tossLoserTeam.id];
+      fieldingTeam = players[tossWinnerTeam.id];
+      dispatchTeamDetails(tossLoserTeam, tossWinnerTeam);
+    }
+
+    // add teams in store
     dispatchTeamPlayers({ battingTeam, fieldingTeam });
+
     setPlayers({ playingBatsman: battingTeam, playingFielders: fieldingTeam });
   }
   return players;

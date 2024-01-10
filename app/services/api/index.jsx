@@ -44,7 +44,7 @@ export const patchQuery = (endpoint) => {
 
 export const getQueryTag = (endpoint, tag) => ({
   query: (param = "") => endpoint + `/${param}`,
-  providesTags: [{ type: tag }],
+  providesTags: [tag],
 });
 
 export const postQueryTag = (endpoint, tag) => {
@@ -56,7 +56,7 @@ export const postQueryTag = (endpoint, tag) => {
         body,
       };
     },
-    invalidatesTags: [{ type: tag }],
+    invalidatesTags: [tag],
   };
 };
 

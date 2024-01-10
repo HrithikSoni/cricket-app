@@ -6,7 +6,16 @@ import {
   handleResetCurrentOver,
   updatePlayingEleven,
   updateBallsPerInning,
+  updateTeamsDetails,
+  updateScoringMatchDetails,
+  updateScoringDetails,
 } from "../scoringReducer";
+
+export default function useUpdateScoringDetails() {
+  return function (payload) {
+    store.dispatch(updateScoringDetails(payload));
+  };
+}
 
 export function useDispatchResetCurrentOver() {
   return function () {
@@ -49,5 +58,17 @@ export function useAssignStrikerNonStriker() {
 export function useUpdateTeams() {
   return function ({ battingTeam, fieldingTeam }) {
     store.dispatch(updatePlayingEleven({ battingTeam, fieldingTeam }));
+  };
+}
+
+export function useAddTeamDetails() {
+  return function (battingTeam, bowlingTeam) {
+    store.dispatch(updateTeamsDetails({ battingTeam, bowlingTeam }));
+  };
+}
+
+export function useAddScoringMatchDetails() {
+  return function (matchDetails) {
+    store.dispatch(updateScoringMatchDetails(matchDetails));
   };
 }

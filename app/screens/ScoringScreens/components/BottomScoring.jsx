@@ -16,7 +16,7 @@ import OtherOptionsModal from "../modals/OtherOptionsModal";
 import { useDispatchResetCurrentOver } from "../scoringServices/hooks/scoringDispatches";
 import {
   useBallsLeftInInningSelector,
-  useScoreDetails,
+  useScoreDetailsSelector,
 } from "../scoringServices/hooks/scoringSelectors";
 
 const scores = [50, 30, 15, 0, 15, 30, 50];
@@ -58,7 +58,7 @@ function ActionBtn(props) {
   const [showModal, setShowModal] = useState(null);
   const details = useRef({});
 
-  const { overs } = useScoreDetails();
+  const { overs } = useScoreDetailsSelector();
   const { inningComplete } = useBallsLeftInInningSelector();
 
   const dispatchResetOver = useDispatchResetCurrentOver();

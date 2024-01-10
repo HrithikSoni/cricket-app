@@ -3,10 +3,10 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 import AppText from "../../../components/text/AppText";
 import UTILS from "../../../utils";
-import { useScoreDetails } from "../scoringServices/hooks/scoringSelectors";
+import { useScoreDetailsSelector } from "../scoringServices/hooks/scoringSelectors";
 
 export default function CurrentOver() {
-  const { currentOver } = useScoreDetails();
+  const { currentOver } = useScoreDetailsSelector();
   const over = currentOver.bowls;
 
   const pLength = 6 - (over?.length || 0);

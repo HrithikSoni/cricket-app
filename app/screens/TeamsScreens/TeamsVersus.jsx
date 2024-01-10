@@ -1,17 +1,16 @@
-import { StyleSheet, View } from "react-native";
 import { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
 
-import ParentWrapper from "../../components/wrappers/ParentWrapper";
-import TeamVersusCard from "../../components/cards/TeamVesesCard";
-import UTILS from "../../utils";
 import Button from "../../components/button/Button";
+import TeamVersusCard from "../../components/cards/TeamVesesCard";
 import AppText from "../../components/text/AppText";
-import { updateCurrenTeam } from "../../services/teamServices/teamReducer";
+import ParentWrapper from "../../components/wrappers/ParentWrapper";
+import api from "../../services/api";
 import {
   useTeamDetailsSelector,
   useUpdateCurrentTeamKey,
 } from "../../services/teamServices/useManageTeam";
-import api from "../../services/api";
+import UTILS from "../../utils";
 
 const { TEAM_A, TEAM_B } = UTILS.TEAM_NAME;
 

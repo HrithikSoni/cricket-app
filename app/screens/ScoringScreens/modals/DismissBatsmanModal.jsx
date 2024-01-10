@@ -8,7 +8,7 @@ import Icons from "../../../components/others/Icons";
 import AppText from "../../../components/text/AppText";
 import BoldText from "../../../components/text/BoldText";
 import UTILS from "../../../utils";
-import { useScoreDetails } from "../scoringServices/hooks/scoringSelectors";
+import { useScoreDetailsSelector } from "../scoringServices/hooks/scoringSelectors";
 
 const batsmanType = UTILS.BATSMAN;
 
@@ -20,7 +20,7 @@ export default function DismissBatsmanModal(props) {
   });
   let notAvailableBatsman = [];
 
-  const { playingBatsman } = useScoreDetails();
+  const { playingBatsman } = useScoreDetailsSelector();
 
   playingBatsman.forEach((i, index) =>
     i.status !== UTILS.PLAYING_STATUS.BENCH

@@ -14,7 +14,7 @@ const MatchToss = ({ navigation, route }) => {
   const tossData = useRef({ matchId });
 
   const { request } = useRTKQuery(api.useAddTossDecisionMutation, () =>
-    navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS)
+    navigation.navigate(UTILS.SCREEN_NAMES.NAV_SCREENS.BOTTOM_TAB_NAVIGATOR)
   );
 
   const teamInfo = [

@@ -4,11 +4,12 @@ import { StyleSheet, View } from "react-native";
 import AppText from "../../../components/text/AppText";
 import SmallGreyText from "../../../components/text/SmallGreyText";
 import UTILS from "../../../utils";
-import { useScoreDetails } from "../scoringServices/hooks/scoringSelectors";
+import { useScoreDetailsSelector } from "../scoringServices/hooks/scoringSelectors";
 
 export default function Scorecard() {
   const [showChangeBowler, setShowChangeBowler] = useState(false);
-  const { currentScore, wickets, overs, totalBalls } = useScoreDetails();
+  const { currentScore, wickets, overs, totalBalls } =
+    useScoreDetailsSelector();
 
   return (
     <>

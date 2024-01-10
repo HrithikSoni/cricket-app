@@ -41,7 +41,10 @@ export default function AddNewTeamModal(props) {
           <View style={{ height: 20 }} />
           <Button
             label="Add Team"
-            onButtonPress={() => addTeam(teamData.current)}
+            onButtonPress={async () => {
+              const a = await addTeam(teamData.current);
+              console.log(a, "pppp");
+            }}
           />
         </View>
       </View>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import Button from "../../../components/button/Button";
 import Icons from "../../../components/others/Icons";
@@ -8,13 +9,29 @@ import BoldText from "../../../components/text/BoldText";
 import UTILS from "../../../utils";
 import api from "../../../services/api";
 import useRTKQuery from "../../../hooks/useRTKQuery";
-import { useBallsLeftInInningSelector } from "../scoringServices/hooks/scoringSelectors";
+import {
+  useBallsLeftInInningSelector,
+  useScoreDetailsSelector,
+} from "../scoringServices/hooks/scoringSelectors";
+import { useTeamDetailsSelector } from "../../../services/teamServices/useManageTeam";
 
 export default function InningEndModal(props) {
-  const { ballsLeft, inningComplete } = useBallsLeftInInningSelector();
+  const navigation = useNavigation();
   const [show, setShow] = useState(false);
 
-  const { request } = useRTKQuery(api.useAddTeamScoreMutation);
+  const { inningComplete } = useBallsLeftInInningSelector();
+
+  const {
+    matchDetails: { id: matchId },
+  } = useTeamDetailsSelector();
+
+  const { battingTeam, currentScore, currentInning } =
+    useScoreDetailsSelector();
+
+  const { request } = useRTKQuery(
+    api.useAddTeamScoreMutation,
+    handleInningEndSuccess
+  );
 
   useEffect(() => {
     if (inningComplete) {
@@ -22,19 +39,32 @@ export default function InningEndModal(props) {
     }
   }, [inningComplete]);
 
+  console.log(currentInning, currentScore, "ii");
+
   const handleInningOver = () => {
+    console.log({
+      matchId,
+      teamId: battingTeam.id,
+      score: "30",
+      inning: currentInning,
+    });
     request({
-      matchId: body.matchId,
-      teamId: body.teamId,
-      inning: body.InningTypes,
-      score: body.score,
+      matchId,
+      teamId: battingTeam.id,
+      score: currentScore.toString(),
+      inning: currentInning,
     });
     // setShow(false);
+    // handleInningEndSuccess();
   };
+
+  function handleInningEndSuccess() {
+    navigation.navigate(UTILS.SCREEN_NAMES.NAV_SCREENS.BOTTOM_TAB_NAVIGATOR);
+  }
   return (
     <Modal
-      visible={true}
-      //   visible={show}
+      // visible={true}
+      visible={show}
       transparent={true}
       onRequestClose={() => setShow(false)}
     >

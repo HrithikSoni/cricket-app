@@ -13,7 +13,7 @@ const matchApi = api.injectEndpoints({
 
     addNewMatch: builder.mutation(postQueryTag("/match/add-match", "match")),
     addTossDecision: builder.mutation(
-      postQueryTag("/match/toss-decision", "match")
+      postQuery("/match/toss-decision", "match")
     ),
   }),
   overrideExisting: true,

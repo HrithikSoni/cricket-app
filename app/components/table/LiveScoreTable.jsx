@@ -4,10 +4,10 @@ import { StyleSheet, View } from "react-native";
 import UTILS from "../../utils";
 import TableHeaderContainer from "./TableHeaderContainer";
 import TableRow from "./TableRow";
-import { useScoreDetails } from "../../screens/ScoringScreens/scoringServices/hooks/scoringSelectors";
+import { useScoreDetailsSelector } from "../../screens/ScoringScreens/scoringServices/hooks/scoringSelectors";
 
 export default function LiveScoreTable(props) {
-  const { striker, nonStriker, bowler } = useScoreDetails();
+  const { striker, nonStriker, bowler } = useScoreDetailsSelector();
 
   return (
     <View style={styles.container}>

@@ -9,17 +9,31 @@ import SmallGreyText from "../../../components/text/SmallGreyText";
 import useAuth from "../../../hooks/useAuth";
 import { useAddMatchDetails } from "../../../services/teamServices/useManageTeam";
 import UTILS from "../../../utils";
-import { useUpdateBallsPerInningDispatch } from "../../ScoringScreens/scoringServices/hooks/scoringDispatches";
+import useUpdateScoringDetails, {
+  useUpdateBallsPerInningDispatch,
+} from "../../ScoringScreens/scoringServices/hooks/scoringDispatches";
+
+const { CANCELED, FINISHED, UPCOMING, FIRST_INNING_DONE } = UTILS.MATCH_STATUS;
 
 export default function ManageMatches(props) {
-  const { date, matchType, groundName, matchName, teamA, teamB, tossDecision } =
-    props;
+  const {
+    date,
+    matchType,
+    groundName,
+    matchName,
+    teamA,
+    teamB,
+    tossDecision,
+    matchStats,
+    status,
+  } = props;
 
   const overs =
     props.noOfOvers || UTILS.HELPERS.oversByMatchType(matchType).overs;
 
   const dispatchMatchDetails = useAddMatchDetails();
   const dispatchBallPerInning = useUpdateBallsPerInningDispatch();
+  const dispatchScoringDetails = useUpdateScoringDetails();
   const countDown = 10;
   const { isAdmin } = useAuth();
   const navigation = useNavigation();
@@ -69,50 +83,43 @@ export default function ManageMatches(props) {
     if (teamA.length == 0 && teamB.length == 0)
       return {
         label: "Add Teams",
-        onButtonPress: () => {
-          navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS, {
-            id: props.id,
-          });
-          dispatchMatchDetails({ id: props.id || null });
-          updateMatchesOver();
-        },
+        onButtonPress: () =>
+          handleButtonPress(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS),
       };
     if (teamA.length == 0 || teamB.length == 0)
       return {
         label: "Add Team",
-        onButtonPress: () => {
-          navigation.navigate(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS, {
-            id: props.id,
-          });
-          dispatchMatchDetails({ id: props.id || null });
-          updateMatchesOver();
-        },
+        onButtonPress: () =>
+          handleButtonPress(UTILS.SCREEN_NAMES.TEAMS.TEAMS_VERSUS),
       };
     if (!tossDecision)
       return {
         label: "Match Toss",
-        onButtonPress: () => {
-          navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.MATCH_TOSS, {
-            id: props.id,
-            teamA,
-            teamB,
-          });
-          dispatchMatchDetails({ id: props.id || null });
-          updateMatchesOver();
-        },
+        onButtonPress: () =>
+          handleButtonPress(UTILS.SCREEN_NAMES.SCORING_SCREENS.MATCH_TOSS),
       };
     return {
       label: "Start Scoring",
-      onButtonPress: () => {
-        navigation.navigate(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS, {
-          id: props.id,
-          teamA,
-          teamB,
-        });
-        dispatchMatchDetails({ id: props.id || null });
-        updateMatchesOver();
-      },
+      onButtonPress: () =>
+        handleButtonPress(UTILS.SCREEN_NAMES.SCORING_SCREENS.CHOOSE_PLAYERS),
     };
+  }
+
+  function handleButtonPress(screen) {
+    navigation.navigate(screen, {
+      id: props.id,
+      teamA,
+      teamB,
+    });
+    dispatchMatchDetails({ id: props.id || null });
+    updateMatchesOver();
+
+    dispatchScoringDetails({
+      currentInning:
+        matchStats.length == 0
+          ? UTILS.INNING_TYPES.FIRST
+          : UTILS.INNING_TYPES.SECOND,
+    });
   }
 }
 
