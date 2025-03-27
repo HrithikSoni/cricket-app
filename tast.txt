@@ -1,0 +1,22 @@
+## toss and decision
+## match result
+## stop inning stop match
+
+ match table
+ current status
+ (canceled complete upcoming ongoing)
+
+
+ match result 
+ matchId
+ teamsId
+ result
+ wonby run
+ wicket
+ man of match (bowler, batsman, fielder)
+
+
+ ## handle   batsman and bowler status
+ 
+#############################################
+bouncer per over flag

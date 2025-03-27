@@ -1,0 +1,23 @@
+const INPUT_TYPE = {
+  ADD_SELECT: "Add Select",
+  BALL_TYPE: "Ball Type",
+  CHECKBOX: "Checkbox",
+  DATE_PICKER: "date",
+  DATE_TIME_PICKER: "Date Time Picker",
+  DROPDOWN: "Dropdown",
+  LOCATION_PICKER: "Location Picker",
+  LOCATION: "Location",
+  MATCH_TYPES: "Match Types",
+  NUMBER: "Number",
+  OTP_INPUT_BOX: "Otp Input Box",
+  PHONE_NO_INPUT_BOX: "Phone Number Box",
+  POWER_PLAY: "Power Play",
+  REGISTER_CONTACT_INPUT: "Register Contact Input",
+  SEARCH_BAR: "Search Bar",
+  SEARCH_BAR: "Search Bar",
+  STRING: "String",
+  SWITCH: "Switch",
+  SWITCH: "Switch",
+  TIME_PICKER: "time",
+};
+export default INPUT_TYPE;
