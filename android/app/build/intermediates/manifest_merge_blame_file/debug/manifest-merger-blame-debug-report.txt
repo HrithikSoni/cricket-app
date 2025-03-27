@@ -1,0 +1,338 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.kalpvaig.cricketRnApp"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="33" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:4:3-75
+11-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:4:20-73
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:2:3-64
+12-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:2:20-62
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:3:3-77
+13-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:3:20-75
+14    <uses-permission android:name="android.permission.VIBRATE" />
+14-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:5:3-63
+14-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:5:20-61
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:6:3-78
+15-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:6:20-76
+16
+17    <queries>
+17-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:7:3-13:13
+18        <intent>
+18-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:8:5-12:14
+19            <action android:name="android.intent.action.VIEW" />
+19-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:9:7-58
+19-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:9:15-56
+20
+21            <category android:name="android.intent.category.BROWSABLE" />
+21-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:10:7-67
+21-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:10:17-65
+22
+23            <data android:scheme="https" />
+23-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:7-37
+23-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:13-35
+24        </intent>
+25
+26        <package android:name="host.exp.exponent" /> <!-- Query open documents -->
+26-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-53
+26-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:18-50
+27        <intent>
+27-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:9-17:18
+28            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+28-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-79
+28-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:21-76
+29        </intent>
+30    </queries>
+31
+32    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+32-->[com.facebook.flipper:flipper:0.182.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\96aa0437b2be82ab10ada7819631979e\transformed\jetified-flipper-0.182.0\AndroidManifest.xml:16:5-76
+32-->[com.facebook.flipper:flipper:0.182.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\96aa0437b2be82ab10ada7819631979e\transformed\jetified-flipper-0.182.0\AndroidManifest.xml:16:22-73
+33    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- suppress DeprecatedClassUsageInspection -->
+33-->[androidx.biometric:biometric:1.1.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\264a39683a235f28c19ffb16b0e9bac3\transformed\biometric-1.1.0\AndroidManifest.xml:24:5-72
+33-->[androidx.biometric:biometric:1.1.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\264a39683a235f28c19ffb16b0e9bac3\transformed\biometric-1.1.0\AndroidManifest.xml:24:22-69
+34    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+34-->[androidx.biometric:biometric:1.1.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\264a39683a235f28c19ffb16b0e9bac3\transformed\biometric-1.1.0\AndroidManifest.xml:27:5-74
+34-->[androidx.biometric:biometric:1.1.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\264a39683a235f28c19ffb16b0e9bac3\transformed\biometric-1.1.0\AndroidManifest.xml:27:22-71
+35    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+35-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\4fa6ead3d9a5c128fcee92bb95f998fc\transformed\jetified-installreferrer-1.0\AndroidManifest.xml:9:5-110
+35-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\4fa6ead3d9a5c128fcee92bb95f998fc\transformed\jetified-installreferrer-1.0\AndroidManifest.xml:9:22-107
+36
+37    <application
+37-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:14:3-33:17
+38        android:name="com.kalpvaig.cricketRnApp.MainApplication"
+38-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:14:16-47
+39        android:allowBackup="true"
+39-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:14:162-188
+40        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+40-->[androidx.core:core:1.8.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\556fca5d2dde0d1dc2f6fa1e439c5f2d\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+41        android:debuggable="true"
+42        android:icon="@mipmap/ic_launcher"
+42-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:14:81-115
+43        android:label="@string/app_name"
+43-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:14:48-80
+44        android:roundIcon="@mipmap/ic_launcher_round"
+44-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:14:116-161
+45        android:theme="@style/AppTheme"
+45-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:14:189-220
+46        android:usesCleartextTraffic="true" >
+46-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\debug\AndroidManifest.xml:6:18-53
+47        <meta-data
+47-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:15:5-83
+48            android:name="expo.modules.updates.ENABLED"
+48-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:15:16-59
+49            android:value="false" />
+49-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:15:60-81
+50        <meta-data
+50-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:16:5-93
+51            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+51-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:16:16-68
+52            android:value="49.0.0" />
+52-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:16:69-91
+53        <meta-data
+53-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:17:5-105
+54            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+54-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:17:16-80
+55            android:value="ALWAYS" />
+55-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:17:81-103
+56        <meta-data
+56-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:18:5-99
+57            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+57-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:18:16-79
+58            android:value="0" />
+58-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:18:80-97
+59
+60        <activity
+60-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:5-31:16
+61            android:name="com.kalpvaig.cricketRnApp.MainActivity"
+61-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:15-43
+62            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+62-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:77-154
+63            android:exported="true"
+63-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:276-299
+64            android:label="@string/app_name"
+64-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:44-76
+65            android:launchMode="singleTask"
+65-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:155-186
+66            android:screenOrientation="portrait"
+66-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:300-336
+67            android:theme="@style/Theme.App.SplashScreen"
+67-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:230-275
+68            android:windowSoftInputMode="adjustResize" >
+68-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:19:187-229
+69            <intent-filter>
+69-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:20:7-23:23
+70                <action android:name="android.intent.action.MAIN" />
+70-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:21:9-60
+70-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:21:17-58
+71
+72                <category android:name="android.intent.category.LAUNCHER" />
+72-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:22:9-68
+72-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:22:19-66
+73            </intent-filter>
+74            <intent-filter>
+74-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:24:7-30:23
+75                <action android:name="android.intent.action.VIEW" />
+75-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:9:7-58
+75-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:9:15-56
+76
+77                <category android:name="android.intent.category.DEFAULT" />
+77-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:26:9-67
+77-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:26:19-65
+78                <category android:name="android.intent.category.BROWSABLE" />
+78-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:10:7-67
+78-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:10:17-65
+79
+80                <data android:scheme="com.kalpvaig.cricketRnApp" />
+80-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:7-37
+80-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:13-35
+81                <data android:scheme="exp+cricket-score-app" />
+81-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:7-37
+81-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:13-35
+82            </intent-filter>
+83        </activity>
+84        <activity
+84-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:32:5-106
+85            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+85-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:32:15-79
+86            android:exported="false" />
+86-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:32:80-104
+87
+88        <meta-data
+88-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-14:37
+89            android:name="expo.modules.updates.AUTO_SETUP"
+89-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-59
+90            android:value="false" />
+90-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-34
+91
+92        <activity
+92-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-29:20
+93            android:name="expo.modules.devlauncher.launcher.DevLauncherActivity"
+93-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-81
+94            android:exported="true"
+94-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-36
+95            android:launchMode="singleTask"
+95-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-44
+96            android:theme="@style/Theme.DevLauncher.LauncherActivity" >
+96-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-70
+97            <intent-filter>
+97-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-28:29
+98                <action android:name="android.intent.action.VIEW" />
+98-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:9:7-58
+98-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:9:15-56
+99
+100                <category android:name="android.intent.category.DEFAULT" />
+100-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:26:9-67
+100-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:26:19-65
+101                <category android:name="android.intent.category.BROWSABLE" />
+101-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:10:7-67
+101-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:10:17-65
+102
+103                <data android:scheme="expo-dev-launcher" />
+103-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:7-37
+103-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:13-35
+104            </intent-filter>
+105        </activity>
+106        <activity
+106-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:30:9-33:70
+107            android:name="expo.modules.devlauncher.launcher.errors.DevLauncherErrorActivity"
+107-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:31:13-93
+108            android:screenOrientation="portrait"
+108-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:32:13-49
+109            android:theme="@style/Theme.DevLauncher.ErrorActivity" />
+109-->[:expo-dev-launcher] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:33:13-67
+110        <activity
+110-->[:expo-dev-menu] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-21:20
+111            android:name="expo.modules.devmenu.DevMenuActivity"
+111-->[:expo-dev-menu] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-64
+112            android:exported="true"
+112-->[:expo-dev-menu] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-36
+113            android:launchMode="singleTask"
+113-->[:expo-dev-menu] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-44
+114            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" >
+114-->[:expo-dev-menu] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-75
+115            <intent-filter>
+115-->[:expo-dev-menu] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-20:29
+116                <action android:name="android.intent.action.VIEW" />
+116-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:9:7-58
+116-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:9:15-56
+117
+118                <category android:name="android.intent.category.DEFAULT" />
+118-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:26:9-67
+118-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:26:19-65
+119                <category android:name="android.intent.category.BROWSABLE" />
+119-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:10:7-67
+119-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:10:17-65
+120
+121                <data android:scheme="expo-dev-menu" />
+121-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:7-37
+121-->C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\android\app\src\main\AndroidManifest.xml:11:13-35
+122            </intent-filter>
+123        </activity>
+124
+125        <provider
+125-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:21:9-30:20
+126            android:name="expo.modules.filesystem.FileSystemFileProvider"
+126-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-74
+127            android:authorities="com.kalpvaig.cricketRnApp.FileSystemFileProvider"
+127-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-74
+128            android:exported="false"
+128-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-37
+129            android:grantUriPermissions="true" >
+129-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:25:13-47
+130            <meta-data
+130-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-29:70
+131                android:name="android.support.FILE_PROVIDER_PATHS"
+131-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:17-67
+132                android:resource="@xml/file_system_provider_paths" />
+132-->[:expo-file-system] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-67
+133        </provider>
+134
+135        <meta-data
+135-->[:expo-modules-core] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:9-11:89
+136            android:name="org.unimodules.core.AppLoader#react-native-headless"
+136-->[:expo-modules-core] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-79
+137            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+137-->[:expo-modules-core] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-86
+138        <meta-data
+138-->[:expo-modules-core] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-15:45
+139            android:name="com.facebook.soloader.enabled"
+139-->[:expo-modules-core] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-57
+140            android:value="true" />
+140-->[:expo-modules-core] C:\Users\Hrithik Soni\Desktop\New folder\cricket-mobile-app\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-33
+141
+142        <provider
+142-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\db3c11bab3ba2a324b0325c1fa29ef2f\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+143            android:name="androidx.startup.InitializationProvider"
+143-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\db3c11bab3ba2a324b0325c1fa29ef2f\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+144            android:authorities="com.kalpvaig.cricketRnApp.androidx-startup"
+144-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\db3c11bab3ba2a324b0325c1fa29ef2f\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+145            android:exported="false" >
+145-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\db3c11bab3ba2a324b0325c1fa29ef2f\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+146            <meta-data
+146-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\db3c11bab3ba2a324b0325c1fa29ef2f\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+147                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+147-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\db3c11bab3ba2a324b0325c1fa29ef2f\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+148                android:value="androidx.startup" />
+148-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\db3c11bab3ba2a324b0325c1fa29ef2f\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+149            <meta-data
+149-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\b3cb99c8228f7b004acc305315f9f395\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+150                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+150-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\b3cb99c8228f7b004acc305315f9f395\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+151                android:value="androidx.startup" />
+151-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\b3cb99c8228f7b004acc305315f9f395\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+152            <meta-data
+152-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+153                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+153-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+154                android:value="androidx.startup" />
+154-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+155        </provider>
+156
+157        <receiver
+157-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+158            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+158-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+159            android:directBootAware="false"
+159-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+160            android:enabled="true"
+160-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+161            android:exported="true"
+161-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+162            android:permission="android.permission.DUMP" >
+162-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+163            <intent-filter>
+163-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+164                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+164-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+164-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+165            </intent-filter>
+166            <intent-filter>
+166-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+167                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+167-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+167-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+168            </intent-filter>
+169            <intent-filter>
+169-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+170                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+170-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+170-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+171            </intent-filter>
+172            <intent-filter>
+172-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+173                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+173-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+173-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Hrithik Soni\.gradle\caches\transforms-3\cd0619271537d84f07f6b6e89c9c818c\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+174            </intent-filter>
+175        </receiver>
+176    </application>
+177
+178</manifest>
